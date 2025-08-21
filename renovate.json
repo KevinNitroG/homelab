@@ -19,5 +19,8 @@
   "argocd": {
     "enabled": true,
     "managerFilePatterns": ["kubernetes/apps/argocd/.+\\.ya?ml$/"]
+  },
+  "git-submodules": {
+    "enabled": false
   }
 }
