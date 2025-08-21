@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits"],
+  "automergeType": "branch",
+  "ignoreTests": true,
+  "automerge": true,
+  "packageRules": [
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch", "pin"]
+    }
+  ],
+  "kubernetes": {
+    "enabled": true
+  },
+  "kustomize": {
+    "enabled": true
+  },
+  "argocd": {
+    "enabled": true,
+    "managerFilePatterns": ["kubernetes/apps/argocd/.+\\.ya?ml$/"]
+  }
+}

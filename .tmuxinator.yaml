@@ -1,0 +1,10 @@
+name: homelab
+
+windows:
+  - editor: nvim
+  - run:
+      layout: even-vertical
+      panes:
+        -
+        -
+  - k9s: k9s
