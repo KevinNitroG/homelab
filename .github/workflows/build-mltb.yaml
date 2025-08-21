@@ -17,7 +17,7 @@ jobs:
       - name: Get commit hash
         id: commit-hash
         working-directory: kubernetes/apps/mltb/anasty17-mltb
-        run: echo "commit=$(git ev-parse HEAD)" >>"$GITHUB_OUTPUT"
+        run: echo "commit=$(git rev-parse HEAD)" >>"$GITHUB_OUTPUT"
 
       - name: Login
         uses: docker/login-action@v3
