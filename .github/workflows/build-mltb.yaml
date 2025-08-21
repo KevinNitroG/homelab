@@ -2,6 +2,9 @@ name: Build MLTB Docker Image
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - kubernetes/apps/mltb/anasty17-mltb
 
 jobs:
   build:
@@ -17,7 +20,7 @@ jobs:
       - name: Get commit hash
         id: commit-hash
         working-directory: kubernetes/apps/mltb/anasty17-mltb
-        run: echo "commit=$(git rev-parse HEAD)" >>"$GITHUB_OUTPUT"
+        run: echo "commit=$(git rev-parse HEAD)" >>"${GITHUB_OUTPUT}"
 
       - name: Login
         uses: docker/login-action@v3
@@ -26,6 +29,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: downcase REPO
+        id: repo
+        run: echo "repo=${GITHUB_REPOSITORY,,}" >>"${GITHUB_OUTPUT}"
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -33,5 +40,5 @@ jobs:
           file: kubernetes/apps/mltb/anasty17-mltb/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/mltb:latest
-            ghcr.io/${{ github.repository }}/mltb:${{ steps.commit-hash.outputs.commit }}
+            ghcr.io/${{ steps.repo.outputs.repo }}/mltb:latest
+            ghcr.io/${{ steps.repo.outputs.repo }}/mltb:${{ steps.commit-hash.outputs.commit }}
