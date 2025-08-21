@@ -33,5 +33,5 @@ jobs:
           file: kubernetes/apps/mltb/anasty17-mltb/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/mltb:latest
-            ghcr.io/${{ github.repository_owner }}/${{ github.repository }}/mltb:${{ steps.commit-hash.outputs.commit }}
+            ghcr.io/${{ github.repository }}/mltb:latest
+            ghcr.io/${{ github.repository }}/mltb:${{ steps.commit-hash.outputs.commit }}
