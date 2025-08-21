@@ -21,9 +21,9 @@ gen-sa *args:
 
 [unix]
 [doc('Extract email from service accounts folder')]
-extract-emails folder='sa/' out='emails.txt':
-  grep -oPh '"client_email": "\K[^"]+' {{folder}}*.json > {{out}}
+extract-emails folder='accounts' out='emails.txt':
+  grep -oPh '"client_email": "\K[^"]+' {{folder}}/*.json > {{out}}
 
 [windows]
-extract-emails folder='sa/' out='emails.txt':
+extract-emails folder='accounts' out='emails.txt':
   $emails = Get-ChildItem .{{folder}}\**.json |Get-Content -Raw |ConvertFrom-Json |Select -ExpandProperty client_email >>{{out}}

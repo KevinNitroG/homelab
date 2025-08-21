@@ -2,7 +2,7 @@ name: homelab
 
 windows:
   - editor: nvim
-  - run:
+  - shell:
       layout: even-vertical
       panes:
         -

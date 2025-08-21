@@ -1,1 +1,4 @@
 emails.txt
+credentials.json
+token*.pickle
+accounts/
