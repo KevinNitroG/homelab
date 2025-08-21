@@ -19,5 +19,10 @@ resource "github_repository" "repo" {
   topics                 = ["homelab", "kubernetes", "flux"]
   allow_merge_commit     = false
   delete_branch_on_merge = true
+  has_issues             = true
+  has_discussions        = false
+  has_downloads          = true
+  has_wiki               = false
+  has_projects           = false
 }
 
