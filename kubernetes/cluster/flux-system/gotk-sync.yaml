@@ -12,9 +12,7 @@ spec:
   secretRef:
     name: flux-system
   url: ssh://git@github.com/KevinNitroG/homelab.git
-
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -27,37 +25,3 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: common
-        optional: true
-      - kind: Secret
-        name: common
-        optional: true
-  patches:
-    - patch: |- # language=yaml
-        apiVersion: kustomize.toolkit.fluxcd.io/v1
-        kind: Kustomization
-        metadata:
-          name: not-used
-        spec:
-          decryption:
-            provider: sops
-            secretRef:
-              name: sops-age
-          postBuild:
-            substituteFrom:
-              - kind: ConfigMap
-                name: common
-                optional: true
-              - kind: Secret
-                name: common
-                optional: true
-      target:
-        group: kustomize.toolkit.fluxcd.io
-        kind: Kustomization
