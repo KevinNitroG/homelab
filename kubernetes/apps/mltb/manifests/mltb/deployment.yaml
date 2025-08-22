@@ -32,7 +32,8 @@ spec:
               mountPath: /usr/src/app/accounts/
               readOnly: true
             - name: sa-token
-              mountPath: /usr/src/app/
+              mountPath: /usr/src/app/token_sa.pickle
+              subPath: token_sa.pickle
               readOnly: true
       volumes:
         - name: sa-accounts
