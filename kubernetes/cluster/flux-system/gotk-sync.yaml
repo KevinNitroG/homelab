@@ -41,6 +41,9 @@ spec:
         optional: true
   patches:
     - patch: |- # language=yaml
+        $patch: merge
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
         spec:
           decryption:
             provider: sops
