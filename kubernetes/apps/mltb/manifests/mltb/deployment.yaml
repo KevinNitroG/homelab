@@ -35,10 +35,6 @@ spec:
               mountPath: /usr/src/app/token_sa.pickle
               subPath: token_sa.pickle
               readOnly: true
-            - name: config
-              mountPath: /usr/src/app/config.py
-              subPath: config.py
-              readOnly: true
       volumes:
         - name: sa-accounts
           secret:
@@ -46,6 +42,3 @@ spec:
         - name: sa-token
           secret:
             secretName: mltb-sa-token
-        - name: config
-          secret:
-            secretName: mltb-config

@@ -7,7 +7,7 @@ vim.filetype.add({
 vim.env.SOPS_AGE_KEY_FILE = "./secrets/age.agekey"
 
 vim.keymap.set("n", "<localleader>e", function()
-  vim.cmd("!sops --encrypt --encrypted-regex '^(data|stringData)$' --in-place " .. vim.fn.expand("%"))
+  vim.cmd("!sops --encrypt --in-place " .. vim.fn.expand("%"))
   vim.cmd("edit!")
 end, { desc = "SOPS | Encrypt Current Secret File" })
 
