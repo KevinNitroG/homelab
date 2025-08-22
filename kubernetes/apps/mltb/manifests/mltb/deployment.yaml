@@ -18,9 +18,9 @@ spec:
           ports:
             - name: rclone
               containerPort: 8080
-            - name: qbittorent-aria2c-sabnzbd
+            - name: base
               containerPort: 80
-            - name: qbittorent-aria2c-sabnzbd-ui
+            - name: sth
               containerPort: 8090
-            - name: sabnzbd
+            - name: sth-i
               containerPort: 8070
