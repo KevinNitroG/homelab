@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongodb:8.0.13
+          image: mongo:8.0.13
           ports:
             - containerPort: 27017
           env:
@@ -26,11 +26,10 @@ spec:
             - mountPath: /data/db
               name: mongodb
           readinessProbe:
-            exec:
-              command:
-                - mongosh
-                - --eval
-                - db.adminCommand("ping")
+            tcpSocket:
+              port: 27017
+            initialDelaySeconds: 10
+            periodSeconds: 5
       volumes:
         - name: mongodb
           persistentVolumeClaim:
