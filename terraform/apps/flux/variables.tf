@@ -1,5 +1,3 @@
-# vim: set ft=terraform:
-
 variable "kubeconfig" {
   description = "Path to kubeconfig for the target cluster"
   type        = string

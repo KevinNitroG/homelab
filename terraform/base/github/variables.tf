@@ -1,5 +1,3 @@
-# vim: set ft=terraform:
-
 variable "github_username" {
   description = "GitHub username or organization"
   type        = string

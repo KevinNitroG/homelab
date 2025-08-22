@@ -1,5 +1,3 @@
-# vim: set ft=terraform:
-
 provider "flux" {
   kubernetes = {
     config_path = var.kubeconfig
