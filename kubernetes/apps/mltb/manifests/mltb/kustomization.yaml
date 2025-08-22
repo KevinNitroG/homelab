@@ -6,5 +6,7 @@ commonLabels:
   app.kubernetes.io/name: mltb
 resources:
   - ./secret.sops.yaml
+  - ./secret-sa-accounts.sops.yaml
+  - ./secret-sa-token.sops.yaml
   - ./deployment.yaml
   - ./service.yaml
