@@ -37,7 +37,7 @@ spec:
       volumes:
         - name: sa-accounts
           secret:
-            secretName: sa-accounts
+            secretName: mltb-sa-accounts
         - name: sa-token
           secret:
-            secretName: sa-token
+            secretName: mltb-sa-token
