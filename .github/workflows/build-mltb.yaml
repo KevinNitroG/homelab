@@ -6,6 +6,9 @@ on:
     paths:
       - kubernetes/apps/mltb/anasty17-mltb
 
+env:
+  REPO_DIR: kubernetes/apps/mltb/anasty17-mltb
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
 
       - name: Get commit hash
         id: commit-hash
-        working-directory: kubernetes/apps/mltb/anasty17-mltb
+        working-directory: ${{ env.REPO_DIR }}
         run: echo "commit=$(git rev-parse HEAD)" >>"${GITHUB_OUTPUT}"
 
       - name: Login
@@ -36,8 +39,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: kubernetes/apps/mltb/anasty17-mltb
-          file: kubernetes/apps/mltb/anasty17-mltb/Dockerfile
+          context: ${{ env.REPO_DIR }}
+          file: ${{ env.REPO_DIR }}/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ steps.repo.outputs.repo }}/mltb:latest
