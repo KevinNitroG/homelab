@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mltb
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mltb
+  template:
+    metadata:
+      name: mltb
+    spec:
+      containers:
+        - name: mltb
+          image: ghcr.io/kevinnitrog/homelab/mltb:615a34a89f7768ee3b36f1f53889dc537741d7b3
+          ports:
+            - name: rclone
+              containerPort: 8080
+            - name: qbittorent-aria2c-sabnzbd
+              containerPort: 80
+            - name: qbittorent-aria2c-sabnzbd-ui
+              containerPort: 8090
+            - name: sabnzbd
+              containerPort: 8070

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/service.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: mltb
+spec:
+  selector:
+    app.kubernetes.io/name: mltb
+  ports:
+    - name: rclone
+      port: 8080
+    - name: qbittorent-aria2c-sabnzbd
+      port: 80
+    - name: qbittorent-aria2c-sabnzbd-ui
+      port: 8090
+    - name: sabnzbd
+      port: 8070
