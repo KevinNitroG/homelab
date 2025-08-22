@@ -35,10 +35,10 @@ spec:
     substituteFrom:
       - kind: ConfigMap
         name: common
-        optional: false
+        optional: true
       - kind: Secret
         name: common
-        optional: false
+        optional: true
   patches:
     - patch: |- # language=yaml
         spec:
@@ -50,10 +50,10 @@ spec:
             substituteFrom:
               - kind: ConfigMap
                 name: common
-                optional: false
+                optional: true
               - kind: Secret
                 name: common
-                optional: false
+                optional: true
       target:
         group: kustomize.toolkit.fluxcd.io
         kind: Kustomization
