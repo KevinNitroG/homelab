@@ -27,3 +27,17 @@ spec:
           envFrom:
             - secretRef:
                 name: mltb
+          volumeMounts:
+            - name: sa-accounts
+              mountPath: /usr/src/app/accounts/
+              readOnly: true
+            - name: sa-token
+              mountPath: /usr/src/app/
+              readOnly: true
+      volumes:
+        - name: sa-accounts
+          secret:
+            secretName: sa-accounts
+        - name: sa-token
+          secret:
+            secretName: sa-token

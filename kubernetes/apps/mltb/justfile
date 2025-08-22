@@ -27,3 +27,13 @@ extract-emails folder='accounts' out='emails.txt':
 [windows]
 extract-emails folder='accounts' out='emails.txt':
   $emails = Get-ChildItem .{{folder}}\**.json |Get-Content -Raw |ConvertFrom-Json |Select -ExpandProperty client_email >>{{out}}
+
+create-k8s-sa-accounts-secret:
+  kubectl create secret generic sa \
+  --from-file=./accounts/ \
+  --dry-run=client -o yaml > ./manifests/mltb/secret-sa.sops.yaml
+
+create-k8s-sa-token-secret:
+  kubectl create secret generic sa-token \
+  --from-file=./token_sa.pickle \
+  --dry-run=client -o yaml > ./manifests/mltb/secret-sa-token.sops.yaml
