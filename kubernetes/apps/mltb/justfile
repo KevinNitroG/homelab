@@ -37,3 +37,6 @@ create-k8s-sa-token-secret:
   kubectl create secret generic sa-token \
   --from-file=./token_sa.pickle \
   --dry-run=client -o yaml > ./manifests/mltb/secret-sa-token.sops.yaml
+
+merge-sa:
+  jq -s '.' ./accounts/* > combined-sa.json
