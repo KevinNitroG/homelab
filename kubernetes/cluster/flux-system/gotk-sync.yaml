@@ -31,3 +31,33 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: common
+        optional: false
+      - kind: Secret
+        name: common
+        optional: false
+  patches:
+    - patch: |- # language=yaml
+        ---
+        # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+        apiVersion: kustomize.toolkit.fluxcd.io/v1
+        kind: Kustomization
+        spec:
+          decryption:
+            provider: sops
+            secretRef:
+              name: sops-age
+          postBuild:
+            substituteFrom:
+              - kind: ConfigMap
+                name: common
+                optional: false
+              - kind: Secret
+                name: common
+                optional: false
+      target:
+        group: kustomize.toolkit.fluxcd.io
+        kind: Kustomization

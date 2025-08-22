@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/deployment.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,6 +25,12 @@ spec:
           volumeMounts:
             - mountPath: /data/db
               name: mongodb
+          readinessProbe:
+            exec:
+              command:
+                - mongosh
+                - --eval
+                - db.adminCommand("ping")
       volumes:
         - name: mongodb
           persistentVolumeClaim:
