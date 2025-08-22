@@ -8,5 +8,6 @@ resources:
   - ./secret.sops.yaml
   - ./secret-sa-accounts.sops.yaml
   - ./secret-sa-token.sops.yaml
+  - ./secret-config.yaml
   - ./deployment.yaml
   - ./service.yaml
