@@ -26,7 +26,8 @@ spec:
               containerPort: 8070
           envFrom:
             - secretRef:
-                name: mltb
+                name: mltb-mltb
+                optional: false
           volumeMounts:
             - name: sa-accounts
               mountPath: /usr/src/app/accounts/
@@ -39,6 +40,8 @@ spec:
         - name: sa-accounts
           secret:
             secretName: mltb-sa-accounts
+            optional: false
         - name: sa-token
           secret:
             secretName: mltb-sa-token
+            optional: false
