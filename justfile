@@ -1,8 +1,5 @@
 mod mltb './kubernetes/apps/mltb'
 
-set dotenv-required
-set dotenv-load
-
 default:
   @just --list
 
@@ -22,4 +19,4 @@ age-decrypt-age own='~/.age-key.txt':
 add-age-cluster:
   kubectl create secret generic sops-age \
   --namespace=flux-system \
-  --from-file=./secrets/age.agekey=/dev/stdin
+  --from-file=./secrets/age.agekey
