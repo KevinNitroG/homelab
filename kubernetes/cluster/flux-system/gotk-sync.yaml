@@ -40,7 +40,7 @@ spec:
         name: common
         optional: false
   patches:
-    - patch: |-
+    - patch: |- # language=yaml
         spec:
           decryption:
             provider: sops
