@@ -16,9 +16,8 @@
   "kustomize": {
     "enabled": true
   },
-  "argocd": {
-    "enabled": true,
-    "managerFilePatterns": ["kubernetes/apps/argocd/.+\\.ya?ml$/"]
+  "flux": {
+    "managerFilePatterns": ["/(?:^|/)gotk-components\\.ya?ml$/"]
   },
   "git-submodules": {
     "enabled": false
