@@ -24,3 +24,6 @@ spec:
               containerPort: 8090
             - name: sth-i
               containerPort: 8070
+          envFrom:
+            - secretRef:
+                name: mltb
