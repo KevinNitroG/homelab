@@ -3,11 +3,12 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: http-route-mltb
+  name: mltb-443
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
       sectionName: mltb-443
+      namespace: gateway-api
   rules:
     - matches:
         - path:
@@ -16,4 +17,23 @@ spec:
       backendRefs:
         - name: mltb-mltb
           port: 443
-          namespace: mltb
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: mltb-8080
+spec:
+  parentRefs:
+    - name: gateway-duckdns-homelab
+      sectionName: mltb-8080
+      namespace: gateway-api
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: mltb-mltb
+          port: 8080

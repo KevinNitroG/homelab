@@ -21,3 +21,10 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: duckdns-mltb
+    - name: mltb-8080
+      port: 8080
+      protocol: HTTP
+      hostname: mltb.${DUCKDNS_DOMAIN}
+      allowedRoutes:
+        namespaces:
+          from: All
