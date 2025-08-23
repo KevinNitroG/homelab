@@ -3,5 +3,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./helm_repository.yaml
+  - ./git_repository.yaml
   - ./ks.yaml
