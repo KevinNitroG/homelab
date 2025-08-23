@@ -27,6 +27,7 @@ spec:
   dependsOn:
     - name: istio-base
   interval: 1h
+  targetNamespace: istio-system
   chart:
     spec:
       chart: *name
@@ -47,6 +48,7 @@ spec:
   dependsOn:
     - name: istio-base
   interval: 1h
+  targetNamespace: istio-system
   chart:
     spec:
       chart: cni
@@ -69,6 +71,7 @@ spec:
   dependsOn:
     - name: istio-base
   interval: 1h
+  targetNamespace: istio-system
   chart:
     spec:
       chart: ztunnel
