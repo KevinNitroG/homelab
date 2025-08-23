@@ -15,6 +15,7 @@ spec:
       version: v1.18.2
   install:
     createNamespace: true
+  targetNamespace: *name
   values:
     crds:
       enabled: true
