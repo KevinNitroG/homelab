@@ -1,5 +1,5 @@
-apps/**/*.yaml linguist-detectable
-apps/**/*.yml linguist-detectable
+kubernetes/**/*.yaml linguist-detectable
+kubernetes/**/*.yml linguist-detectable
 
 *.toml linguist-detectable
 *.md linguist-detectable
