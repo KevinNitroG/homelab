@@ -34,6 +34,7 @@ spec:
         kind: HelmRepository
         name: istio
       version: 1.26.3
+  targetNamespace: istio-system
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
@@ -56,6 +57,7 @@ spec:
     profile: ambient
     global:
       platform: k3s # minikube
+  targetNamespace: istio-system
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
@@ -74,3 +76,4 @@ spec:
         kind: HelmRepository
         name: istio
       version: 1.26.3
+  targetNamespace: istio-system
