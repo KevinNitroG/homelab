@@ -5,3 +5,8 @@ kind: Kustomization
 commonLabels:
   app.kubernetes.io/name: glance
 resources:
+  - ./namespace.yaml
+  - ./secret.sops.yaml
+  - ./deployment.yaml
+  - ./service.yaml
+  - ./http-route.yaml
