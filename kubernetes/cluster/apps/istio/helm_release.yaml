@@ -11,7 +11,7 @@ spec:
       chart: base
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: istio
       version: 1.26.3
   install:
     createNamespace: true
@@ -31,7 +31,7 @@ spec:
       chart: *name
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: istio
       version: 1.26.3
 
 ---
@@ -49,7 +49,7 @@ spec:
       chart: cni
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: istio
       version: 1.26.3
   values:
     profile: ambient
@@ -71,5 +71,5 @@ spec:
       chart: ztunnel
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: istio
       version: 1.26.3

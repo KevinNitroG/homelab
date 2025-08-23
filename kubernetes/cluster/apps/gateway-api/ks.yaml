@@ -30,6 +30,7 @@ spec:
   path: kubernetes/infra/gateway-api/
   dependsOn:
     - name: gateway-api-install
+    - name: common
   postBuild:
     substituteFrom:
       - kind: Secret
