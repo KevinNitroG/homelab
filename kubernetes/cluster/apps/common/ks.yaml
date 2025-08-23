@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/cluster/common/
+  path: kubernetes/infra/common/
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
