@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/mltb/manifests/
+  path: kubernetes/apps/mltb/
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
