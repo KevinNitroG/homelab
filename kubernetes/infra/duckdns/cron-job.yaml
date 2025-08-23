@@ -16,9 +16,7 @@ spec:
               image: curlimages/curl:8.15.0
               command: ["sh", "-c"]
               args:
-                - curl
-                - m=10
-                - https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=$${DUCKDNS_TOKEN}
+                - curl -m=10 "https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=$DUCKDNS_TOKEN"
               envFrom:
                 - secretRef:
                     name: *name
