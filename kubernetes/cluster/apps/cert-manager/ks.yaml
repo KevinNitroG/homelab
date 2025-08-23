@@ -12,7 +12,7 @@ spec:
     name: flux-system
   path: kubernetes/infra/cert-manager/
   dependsOn:
-    - name: api-gateway
+    - name: gateway-api
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
