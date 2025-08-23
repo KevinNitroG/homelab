@@ -28,6 +28,8 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infra/gateway-api/
+  dependsOn:
+    - name: gateway-api-install
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
