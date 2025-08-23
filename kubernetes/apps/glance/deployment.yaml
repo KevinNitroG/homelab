@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name glance
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: glanceapp/glance:v0.8.4
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /app/config/
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: *name
+            optional: false
+            items:
+              - key: glance.yml
+                path: glance.yml

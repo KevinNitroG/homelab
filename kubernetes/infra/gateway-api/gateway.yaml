@@ -10,6 +10,13 @@ metadata:
 spec:
   gatewayClassName: istio
   listeners:
+    - name: glance
+      port: 80
+      protocol: HTTP
+      hostname: ${DUCKDNS_DOMAIN}
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: mltb-443
       port: 443
       protocol: HTTPS

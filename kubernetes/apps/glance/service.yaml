@@ -3,16 +3,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: &name mltb
+  name: &name glance
 spec:
   selector:
     app.kubernetes.io/name: *name
   ports:
-    - name: rclone
-      port: 8080
-    - name: base
-      port: 443
-    - name: sth
-      port: 8090
-    - name: sth-i
-      port: 8070
+    - port: 8080

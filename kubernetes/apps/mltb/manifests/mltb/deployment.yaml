@@ -3,17 +3,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mltb
+  name: &name mltb
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: mltb
+      app.kubernetes.io/name: *name
   template:
     metadata:
-      name: mltb
+      name: *name
     spec:
       containers:
-        - name: mltb
+        - name: *name
           image: ghcr.io/kevinnitrog/homelab/mltb:615a34a89f7768ee3b36f1f53889dc537741d7b3
           ports:
             - name: rclone
