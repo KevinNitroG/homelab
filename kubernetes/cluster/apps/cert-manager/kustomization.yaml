@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./helm_repository.yaml
   - ./helm_release.yaml
+  - ./ks.yaml
