@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: istio-base
 spec:
@@ -18,8 +18,8 @@ spec:
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: &name istiod
 spec:
@@ -36,8 +36,8 @@ spec:
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: istiod-cni
 spec:
@@ -58,8 +58,8 @@ spec:
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: istiod-ztunnel
 spec:
