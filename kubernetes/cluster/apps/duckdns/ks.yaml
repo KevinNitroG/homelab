@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app duckdns
+  name: &name duckdns
 spec:
   interval: 1h
   prune: true
@@ -11,9 +11,10 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infra/duckdns/
+  targetNamespace: *name
   commonMetadata:
     labels:
-      app.kubernetes.io/name: *app
+      app.kubernetes.io/name: *name
   decryption:
     provider: sops
     secretRef:
