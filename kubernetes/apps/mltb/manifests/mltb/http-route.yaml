@@ -7,8 +7,10 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: mltb-443
+      sectionName: https
       namespace: gateway-api
+  hostnames:
+    - "mltb.${DUCKDNS_DOMAIN}"
   rules:
     - matches:
         - path:
@@ -27,8 +29,10 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: mltb-8080
+      sectionName: "8080"
       namespace: gateway-api
+  hostnames:
+    - "mltb.${DUCKDNS_DOMAIN}"
   rules:
     - matches:
         - path:

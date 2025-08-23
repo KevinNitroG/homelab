@@ -7,8 +7,10 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: glance-http
+      sectionName: http
       namespace: gateway-api
+  hostnames:
+    - "*.${DUCKDNS_DOMAIN}"
   rules:
     - filters:
         - type: RequestRedirect
@@ -25,8 +27,10 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: glance-https
+      sectionName: https
       namespace: gateway-api
+  hostnames:
+    - "*.${DUCKDNS_DOMAIN}"
   rules:
     - matches:
         - path:

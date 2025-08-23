@@ -3,46 +3,35 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: gateway-duckdns-homelab
+  name: &name gateway-duckdns-homelab
   annotations:
     networking.istio.io/service-type: LoadBalancer
     cert-manager.io/cluster-issuer: duckdns-cluster-issuer
 spec:
   gatewayClassName: istio
   listeners:
-    - name: glance-http
+    - name: http
       port: 80
       protocol: HTTP
-      hostname: "${DUCKDNS_DOMAIN}"
+      hostname: "*.${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
-    - name: glance-https
+    - name: https
       port: 443
       protocol: HTTPS
-      hostname: "${DUCKDNS_DOMAIN}"
+      hostname: "*.${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
       tls:
         mode: Terminate
         certificateRefs:
-          - name: duckdns-glance
-    - name: mltb-443
-      port: 443
-      protocol: HTTPS
-      hostname: mltb.${DUCKDNS_DOMAIN}
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: duckdns-mltb
-    - name: mltb-8080
+          - name: *name
+    - name: "8080"
       port: 8080
       protocol: HTTP
-      hostname: mltb.${DUCKDNS_DOMAIN}
+      hostname: "*.${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
