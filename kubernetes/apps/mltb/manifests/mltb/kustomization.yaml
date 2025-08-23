@@ -2,8 +2,10 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app.kubernetes.io/name: mltb
+labels:
+  - pairs:
+      app.kubernetes.io/name: mltb
+    includeSelectors: true
 resources:
   - ./secret.sops.yaml
   - ./secret-sa-accounts.sops.yaml

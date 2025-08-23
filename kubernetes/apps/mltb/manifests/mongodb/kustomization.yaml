@@ -2,8 +2,10 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-commonLabels:
-  app.kubernetes.io/name: mongodb
+labels:
+  - pairs:
+      app.kubernetes.io/name: mongodb
+    includeSelectors: true
 resources:
   - ./deployment.yaml
   - ./service.yaml
