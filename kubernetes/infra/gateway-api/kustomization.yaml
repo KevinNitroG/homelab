@@ -6,4 +6,3 @@ namespace: gateway-api
 resources:
   - ./namespace.yaml
   - ./gateway.yaml
-  - ./mltb.http-route.yaml

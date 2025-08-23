@@ -10,3 +10,4 @@ resources:
   - ./secret-sa-token.sops.yaml
   - ./deployment.yaml
   - ./service.yaml
+  - ./http-route.yaml
