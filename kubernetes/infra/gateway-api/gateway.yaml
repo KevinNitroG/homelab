@@ -13,14 +13,14 @@ spec:
     - name: glance-http
       port: 80
       protocol: HTTP
-      hostname: ${DUCKDNS_DOMAIN}
+      hostname: "*.${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
     - name: glance-https
       port: 443
       protocol: HTTPS
-      hostname: ${DUCKDNS_DOMAIN}
+      hostname: "*.${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
