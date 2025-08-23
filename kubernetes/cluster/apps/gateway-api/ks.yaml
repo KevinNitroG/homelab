@@ -30,10 +30,6 @@ spec:
   path: kubernetes/infra/gateway-api/
   dependsOn:
     - name: gateway-api-install
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   postBuild:
     substituteFrom:
       - kind: Secret
