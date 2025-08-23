@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: HelmRelease
 metadata:
   name: &name cert-manager
 spec:
