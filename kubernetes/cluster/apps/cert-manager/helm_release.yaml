@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: &name cert-manager
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: *name
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+      version: 1.18.2
+  install:
+    createNamespace: true
+  values:
+    crds:
+      enabled: true
+    config:
+      apiVersion: controller.config.cert-manager.io/v1alpha1
+      kind: ControllerConfiguration
+      enableGatewayAPI: true

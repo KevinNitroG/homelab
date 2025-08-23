@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master/cronjob-batch-v1.json
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: &name duckdns
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: *name
+              image: curlimages/curl:8.15.0
+              command: ["sh", "-c"]
+              args:
+                - curl
+                - m=10
+                - https://www.duckdns.org/update?domains=${DUCKDNS_DOMAIN}&token=${DUCKDNS_TOKEN}
+              envFrom:
+                - secretRef:
+                    name: *name
+                    optional: false
+          restartPolicy: OnFailure

@@ -3,23 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app mltb
+  name: &name cert-manager
 spec:
   interval: 5m
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/mltb/manifests/
+  path: kubernetes/infra/cert-manager/
+  dependsOn:
+    - name: api-gateway
   commonMetadata:
     labels:
-      app.kubernetes.io/name: *app
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: common
-        optional: false
+      app.kubernetes.io/name: *name

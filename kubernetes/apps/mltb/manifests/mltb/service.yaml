@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/service.json
 apiVersion: v1
 kind: Service
@@ -10,7 +11,7 @@ spec:
     - name: rclone
       port: 8080
     - name: base
-      port: 80
+      port: 443
     - name: sth
       port: 8090
     - name: sth-i
