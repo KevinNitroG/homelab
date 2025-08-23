@@ -81,3 +81,5 @@ spec:
       version: 1.26.3
   values:
     profile: ambient
+    env:
+      ENABLE_ORIG_SRC: false # https://github.com/istio/istio/issues/55937
