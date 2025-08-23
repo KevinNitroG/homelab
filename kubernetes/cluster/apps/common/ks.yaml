@@ -9,9 +9,18 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: *name
+    name: flux-system
   path: kubernetes/common/
-  targetNamespace: common
+  targetNamespace: *name
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: common
+        optional: false

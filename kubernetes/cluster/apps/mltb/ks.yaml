@@ -11,6 +11,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/mltb/manifests/
+  targetNamespace: *app
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
