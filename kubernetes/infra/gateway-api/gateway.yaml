@@ -5,7 +5,7 @@ kind: Gateway
 metadata:
   name: gateway-duckdns-homelab
   annotations:
-    networking.istio.io/service-type: LoadBalancer # ClusterIP
+    networking.istio.io/service-type: NodePort
     cert-manager.io/cluster-issuer: duckdns-cluster-issuer
 spec:
   gatewayClassName: istio
