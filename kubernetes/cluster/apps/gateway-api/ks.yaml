@@ -26,9 +26,8 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: *name
+    name: flux-system
   path: kubernetes/infra/gateway-api/
-  targetNamespace: gateway-api
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
