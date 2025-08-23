@@ -21,5 +21,5 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: common
+        name: sops-age
         optional: false
