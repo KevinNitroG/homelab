@@ -28,10 +28,10 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: *name
-    - name: "8080"
-      port: 8080
-      protocol: HTTP
-      hostname: "*.${DUCKDNS_DOMAIN}"
-      allowedRoutes:
-        namespaces:
-          from: All
+    # - name: "8080"
+    #   port: 8080
+    #   protocol: HTTP
+    #   hostname: "*.${DUCKDNS_DOMAIN}"
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: All
