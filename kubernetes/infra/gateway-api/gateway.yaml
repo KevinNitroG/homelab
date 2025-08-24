@@ -5,7 +5,7 @@ kind: Gateway
 metadata:
   name: &name gateway-duckdns-homelab
   annotations:
-    cert-manager.io/cluster-issuer: duckdns-cluster-issuer
+    cert-manager.io/cluster-issuer: duckdns-cluster-issuer-stag
 spec:
   gatewayClassName: istio
   listeners:
