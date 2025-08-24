@@ -5,7 +5,6 @@ kind: Gateway
 metadata:
   name: &name gateway-duckdns-homelab
   annotations:
-    # networking.istio.io/service-type: LoadBalancer
     cert-manager.io/cluster-issuer: duckdns-cluster-issuer
 spec:
   gatewayClassName: istio
@@ -28,10 +27,10 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: *name
-    # - name: "8080"
-    #   port: 8080
-    #   protocol: HTTP
-    #   hostname: "*.${DUCKDNS_DOMAIN}"
-    #   allowedRoutes:
-    #     namespaces:
-    #       from: All
+    - name: "8080"
+      port: 8080
+      protocol: HTTP
+      hostname: "*.${DUCKDNS_DOMAIN}"
+      allowedRoutes:
+        namespaces:
+          from: All

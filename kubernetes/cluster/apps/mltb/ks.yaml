@@ -11,9 +11,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/mltb/
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   decryption:
     provider: sops
     secretRef:
@@ -23,3 +20,6 @@ spec:
       - kind: Secret
         name: common
         optional: false
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
