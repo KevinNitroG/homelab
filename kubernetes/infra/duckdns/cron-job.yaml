@@ -4,7 +4,6 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: &name duckdns
-  namespace: duckdns
 spec:
   schedule: "*/30 * * * *"
   jobTemplate:

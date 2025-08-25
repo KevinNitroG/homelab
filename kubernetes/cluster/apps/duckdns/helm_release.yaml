@@ -6,7 +6,7 @@ metadata:
   name: &name cert-manager-duckdns-webhook
 spec:
   interval: 168h
-  targetNamespace: duckdns
+  targetNamespace: cert-manager # I have to do so
   chart:
     spec:
       chart: *name
@@ -19,7 +19,7 @@ spec:
     certManager:
       serviceAccountName: cert-manager-cert-manager
     token:
-      existingSecretName: duckdns
+      existingSecretName: duckdns-duckdns
     clusterIssuer:
       email: kevinnitro@duck.com
       production:

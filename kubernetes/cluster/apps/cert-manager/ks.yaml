@@ -11,6 +11,10 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infra/cert-manager/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   dependsOn:
     - name: gateway-api
   commonMetadata:
