@@ -7,7 +7,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: https
+      sectionName: https-wildcard
       namespace: gateway-api
   hostnames:
     - "mltb.${DUCKDNS_DOMAIN}"
@@ -29,7 +29,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-duckdns-homelab
-      sectionName: "8080"
+      sectionName: 8080-wildcard
       namespace: gateway-api
   hostnames:
     - "mltb.${DUCKDNS_DOMAIN}"

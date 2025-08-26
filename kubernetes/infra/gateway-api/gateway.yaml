@@ -12,11 +12,29 @@ spec:
     - name: http
       port: 80
       protocol: HTTP
-      hostname: "*.${DUCKDNS_DOMAIN}"
+      hostname: "${DUCKDNS_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
     - name: https
+      port: 443
+      protocol: HTTPS
+      hostname: "${DUCKDNS_DOMAIN}"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: *name
+    - name: http-wildcard
+      port: 80
+      protocol: HTTP
+      hostname: "*.${DUCKDNS_DOMAIN}"
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: https-wildcard
       port: 443
       protocol: HTTPS
       hostname: "*.${DUCKDNS_DOMAIN}"
@@ -27,7 +45,7 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: *name
-    - name: "8080"
+    - name: 8080-wildcard
       port: 8080
       protocol: HTTP
       hostname: "*.${DUCKDNS_DOMAIN}"
