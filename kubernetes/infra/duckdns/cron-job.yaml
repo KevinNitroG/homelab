@@ -6,6 +6,7 @@ metadata:
   name: &name duckdns
 spec:
   schedule: "*/30 * * * *"
+  timeZone: ${TIMEZONE}
   jobTemplate:
     spec:
       ttlSecondsAfterFinished: 30
