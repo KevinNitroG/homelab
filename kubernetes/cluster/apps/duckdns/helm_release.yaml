@@ -17,7 +17,7 @@ spec:
   values:
     groupName: kevinnitrohome.duckdns.org
     certManager:
-      serviceAccountName: cert-manager
+      serviceAccountName: cert-manager-cert-manager
     token:
       existingSecretName: duckdns
     clusterIssuer:
