@@ -10,7 +10,7 @@ spec:
       sectionName: http
       namespace: gateway-api
   hostnames:
-    - "*.${DUCKDNS_DOMAIN}"
+    - "${DUCKDNS_DOMAIN}"
   rules:
     - filters:
         - type: RequestRedirect
@@ -30,7 +30,7 @@ spec:
       sectionName: https
       namespace: gateway-api
   hostnames:
-    - "*.${DUCKDNS_DOMAIN}"
+    - "${DUCKDNS_DOMAIN}"
   rules:
     - matches:
         - path:
