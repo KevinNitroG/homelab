@@ -5,12 +5,13 @@ kind: Gateway
 metadata:
   name: gateway-idvn
   annotations:
-    cert-manager.io/cluster-issuer: idvn-cluster-issuer-stag
+    cert-manager.io/cluster-issuer: idvn-cluster-issuer-prod
 spec:
   gatewayClassName: istio
   infrastructure:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: ${IDVN_DOMAIN}
+      external-dns.alpha.kubernetes.io/access: public
   listeners:
     - name: http
       port: 80
