@@ -8,5 +8,6 @@ resources:
   # - ./duckdns/
   - ./gateway-api/
   - ./cert-manager/
+  - ./external-dns/
   - ./istio/
   - ./reloader/

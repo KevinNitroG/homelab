@@ -2,8 +2,6 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: gateway-api
+namespace: cert-manager
 resources:
-  - ./namespace.yaml
-  # - ./duckdns.gateway.yaml
-  - ./idvn.gateway.yaml
+  - ./idvn.secret.sops.yaml
