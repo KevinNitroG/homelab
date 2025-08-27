@@ -7,6 +7,7 @@ metadata:
 spec:
   interval: 1h
   prune: true
+  retryInterval: 5s # depends on common
   sourceRef:
     kind: GitRepository
     name: flux-system
