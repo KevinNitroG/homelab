@@ -26,7 +26,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: *name
+          - name: duckdns-tls
     - name: http-wildcard
       port: 80
       protocol: HTTP
@@ -44,7 +44,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: *name
+          - name: duckdns-tls
     - name: 8080-wildcard
       port: 8080
       protocol: HTTP
