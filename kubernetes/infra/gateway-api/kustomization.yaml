@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: gateway-api
 resources:
   - ./namespace.yaml
-  - ./gateway.yaml
+  - ./idvn.gateway.yaml

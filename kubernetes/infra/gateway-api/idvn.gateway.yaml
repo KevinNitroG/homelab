@@ -3,52 +3,52 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: &name gateway-duckdns-homelab
+  name: gateway-idvn
   annotations:
-    cert-manager.io/cluster-issuer: duckdns-cluster-issuer-stag
+    cert-manager.io/cluster-issuer: idvn-cluster-issuer-stag
 spec:
   gatewayClassName: istio
   listeners:
     - name: http
       port: 80
       protocol: HTTP
-      hostname: "${DUCKDNS_DOMAIN}"
+      hostname: "${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
     - name: https
       port: 443
       protocol: HTTPS
-      hostname: "${DUCKDNS_DOMAIN}"
+      hostname: "${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
       tls:
         mode: Terminate
         certificateRefs:
-          - name: *name
+          - name: idvn-cluster-issuer-stag
     - name: http-wildcard
       port: 80
       protocol: HTTP
-      hostname: "*.${DUCKDNS_DOMAIN}"
+      hostname: "*.${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
     - name: https-wildcard
       port: 443
       protocol: HTTPS
-      hostname: "*.${DUCKDNS_DOMAIN}"
+      hostname: "*.${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
       tls:
         mode: Terminate
         certificateRefs:
-          - name: *name
+          - name: idvn-cluster-issuer-stag
     - name: 8080-wildcard
       port: 8080
       protocol: HTTP
-      hostname: "*.${DUCKDNS_DOMAIN}"
+      hostname: "*.${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All

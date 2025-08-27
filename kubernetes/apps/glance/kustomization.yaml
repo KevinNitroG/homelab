@@ -12,4 +12,5 @@ resources:
   - ./secret.sops.yaml
   - ./deployment.yaml
   - ./service.yaml
-  - ./http-route.yaml
+  # - ./duckdns.http-route.yaml
+  - ./idvn.http-route.yaml

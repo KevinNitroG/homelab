@@ -3,10 +3,10 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: mltb-443
+  name: duckdns-mltb-443
 spec:
   parentRefs:
-    - name: gateway-duckdns-homelab
+    - name: gateway-duckdns
       sectionName: https-wildcard
       namespace: gateway-api
   hostnames:
@@ -25,10 +25,10 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: mltb-8080
+  name: duckdns-mltb-8080
 spec:
   parentRefs:
-    - name: gateway-duckdns-homelab
+    - name: gateway-duckdns
       sectionName: 8080-wildcard
       namespace: gateway-api
   hostnames:
