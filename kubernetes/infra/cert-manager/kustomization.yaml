@@ -8,4 +8,3 @@ resources:
   # - ./duckdns.cluster-issuer.yaml
   - ./idvn.secret.sops.yaml
   - ./idvn.cluster-issuer.yaml
-  - ./secret.sops.yaml
