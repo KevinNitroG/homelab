@@ -3,23 +3,6 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: gateway-api-install
-spec:
-  interval: 1h
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: &name gateway-api
-  path: config/crd/standard/
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *name
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: &name gateway-api
 spec:
   interval: 1h
