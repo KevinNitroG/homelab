@@ -28,6 +28,9 @@ spec:
             - secretRef:
                 name: mltb-mltb
                 optional: false
+            - configMapRef:
+                name: mltb-mltb
+                optional: false
           volumeMounts:
             - name: sa-accounts
               mountPath: /usr/src/app/accounts/

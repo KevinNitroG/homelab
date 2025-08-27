@@ -10,6 +10,7 @@ resources:
   - ./secret.sops.yaml
   - ./secret-sa-accounts.sops.yaml
   - ./secret-sa-token.sops.yaml
+  - ./config-map.yaml
   - ./deployment.yaml
   - ./service.yaml
   # - ./duckdns.http-route.yaml

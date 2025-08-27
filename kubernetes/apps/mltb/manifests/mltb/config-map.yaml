@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mltb
+data:
+  AS_DOCUMENT: "true"
+  BASE_URL: https://mltb.${IDVN_DOMAIN}
+  BASE_URL_PORT: "443"
+  # DATABASE_URL: mongodb://root:pass@mltb-mongodb/?retryWrites=true&w=majority
+  DEFAULT_UPLOAD: gd
+  INCOMPLETE_TASK_NOTIFIER: "true"
+  IS_TEAM_DRIVE: "true"
+  QUEUE_ALL: "4"
+  STOP_DUPLICATE: "true"
+  USE_SERVICE_ACCOUNTS: "true"
+  WEB_PINCODE: "true"
