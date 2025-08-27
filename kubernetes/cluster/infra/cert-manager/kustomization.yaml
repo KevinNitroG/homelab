@@ -6,3 +6,9 @@ resources:
   - ./helm-repository.yaml
   - ./helm-release.yaml
   - ./ks.yaml
+configMapGenerator:
+  - name: cert-manager-helm-value
+    files:
+      - values.yaml=./helm-values.yaml
+generatorOptions:
+  disableNameSuffixHash: true

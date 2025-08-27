@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cert-manager/cert-manager/9bf8bd753b68161e1831aba3856ba36a3eb03fcd/deploy/charts/cert-manager/values.schema.json
+crds:
+  enabled: true
+config:
+  apiVersion: controller.config.cert-manager.io/v1alpha1
+  kind: ControllerConfiguration
+  enableGatewayAPI: true
+extraArgs: # need those for duckdns because it's bruhhh
+  - --dns01-recursive-nameservers-only
+  - --dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53
+deploymentAnnotations:
+  certmanager.k8s.io/disable-validation: "true" # https://github.com/cert-manager/cert-manager/issues/3021
