@@ -6,11 +6,11 @@ metadata:
   name: idvn-mltb-443
 spec:
   parentRefs:
-    - name: gateway-idvn
+    - name: gateway-idvn-public
       sectionName: https-wildcard
       namespace: gateway-api
   hostnames:
-    - "mltb.${IDVN_DOMAIN}"
+    - mltb.${IDVN_DOMAIN}
   rules:
     - matches:
         - path:
@@ -28,7 +28,7 @@ metadata:
   name: idvn-mltb-8080
 spec:
   parentRefs:
-    - name: gateway-idvn
+    - name: gateway-idvn-public
       sectionName: 8080-wildcard
       namespace: gateway-api
   hostnames:

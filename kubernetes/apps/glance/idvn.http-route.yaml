@@ -10,7 +10,7 @@ spec:
       sectionName: http
       namespace: gateway-api
   hostnames:
-    - "${IDVN_DOMAIN}"
+    - ${IDVN_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -26,11 +26,11 @@ metadata:
   name: idvn-glance-https
 spec:
   parentRefs:
-    - name: gateway-idvn
+    - name: gateway-idvn-public
       sectionName: https
       namespace: gateway-api
   hostnames:
-    - "${IDVN_DOMAIN}"
+    - ${IDVN_DOMAIN}
   rules:
     - matches:
         - path:
