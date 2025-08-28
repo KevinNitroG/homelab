@@ -6,8 +6,8 @@ metadata:
   name: &name external-dns
 spec:
   interval: 1h
-  prune: true
   retryInterval: 5s # depends on common
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system

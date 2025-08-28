@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name cert-manager
+  name: &name grafana
 spec:
   interval: 1h
   retryInterval: 1m
@@ -11,18 +11,11 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/infra/cert-manager/
-  dependsOn:
-    - name: gateway-api
+  path: kubernetes/apps/grafana/
   decryption:
     provider: sops
     secretRef:
       name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: common
-        optional: false
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name

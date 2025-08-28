@@ -24,6 +24,7 @@ metadata:
   name: &name gateway-api
 spec:
   interval: 1h
+  retryInterval: 1m
   prune: true
   wait: true
   sourceRef:
