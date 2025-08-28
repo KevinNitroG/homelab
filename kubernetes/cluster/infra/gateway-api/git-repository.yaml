@@ -5,7 +5,8 @@ kind: GitRepository
 metadata:
   name: gateway-api
 spec:
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   url: https://github.com/kubernetes-sigs/gateway-api
   ref:
     tag: v1.3.0

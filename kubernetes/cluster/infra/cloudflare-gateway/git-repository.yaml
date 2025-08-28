@@ -5,7 +5,8 @@ kind: GitRepository
 metadata:
   name: cloudflare-gateway
 spec:
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   url: https://github.com/pl4nty/cloudflare-kubernetes-gateway
   ref:
     tag: v0.8.1

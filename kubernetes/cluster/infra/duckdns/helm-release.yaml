@@ -5,7 +5,8 @@ kind: HelmRelease
 metadata:
   name: &name cert-manager-duckdns-webhook
 spec:
-  interval: 168h
+  interval: 24h
+  timeout: 5m
   targetNamespace: cert-manager # I have to do so
   chart:
     spec:

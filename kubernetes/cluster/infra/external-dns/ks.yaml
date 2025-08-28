@@ -5,8 +5,9 @@ kind: Kustomization
 metadata:
   name: &name external-dns
 spec:
-  interval: 1h
-  retryInterval: 5s # depends on common
+  interval: 10m
+  retryInterval: 1m
+  timeout: 2m
   prune: true
   sourceRef:
     kind: GitRepository

@@ -5,7 +5,8 @@ kind: HelmRelease
 metadata:
   name: istio-base
 spec:
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   chart:
     spec:
       chart: base
@@ -26,7 +27,8 @@ metadata:
 spec:
   dependsOn:
     - name: istio-base
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   targetNamespace: istio-system
   chart:
     spec:
@@ -47,7 +49,8 @@ metadata:
 spec:
   dependsOn:
     - name: istio-base
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   targetNamespace: istio-system
   chart:
     spec:
@@ -70,7 +73,8 @@ metadata:
 spec:
   dependsOn:
     - name: istio-base
-  interval: 1h
+  interval: 24h
+  timeout: 5m
   targetNamespace: istio-system
   chart:
     spec:
