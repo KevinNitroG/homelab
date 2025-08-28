@@ -17,13 +17,11 @@ spec:
           image: ghcr.io/irfanhakim-as/cloudflare-ddns:1.0.2-fix-wrong-ip-r2
           volumeMounts:
             - name: config
-              mountPath: /
+              mountPath: /config.json
+              subPath: config.json
               readOnly: true
       volumes:
         - name: config
           secret:
             secretName: idvn-cloudflare-ddns
             optional: false
-            items:
-              - key: config.json
-                path: config.json
