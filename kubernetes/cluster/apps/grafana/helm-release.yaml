@@ -14,4 +14,4 @@ spec:
   targetNamespace: *name
   values:
     admin:
-      existingSecret: grafana-admin-secret
+      existingSecret: grafana-admin
