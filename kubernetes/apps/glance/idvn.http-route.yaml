@@ -6,7 +6,7 @@ metadata:
   name: idvn-glance-http
 spec:
   parentRefs:
-    - name: gateway-idvn
+    - name: gateway-idvn-public
       sectionName: http
       namespace: gateway-api
   hostnames:
