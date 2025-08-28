@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/gitrepository-source-v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cloudflare-kubernetes-gateway
+spec:
+  interval: 1h
+  url: https://github.com/pl4nty/cloudflare-kubernetes-gateway
+  ref:
+    tag: v0.8.1
+  ignore: |
+    /*
+    !/config/

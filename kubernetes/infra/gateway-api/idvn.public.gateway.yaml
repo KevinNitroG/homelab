@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: gateway-idvn
+  name: gateway-idvn-public
   annotations:
     cert-manager.io/cluster-issuer: idvn-cluster-issuer-prod
 spec:

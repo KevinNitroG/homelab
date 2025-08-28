@@ -7,7 +7,9 @@ resources:
   - ./common/
   # - ./duckdns/
   - ./gateway-api/
+  - ./cloudflare-kubernetes-gateway/
+  - ./cloudflare-ddns/
   - ./cert-manager/
-  - ./external-dns/
+  # - ./external-dns/
   - ./istio/
   - ./reloader/

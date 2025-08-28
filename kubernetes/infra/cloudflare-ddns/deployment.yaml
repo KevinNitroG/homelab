@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name cloudflare-ddns
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: ghcr.io/irfanhakim-as/cloudflare-ddns:1.0.2-fix-wrong-ip-r2
+          volumeMounts:
+            - name: config
+              mountPath: /
+              readOnly: true
+      volumes:
+        - name: config
+          secret:
+            secretName: idvn-cloudflare-ddns
+            optional: false
+            items:
+              - key: config.json
+                path: config.json
