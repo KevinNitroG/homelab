@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: cloudflare-kubernetes-gateway
+  name: cloudflare-gateway
 spec:
   interval: 1h
   url: https://github.com/pl4nty/cloudflare-kubernetes-gateway

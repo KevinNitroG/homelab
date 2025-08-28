@@ -3,14 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudflare-kubernetes-gateway-install
+  name: cloudflare-gateway-install
 spec:
   interval: 1h
   retryInterval: 1m
   prune: true
   sourceRef:
     kind: GitRepository
-    name: &name cloudflare-kubernetes-gateway
+    name: &name cloudflare-gateway
   path: config/default/
   dependsOn:
     - name: gateway-api-install
@@ -23,14 +23,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name cloudflare-kubernetes-gateway
+  name: &name cloudflare-gateway
 spec:
   interval: 1h
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/infra/cloudflare-kubernetes-gateway
+  path: kubernetes/infra/cloudflare-gateway
   dependsOn:
     - name: common
   decryption:

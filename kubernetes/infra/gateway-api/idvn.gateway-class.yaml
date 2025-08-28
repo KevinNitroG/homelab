@@ -9,5 +9,5 @@ spec:
   parametersRef:
     group: ""
     kind: Secret
-    namespace: cloudflare-kubernetes-gateway
-    name: idvn-cloudflare-kubernetes-gateway
+    namespace: cloudflare-gateway
+    name: idvn-cloudflare-gateway
