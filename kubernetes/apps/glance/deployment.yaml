@@ -20,15 +20,22 @@ spec:
           image: glanceapp/glance:v0.8.4
           ports:
             - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: *name
+                optional: false
           volumeMounts:
-            - name: config
+            - name: *name
               mountPath: /app/config/
               readOnly: true
+            - name: &assets glance-assets
+              mountPath: /app/assets/
       volumes:
-        - name: config
-          secret:
-            secretName: *name
+        - name: *name
+          configMap:
+            name: *name
             optional: false
-            items:
-              - key: glance.yml
-                path: glance.yml
+            defaultMode: 0444
+        - name: *assets
+          persistentVolumeClaim:
+            claimName: *assets

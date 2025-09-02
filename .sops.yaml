@@ -6,6 +6,11 @@ creation_rules:
     key_groups:
       - age:
           - "age1ytym5g6mxf0974syp2g2ecrh0y74tnl0u9ee4xm8caawhyv25pls3f2sy4"
+  - path_regex: ^encrypted_dot_env$
+    encrypted_regex: "^(.*)$"
+    key_groups:
+      - age:
+          - "age1ytym5g6mxf0974syp2g2ecrh0y74tnl0u9ee4xm8caawhyv25pls3f2sy4"
 stores:
   yaml:
     indent: 2

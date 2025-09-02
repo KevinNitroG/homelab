@@ -6,10 +6,19 @@ labels:
   - pairs:
       app.kubernetes.io/name: &name glance
     includeSelectors: true
+configMapGenerator:
+  - name: glance
+    files:
+      - glance.yml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    reloader.stakater.com/ignore: "true"
 namespace: *name
 resources:
   - ./namespace.yaml
   - ./secret.sops.yaml
+  - ./pvc.yaml
   - ./deployment.yaml
   - ./service.yaml
   # - ./duckdns.http-route.yaml
