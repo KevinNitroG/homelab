@@ -26,10 +26,12 @@ spec:
                 optional: false
           volumeMounts:
             - name: &config-map glance-config-config-map
-              mountPath: /app/config/
+              mountPath: /app/config/glance.yml
+              subPath: glance.yml
               readOnly: true
             - name: &secret glance-config-secret
-              mountPath: /app/config/
+              mountPath: /app/config/auth.yml
+              subPath: auth.yml
               readOnly: true
             - name: &assets glance-assets
               mountPath: /app/assets/

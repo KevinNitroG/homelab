@@ -14,7 +14,7 @@ configMapGenerator:
 secretGenerator:
   - name: glance-config-secret
     files:
-      - secret.yml=./config/secret.yml.encrypted
+      - auth.yml=./config/auth.yml.encrypted
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

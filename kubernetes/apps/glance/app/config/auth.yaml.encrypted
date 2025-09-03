@@ -1,0 +1,22 @@
+auth:
+  secret-key: ENC[AES256_GCM,data:SU/wAVLPaXD3ZN0aZfGT9nLLYwdyKJEOcBMiNfEC7+VdrhHUMr4jbQkp6uaZkzUOi2xbSi/bng2ig5dPs0Keo/u9qb36o7sunJkZk2VlBox0zE7coOCuiQ==,iv:puLfyeQl4za1iHrRjhDcwprK6JMcmfwUfLh6jJ0Td2s=,tag:iHGbKKPLJ4i8+/GBtfE15w==,type:str]
+  users:
+    kevinnitro:
+      password: ENC[AES256_GCM,data:nW3Wt7Yp0+impOfP7Q==,iv:lM/hznx1uwlGJc/F75KNjwAXdFckE9e6t6KZWlZZOL0=,tag:/jlz//XNVWxiw6alFlpwIQ==,type:str]
+    ntgnguyen:
+      password: ENC[AES256_GCM,data:OHn3ARoi,iv:hGJleyGKQoPkHheO6klH0d2KQ4OLWhvxQ929h87QGVY=,tag:YpWtbYPQTILlqDhWqucC6A==,type:str]
+sops:
+  age:
+    - recipient: age1ytym5g6mxf0974syp2g2ecrh0y74tnl0u9ee4xm8caawhyv25pls3f2sy4
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBVZ0tWd1FVWkJKSXM4QlE5
+        aysxbnhGODNrSkJ1MDE4ZkdKcEJFRmF4VWxBCm94ZkZhRU5GMTdsUDA3d0FyU2pG
+        Tjl4T1NIRHlycWh0Q252SnhIV24zUTQKLS0tIElOeVV4cEZlUElGckw3blV3MVNT
+        QWVkbWRGQ3ZYZTZVMkJSV3VuVXBhZmsKG0esk6m/xkM75vLYJJz0Vpmijw6Je2jL
+        gbQ2K63kwsD6ThpRqa78XMqL4EGnyDAMNywn8J1m3b4vUvu5au9caQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-09-03T14:34:13Z"
+  mac: ENC[AES256_GCM,data:mMSPXw5L7tBtseHEqXumuWKeIHX387nU8Ifvm8DCPOHodlkNMRVTTG8ptLOahwCNwy7IDFiId/x+R54eVjzj+XgmHhkx+YXvYv87VTBeB5LLRODErvtzgKR7cj0djP4VaGBGMBDEmPuCkmQqhDT8b/2oBH/2j3lLPt0bcJ0zCd4=,iv:UZnQx/0yxQ4LUs68PkxJ4tbDr80NpGsHcgeid5gawe4=,tag:jnDsJuaV/bLw67kPhfD1Mg==,type:str]
+  unencrypted_suffix: _unencrypted
+  version: 3.10.2

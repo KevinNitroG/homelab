@@ -6,7 +6,7 @@ branding:
   hide-footer: true
   logo-text: K
   app-name: Kevglance
-$include: secret.yml
+$include: auth.yml
 pages:
   - name: Home
     desktop-navigation-width: slim
