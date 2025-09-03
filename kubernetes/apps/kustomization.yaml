@@ -9,7 +9,7 @@ resources:
   - ./cloudflare-ddns/
   - ./cloudflare-gateway/
   - ./common/
-  - ./duckdns/
+  # - ./duckdns/
   # - ./external-dns/
   - ./gateway-api/
   - ./glance/
