@@ -12,6 +12,8 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/duckdns/app/
+  dependsOn:
+    - name: common
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
