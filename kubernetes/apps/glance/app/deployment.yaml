@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name glance
+  annotations:
+    reloader.stakater.com/auto: "true"
+    reloader.stakater.com/rollout-strategy: restart
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: glanceapp/glance:v0.8.4
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: *name
+                optional: false
+          volumeMounts:
+            - name: &config-map glance-config-config-map
+              mountPath: /app/config/
+              readOnly: true
+            - name: &secret glance-config-secret
+              mountPath: /app/config/
+              readOnly: true
+            - name: &assets glance-assets
+              mountPath: /app/assets/
+      volumes:
+        - name: *config-map
+          configMap:
+            name: *config-map
+            optional: false
+            defaultMode: 0444
+        - name: *secret
+          secret:
+            secretName: *secret
+            optional: false
+            defaultMode: 0444
+        - name: *assets
+          persistentVolumeClaim:
+            claimName: *assets
