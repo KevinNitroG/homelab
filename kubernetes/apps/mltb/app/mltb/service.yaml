@@ -11,7 +11,7 @@ spec:
     - name: rclone
       port: 8080
     - name: base
-      port: 443
+      port: 80
     - name: sth
       port: 8090
     - name: sth-i
