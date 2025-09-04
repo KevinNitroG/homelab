@@ -21,7 +21,7 @@ spec:
             - name: rclone
               containerPort: 8080
             - name: base
-              containerPort: 443
+              containerPort: 80
             - name: sth
               containerPort: 8090
             - name: sth-i
@@ -34,19 +34,23 @@ spec:
                 name: mltb-mltb
                 optional: false
           volumeMounts:
-            - name: sa-accounts
+            - name: &sa-account mltb-sa-accounts
               mountPath: /usr/src/app/accounts/
               readOnly: true
-            - name: sa-token
+            - name: &sa-token mltb-sa-token
               mountPath: /usr/src/app/token_sa.pickle
               subPath: token_sa.pickle
               readOnly: true
+            - name: downloads
+              mountPath: /usr/src/app/downloads/
       volumes:
-        - name: sa-accounts
+        - name: *sa-account
           secret:
-            secretName: mltb-sa-accounts
+            secretName: *sa-account
             optional: false
-        - name: sa-token
+        - name: *sa-token
           secret:
-            secretName: mltb-sa-token
+            secretName: *sa-token
             optional: false
+        - name: downloads
+          emptyDir: {}

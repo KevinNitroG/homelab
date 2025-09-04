@@ -7,7 +7,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway-idvn-public
-      sectionName: https-wildcard
+      sectionName: http-wildcard
       namespace: gateway-api
   hostnames:
     - mltb.${IDVN_DOMAIN}
@@ -18,7 +18,7 @@ spec:
             value: /
       backendRefs:
         - name: mltb-mltb
-          port: 443
+          port: 80
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
