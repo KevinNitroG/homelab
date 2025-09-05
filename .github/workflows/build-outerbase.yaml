@@ -7,5 +7,5 @@ jobs:
   build-mltb:
     uses: ./.github/workflows/build-image.yaml
     with:
-      repo_dir: kubernetes/apps/outerbase/outerbase
+      app_dir: kubernetes/apps/outerbase/outerbase
       image_name: outerbase
