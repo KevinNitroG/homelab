@@ -13,3 +13,4 @@ spec:
   ignore: |
     /*
     !/config/crd/standard/
+    !/config/crd/experimental/
