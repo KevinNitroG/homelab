@@ -16,7 +16,7 @@ spec:
         - name: *name
           image: bytebase/bytebase:3.8.0
           args:
-            - --external-url=bytebase.${IDVN_DOMAIN}
+            - --external-url=https://bytebase.${IDVN_DOMAIN}
           ports:
             - containerPort: 8080
           volumeMounts:
