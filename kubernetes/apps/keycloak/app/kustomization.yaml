@@ -8,7 +8,9 @@ labels:
       app.kubernetes.io/name: *name
     includeSelectors: true
 resources:
+  - ./cluster.yaml
   - ./deployment.yaml
   - ./idvn.http-route.yaml
   - ./namespace.yaml
+  - ./secret.sops.yaml
   - ./service.yaml
