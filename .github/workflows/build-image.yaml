@@ -1,0 +1,54 @@
+name: Build Image
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+      app_dir:
+        required: true
+        type: string
+        description: Must not have / at the end
+      dockerfile_path:
+        required: false
+        default: Dockerfile
+        type: string
+        description: Relative path
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Get commit hash
+        id: commit-hash
+        working-directory: ${{ inputs.app_dir }}
+        run: echo "commit=$(git rev-parse HEAD)" >>"${GITHUB_OUTPUT}"
+
+      - name: Login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: downcase REPO
+        id: repo
+        run: echo "repo=${GITHUB_REPOSITORY,,}" >>"${GITHUB_OUTPUT}"
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ inputs.app_dir }}
+          file: ${{ inputs.app_dir }}/${{ inputs.dockerfile_path }}
+          push: true
+          tags: |
+            ghcr.io/${{ steps.repo.outputs.repo }}/${{ inputs.image_name }}:latest
+            ghcr.io/${{ steps.repo.outputs.repo }}/${{ inputs.image_name }}:${{ steps.commit-hash.outputs.commit }}
