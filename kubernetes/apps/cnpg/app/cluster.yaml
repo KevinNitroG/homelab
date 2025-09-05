@@ -14,7 +14,7 @@ spec:
   bootstrap:
     initdb:
       database: ""
-      postInitSQL:
+      postInitApplicationSQL:
         - | # language: sql
           CREATE DATABASE keycloak OWNER keycloak;
           CREATE USER keycloak WITH PASSWORD 'keycloak';
