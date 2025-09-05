@@ -16,6 +16,7 @@ spec:
   dependsOn:
     - name: common
     - name: gateway-api-install
+    - name: cnpg
   decryption:
     provider: sops
     secretRef:
