@@ -19,4 +19,4 @@ resources:
   - ./reloader/
   - ./cnpg/
   - ./keycloak/
-  - ./bytebase/
+  # - ./bytebase/
