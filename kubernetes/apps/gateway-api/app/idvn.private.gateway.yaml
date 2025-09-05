@@ -14,3 +14,9 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: cnpg
+      port: 5432
+      protocol: TCP
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute

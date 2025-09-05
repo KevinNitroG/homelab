@@ -6,7 +6,7 @@ metadata:
   name: idvn-cnpg
 spec:
   parentRefs:
-    - name: gateway-idvn-public
+    - name: gateway-idvn-private
       sectionName: cnpg
       namespace: gateway-api
   rules:
