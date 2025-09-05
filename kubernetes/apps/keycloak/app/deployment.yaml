@@ -50,10 +50,6 @@ spec:
               value: *name
             - name: KC_DB_PASSWORD
               value: *name
-          envFrom:
-            - secretRef:
-                name: *name
-                optional: false
           ports:
             - name: http
               containerPort: 8080
