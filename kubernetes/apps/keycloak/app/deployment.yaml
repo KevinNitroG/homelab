@@ -21,7 +21,7 @@ spec:
             - "start"
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
-              value: kevinnitro
+              value: admin
             - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               value: admin
             - name: KC_PROXY_HEADERS
