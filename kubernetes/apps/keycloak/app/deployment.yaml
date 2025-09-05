@@ -43,7 +43,7 @@ spec:
             - name: KC_DB
               value: postgres
             - name: KC_DB_URL_HOST
-              value: cnpg.cnpg
+              value: cluster
             - name: KC_DB_URL_DATABASE
               value: *name
             - name: KC_DB_USERNAME
