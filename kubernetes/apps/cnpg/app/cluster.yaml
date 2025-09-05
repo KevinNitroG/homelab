@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg
+spec:
+  instances: 1
+  storage:
+    size: 10Gi
+    storageClass: local-path
+  monitoring:
+    enablePodMonitor: false
+  bootstrap:
+    initdb:
+      database: ""
+      postInitSQL:
+        - | # language: sql
+          CREATE DATABASE keycloak OWNER keycloak;
+          CREATE USER keycloak WITH PASSWORD 'keycloak';
+          GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;

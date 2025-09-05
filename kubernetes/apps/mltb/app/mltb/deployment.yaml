@@ -41,8 +41,6 @@ spec:
               mountPath: /usr/src/app/token_sa.pickle
               subPath: token_sa.pickle
               readOnly: true
-            - name: downloads
-              mountPath: /usr/src/app/downloads/
       volumes:
         - name: *sa-account
           secret:
@@ -52,5 +50,3 @@ spec:
           secret:
             secretName: *sa-token
             optional: false
-        - name: downloads
-          emptyDir: {}

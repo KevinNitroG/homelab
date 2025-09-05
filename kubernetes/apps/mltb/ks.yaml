@@ -15,6 +15,7 @@ spec:
   path: kubernetes/apps/mltb/app/
   dependsOn:
     - name: common
+    - name: gateway-api-install
   decryption:
     provider: sops
     secretRef:

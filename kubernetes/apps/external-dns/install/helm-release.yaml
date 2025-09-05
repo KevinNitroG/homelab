@@ -15,6 +15,7 @@ spec:
         name: *name
       version: 1.17.0
   install:
+    crds: CreateReplace
     createNamespace: true
   targetNamespace: *name
   values:

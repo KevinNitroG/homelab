@@ -15,6 +15,7 @@ spec:
         name: istio
       version: 1.26.3
   install:
+    crds: CreateReplace
     createNamespace: true
   targetNamespace: istio-system
 
@@ -29,6 +30,8 @@ spec:
     - name: istio-base
   interval: 24h
   timeout: 5m
+  install:
+    crds: CreateReplace
   targetNamespace: istio-system
   chart:
     spec:
@@ -51,6 +54,8 @@ spec:
     - name: istio-base
   interval: 24h
   timeout: 5m
+  install:
+    crds: CreateReplace
   targetNamespace: istio-system
   chart:
     spec:
@@ -75,6 +80,8 @@ spec:
     - name: istio-base
   interval: 24h
   timeout: 5m
+  install:
+    crds: CreateReplace
   targetNamespace: istio-system
   chart:
     spec:

@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name bytebase
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: bytebase/bytebase:3.8.0
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: *name
+              mountPath: /var/opt/bytebase
+      volumes:
+        - name: *name
+          persistentVolumeClaim:
+            claimName: *name

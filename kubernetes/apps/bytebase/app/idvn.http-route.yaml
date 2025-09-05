@@ -3,19 +3,19 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-grafana
+  name: idvn-bytebase
 spec:
   parentRefs:
     - name: gateway-idvn-private
       sectionName: http
       namespace: gateway-api
   hostnames:
-    - grafana.${IDVN_DOMAIN}
+    - bytebase.${IDVN_DOMAIN}
   rules:
     - matches:
         - path:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: grafana-grafana
-          port: 80
+        - name: bytebase
+          port: 8080

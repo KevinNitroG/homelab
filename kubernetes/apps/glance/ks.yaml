@@ -15,6 +15,7 @@ spec:
   path: kubernetes/apps/glance/app/
   dependsOn:
     - name: common
+    - name: gateway-api-install
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

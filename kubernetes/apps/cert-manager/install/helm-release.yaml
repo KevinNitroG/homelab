@@ -15,6 +15,7 @@ spec:
         name: jetstack
       version: v1.18.2
   install:
+    crds: CreateReplace
     createNamespace: true
   targetNamespace: *name
   valuesFrom:

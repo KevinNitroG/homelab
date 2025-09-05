@@ -15,5 +15,6 @@ spec:
         name: stakater
       version: v2.2.2
   install:
+    crds: CreateReplace
     createNamespace: true
   targetNamespace: reloader

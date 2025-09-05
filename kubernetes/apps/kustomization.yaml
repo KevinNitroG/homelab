@@ -17,3 +17,6 @@ resources:
   - ./istio/
   - ./mltb/
   - ./reloader/
+  - ./cnpg/
+  - ./keycloak/
+  - ./bytebase/

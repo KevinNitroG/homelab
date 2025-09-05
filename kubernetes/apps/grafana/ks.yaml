@@ -13,6 +13,9 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/grafana/app/
+  dependsOn:
+    - name: common
+    - name: gateway-api-install
   decryption:
     provider: sops
     secretRef:
