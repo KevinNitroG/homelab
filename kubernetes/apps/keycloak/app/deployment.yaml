@@ -47,9 +47,17 @@ spec:
             - name: KC_DB_URL_DATABASE
               value: *name
             - name: KC_DB_USERNAME
-              value: *name
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: keycloak-auth
+                  optional: false
             - name: KC_DB_PASSWORD
-              value: *name
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: keycloak-auth
+                  optional: false
           ports:
             - name: http
               containerPort: 8080

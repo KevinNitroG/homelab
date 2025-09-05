@@ -3,20 +3,26 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cnpg
+  name: &name cluster
 spec:
   instances: 1
   storage:
-    size: 10Gi
+    size: 500Mi
     storageClass: local-path
   monitoring:
     enablePodMonitor: false
   bootstrap:
     initdb:
-      database: ""
-      postInitSQL:
-        - | # language: sql
-          CREATE DATABASE keycloak OWNER keycloak;
-          CREATE USER keycloak WITH PASSWORD 'keycloak';
-          GRANT ALL PRIVILEGES ON DATABASE keycloak TO keycloak;
-          COMMIT;
+      database: keycloak
+      secret:
+        name: keycloak-auth
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: *name
