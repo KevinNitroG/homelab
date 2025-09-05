@@ -5,7 +5,7 @@ kind: Kustomization
 metadata:
   name: &app common
 spec:
-  interval: 5m
+  interval: 1h
   prune: true
   wait: true
   sourceRef:

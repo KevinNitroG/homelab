@@ -5,7 +5,7 @@ kind: Kustomization
 metadata:
   name: &app duckdns
 spec:
-  interval: 5m
+  interval: 1h
   prune: true
   wait: true
   sourceRef:
