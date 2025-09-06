@@ -31,9 +31,11 @@ spec:
       cloudbeaver_db_password: pybhqornire
   postRenderers:
     - kustomize:
-      patchesStrategicMerge:
-        - kind: PersistentVolumeClaim
-          spec:
-            $patch: replace
-            accessModes:
-              - ReadWriteOnce
+        patches:
+          - target:
+              kind: PersistentVolumeClaim
+            patch: | # language: yaml
+              - op: replace
+                path: /spec/accessModes
+                value:
+                  - ReadWriteOnce
