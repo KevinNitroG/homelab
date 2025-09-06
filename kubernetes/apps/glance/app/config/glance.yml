@@ -31,7 +31,7 @@ pages:
               - title: Cloudbeaver
                 check-url: http://cloudbeaver.cloudbeaver:8978/status
                 url: https://cloudbeaver.kevinnitro.id.vn
-                icon: dbeaver
+                icon: si:dbeaver
               - title: MLTB
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn
@@ -64,9 +64,6 @@ pages:
                       <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix $domain_name }}</a>
                       {{ if (.String "service") }}
                       <div class="flex items-center gap-10" style="margin-bottom: 5px">
-                        <div class="text-left">
-                          <img src="assets/img/link-down-right.png" style="width: auto; height: 20px; margin-left: 0px; margin-top: -4px;">
-                        </div>
                         <div class="size-h6 flex-1 text-left">
                           <a href='{{ .String "service" }}' target="_blank" rel="noreferrer">{{ .String "service" }}</a>
                         </div>
