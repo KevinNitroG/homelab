@@ -86,10 +86,10 @@ pages:
             servers:
               - type: local
                 name: kevblink
-          - type: extension
-            url: http://glance-k8s/extension/nodes
-            allow-potentially-dangerous-html: true
-            cache: 10s
+          # - type: extension
+          #   url: http://glance-k8s/extension/nodes
+          #   allow-potentially-dangerous-html: true
+          #   cache: 10s
   - name: News
     desktop-navigation-width: slim
     columns:
