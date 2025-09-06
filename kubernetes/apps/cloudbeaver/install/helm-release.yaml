@@ -24,3 +24,10 @@ spec:
     ingressController: null
     backend:
       cloudbeaver_db_password: pybhqornire
+  postRenderers:
+    - kustomize:
+      patchesStrategicMerge:
+        - kind: PersistentVolumeClaim
+          spec:
+            accessModes:
+              - ReadWriteOnce
