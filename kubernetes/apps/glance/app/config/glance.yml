@@ -25,11 +25,11 @@ pages:
                 url: https://grafana.kevinnitro.id.vn
                 icon: si:grafana
               - title: Keycloak
-                check-url: http://keycloak.keycloak/health/live
+                check-url: http://keycloak.keycloak:8080/health/live
                 url: https://keycloak.kevinnitro.id.vn
                 icon: si:keycloak
               - title: Cloudbeaver
-                check-url: http://cloudbeaver.cloudbeaver/status
+                check-url: http://cloudbeaver.cloudbeaver:9878/status
                 url: https://cloudbeaver.kevinnitro.id.vn
                 icon: dbeaver
               - title: MLTB
