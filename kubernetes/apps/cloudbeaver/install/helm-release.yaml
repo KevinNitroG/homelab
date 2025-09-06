@@ -21,8 +21,13 @@ spec:
       # TODO: let renovate track this version
       image: dbeaver/cloudbeaver
       imageTag: 25.2.0
-    ingressController: null
+      replicaCount: 1
+      pullPolicy: Always
     backend:
+      internal_db: true
+      cloudbeaver_db_driver: postgres-jdbc
+      cloudbeaver_db_url: jdbc:postgresql://postgres:5432/cloudbeaver
+      cloudbeaver_db_user: postgres
       cloudbeaver_db_password: pybhqornire
   postRenderers:
     - kustomize:
