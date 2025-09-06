@@ -29,7 +29,7 @@ pages:
                 url: https://keycloak.kevinnitro.id.vn
                 icon: si:keycloak
               - title: Cloudbeaver
-                check-url: http://cloudbeaver.cloudbeaver:9878/status
+                check-url: http://cloudbeaver.cloudbeaver:8978/status
                 url: https://cloudbeaver.kevinnitro.id.vn
                 icon: dbeaver
               - title: MLTB
