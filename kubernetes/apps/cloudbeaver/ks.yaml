@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name keycloak
+  name: &name cloudbeaver
 spec:
   interval: 1h
   retryInterval: 1m
@@ -12,11 +12,9 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/keycloak/app/
+  path: kubernetes/apps/cloudbeaver/app/
   dependsOn:
-    - name: common
     - name: gateway-api-install
-    - name: cnpg
   decryption:
     provider: sops
     secretRef:

@@ -20,3 +20,5 @@ resources:
   - ./cnpg/
   - ./keycloak/
   # - ./bytebase/
+  - ./cloudbeaver/
+  # - ./outerbase/
