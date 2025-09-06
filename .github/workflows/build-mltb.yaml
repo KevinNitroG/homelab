@@ -6,7 +6,7 @@ on:
 jobs:
   build-mltb:
     permissions:
-      contents: write
+      packages: write
     uses: ./.github/workflows/build-image.yaml
     with:
       app_dir: kubernetes/apps/mltb/anasty17-mltb
