@@ -21,17 +21,30 @@ pages:
             title: Services
             sites:
               - title: Grafana
+                check-url: http://grafana-grafana.grafana/api/health
                 url: https://grafana.kevinnitro.id.vn
                 icon: si:grafana
+              - title: Keycloak
+                check-url: http://keycloak.keycloak/health/live
+                url: https://keycloak.kevinnitro.id.vn
+                icon: si:keycloak
+              - title: Cloudbeaver
+                check-url: http://cloudbeaver.cloudbeaver/status
+                url: https://cloudbeaver.kevinnitro.id.vn
+                icon: dbeaver
+              - title: MLTB
+                check-url: http://mltb-mltb.mltb
+                url: http://mltb.kevinnitro.id.vn
+                icon: si:telegram
           - type: custom-api
             title: Cloudflared Tunnels
             css-class: "widget-type-cloudflared"
             cache: 4h
-            url: https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/cfd_tunnel/${CLOUDFLARE_TUNNEL_ID}/configurations
+            url: https://api.cloudflare.com/client/v4/accounts/$${CLOUDFLARE_ACCOUNT_ID}/cfd_tunnel/$${CLOUDFLARE_TUNNEL_ID}/configurations
             headers:
-              Authorization: Bearer ${CLOUDFLARE_API_KEY}
+              Authorization: Bearer $${CLOUDFLARE_API_KEY}
             template: |
-              {{ $domain_name := ".example.com" }}  {{/* Set your domain name */}}
+              {{ $domain_name := ".${IDVN_DOMAIN}" }}
 
               <style>
                 .widget-type-cloudflared li {
