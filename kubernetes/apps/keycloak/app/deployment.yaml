@@ -6,6 +6,7 @@ metadata:
   name: &name keycloak
   annotations:
     reloader.stakater.com/auto: "true"
+    glance/icon: si:keycloak
 spec:
   selector:
     matchLabels:

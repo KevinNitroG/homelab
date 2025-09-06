@@ -6,6 +6,7 @@ metadata:
   name: &name mltb
   annotations:
     reloader.stakater.com/auto: "true"
+    glance/icon: di:telegram
 spec:
   selector:
     matchLabels:

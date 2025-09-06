@@ -6,6 +6,7 @@ metadata:
   name: &name glance
   annotations:
     reloader.stakater.com/auto: "true"
+    glance/icon: si:glance
 spec:
   selector:
     matchLabels:
