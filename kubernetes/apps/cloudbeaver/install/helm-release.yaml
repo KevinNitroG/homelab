@@ -34,5 +34,6 @@ spec:
       patchesStrategicMerge:
         - kind: PersistentVolumeClaim
           spec:
+            $patch: replace
             accessModes:
               - ReadWriteOnce
