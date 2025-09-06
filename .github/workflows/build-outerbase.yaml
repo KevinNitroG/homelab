@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-mltb:
+  build:
     permissions:
       packages: write
     uses: ./.github/workflows/build-image.yaml
