@@ -25,7 +25,7 @@ pages:
                 url: https://grafana.kevinnitro.id.vn
                 icon: si:grafana
               - title: Keycloak
-                check-url: http://keycloak.keycloak:8080/health/live
+                check-url: http://keycloak.keycloak:9000/health/live
                 url: https://keycloak.kevinnitro.id.vn
                 icon: si:keycloak
               - title: Cloudbeaver
