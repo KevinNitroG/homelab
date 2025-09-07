@@ -36,16 +36,14 @@ spec:
                 name: *name
                 optional: false
           volumeMounts:
-            - name: &secret secret
-              mountPath: /config/aria2.conf
-              subPath: aria2.conf
-            - name: &downloads downloads
+            - name: &config aria2-config
+              mountPath: /config/
+            - name: &downloads aria2-downloads
               mountPath: /downloads/
       volumes:
-        - name: *secret
-          secret:
-            secretName: *name
-            optional: false
+        - name: *config
+          persistentVolumeClaim:
+            claimName: *config
         - name: *downloads
           persistentVolumeClaim:
-            claimName: *name
+            claimName: *downloads
