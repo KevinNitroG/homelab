@@ -5,3 +5,4 @@ kind: Kustomization
 namespace: cloudbeaver
 resources:
   - ./idvn.http-route.yaml
+  - ./namespace.yaml
