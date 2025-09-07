@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: copy-conf
-          image: alpine:3.19
+          image: alpine:3.22.1
           command: ["sh", "-c", "cp -a /app/conf-ro/. /app/conf/"]
           volumeMounts:
             - name: &conf-ro conf-ro
