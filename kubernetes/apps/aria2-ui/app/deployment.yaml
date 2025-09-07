@@ -40,7 +40,7 @@ spec:
               containerPort: 80
           env:
             - name: DOMAIN
-              value: http://aria2-ui.${IDVN_DOMAIN} # set to https will make SSL true
+              value: https://aria2-ui.${IDVN_DOMAIN} # set to https will make SSL true
             - name: TZ
               value: ${TIMEZONE}
             - name: ARIA2_SSL
