@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name filebrowser
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: filebrowser/filebrowser:v2.42.5
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: &config config
+              mountPath: /config/
+            - name: &database database
+              mountPath: /database/
+            - name: &aria2 aria2
+              mountPath: /srv/aria2/
+            - name: &mltb mltb
+              mountPath: /srv/mltb/
+      volumes:
+        - name: *config
+          secret:
+            secretName: *name
+            optional: false
+        - name: *database
+          persistentVolumeClaim:
+            claimName: *name

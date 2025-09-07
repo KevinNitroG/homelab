@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name cloudbeaver
+  name: &name filebrowser
 spec:
   interval: 1h
   retryInterval: 1m
@@ -12,19 +12,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/cloudbeaver/app/
+  path: kubernetes/apps/filebrowser/app/
   dependsOn:
     - name: common
     - name: gateway-api-install
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: common
-        optional: false
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name

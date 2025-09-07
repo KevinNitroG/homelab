@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ./common/
-  - ./openebs/
   - ./gateway-api/
   - ./cloudflare-ddns/
   - ./cloudflare-gateway/
