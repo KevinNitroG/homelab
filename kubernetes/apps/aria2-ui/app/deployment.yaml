@@ -17,12 +17,19 @@ spec:
       initContainers:
         - name: copy-conf
           image: alpine:3.22.1
-          command: ["sh", "-c", "cp -a /conf-ro/ /app/conf/"]
+          command:
+            - "sh"
+            - "-c"
+            - | # language: bash
+              cp -a /conf-ro/ /app/conf
+              touch /database/filebrowser.db
           volumeMounts:
             - name: &conf-ro conf-ro
               mountPath: &conf-ro-path /conf-ro/
             - name: &conf conf
               mountPath: &conf-path /app/conf/
+            - name: &database database
+              mountPath: /database/
       containers:
         - name: *name
           image: wahyd4/aria2-ui:6.2.2
@@ -54,9 +61,9 @@ spec:
               mountPath: *conf-path
             - name: &data data
               mountPath: /data/
-            - name: &database database
+            - name: *database
               mountPath: /app/filebrowser.db
-              subPath: files/filebrowser.db
+              subPath: filebrowser.db
       volumes:
         - name: *conf-ro
           secret:
