@@ -2,10 +2,13 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: aria2
+labels:
+  - pairs:
+      app.kubernetes.io/name: aria2
+    includeSelectors: true
 resources:
   - ./deployment.yaml
-  - ./namespace.yaml
+  - ./idvn.http-route.yaml
   - ./pvc.yaml
   - ./secret.sops.yaml
   - ./service.yaml

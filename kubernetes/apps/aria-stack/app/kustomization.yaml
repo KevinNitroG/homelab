@@ -2,10 +2,8 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: ariang
 resources:
-  - ./deployment.yaml
-  - ./idvn.http-route.yaml
+  - ./aria2/
+  - ./ariang/
+  - ./filebrowser/
   - ./namespace.yaml
-  - ./pvc.yaml
-  - ./service.yaml

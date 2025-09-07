@@ -2,5 +2,11 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+labels:
+  - pairs:
+      app.kubernetes.io/name: ariang
+    includeSelectors: true
 resources:
-  - ./ks.yaml
+  - ./deployment.yaml
+  - ./idvn.http-route.yaml
+  - ./service.yaml

@@ -25,9 +25,7 @@ spec:
             - name: &database database
               mountPath: /database/
             - name: &aria2 aria2
-              mountPath: /srv/aria2/
-            - name: &mltb mltb
-              mountPath: /srv/mltb/
+              mountPath: /srv/
       volumes:
         - name: *config
           secret:
@@ -36,3 +34,6 @@ spec:
         - name: *database
           persistentVolumeClaim:
             claimName: *name
+        - name: *aria2
+          persistentVolumeClaim:
+            claimName: *aria2
