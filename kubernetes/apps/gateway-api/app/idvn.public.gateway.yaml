@@ -49,10 +49,36 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: idvn-tls
-    - name: 8080-wildcard
+    - name: 8080-https-wildcard
       port: 8080
       protocol: HTTP
       hostname: "*.${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
           from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: idvn-tls
+    - name: 2019-https-wildcard
+      port: 2019
+      protocol: HTTPS
+      hostname: "*.${IDVN_DOMAIN}"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: idvn-tls
+    - name: 5572-https-wildcard
+      port: 5572
+      protocol: HTTPS
+      hostname: "*.${IDVN_DOMAIN}"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: idvn-tls

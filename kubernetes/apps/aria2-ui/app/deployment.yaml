@@ -36,7 +36,12 @@ spec:
         - name: *name
           image: wahyd4/aria2-ui:6.2.2
           ports:
-            - containerPort: 80
+            - name: main
+              containerPort: 80
+            - name: admin
+              containerPort: 2019
+            - name: rclone
+              containerPort: 5572
           env:
             - name: DOMAIN
               value: http://aria2-ui.${IDVN_DOMAIN} # set to https will make SSL true
