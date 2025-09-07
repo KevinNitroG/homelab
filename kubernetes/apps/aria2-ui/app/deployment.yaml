@@ -32,6 +32,8 @@ spec:
               value: "true"
             - name: ENABLE_APP_CHECKER
               value: "false"
+            - name: FIX_DATA_VOLUME_PERMISSIONS
+              value: "true"
           envFrom:
             - secretRef:
                 name: aria2-ui-env
