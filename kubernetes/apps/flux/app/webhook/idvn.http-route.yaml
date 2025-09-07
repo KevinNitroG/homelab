@@ -17,5 +17,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: flux-webhook
+        - name: webhook-receiver
           port: 80

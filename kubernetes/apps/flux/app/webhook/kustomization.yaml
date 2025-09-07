@@ -6,4 +6,3 @@ resources:
   - ./idvn.http-route.yaml
   - ./receiver.yaml
   - ./secret.sops.yaml
-  - ./service.yaml
