@@ -16,6 +16,26 @@ spec:
     spec:
       containers:
         - name: *name
-          image: p3terx/ariang:latest
+          image: nginx:1.29.1-alpine3.22-perl
+          command:
+            - "sh"
+            - "-c"
+          args:
+            - | # language: sh
+              cd /usr/share/nginx/html/
+              rm ./*
+              curl -LO https://github.com/mayswind/AriaNg/releases/download/1.3.11/AriaNg-1.3.11-AllInOne.zip
+              unzip AriaNg-1.3.11-AllInOne.zip
+              rm AriaNg-1.3.11-AllInOne.zip
+              sed -i 's/secret:\"\"/secret:\"'"${RPC_SECRET}"'\"/g' ./index.html
+              sed -i 's/defaultHost:\"localhost\"/defaultHost:\"'"${ARIA2_HOST}"'\"/g' ./index.html
+              nginx -g 'daemon off;'
+          env:
+            - name: ARIA2_HOST
+              value: aria2
+          envFrom:
+            - secretRef:
+                name: aria2
+                optional: false
           ports:
-            - containerPort: 6880
+            - containerPort: 80

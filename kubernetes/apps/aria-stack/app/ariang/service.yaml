@@ -8,4 +8,4 @@ spec:
   selector:
     app.kubernetes.io/name: *name
   ports:
-    - port: 6880
+    - port: 80
