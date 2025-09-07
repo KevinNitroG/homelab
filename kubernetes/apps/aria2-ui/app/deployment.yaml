@@ -22,6 +22,8 @@ spec:
             - "-c"
             - | # language: bash
               cp -a /conf-ro/* /conf/
+              echo 'Config files:'
+              ls -la /conf/
               touch /database/filebrowser.db
           volumeMounts:
             - name: &conf-ro conf-ro
