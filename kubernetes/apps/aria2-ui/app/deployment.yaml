@@ -32,8 +32,6 @@ spec:
               value: "true"
             - name: ENABLE_APP_CHECKER
               value: "false"
-            - name: FIX_DATA_VOLUME_PERMISSIONS
-              value: "true"
           envFrom:
             - secretRef:
                 name: aria2-ui-env
@@ -51,6 +49,7 @@ spec:
           secret:
             secretName: aria2-ui-config
             optional: false
+            defaultMode: 0777
         - name: *data
           persistentVolumeClaim:
             claimName: aria2-ui-data
