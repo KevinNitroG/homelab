@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name aria2
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: p3terx/aria2-pro:202209060423
+          ports:
+            - name: main-tcp
+              containerPort: 6888
+              protocol: TCP
+            - name: main-udp
+              containerPort: 6888
+              protocol: UDP
+            - name: rpc
+              containerPort: 6800
+          env:
+            - name: TZ
+              value: ${TIMEZONE}
+          envFrom:
+            - secretRef:
+                name: *name
+                optional: false
+          volumeMounts:
+            - name: &secret secret
+              mountPath: /config/
+              readOnly: true
+            - name: &downloads downloads
+              mountPath: /downloads/
+      volumes:
+        - name: *secret
+          secret:
+            secretName: *name
+            optional: false
+        - name: *downloads
+          persistentVolumeClaim:
+            claimName: *name
