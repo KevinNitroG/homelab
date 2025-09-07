@@ -21,7 +21,7 @@ spec:
             - "sh"
             - "-c"
             - | # language: bash
-              cp -a /conf-ro/* /conf/
+              cp -L /conf-ro/* /conf/
               echo 'Config files:'
               ls -la /conf/
               touch /database/filebrowser.db
