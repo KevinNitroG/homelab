@@ -6,9 +6,13 @@
 ### Bootstrap
 
 - k3s replace full path please
+
   ```yaml
 
   ```
+
+> [!WARNING]
+> local path provisioner doesn't care about storage limit
 
 ### Acknowledge
 

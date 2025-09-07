@@ -23,6 +23,7 @@ resources:
   # - ./bytebase/
   - ./cloudbeaver/
   # - ./outerbase/
-  - ./aria2/
-  - ./ariang/
-  - ./filebrowser/
+  # - ./aria2/
+  # - ./ariang/
+  # - ./filebrowser/
+  - ./aria2-ui/

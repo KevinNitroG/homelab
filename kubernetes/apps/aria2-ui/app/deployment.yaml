@@ -1,0 +1,57 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name aria2-ui
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: wahyd4/aria2-ui:6.2.2
+          ports:
+            - containerPort: 80
+          env:
+            - name: DOMAIN
+              value: http://aria2-ui.${IDVN_DOMAIN} # set to https will make SSL true
+            - name: TZ
+              value: ${TIMEZONE}
+            - name: ARIA2_SSL
+              value: "false"
+            - name: ENABLE_AUTH
+              value: "true"
+            - name: ENABLE_RCLONE
+              value: "true"
+            - name: ENABLE_APP_CHECKER
+              value: "false"
+          envFrom:
+            - secretRef:
+                name: aria2-ui-env
+                optional: false
+          volumeMounts:
+            - name: &config config
+              mountPath: /app/conf/
+            - name: &data data
+              mountPath: /data/
+            - name: &database database
+              mountPath: /app/
+              subPath: filebrowser.db
+      volumes:
+        - name: *config
+          secret:
+            secretName: aria2-ui-config
+            optional: false
+        - name: *data
+          persistentVolumeClaim:
+            claimName: aria2-ui-data
+        - name: *database
+          persistentVolumeClaim:
+            claimName: aria2-ui-database
