@@ -21,13 +21,13 @@ spec:
             - "sh"
             - "-c"
             - | # language: bash
-              cp -a /conf-ro/ /app/conf
+              cp -a /conf-ro/* /conf/
               touch /database/filebrowser.db
           volumeMounts:
             - name: &conf-ro conf-ro
-              mountPath: &conf-ro-path /conf-ro/
+              mountPath: /conf-ro/
             - name: &conf conf
-              mountPath: &conf-path /app/conf/
+              mountPath: /conf/
             - name: &database database
               mountPath: /database/
       containers:
@@ -55,10 +55,8 @@ spec:
                 name: aria2-ui-env
                 optional: false
           volumeMounts:
-            - name: *conf-ro
-              mountPath: *conf-ro-path
             - name: *conf
-              mountPath: *conf-path
+              mountPath: /app/conf/
             - name: &data data
               mountPath: /data/
             - name: *database

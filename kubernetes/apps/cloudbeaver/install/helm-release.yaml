@@ -22,7 +22,6 @@ spec:
       image: dbeaver/cloudbeaver
       imageTag: 25.2.0
       replicaCount: 1
-      pullPolicy: Always
     backend:
       internal_db: true
       cloudbeaver_db_driver: postgres-jdbc
