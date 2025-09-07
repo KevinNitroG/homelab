@@ -20,9 +20,9 @@ spec:
           command: ["sh", "-c", "cp -a /app/conf-ro/. /app/conf/"]
           volumeMounts:
             - name: &conf-ro conf-ro
-              mountPath: /app/conf-ro/
+              mountPath: &conf-ro-path /conf-ro/
             - name: &conf conf
-              mountPath: /app/conf/
+              mountPath: &conf-path /app/conf/
       containers:
         - name: *name
           image: wahyd4/aria2-ui:6.2.2
@@ -49,9 +49,9 @@ spec:
                 optional: false
           volumeMounts:
             - name: *conf-ro
-              mountPath: /app/conf-ro/
+              mountPath: *conf-ro-path
             - name: *conf
-              mountPath: /app/conf/
+              mountPath: *conf-path
             - name: &data data
               mountPath: /data/
             - name: &database database
