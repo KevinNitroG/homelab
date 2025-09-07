@@ -51,7 +51,7 @@ spec:
           - name: idvn-tls
     - name: 8080-https-wildcard
       port: 8080
-      protocol: HTTP
+      protocol: HTTPS
       hostname: "*.${IDVN_DOMAIN}"
       allowedRoutes:
         namespaces:
