@@ -35,7 +35,64 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /
+            value: /ui
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /
+            statusCode: 301
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /rpc
       backendRefs:
-        - name: aria2-ui
+        - name: &name aria2-ui
+          port: 6800
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /jsonrpc
+      backendRefs:
+        - name: *name
+          port: 6800
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /rclone
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: *name
+          port: 5572
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /files
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: *name
+          port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /ro
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: *name
           port: 80

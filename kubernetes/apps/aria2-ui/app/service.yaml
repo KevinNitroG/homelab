@@ -10,3 +10,9 @@ spec:
   ports:
     - name: main
       port: 80
+    - name: rclone
+      port: 5572
+    - name: filebrowser
+      port: 8080
+    - name: rpc
+      port: 6800

@@ -38,6 +38,12 @@ spec:
           ports:
             - name: main
               containerPort: 80
+            - name: rclone
+              containerPort: 5572
+            - name: filebrowser
+              containerPort: 8080
+            - name: rpc
+              containerPort: 6800
           env:
             - name: DOMAIN
               value: http://aria2-ui.${IDVN_DOMAIN} # set to https will make SSL true
