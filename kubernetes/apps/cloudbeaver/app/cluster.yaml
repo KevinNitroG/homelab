@@ -6,6 +6,7 @@ metadata:
   name: &name cluster
 spec:
   instances: 1
+  imageName: dbeaver/cloudbeaver-postgres:16
   storage:
     size: 200Mi
   monitoring:
