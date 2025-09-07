@@ -1,0 +1,45 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name aria2-ariang
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: hurlenko/aria2-ariang:1.3.11
+          ports:
+            - name: main
+              containerPort: 8080
+            - name: rpc
+              containerPort: 443
+          env:
+            - name: TZ # idk does it need it?
+              value: ${TIMEZONE}
+            - name: ARIA2RPCPORT
+              value: "443"
+          envFrom:
+            - secretRef:
+                name: *name
+                optional: false
+          volumeMounts:
+            - name: &conf aria2-ariang-conf
+              mountPath: /aria2/data/
+            - name: &data aria2-ariang-data
+              mountPath: /aria2/conf/
+      volumes:
+        - name: *conf
+          persistentVolumeClaim:
+            claimName: *conf
+        - name: *data
+          persistentVolumeClaim:
+            claimName: *data

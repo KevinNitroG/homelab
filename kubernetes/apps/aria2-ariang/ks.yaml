@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &name aria2-ariang
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: kubernetes/apps/aria2-ariang/app/
+  dependsOn:
+    - name: common
+    - name: gateway-api-install
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: common
+        optional: false
+      - kind: ConfigMap
+        name: common
+        optional: false
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *name
