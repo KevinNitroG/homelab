@@ -32,4 +32,5 @@ resource "flux_bootstrap_git" "flux" {
   depends_on         = [github_repository_deploy_key.repo]
   embedded_manifests = true
   path               = "kubernetes/flux/"
+  interval           = "10m"
 }
