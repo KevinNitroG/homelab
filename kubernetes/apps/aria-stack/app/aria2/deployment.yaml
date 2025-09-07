@@ -35,7 +35,8 @@ spec:
                 optional: false
           volumeMounts:
             - name: &secret secret
-              mountPath: /config/
+              mountPath: /config/aria2.conf
+              subPath: aria2.conf
               readOnly: true
             - name: &downloads downloads
               mountPath: /downloads/
