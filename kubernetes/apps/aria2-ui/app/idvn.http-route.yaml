@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-aria2-ui-main-http
+  name: idvn-aria2-ui-http
 spec:
   parentRefs:
     - name: gateway-idvn-public
@@ -23,7 +23,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-aria2-ui-main-https
+  name: idvn-aria2-ui-https
 spec:
   parentRefs:
     - name: gateway-idvn-public
@@ -39,47 +39,3 @@ spec:
       backendRefs:
         - name: aria2-ui
           port: 80
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: idvn-aria2-ui-admin
-spec:
-  parentRefs:
-    - name: gateway-idvn-public
-      sectionName: 2019-https-wildcard
-      namespace: gateway-api
-  hostnames:
-    - aria2-ui.${IDVN_DOMAIN}
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: aria2-ui
-          port: 2019
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: idvn-aria2-ui-rclone
-spec:
-  parentRefs:
-    - name: gateway-idvn-public
-      sectionName: 5572-https-wildcard
-      namespace: gateway-api
-  hostnames:
-    - aria2-ui.${IDVN_DOMAIN}
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: aria2-ui
-          port: 5572

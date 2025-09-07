@@ -10,7 +10,3 @@ spec:
   ports:
     - name: main
       port: 80
-    - name: admin
-      port: 2019
-    - name: rclone
-      port: 5572
