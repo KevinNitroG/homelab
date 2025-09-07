@@ -29,6 +29,8 @@ spec:
           env:
             - name: TZ
               value: ${TIMEZONE}
+            - name: UMASK_SET
+              value: "022"
           envFrom:
             - secretRef:
                 name: *name
@@ -37,7 +39,6 @@ spec:
             - name: &secret secret
               mountPath: /config/aria2.conf
               subPath: aria2.conf
-              readOnly: true
             - name: &downloads downloads
               mountPath: /downloads/
       volumes:
