@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/alert-notification-v1beta3.json
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: telegram
+spec:
+  providerRef:
+    name: flux-alert-telegram
+  eventSeverity: error
+  eventSources:
+    - kind: GitRepository
+      name: "*"
+    - kind: Kustomization
+      name: "*"
+    - kind: HelmRelease
+      name: "*"
+    - kind: HelmRepository
+      name: "*"
+    - kind: OCIRepository
+      name: "*"

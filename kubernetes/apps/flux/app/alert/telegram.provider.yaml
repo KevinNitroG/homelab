@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/provider-notification-v1beta3.json
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: &name telegram
+spec:
+  type: *name
+  address: https://api.telegram.org
+  channel: "-1001644026686"
+  secretRef:
+    name: flux-alert-telegram
