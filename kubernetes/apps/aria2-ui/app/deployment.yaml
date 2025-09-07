@@ -56,7 +56,7 @@ spec:
               mountPath: /data/
             - name: &database database
               mountPath: /app/filebrowser.db
-              subPath: filebrowser.db
+              subPath: files/filebrowser.db
       volumes:
         - name: *conf-ro
           secret:
