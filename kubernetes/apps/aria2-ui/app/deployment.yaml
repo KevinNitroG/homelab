@@ -42,7 +42,7 @@ spec:
             - name: &data data
               mountPath: /data/
             - name: &database database
-              mountPath: /app/
+              mountPath: /app/filebrowser.db
               subPath: filebrowser.db
       volumes:
         - name: *config
