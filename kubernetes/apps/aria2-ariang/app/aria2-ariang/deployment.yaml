@@ -33,9 +33,9 @@ spec:
                 optional: false
           volumeMounts:
             - name: &conf aria2-ariang-conf
-              mountPath: /aria2/data/
-            - name: &data aria2-ariang-data
               mountPath: /aria2/conf/
+            - name: &data aria2-ariang-data
+              mountPath: /aria2/data/
       volumes:
         - name: *conf
           persistentVolumeClaim:
