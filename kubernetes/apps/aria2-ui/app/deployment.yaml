@@ -65,6 +65,8 @@ spec:
             - name: *database
               mountPath: /app/filebrowser.db
               subPath: filebrowser.db
+            - name: &cache cache
+              mountPath: /app/.cache
       volumes:
         - name: *conf-ro
           secret:
@@ -75,6 +77,6 @@ spec:
         - name: *data
           persistentVolumeClaim:
             claimName: aria2-ui-data
-        - name: *database
+        - name: *cache
           persistentVolumeClaim:
-            claimName: aria2-ui-database
+            claimName: aria2-ui-cache
