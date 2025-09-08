@@ -61,7 +61,7 @@ spec:
         certificateRefs:
           - name: idvn-tls
     - name: aria2
-      port: 8080
+      port: 6800
       protocol: TCP
       allowedRoutes:
         kinds:
