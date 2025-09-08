@@ -60,3 +60,9 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: idvn-tls
+    - name: samba
+      port: 445
+      protocol: TCP
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute

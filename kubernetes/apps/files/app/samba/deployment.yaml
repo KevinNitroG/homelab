@@ -1,0 +1,42 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name samba
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: dockurr/samba:4.21.6
+          ports:
+            - containerPort: 445
+          volumeMounts:
+            - name: &config-map config-map
+              mountPath: /etc/samba/smb.conf
+              subPath: smb.conf
+            - name: &secret secret
+              mountPath: /etc/samba/users.conf
+              subPath: users.conf
+            - name: &aria2-downloads aria2-downloads
+              mountPath: /storage/
+      volumes:
+        - name: *config-map
+          configMap:
+            name: *name
+            optional: false
+        - name: *secret
+          secret:
+            secretName: *name
+            optional: false
+        - name: *aria2-downloads
+          persistentVolumeClaim:
+            claimName: *aria2-downloads

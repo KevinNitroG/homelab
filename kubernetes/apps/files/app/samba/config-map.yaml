@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: samba
+data:
+  smb.conf: | # language: samba
+    [global]
+        server string = samba
+        idmap config * : range = 3000-7999
+        security = user
+        server min protocol = SMB2
+
+        # disable printing services
+        load printers = no
+        printing = bsd
+        printcap name = /dev/null
+        disable spoolss = yes
+
+    [Data]
+        path = /storage
+        comment = Shared
+        valid users = @smb
+        browseable = yes
+        writable = yes
+        read only = no
+        force user = root
+        force group = root
