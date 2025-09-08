@@ -9,5 +9,5 @@ labels:
 resources:
   - ./config-map.yaml
   - ./deployment.yaml
-  - ./idvn.http-route.yaml
+  - ./default.http-route.yaml
   - ./service.yaml

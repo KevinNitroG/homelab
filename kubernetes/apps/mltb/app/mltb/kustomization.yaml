@@ -14,4 +14,4 @@ resources:
   - ./deployment.yaml
   - ./service.yaml
   # - ./duckdns.http-route.yaml
-  - ./idvn.http-route.yaml
+  - ./default.http-route.yaml
