@@ -13,12 +13,6 @@ spec:
     name: flux-webhook
   resources:
     - kind: GitRepository
-      name: "*"
+      name: flux-system
     - kind: Kustomization
-      name: "*"
-    - kind: HelmRelease
-      name: "*"
-    - kind: HelmRepository
-      name: "*"
-    - kind: OCIRepository
-      name: "*"
+      name: flux-system
