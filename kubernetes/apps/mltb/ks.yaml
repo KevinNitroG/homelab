@@ -32,3 +32,4 @@ spec:
     - apiVersion: apps/v1
       kind: Deployment
       name: mltb-mltb
+      namespace: *name
