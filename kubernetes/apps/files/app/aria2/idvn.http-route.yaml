@@ -6,8 +6,8 @@ metadata:
   name: idvn-aria2-http
 spec:
   parentRefs:
-    - name: gateway-idvn-private
-      sectionName: http
+    - name: gateway-idvn-public
+      sectionName: https
       namespace: gateway-api
   hostnames:
     - aria2.${IDVN_DOMAIN}

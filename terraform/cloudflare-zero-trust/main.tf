@@ -57,3 +57,21 @@ resource "cloudflare_zero_trust_access_application" "cloudbeaver" {
   ]
   type = "self_hosted"
 }
+
+resource "cloudflare_zero_trust_access_application" "ariang" {
+  account_id = var.cf_account_id
+  name       = "ariang"
+  destinations = [
+    {
+      type = "public"
+      uri  = "ariang.kevinnitro.id.vn"
+    },
+  ]
+  policies = [
+    {
+      id         = cloudflare_zero_trust_access_policy.admin.id
+      precedence = 1
+    },
+  ]
+  type = "self_hosted"
+}

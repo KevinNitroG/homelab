@@ -27,8 +27,9 @@ spec:
               curl -LO https://github.com/mayswind/AriaNg/releases/download/1.3.11/AriaNg-1.3.11-AllInOne.zip
               unzip AriaNg-1.3.11-AllInOne.zip
               rm AriaNg-1.3.11-AllInOne.zip
+              sed -i 's/rpcPort:\"6800\"/rpcPort:\"443\"/g' ./index.html
               sed -i 's/secret:\"\"/secret:\"'"${RPC_SECRET}"'\"/g' ./index.html
-              sed -i 's/defaultHost:\"localhost\"/defaultHost:\"'"${ARIA2_HOST}"'\"/g' ./index.html
+              sed -i 's/defaultHost:\"localhost\"/defaultHost:\"aria2.${IDVN_DOMAIN}\"/g' ./index.html
               nginx -g 'daemon off;'
           env:
             - name: ARIA2_HOST
@@ -39,3 +40,11 @@ spec:
                 optional: false
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: *name
+              mountPath: /etc/nginx/
+      volumes:
+        - name: *name
+          configMap:
+            name: *name
+            optional: false

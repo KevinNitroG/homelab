@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: aria-stack
+  name: files
 spec:
   interval: 1h
   retryInterval: 1m
@@ -12,7 +12,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/aria-stack/app/
+  path: kubernetes/apps/files/app/
   dependsOn:
     - name: common
     - name: gateway-api-install

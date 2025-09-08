@@ -25,4 +25,4 @@ resources:
   # - ./outerbase/
   # - ./aria2-ui/
   # - ./aria-stack/
-  - ./aria2-ariang/
+  - ./files/
