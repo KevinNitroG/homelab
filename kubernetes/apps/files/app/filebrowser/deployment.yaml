@@ -24,7 +24,7 @@ spec:
               mountPath: /config/
             - name: &database database
               mountPath: /database/
-            - name: &aria2 aria2
+            - name: &aria2-downloads aria2-downloads
               mountPath: /srv/
       volumes:
         - name: *config
@@ -34,6 +34,6 @@ spec:
         - name: *database
           persistentVolumeClaim:
             claimName: *name
-        - name: *aria2
+        - name: *aria2-downloads
           persistentVolumeClaim:
-            claimName: *aria2
+            claimName: *aria2-downloads
