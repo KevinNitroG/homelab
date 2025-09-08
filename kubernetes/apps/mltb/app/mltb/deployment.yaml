@@ -42,6 +42,20 @@ spec:
               mountPath: /usr/src/app/token_sa.pickle
               subPath: token_sa.pickle
               readOnly: true
+          startupProbe: &health
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 5
+            failureThreshold: 10
+          readinessProbe:
+            <<: *health
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            <<: *health
+            periodSeconds: 10
+            failureThreshold: 3
       volumes:
         - name: *sa-account
           secret:

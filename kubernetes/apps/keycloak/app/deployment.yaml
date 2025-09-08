@@ -66,8 +66,8 @@ spec:
             httpGet:
               path: /health/started
               port: 9000
-            periodSeconds: 1
-            failureThreshold: 600
+            periodSeconds: 10
+            failureThreshold: 30
           readinessProbe:
             httpGet:
               path: /health/ready

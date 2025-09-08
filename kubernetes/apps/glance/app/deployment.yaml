@@ -35,6 +35,20 @@ spec:
               readOnly: true
             - name: &assets glance-assets
               mountPath: /app/assets/
+          startupProbe: &health
+            httpGet:
+              path: /api/healthz
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 10
+          readinessProbe:
+            <<: *health
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            <<: *health
+            periodSeconds: 10
+            failureThreshold: 3
       volumes:
         - name: *config-map
           configMap:
