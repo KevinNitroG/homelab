@@ -64,5 +64,7 @@ spec:
       port: 445
       protocol: TCP
       allowedRoutes:
+        namespaces:
+          from: All
         kinds:
           - kind: TCPRoute
