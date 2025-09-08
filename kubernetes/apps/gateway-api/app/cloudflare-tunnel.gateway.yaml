@@ -3,9 +3,9 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: gateway-idvn-private
+  name: &name cloudflare-tunnel
 spec:
-  gatewayClassName: idvn-cloudflare
+  gatewayClassName: *name
   listeners:
     - name: http-wildcard
       port: 80
@@ -14,7 +14,7 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    - name: cnpg
+    - name: cnpg # check bcs seem that it only support httproute
       port: 5432
       protocol: TCP
       allowedRoutes:

@@ -6,7 +6,7 @@ metadata:
   name: idvn-samba
 spec:
   parentRefs:
-    - name: gateway-idvn-public
+    - name: default
       sectionName: samba
       namespace: gateway-api
   rules:

@@ -3,10 +3,10 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-aria2-ui-http
+  name: aria2-ui-http
 spec:
   parentRefs:
-    - name: gateway-idvn-public
+    - name: default
       sectionName: http-wildcard
       namespace: gateway-api
   hostnames:
@@ -23,10 +23,10 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-aria2-ui-https
+  name: aria2-ui-https
 spec:
   parentRefs:
-    - name: gateway-idvn-public
+    - name: default
       sectionName: https-wildcard
       namespace: gateway-api
   hostnames:
@@ -44,10 +44,10 @@ spec:
 # apiVersion: gateway.networking.k8s.io/v1
 # kind: HTTPRoute
 # metadata:
-#   name: idvn-aria2-ui-https
+#   name: aria2-ui-https
 # spec:
 #   parentRefs:
-#     - name: gateway-idvn-public
+#     - name: default
 #       sectionName: https-wildcard
 #       namespace: gateway-api
 #   hostnames:
