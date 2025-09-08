@@ -8,7 +8,7 @@ labels:
     includeSelectors: true
 resources:
   - ./deployment.yaml
-  - ./idvn.tcp-route.yaml
+  - ./idvn.http-route.yaml
   - ./pvc.yaml
   - ./secret.sops.yaml
   - ./service.yaml
