@@ -60,3 +60,9 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: idvn-tls
+    - name: aria2
+      port: 8080
+      protocol: TCP
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute
