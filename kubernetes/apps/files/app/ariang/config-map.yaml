@@ -7,3 +7,13 @@ metadata:
 data:
   nginx.conf: | # language: nginx
     worker_processes 1;
+
+    events {}
+
+    http {
+        server {
+            listen 80;
+            root /usr/share/nginx/html;
+            index index.html;
+        }
+    }
