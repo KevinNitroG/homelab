@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: idvn-aria2-http
+  name: idvn-aria2
 spec:
   parentRefs:
     - name: gateway-idvn-public
