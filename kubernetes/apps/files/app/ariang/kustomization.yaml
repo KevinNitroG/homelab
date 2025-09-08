@@ -7,7 +7,8 @@ labels:
       app.kubernetes.io/name: ariang
     includeSelectors: true
 resources:
+  - ./cloudflare-tunnel.http-route.yaml
   - ./config-map.yaml
-  - ./deployment.yaml
   - ./default.http-route.yaml
+  - ./deployment.yaml
   - ./service.yaml

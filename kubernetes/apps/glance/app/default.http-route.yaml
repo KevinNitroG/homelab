@@ -6,11 +6,21 @@ metadata:
   name: glance-http
 spec:
   parentRefs:
-    - name: default
+    - &gateway
+      name: default
       sectionName: http
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: http-wildcard
+    - <<: *gateway
+      sectionName: http-local
+    - <<: *gateway
+      sectionName: http-wildcard-local
   hostnames:
     - ${IDVN_DOMAIN}
+    - ${LOCAL_DOMAIN}
+    - glance.${IDVN_DOMAIN}
+    - glance.${LOCAL_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -26,11 +36,21 @@ metadata:
   name: glance-https
 spec:
   parentRefs:
-    - name: default
+    - &gateway
+      name: default
       sectionName: https
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: https-wildcard
+    - <<: *gateway
+      sectionName: https-local
+    - <<: *gateway
+      sectionName: https-wildcard-local
   hostnames:
     - ${IDVN_DOMAIN}
+    - ${LOCAL_DOMAIN}
+    - glance.${IDVN_DOMAIN}
+    - glance.${LOCAL_DOMAIN}
   rules:
     - matches:
         - path:

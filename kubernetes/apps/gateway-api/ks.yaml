@@ -22,6 +22,9 @@ spec:
       - kind: Secret
         name: common
         optional: false
+      - kind: ConfigMap
+        name: common
+        optional: false
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name

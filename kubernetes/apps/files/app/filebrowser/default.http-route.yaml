@@ -14,6 +14,7 @@ spec:
       sectionName: http-wildcard-local
   hostnames:
     - filebrowser.${IDVN_DOMAIN}
+    - filebrowser.${LOCAL_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -37,6 +38,7 @@ spec:
       sectionName: https-wildcard-local
   hostnames:
     - filebrowser.${IDVN_DOMAIN}
+    - filebrowser.${LOCAL_DOMAIN}
   rules:
     - matches:
         - path:

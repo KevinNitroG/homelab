@@ -1,5 +1,14 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/gateway_v1.json
+allowedRoutes: &allowed-routes
+  namespaces:
+    from: All
+
+tlsIdvn: &tls-idvn
+  mode: Terminate
+  certificateRefs:
+    - name: idvn-tls
+
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -9,58 +18,50 @@ metadata:
 spec:
   gatewayClassName: istio
   listeners:
-    - name: http
+    - &http
+      name: http
       port: 80
       protocol: HTTP
       hostname: ${IDVN_DOMAIN}
-      allowedRoutes:
-        namespaces:
-          from: All
-    - name: https
+      allowedRoutes: *allowed-routes
+    - <<: *http
+      name: http-lan
+      hostname: ${LOCAL_DOMAIN}
+    - &https
+      name: https
       port: 443
       protocol: HTTPS
       hostname: ${IDVN_DOMAIN}
-      allowedRoutes:
-        namespaces:
-          from: All
+      allowedRoutes: *allowed-routes
+      tls: *tls-idvn
+    - <<: *https
+      name: https-lan
+      hostname: ${LOCAL_DOMAIN}
       tls:
-        mode: Terminate
+        <<: *tls-idvn
         certificateRefs:
-          - name: idvn-tls
-    - name: http-wildcard
-      port: 80
-      protocol: HTTP
+          - name: lan-tls
+    - &http-wildcard
+      <<: *http
+      name: http-wildcard
       hostname: "*.${IDVN_DOMAIN}"
-      allowedRoutes:
-        namespaces:
-          from: All
-    - name: https-wildcard
-      port: 443
-      protocol: HTTPS
+    - <<: *http-wildcard
+      name: http-wildcard-lan
+      hostname: ${LOCAL_DOMAIN}
+    - &https-wildcard
+      <<: *https
+      name: https-wildcard
       hostname: "*.${IDVN_DOMAIN}"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: idvn-tls
-    - name: 8080-https-wildcard
+    - <<: *https-wildcard
+      name: https-wildcard-local
+      hostname: "*.${LOCAL_DOMAIN}"
+    - <<: *https-wildcard
+      name: 8080-https-wildcard
       port: 8080
-      protocol: HTTPS
-      hostname: "*.${IDVN_DOMAIN}"
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: idvn-tls
     - name: samba
       port: 445
       protocol: TCP
       allowedRoutes:
-        namespaces:
-          from: All
+        <<: *allowed-routes
         kinds:
           - kind: TCPRoute

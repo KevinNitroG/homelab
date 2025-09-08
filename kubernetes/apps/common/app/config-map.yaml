@@ -7,4 +7,4 @@ metadata:
 data:
   TIMEZONE: Asia/Ho_Chi_Minh
   LAN_IP_1: 192.168.28.25
-  LAN_DOMAIN: kev
+  LOCAL_DOMAIN: kev

@@ -6,11 +6,15 @@ metadata:
   name: keycloak-http
 spec:
   parentRefs:
-    - name: default
+    - &gateway
+      name: default
       sectionName: http-wildcard
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: http-wildcard-local
   hostnames:
     - keycloak.${IDVN_DOMAIN}
+    - keycloak.${LOCAL_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -26,11 +30,15 @@ metadata:
   name: keycloak-https
 spec:
   parentRefs:
-    - name: default
+    - &gateway
+      name: default
       sectionName: https-wildcard
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: https-wildcard-local
   hostnames:
     - keycloak.${IDVN_DOMAIN}
+    - keycloak.${LOCAL_DOMAIN}
   rules:
     - matches:
         - path:
