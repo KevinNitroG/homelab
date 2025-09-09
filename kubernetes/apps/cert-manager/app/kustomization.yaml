@@ -9,3 +9,4 @@ resources:
   - ./local-ca.secret.sops.yaml
   - ./local.certificate.yaml
   - ./local.cluster-issuer.yaml
+  - ./reference-grant.yaml
