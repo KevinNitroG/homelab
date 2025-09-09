@@ -9,3 +9,5 @@ spec:
     name: local
     kind: ClusterIssuer
   secretName: local-tls
+  dnsNames:
+    - "*.kev"
