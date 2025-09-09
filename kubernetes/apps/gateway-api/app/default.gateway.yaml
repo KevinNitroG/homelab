@@ -45,7 +45,7 @@ spec:
       hostname: "*.${IDVN_DOMAIN}"
     - <<: *http-wildcard
       name: http-wildcard-local
-      hostname: "*${LOCAL_DOMAIN}"
+      hostname: "*.${LOCAL_DOMAIN}"
     - &https-wildcard
       <<: *https
       name: https-wildcard
