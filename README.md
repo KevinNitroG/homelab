@@ -5,10 +5,17 @@
 
 ### Bootstrap
 
-- k3s replace full path please
-
+- `/etc/rancher/k3s/config.yaml`
   ```yaml
-
+  write-kubeconfig-mode: "0644"
+  disable:
+    - traefik
+  tls-san:
+    - kev
+    - kevinnitro.id.vn
+  node-label:
+    - "role=master"
+  # default-local-storage-path: "/home/kevinnitro/k3s-storage"
   ```
 
 > [!WARNING]
