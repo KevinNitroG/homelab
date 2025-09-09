@@ -9,7 +9,7 @@ vim.filetype.add({
   },
 })
 
-vim.env.SOPS_AGE_KEY_FILE = "./secrets/age.agekey"
+vim.env.SOPS_AGE_KEY_FILE = "./secret/age.agekey"
 
 ---@param fname string
 ---@param is_input boolean
