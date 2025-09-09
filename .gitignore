@@ -1,5 +1,5 @@
 .env
 kubernetes/**/*secret.yaml
-secrets/*
-!secrets/.gitkeep
-!secrets/encrypted_age.agekey
+secret/*
+!secret/.gitkeep
+!secret/encrypted_age.agekey

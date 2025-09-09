@@ -9,12 +9,18 @@ tlsIdvn: &tls-idvn
   certificateRefs:
     - name: idvn-tls
 
+tlsLocal: &tls-local
+  mode: Terminate
+  certificateRefs:
+    - name: local-tls
+      namespace: cert-manager
+
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: default
   annotations:
-    cert-manager.io/cluster-issuer: idvn-cluster-issuer-prod
+    cert-manager.io/cluster-issuer: idvn-prod
 spec:
   gatewayClassName: istio
   listeners:
@@ -25,7 +31,7 @@ spec:
       hostname: ${IDVN_DOMAIN}
       allowedRoutes: *allowed-routes
     - <<: *http
-      name: http-lan
+      name: http-local
       hostname: ${LOCAL_DOMAIN}
     - &https
       name: https
@@ -35,18 +41,15 @@ spec:
       allowedRoutes: *allowed-routes
       tls: *tls-idvn
     - <<: *https
-      name: https-lan
+      name: https-local
       hostname: ${LOCAL_DOMAIN}
-      tls:
-        <<: *tls-idvn
-        certificateRefs:
-          - name: lan-tls
+      tls: *tls-local
     - &http-wildcard
       <<: *http
       name: http-wildcard
       hostname: "*.${IDVN_DOMAIN}"
     - <<: *http-wildcard
-      name: http-wildcard-lan
+      name: http-wildcard-local
       hostname: ${LOCAL_DOMAIN}
     - &https-wildcard
       <<: *https
