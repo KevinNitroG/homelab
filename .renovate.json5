@@ -1,0 +1,33 @@
+// vim:ft=jsonc:
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":automergeBranch",
+    ":automergeMinor",
+    ":skipStatusChecks",
+    ":timezone(Asia/Ho_Chi_Minh)",
+    ":disableRateLimiting"
+  ],
+  "kubernetes": {
+    "enabled": true,
+    "managerFilePatterns": ["/kubernetes/app/.+\\.yaml$/"]
+  },
+  "kustomize": {
+    "enabled": true
+  },
+  "flux": {
+    "enabled": true,
+    "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"]
+  },
+  "helm-values": {
+    "enabled": true,
+    "managerFilePatterns": ["/kubernetes/.+\\values\\.ya?ml$/"]
+  },
+  "git-submodules": {
+    "enabled": true,
+    "ignorePaths": ["**/.archive/**"]
+  },
+  "ignorePaths": ["**/*.sops.*", "**/config/**"]
+}
