@@ -15,7 +15,6 @@ spec:
   path: kubernetes/apps/cert-manager/app/
   dependsOn:
     - name: common
-    - name: gateway-api
   decryption:
     provider: sops
     secretRef:
