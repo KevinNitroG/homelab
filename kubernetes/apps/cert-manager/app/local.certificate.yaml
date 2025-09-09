@@ -10,3 +10,6 @@ spec:
     kind: ClusterIssuer
   secretName: local-tls
   commonName: "*.${LOCAL_DOMAIN}"
+  dnsNames:
+    - "*.${LOCAL_DOMAIN}"
+    - ${LOCAL_DOMAIN}
