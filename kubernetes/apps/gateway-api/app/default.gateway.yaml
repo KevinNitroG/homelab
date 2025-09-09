@@ -30,7 +30,8 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: idvn-tls
-    - <<: *https
+    - &https-local
+      <<: *https
       name: https-local
       hostname: ${LOCAL_DOMAIN}
       tls:
@@ -44,12 +45,12 @@ spec:
       hostname: "*.${IDVN_DOMAIN}"
     - <<: *http-wildcard
       name: http-wildcard-local
-      hostname: ${LOCAL_DOMAIN}
+      hostname: "*${LOCAL_DOMAIN}"
     - &https-wildcard
       <<: *https
       name: https-wildcard
       hostname: "*.${IDVN_DOMAIN}"
-    - <<: *https-wildcard
+    - <<: *https-local
       name: https-wildcard-local
       hostname: "*.${LOCAL_DOMAIN}"
     - <<: *https-wildcard
