@@ -2,7 +2,7 @@
   "$schema": "https://www.schemastore.org/prettierrc.json",
   "overrides": [
     {
-      "files": ["**/*.jsonc", "./.renovate.json5"],
+      "files": ["**/*.jsonc", "./.renovaterc.json5"],
       "options": {
         "trailingComma": "none",
         "quoteProps": "preserve"

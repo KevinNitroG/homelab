@@ -12,7 +12,7 @@
   ],
   "kubernetes": {
     "enabled": true,
-    "managerFilePatterns": ["/kubernetes/app/.+\\.yaml$/"]
+    "managerFilePatterns": ["/kubernetes/apps/.+\\.yaml$/"]
   },
   "kustomize": {
     "enabled": true
