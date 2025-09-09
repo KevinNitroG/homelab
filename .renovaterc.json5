@@ -29,5 +29,13 @@
     "enabled": true,
     "ignorePaths": ["**/.archive/**"]
   },
+  "packageRules": [
+    {
+      "matchManagers": ["git-submodules"],
+      "automerge": true,
+      "automergeType": "branch",
+      "platformAutomerge": true
+    }
+  ],
   "ignorePaths": ["**/*.sops.*", "**/config/**"]
 }
