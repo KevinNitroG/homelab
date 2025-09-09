@@ -1,20 +1,5 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/gateway_v1.json
-allowedRoutes: &allowed-routes
-  namespaces:
-    from: All
-
-tlsIdvn: &tls-idvn
-  mode: Terminate
-  certificateRefs:
-    - name: idvn-tls
-
-tlsLocal: &tls-local
-  mode: Terminate
-  certificateRefs:
-    - name: local-tls
-      namespace: cert-manager
-
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -29,7 +14,9 @@ spec:
       port: 80
       protocol: HTTP
       hostname: ${IDVN_DOMAIN}
-      allowedRoutes: *allowed-routes
+      allowedRoutes: &allowed-routes
+        namespaces:
+          from: All
     - <<: *http
       name: http-local
       hostname: ${LOCAL_DOMAIN}
@@ -39,11 +26,18 @@ spec:
       protocol: HTTPS
       hostname: ${IDVN_DOMAIN}
       allowedRoutes: *allowed-routes
-      tls: *tls-idvn
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: idvn-tls
     - <<: *https
       name: https-local
       hostname: ${LOCAL_DOMAIN}
-      tls: *tls-local
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: local-tls
+            namespace: cert-manager
     - &http-wildcard
       <<: *http
       name: http-wildcard
