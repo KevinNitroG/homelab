@@ -26,16 +26,13 @@
     "managerFilePatterns": ["/kubernetes/.+\\values\\.ya?ml$/"]
   },
   "git-submodules": {
-    "enabled": true,
-    "ignorePaths": ["**/.archive/**"]
+    "enabled": true
   },
   "packageRules": [
     {
       "matchManagers": ["git-submodules"],
-      "automerge": true,
-      "automergeType": "branch",
-      "platformAutomerge": true
+      "matchUpdateTypes": ["digest"]
     }
   ],
-  "ignorePaths": ["**/*.sops.*", "**/config/**"]
+  "ignorePaths": ["**/*.sops.*", "**/config/**", "**/.archive/**"]
 }
