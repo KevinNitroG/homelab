@@ -7,6 +7,10 @@ variable "cf_account_id" {
   type = string
 }
 
+variable "cf_domain" {
+  type = string
+}
+
 # IDK how to gen it
 variable "admin_email_list" {
   type    = string
