@@ -24,8 +24,10 @@ spec:
               mountPath: /config/
             - name: &database database
               mountPath: /database/
-            - name: &aria2-downloads aria2-downloads
-              mountPath: /srv/
+            - name: &aria2 aria2-downloads
+              mountPath: /srv/aria2/
+            - name: &metube metube
+              mountPath: /srv/metube/
       volumes:
         - name: *config
           secret:
@@ -34,6 +36,9 @@ spec:
         - name: *database
           persistentVolumeClaim:
             claimName: *name
-        - name: *aria2-downloads
+        - name: *aria2
           persistentVolumeClaim:
-            claimName: *aria2-downloads
+            claimName: *aria2
+        - name: *metube
+          persistentVolumeClaim:
+            claimName: *metube
