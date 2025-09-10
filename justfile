@@ -20,3 +20,6 @@ add-age-cluster:
   kubectl create secret generic sops-age \
   --namespace=flux-system \
   --from-file=./secret/age.agekey
+
+wol:
+  wol -i 192.168.28.255 $KEVBLINK_MAC
