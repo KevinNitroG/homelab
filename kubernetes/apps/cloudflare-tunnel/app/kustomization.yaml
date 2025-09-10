@@ -2,7 +2,12 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: gateway-api
+namespace: &name cloudflare-tunnel
+labels:
+  - pairs:
+      app.kubernetes.io/name: *name
+    includeSelectors: true
 resources:
-  - ./default.gateway.yaml
+  - ./deployment.yaml
   - ./namespace.yaml
+  - ./secret.sops.yaml

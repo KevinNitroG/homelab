@@ -10,7 +10,7 @@ labels:
 resources:
   - ./cluster.yaml
   - ./deployment.yaml
-  - ./default.http-route.yaml
+  - ./http-route.yaml
   - ./namespace.yaml
   - ./secret.sops.yaml
   - ./service.yaml

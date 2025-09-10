@@ -20,9 +20,8 @@ generatorOptions:
   annotations:
     reloader.stakater.com/ignore: "true"
 resources:
-  # - ./duckdns.http-route.yaml
   - ./deployment.yaml
-  - ./default.http-route.yaml
+  - ./http-route.yaml
   - ./namespace.yaml
   - ./pvc.yaml
   - ./secret.sops.yaml

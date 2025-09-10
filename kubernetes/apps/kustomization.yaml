@@ -7,7 +7,7 @@ resources:
   - ./cert-manager/
   - ./cloudbeaver/
   - ./cloudflare-ddns/
-  - ./cloudflare-gateway/
+  - ./cloudflare-tunnel/
   - ./cnpg/
   - ./common/
   - ./files/

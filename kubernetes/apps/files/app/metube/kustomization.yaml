@@ -8,6 +8,6 @@ labels:
     includeSelectors: true
 resources:
   - ./deployment.yaml
-  - ./default.http-route.yaml
+  - ./http-route.yaml
   - ./pvc.yaml
   - ./service.yaml

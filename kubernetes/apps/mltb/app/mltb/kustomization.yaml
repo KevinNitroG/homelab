@@ -13,5 +13,4 @@ resources:
   - ./config-map.yaml
   - ./deployment.yaml
   - ./service.yaml
-  # - ./duckdns.http-route.yaml
-  - ./default.http-route.yaml
+  - ./http-route.yaml
