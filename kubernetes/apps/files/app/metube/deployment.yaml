@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name metube
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      containers:
+        - name: *name
+          image: ghcr.io/alexta69/metube:2025.09.06
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: *name
+              mountPath: /downloads/
+      volumes:
+        - name: *name
+          persistentVolumeClaim:
+            claimName: *name

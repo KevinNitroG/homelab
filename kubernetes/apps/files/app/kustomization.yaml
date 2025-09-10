@@ -7,5 +7,6 @@ resources:
   - ./aria2/
   - ./ariang/
   - ./filebrowser/
+  - ./metube/
   - ./namespace.yaml
   - ./samba/
