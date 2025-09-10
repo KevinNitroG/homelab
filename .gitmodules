@@ -1,6 +1,3 @@
 [submodule "mltb"]
 	path = kubernetes/apps/mltb/anasty17-mltb
 	url = https://github.com/anasty17/mirror-leech-telegram-bot.git
-[submodule "outerbase"]
-	path = kubernetes/.archive/outerbase/outerbase
-	url = https://github.com/outerbase/studio.git
