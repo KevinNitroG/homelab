@@ -18,10 +18,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kube" {
         service  = "http://cloudbeaver.cloudbeaver:8978"
       },
       {
-        hostname = "ariang.${var.cf_domain}"
-        service  = "http://ariang.files:80"
-      },
-      {
         hostname = "metube.${var.cf_domain}"
         service  = "http://metube.files:8081"
       },

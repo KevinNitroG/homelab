@@ -3,7 +3,6 @@ variable "apps" {
   default = [
     "grafana",
     "cloudbeaver",
-    "ariang",
     "metube",
   ]
 }
