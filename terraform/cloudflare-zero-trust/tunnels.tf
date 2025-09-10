@@ -11,7 +11,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kevblink-kube" {
     ingress = [
       {
         hostname = "grafana.${var.cf_domain}"
-        service  = "http://grafana.grafana:80"
+        service  = "http://grafana-grafana.grafana:80"
       },
       {
         hostname = "cloudbeaver.${var.cf_domain}"
@@ -19,11 +19,11 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kevblink-kube" {
       },
       {
         hostname = "ariang.${var.cf_domain}"
-        service  = "http://ariang.file:80"
+        service  = "http://ariang.files:80"
       },
       {
         hostname = "metube.${var.cf_domain}"
-        service  = "http://metube.file:8081"
+        service  = "http://metube.files:8081"
       },
       {
         service = "http_status:404"
