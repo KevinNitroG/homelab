@@ -1,10 +1,6 @@
-variable "apps" {
-  type    = list(string)
-  default = ["grafana", "cloudbeaver", "ariang", "metube"]
-}
+resource "cloudflare_zero_trust_access_application" "kube" {
+  for_each = toset(var.apps)
 
-resource "cloudflare_zero_trust_access_application" "apps" {
-  for_each   = toset(var.apps)
   account_id = var.cf_account_id
   name       = each.value
   type       = "self_hosted"

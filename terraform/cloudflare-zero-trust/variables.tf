@@ -1,3 +1,13 @@
+variable "apps" {
+  type = list(string)
+  default = [
+    "grafana",
+    "cloudbeaver",
+    "ariang",
+    "metube",
+  ]
+}
+
 variable "cf_api_token_zt" {
   description = "Zero Trust:Edit, Access: Apps and Policies:Edit"
   type        = string
@@ -8,6 +18,10 @@ variable "cf_account_id" {
 }
 
 variable "cf_domain" {
+  type = string
+}
+
+variable "cf_zone_id" {
   type = string
 }
 

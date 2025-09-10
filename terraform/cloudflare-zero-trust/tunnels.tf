@@ -1,12 +1,12 @@
-resource "cloudflare_zero_trust_tunnel_cloudflared" "kevblink-kube" {
+resource "cloudflare_zero_trust_tunnel_cloudflared" "kube" {
   account_id = var.cf_account_id
   name       = "kevblink-kube"
   config_src = "cloudflare"
 }
 
-resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kevblink-kube" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kube" {
   account_id = var.cf_account_id
-  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.kevblink-kube.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.kube.id
   config = {
     ingress = [
       {
