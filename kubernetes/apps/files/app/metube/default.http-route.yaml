@@ -6,7 +6,8 @@ metadata:
   name: metube-http
 spec:
   parentRefs:
-    - namespace: gateway-api
+    - name: default
+      namespace: gateway-api
       sectionName: http-local
   hostnames:
     - metube.${LOCAL_DOMAIN}
@@ -25,7 +26,8 @@ metadata:
   name: metube-https
 spec:
   parentRefs:
-    - namespace: gateway-api
+    - name: default
+      namespace: gateway-api
       sectionName: https-wildcard-local
   hostnames:
     - metube.${LOCAL_DOMAIN}
