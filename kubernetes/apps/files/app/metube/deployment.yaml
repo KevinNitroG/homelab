@@ -22,6 +22,9 @@ spec:
           volumeMounts:
             - name: *name
               mountPath: /downloads/
+          envFrom:
+            - secretRef:
+                name: *name
       volumes:
         - name: *name
           persistentVolumeClaim:
