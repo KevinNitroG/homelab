@@ -27,7 +27,9 @@ spec:
               mountPath: /etc/samba/users.conf
               subPath: users.conf
             - name: &aria2-downloads aria2-downloads
-              mountPath: /storage/
+              mountPath: /storage/aria2/
+            - name: &metube metube
+              mountPath: /storage/metube/
       volumes:
         - name: *config-map
           configMap:
@@ -40,3 +42,6 @@ spec:
         - name: *aria2-downloads
           persistentVolumeClaim:
             claimName: *aria2-downloads
+        - name: *metube
+          persistentVolumeClaim:
+            claimName: *metube
