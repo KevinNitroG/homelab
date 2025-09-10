@@ -32,6 +32,22 @@ pages:
                 check-url: http://cloudbeaver.cloudbeaver:8978/status
                 url: https://cloudbeaver.kevinnitro.id.vn
                 icon: si:dbeaver
+              - title: Aria2
+                check-url: http://aria2.files:6800/jsonrpc
+                url: https://aria2.kevinnitro.id.vn
+                icon: sh:aria2
+              - title: Ariang
+                check-url: http://ariang.files:80
+                url: https://ariang.kevinnitro.id.vn
+                icon: sh:aria2
+              - title: Filebrowser
+                check-url: http://filebrowser.files:80/health
+                url: https://filebrowser.kevinnitro.id.vn
+                icon: sh:File Browser
+              - title: Metube
+                check-url: http://metube.files:8081
+                url: https://metube.kevinnitro.id.vn
+                icon: sh:MeTube
               - title: MLTB
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn
