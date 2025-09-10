@@ -5,7 +5,7 @@ kind: Kustomization
 namespace: files
 resources:
   - ./aria2/
-  - ./ariang/
+  # - ./ariang/
   - ./filebrowser/
   - ./metube/
   - ./namespace.yaml

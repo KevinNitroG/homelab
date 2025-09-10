@@ -32,13 +32,10 @@ pages:
                 check-url: http://cloudbeaver.cloudbeaver:8978/status
                 url: https://cloudbeaver.kevinnitro.id.vn
                 icon: si:dbeaver
-              - title: Aria2
-                check-url: http://aria2.files:6800/jsonrpc
-                url: https://aria2.kevinnitro.id.vn
-                icon: sh:aria2
               - title: Ariang
-                check-url: http://ariang.files:80
-                url: https://ariang.kevinnitro.id.vn
+                check-url: https://ariang.mayswind.net/latest/#!/settings/ariang
+                url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc/$${ARIA2_RPC_SECRET}
+                #   url: https://ariang.kevinnitro.id.vn
                 icon: sh:aria2
               - title: Metube
                 check-url: http://metube.files:8081
@@ -59,9 +56,7 @@ pages:
             url: https://api.cloudflare.com/client/v4/accounts/$${CLOUDFLARE_ACCOUNT_ID}/cfd_tunnel/$${CLOUDFLARE_TUNNEL_ID}/configurations
             headers:
               Authorization: Bearer $${CLOUDFLARE_API_KEY}
-            template: |
-              {{ $domain_name := ".${IDVN_DOMAIN}" }}
-
+            template: | # language: html
               <style>
                 .widget-type-cloudflared li {
                   margin-top: var(--list-half-gap);
@@ -77,7 +72,7 @@ pages:
                         <img class="docker-container-icon" src="https://developers.cloudflare.com/logo.svg" alt="" loading="lazy">
                     </div>
                     <div class="min-width-0 grow">
-                      <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix $domain_name }}</a>
+                      <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix ".${IDVN_DOMAIN}" }}</a>
                       {{ if (.String "service") }}
                       <div class="flex items-center gap-10" style="margin-bottom: 5px">
                         <div class="size-h6 flex-1 text-left">
@@ -96,6 +91,7 @@ pages:
                 links:
                   - title: Kevindex
                     url: https://kevindex.kevinnitro.id.vn/
+                    icon: si:cloudflareworkers
       - size: small
         widgets:
           - type: server-stats
