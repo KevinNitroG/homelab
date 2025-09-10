@@ -40,14 +40,14 @@ pages:
                 check-url: http://ariang.files:80
                 url: https://ariang.kevinnitro.id.vn
                 icon: sh:aria2
-              - title: Filebrowser
-                check-url: http://filebrowser.files:80/health
-                url: https://filebrowser.kevinnitro.id.vn
-                icon: sh:File Browser
               - title: Metube
                 check-url: http://metube.files:8081
                 url: https://metube.kevinnitro.id.vn
-                icon: sh:MeTube
+                icon: sh:metube
+              - title: Filebrowser
+                check-url: http://filebrowser.files:80/health
+                url: https://filebrowser.kevinnitro.id.vn
+                icon: sh:file-browser
               - title: MLTB
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn
