@@ -1,0 +1,18 @@
+---
+cleanPrometheusOperatorObjectNames: true
+defaultRules:
+  rules:
+    windows: false
+prometheus:
+prometheus-node-exporter:
+  namespaceOverride: prometheus-node-exporter
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeStateMetrics:
+  enabled: false

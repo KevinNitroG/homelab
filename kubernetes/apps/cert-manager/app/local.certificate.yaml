@@ -12,9 +12,11 @@ spec:
   commonName: "${LOCAL_DOMAIN}"
   dnsNames:
     - ${LOCAL_DOMAIN}
+    - alertmanager.${LOCAL_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
     - filebrowser.${LOCAL_DOMAIN}
     - glance.${LOCAL_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
     - keycloak.${LOCAL_DOMAIN}
     - metube.${LOCAL_DOMAIN}
+    - prometheus.${LOCAL_DOMAIN}

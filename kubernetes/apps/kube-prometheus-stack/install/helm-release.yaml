@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name kube-prometheus-stack
+spec:
+  interval: 24h
+  timeout: 5m
+  chartRef:
+    kind: OCIRepository
+    name: *name
+  dependsOn:
+    - name: prometheus-operator
+  valuesFrom:
+    - kind: ConfigMap
+      name: root-kube-prometheus-stack-helm-value
+    - kind: ConfigMap
+      name: prometheus-kube-prometheus-stack-helm-value
+      targetPath: prometheus
+    - kind: ConfigMap
+      name: prometheus-spec-kube-prometheus-stack-helm-value
+      targetPath: prometheus.prometheusSpec
+    - kind: ConfigMap
+      name: alertmanager-kube-prometheus-stack-helm-value
+      targetPath: alertmanager
+    - kind: ConfigMap
+      name: alertmanager-spec-kube-prometheus-stack-helm-value
+      targetPath: alertmanager.alertmanagerSpec
+    - kind: ConfigMap
+      name: grafana-kube-prometheus-stack-helm-value
+      targetPath: grafana

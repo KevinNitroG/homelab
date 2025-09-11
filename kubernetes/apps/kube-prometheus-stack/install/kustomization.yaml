@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./helm-release.yaml
+  - ./oci-repository.yaml
+  - ./secret.sops.yaml
+configMapGenerator:
+  - name: root-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/root.yaml
+  - name: prometheus-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/prometheus.yaml
+  - name: prometheus-spec-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/prometheus-spec.yaml
+  - name: alertmanager-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/alertmanager.yaml
+  - name: alertmanager-spec-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/alertmanager-spec.yaml
+  - name: grafana-kube-prometheus-stack-helm-value
+    files:
+      - values.yaml=./values/grafana.yaml
+generatorOptions:
+  disableNameSuffixHash: true

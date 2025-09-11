@@ -23,7 +23,10 @@
   },
   "helm-values": {
     "enabled": true,
-    "managerFilePatterns": ["/kubernetes/.+\\values\\.ya?ml$/"]
+    "managerFilePatterns": [
+      "/kubernetes/.+\\values\\.ya?ml$/",
+      "/kubernetes/.*/values/.+\\.ya?ml$/"
+    ]
   },
   "git-submodules": {
     "enabled": true

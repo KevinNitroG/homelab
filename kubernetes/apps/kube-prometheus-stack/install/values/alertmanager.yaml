@@ -1,0 +1,19 @@
+---
+namespaceOverride: alertmanager
+route:
+  http:
+    enabled: true
+    parentRefs:
+      - &gateway
+        name: default
+        sectionName: http-wildcard-local
+        namespace: gateway-api
+    hostnames: &hostnames
+      - "alertmanager.${LOCAL_DOMAIN}"
+    httpsRedirect: true
+  https:
+    enabled: true
+    parentRefs:
+      - <<: *gateway
+        sectionName: https-wildcard-local
+    hostnames: *hostnames

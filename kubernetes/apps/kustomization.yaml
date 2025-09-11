@@ -14,8 +14,8 @@ resources:
   - ./flux/
   - ./gateway-api/
   - ./glance/
-  - ./grafana/
   - ./istio/
   - ./keycloak/
+  - ./kube-prometheus-stack/
   - ./mltb/
   - ./reloader/
