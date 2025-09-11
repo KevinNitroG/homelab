@@ -5,17 +5,16 @@ route:
   http:
     enabled: true
     parentRefs:
-      - name: default
+      - &gateway
+        name: default
         sectionName: http-wildcard-local
         namespace: gateway-api
-    hostnames:
+    hostnames: &hostnames
       - "prometheus.${LOCAL_DOMAIN}"
     httpsRedirect: true
   https:
     enabled: true
     parentRefs:
-      - name: default
+      - <<: *gateway
         sectionName: https-wildcard-local
-        namespace: gateway-api
-    hostnames:
-      - "prometheus.${LOCAL_DOMAIN}"
+    hostnames: *hostnames
