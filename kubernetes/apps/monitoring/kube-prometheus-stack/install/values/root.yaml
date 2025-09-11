@@ -1,4 +1,5 @@
 ---
+namespaceOverride: monitoring
 cleanPrometheusOperatorObjectNames: true
 defaultRules:
   rules:

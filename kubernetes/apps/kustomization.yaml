@@ -16,6 +16,6 @@ resources:
   - ./glance/
   - ./istio/
   - ./keycloak/
-  - ./kube-prometheus-stack/
   - ./mltb/
+  - ./monitoring/
   - ./reloader/
