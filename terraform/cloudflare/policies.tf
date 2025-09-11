@@ -11,7 +11,7 @@ resource "cloudflare_zero_trust_list" "admin" {
 
 resource "cloudflare_zero_trust_access_policy" "admin" {
   account_id = var.cf_account_id
-  name       = "admin"
+  name       = "allow admin"
   decision   = "allow"
   include = [{
     email_list = {
