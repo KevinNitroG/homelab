@@ -1,20 +1,30 @@
 ---
-# yaml-language-server: $schema=""
-namespaceOverride: prometheus
-route:
-  http:
-    enabled: true
-    parentRefs:
-      - &gateway
-        name: default
-        sectionName: http-wildcard-local
-        namespace: gateway-api
-    hostnames: &hostnames
-      - "prometheus.${LOCAL_DOMAIN}"
-    httpsRedirect: true
-  https:
-    enabled: true
-    parentRefs:
-      - <<: *gateway
-        sectionName: https-wildcard-local
-    hostnames: *hostnames
+prometheus:
+  namespaceOverride: prometheus
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http-wildcard-local
+          namespace: gateway-api
+      hostnames: &hostnames
+        - "prometheus.${LOCAL_DOMAIN}"
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames: *hostnames
+  prometheusSpec:
+    enableAdminAPI: true
+    retention: 7d
+    retentionSize: 10GiB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 10Gi

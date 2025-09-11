@@ -1,9 +1,10 @@
 ---
-namespaceOverride: grafana
-admin:
-  existingSecret: grafana-admin
-env:
-  GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-prune: true
-annotations:
-  reloader.stakater.com/auto: "true"
+grafana:
+  namespaceOverride: grafana
+  admin:
+    existingSecret: grafana-admin
+  env:
+    GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+  prune: true
+  annotations:
+    reloader.stakater.com/auto: "true"

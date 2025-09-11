@@ -15,16 +15,9 @@ spec:
       name: root-kube-prometheus-stack-helm-value
     - kind: ConfigMap
       name: prometheus-kube-prometheus-stack-helm-value
-      targetPath: prometheus
     - kind: ConfigMap
       name: prometheus-spec-kube-prometheus-stack-helm-value
-      targetPath: prometheus.prometheusSpec
     - kind: ConfigMap
       name: alertmanager-kube-prometheus-stack-helm-value
-      targetPath: alertmanager
-    - kind: ConfigMap
-      name: alertmanager-spec-kube-prometheus-stack-helm-value
-      targetPath: alertmanager.alertmanagerSpec
     - kind: ConfigMap
       name: grafana-kube-prometheus-stack-helm-value
-      targetPath: grafana
