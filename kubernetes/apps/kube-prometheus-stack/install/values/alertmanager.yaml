@@ -1,3 +1,4 @@
+---
 namespaceOverride: alertmanager
 route:
   http:

@@ -1,3 +1,4 @@
+---
 cleanPrometheusOperatorObjectNames: true
 defaultRules:
   rules:
