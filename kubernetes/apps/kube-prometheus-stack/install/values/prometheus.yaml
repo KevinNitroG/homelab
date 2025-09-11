@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=""
 namespaceOverride: prometheus
 route:
   http:
