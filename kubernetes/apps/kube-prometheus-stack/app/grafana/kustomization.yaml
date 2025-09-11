@@ -5,3 +5,4 @@ kind: Kustomization
 namespace: grafana
 resources:
   - ./http-route.yaml
+  - ./secret.sops.yaml
