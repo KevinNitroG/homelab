@@ -9,6 +9,9 @@ grafana:
   env:
     GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
   prune: true
+  persistence:
+    enabled: true
+    size: 1Gi
   annotations:
     reloader.stakater.com/auto: "true"
   route:
@@ -35,3 +38,8 @@ grafana:
         - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
+  additionalDataSources:
+    - access: proxy
+      name: loki
+      type: loki
+      url: http://loki-headless.monitoring:3100

@@ -3,14 +3,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name cnpg
+  name: &name loki
 spec:
+  targetNamespace: monitoring
   interval: 1h
   timeout: 5m
   chartRef:
     kind: OCIRepository
     name: *name
-  install:
-    crds: CreateReplace
-    createNamespace: true
-  targetNamespace: cnpg-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: loki-helm-value

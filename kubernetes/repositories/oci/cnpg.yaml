@@ -6,6 +6,7 @@ metadata:
   name: cnpg
 spec:
   interval: 24h
+  timeout: 5m
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip # need this
   ref:
