@@ -6,10 +6,14 @@ metadata:
   name: grafana-http
 spec:
   parentRefs:
-    - name: default
-      sectionName: http-wildcard-local
+    - &gateway
+      name: default
+      sectionName: http-wildcard
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: http-wildcard-local
   hostnames:
+    - grafana.${IDVN_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
   rules:
     - filters:
@@ -26,10 +30,14 @@ metadata:
   name: grafana-https
 spec:
   parentRefs:
-    - name: default
-      sectionName: https-wildcard-local
+    - &gateway
+      name: default
+      sectionName: http-wildcard
       namespace: gateway-api
+    - <<: *gateway
+      sectionName: http-wildcard-local
   hostnames:
+    - grafana.${IDVN_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
   rules:
     - matches:

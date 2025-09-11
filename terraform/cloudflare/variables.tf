@@ -1,7 +1,6 @@
 variable "apps" {
   type = list(string)
   default = [
-    "grafana",
     "cloudbeaver",
     "metube",
   ]
