@@ -3,8 +3,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux
+  name: common
 spec:
+  targetNamespace: flux-system
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -12,16 +13,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/flux/app/
-  dependsOn:
-    - name: common
-    - name: gateway-api-install
+  path: kubernetes/apps/flux-system/common/
   decryption:
     provider: sops
     secretRef:
       name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: common
-        optional: false

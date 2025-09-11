@@ -3,9 +3,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name cert-manager
+  name: webhook
 spec:
-  targetNamespace: *name
+  targetNamespace: flux-system
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -13,9 +13,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/apps/cert-manager/app/
+  path: kubernetes/apps/flux-system/webhook/
   dependsOn:
     - name: common
+    - name: gateway-api-install
   decryption:
     provider: sops
     secretRef:
@@ -25,9 +26,3 @@ spec:
       - kind: Secret
         name: common
         optional: false
-      - kind: ConfigMap
-        name: common
-        optional: false
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *name

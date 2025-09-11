@@ -2,16 +2,14 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: flux-system
 resources:
   - ./cert-manager/
   - ./cloudbeaver/
   - ./cloudflare-ddns/
   - ./cloudflare-tunnel/
   - ./cnpg/
-  - ./common/
   - ./files/
-  - ./flux/
+  - ./flux-system/
   - ./gateway-api/
   - ./glance/
   - ./istio/
