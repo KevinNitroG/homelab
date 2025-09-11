@@ -6,3 +6,4 @@ namespace: grafana
 resources:
   - ./http-route.yaml
   - ./secret.sops.yaml
+  - ./namespace.yaml
