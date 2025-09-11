@@ -14,5 +14,3 @@ kubeProxy:
   enabled: false
 kubeScheduler:
   enabled: false
-kubeStateMetrics:
-  enabled: false
