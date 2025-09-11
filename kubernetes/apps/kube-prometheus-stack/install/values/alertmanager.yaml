@@ -19,7 +19,7 @@ alertmanager:
           sectionName: https-wildcard-local
       hostnames: *hostnames
   alertmanagerSpec:
-    retention: 2d
+    retention: 48h
     storage:
       volumeClaimTemplate:
         spec:
