@@ -1,5 +1,17 @@
 ---
 alertmanager:
+  alertmanagerSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/alertmanager
+      tag: v0.28.1
+    retention: 48h
+    storage:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 100Mi
   route:
     http:
       enabled: true
@@ -9,7 +21,7 @@ alertmanager:
           sectionName: http-wildcard-local
           namespace: gateway-api
       hostnames: &hostnames
-        - "alertmanager.${LOCAL_DOMAIN}"
+        - alertmanager.${LOCAL_DOMAIN}
       httpsRedirect: true
     https:
       enabled: true
@@ -17,11 +29,3 @@ alertmanager:
         - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
-  alertmanagerSpec:
-    retention: 48h
-    storage:
-      volumeClaimTemplate:
-        spec:
-          resources:
-            requests:
-              storage: 2Gi

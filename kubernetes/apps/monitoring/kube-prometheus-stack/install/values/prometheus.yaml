@@ -1,23 +1,10 @@
 ---
 prometheus:
-  route:
-    http:
-      enabled: true
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: http-wildcard-local
-          namespace: gateway-api
-      hostnames: &hostnames
-        - "prometheus.${LOCAL_DOMAIN}"
-      httpsRedirect: true
-    https:
-      enabled: true
-      parentRefs:
-        - <<: *gateway
-          sectionName: https-wildcard-local
-      hostnames: *hostnames
   prometheusSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/prometheus
+      tag: v3.5.0
     enableAdminAPI: true
     retention: 7d
     retentionSize: 10GiB
@@ -27,3 +14,20 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http-wildcard-local
+          namespace: gateway-api
+      hostnames: &hostnames
+        - prometheus.${LOCAL_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames: *hostnames
