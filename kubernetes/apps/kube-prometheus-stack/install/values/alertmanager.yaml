@@ -4,16 +4,17 @@ route:
   http:
     enabled: true
     parentRefs:
-      - &gateway
-        name: default
+      - name: default
         sectionName: http-wildcard-local
         namespace: gateway-api
-    hostnames: &hostnames
+    hostnames:
       - "alertmanager.${LOCAL_DOMAIN}"
     httpsRedirect: true
   https:
     enabled: true
     parentRefs:
-      - <<: *gateway
+      - name: default
         sectionName: https-wildcard-local
-    hostnames: *hostnames
+        namespace: gateway-api
+    hostnames:
+      - "alertmanager.${LOCAL_DOMAIN}"
