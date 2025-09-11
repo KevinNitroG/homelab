@@ -5,8 +5,6 @@ defaultRules:
   rules:
     windows: false
 prometheus:
-prometheus-node-exporter:
-  namespaceOverride: prometheus-node-exporter
 kubeControllerManager:
   enabled: false
 kubeEtcd:

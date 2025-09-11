@@ -1,6 +1,5 @@
 ---
 grafana:
-  namespaceOverride: grafana
   admin:
     existingSecret: grafana-admin
   env:

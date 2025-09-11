@@ -1,6 +1,5 @@
 ---
 alertmanager:
-  namespaceOverride: alertmanager
   route:
     http:
       enabled: true
