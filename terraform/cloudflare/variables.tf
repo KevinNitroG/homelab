@@ -23,9 +23,3 @@ variable "cf_domain" {
 variable "cf_zone_id" {
   type = string
 }
-
-# IDK how to gen it
-variable "admin_email_list" {
-  type    = string
-  default = "abe6bae1-b22d-40ba-9469-4d6f3cad7c8f"
-}
