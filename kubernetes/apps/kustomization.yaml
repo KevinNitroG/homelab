@@ -7,8 +7,9 @@ patches:
       kind: HelmRelease
     patch: &label |- # language: yaml
       - op: add
-        path: metadata/label
-        value: homelab
+        path: /metadata/labels
+        value:
+          kevinnitro/project: homelab
   - target:
       kind: Kustomization
     patch: *label
