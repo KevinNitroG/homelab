@@ -26,8 +26,6 @@ loki:
     type: filesystem
 test:
   enabled: false
-gateway:
-  enabled: false
 resultsCache:
   enabled: false
 chunksCache:
