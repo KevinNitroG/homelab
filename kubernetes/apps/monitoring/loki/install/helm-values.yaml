@@ -32,6 +32,8 @@ resultsCache:
   enabled: false
 chunksCache:
   enabled: false
+lokiCanary:
+  enabled: false
 deploymentMode: SingleBinary
 singleBinary:
   replicas: 1
