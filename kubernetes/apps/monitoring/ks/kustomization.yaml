@@ -11,3 +11,4 @@ resources:
   - ./loki.yaml
   - ./node-exporter.yaml
   - ./prometheus-operator.yaml
+  - ./promtail.yaml
