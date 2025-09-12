@@ -7,3 +7,5 @@ resources:
   - ./http-route.yaml
   - ./receiver.yaml
   - ./secret.sops.yaml
+configurations:
+  - ./kustomizeconfig.yaml

@@ -7,3 +7,5 @@ resources:
   - ./telegram.alert.yaml
   - ./telegram.provider.yaml
   - ./telegram.secret.sops.yaml
+configurations:
+  - ./kustomizeconfig.yaml

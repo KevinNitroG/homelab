@@ -6,7 +6,7 @@ metadata:
   name: telegram
 spec:
   providerRef:
-    name: flux-alert-telegram
+    name: telegram
   eventSeverity: error
   eventSources:
     - kind: GitRepository

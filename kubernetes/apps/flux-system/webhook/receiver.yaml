@@ -10,7 +10,7 @@ spec:
     - "ping"
     - "push"
   secretRef:
-    name: flux-webhook-homelab
+    name: homelab
   resources:
     - kind: GitRepository
       name: flux-system

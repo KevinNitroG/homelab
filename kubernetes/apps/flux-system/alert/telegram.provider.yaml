@@ -9,4 +9,4 @@ spec:
   address: https://api.telegram.org
   channel: "-1001644026686"
   secretRef:
-    name: flux-alert-telegram
+    name: telegram
