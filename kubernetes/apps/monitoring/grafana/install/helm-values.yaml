@@ -20,6 +20,10 @@ sidecar:
     enabled: true
     labelValue: "1"
     searchNamespace: ALL
+  alert:
+    enabled: true
+    labelValue: "1"
+    searchNamespace: ALL
 datasources:
   loki.yaml:
     apiVersion: 1
