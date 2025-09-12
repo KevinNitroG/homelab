@@ -10,9 +10,10 @@ grafana:
   enabled: false
   forceDeployDashboards: true
   forceDeployDatasources: true
+  datasources:
+    alertmanager:
+      enabled: false
   deleteDatasources:
-    - name: Alertmanager
-      orgId: 1
     - name: Prometheus
       orgId: 1
 alertmanager:
