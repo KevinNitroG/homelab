@@ -12,7 +12,22 @@ patches:
           kevinnitro/project: homelab
   - target:
       kind: Kustomization
+      version: kustomize.toolkit.fluxcd.io/v1
     patch: *label
+  - target:
+      kind: Kustomization
+      version: kustomize.config.k8s.io/v1beta1
+    patch: |- # language: yaml
+      - op: add
+        path: /patches/-
+        value: |- # language: yaml
+          target:
+            kind: HelmRelease
+          patch: |- # language: yaml
+            - op: add
+              path: /metadata/labels
+              value:
+                kevinnitro/project: homelab
 resources:
   - ./cert-manager/
   - ./cloudbeaver/
