@@ -41,32 +41,24 @@ dashboards:
       gnetId: 14055
       revision: 5
       datasource: Loki
-    flux:
-      flux-cluster:
-        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
-        datasource: Prometheus
-      flux-control-plane:
-        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
-        datasource: Prometheus
-      flux-logs:
-        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
-        datasource: Loki
+  flux:
+    flux-cluster:
+      url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+      datasource: Prometheus
+    flux-control-plane:
+      url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
+      datasource: Prometheus
+    flux-logs:
+      url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
+      datasource: Loki
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
     providers:
       - name: default
-        orgId: 1
-        folder: ""
-        type: file
-        disableDeletion: false
-        editable: true
         options:
           path: /var/lib/grafana/dashboards/default
-deleteDatasources:
-  - name: Alertmanager
-    orgId: 1
-  - name: Loki
-    orgId: 1
-  - name: Prometheus
-    orgId: 1
+      - name: flux
+        folder: Flux
+        options:
+          path: /var/lib/grafana/dashboards/flux

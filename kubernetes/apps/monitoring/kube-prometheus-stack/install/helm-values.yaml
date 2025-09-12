@@ -10,8 +10,17 @@ grafana:
   enabled: false
   forceDeployDashboards: true
   forceDeployDatasources: true
+  deleteDatasources:
+    - name: Alertmanager
+      orgId: 1
+    - name: Prometheus
+      orgId: 1
 alertmanager:
   enabled: false
+  forceDeployDashboards: true
+nodeExporter:
+  enabled: false
+  forceDeployDashboards: true
 kubeControllerManager:
   enabled: false
 kubeEtcd:
@@ -21,8 +30,6 @@ kubeProxy:
 kubeScheduler:
   enabled: false
 kubeStateMetrics:
-  enabled: false
-nodeExporter:
   enabled: false
 prometheus:
   prometheusSpec:

@@ -55,6 +55,9 @@ extraObjects:
           url: http://{{ include "loki.gatewayFullname" . }}:{{ .Values.loki.server.http_listen_port }}
           version: 1
           isDefault: false
+        deleteDatasources:
+          - name: Loki
+            orgId: 1
 backend:
   replicas: 0
 read:
