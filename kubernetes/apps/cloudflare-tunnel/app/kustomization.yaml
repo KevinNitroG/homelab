@@ -12,3 +12,5 @@ resources:
   - ./deployment.yaml
   - ./namespace.yaml
   - ./secret.sops.yaml
+  - ./service-monitor.yaml
+  - ./service.yaml
