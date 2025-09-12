@@ -1,45 +1,8 @@
 ---
 grafana:
-  image:
-    registry: docker.io
-    repository: grafana/grafana
-    tag: 12.2.0-17630182352
-  admin:
-    existingSecret: grafana-admin
-  env:
-    GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-  prune: true
-  persistence:
-    enabled: true
-    size: 1Gi
-  annotations:
-    reloader.stakater.com/auto: "true"
-  route:
-    http:
-      enabled: true
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: http-wildcard
-          namespace: gateway-api
-        - <<: *gateway
-          sectionName: http-wildcard-local
-      hostnames: &hostnames
-        - grafana.${IDVN_DOMAIN}
-        - grafana.${LOCAL_DOMAIN}
-      httpsRedirect: true
-    https:
-      enabled: true
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: https-wildcard
-          namespace: gateway-api
-        - <<: *gateway
-          sectionName: https-wildcard-local
-      hostnames: *hostnames
-  additionalDataSources:
-    - access: proxy
-      name: loki
-      type: loki
-      url: http://loki-headless.monitoring:3100
+  enabled: false
+  forceDeployDashboards: true
+  sidecar:
+    dashboards:
+      annotations:
+        grafana_folder: kubernetes

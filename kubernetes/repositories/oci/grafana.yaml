@@ -7,6 +7,6 @@ metadata:
 spec:
   interval: 24h
   timeout: 5m
-  url: oci://ghcr.io/grafana/helm-charts/grafana
   ref:
     tag: 9.4.4
+  url: oci://ghcr.io/grafana/helm-charts/grafana

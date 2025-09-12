@@ -5,4 +5,9 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - ./helm-release.yaml
-  - ./oci-repository.yaml
+configMapGenerator:
+  - name: grafana-helm-value
+    files:
+      - values.yaml=./helm-values.yaml
+generatorOptions:
+  disableNameSuffixHash: true

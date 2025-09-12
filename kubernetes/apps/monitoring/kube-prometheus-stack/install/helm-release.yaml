@@ -17,8 +17,4 @@ spec:
     - kind: ConfigMap
       name: prometheus-kube-prometheus-stack-helm-value
     - kind: ConfigMap
-      name: prometheus-operator-kube-prometheus-stack-helm-value
-    - kind: ConfigMap
-      name: alertmanager-kube-prometheus-stack-helm-value
-    - kind: ConfigMap
       name: grafana-kube-prometheus-stack-helm-value

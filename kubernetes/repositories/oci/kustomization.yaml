@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./alertmanager.yaml
   - ./cnpg.yaml
+  - ./grafana.yaml
   - ./kube-prometheus-stack.yaml
   - ./kube-state-metrics.yaml
   - ./loki.yaml

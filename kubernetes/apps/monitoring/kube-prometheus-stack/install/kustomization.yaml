@@ -12,12 +12,6 @@ configMapGenerator:
   - name: prometheus-kube-prometheus-stack-helm-value
     files:
       - values.yaml=./values/prometheus.yaml
-  - name: prometheus-operator-kube-prometheus-stack-helm-value
-    files:
-      - values.yaml=./values/prometheus-operator.yaml
-  - name: alertmanager-kube-prometheus-stack-helm-value
-    files:
-      - values.yaml=./values/alertmanager.yaml
   - name: grafana-kube-prometheus-stack-helm-value
     files:
       - values.yaml=./values/grafana.yaml
