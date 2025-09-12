@@ -3,7 +3,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: cloudflare-tunnel
+  name: &name cloudflare-tunnel
 spec:
   selector:
     matchLabels:
