@@ -1,4 +1,28 @@
 ---
+namespaceOverride: monitoring
+crds:
+  enabled: false
+cleanPrometheusOperatorObjectNames: true
+defaultRules:
+  rules:
+    windows: false
+grafana:
+  enabled: false
+  forceDeployDashboards: true
+alertmanager:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
 prometheus:
   prometheusSpec:
     image:

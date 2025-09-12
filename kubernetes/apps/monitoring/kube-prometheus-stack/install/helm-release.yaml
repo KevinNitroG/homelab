@@ -15,8 +15,4 @@ spec:
     - name: prometheus-operator
   valuesFrom:
     - kind: ConfigMap
-      name: root-kube-prometheus-stack-helm-value
-    - kind: ConfigMap
-      name: prometheus-kube-prometheus-stack-helm-value
-    - kind: ConfigMap
-      name: grafana-kube-prometheus-stack-helm-value
+      name: kube-prometheus-stack-helm-value

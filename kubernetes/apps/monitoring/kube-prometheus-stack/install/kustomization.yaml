@@ -6,14 +6,8 @@ namespace: flux-system
 resources:
   - ./helm-release.yaml
 configMapGenerator:
-  - name: root-kube-prometheus-stack-helm-value
+  - name: kube-prometheus-stack-helm-value
     files:
-      - values.yaml=./values/root.yaml
-  - name: prometheus-kube-prometheus-stack-helm-value
-    files:
-      - values.yaml=./values/prometheus.yaml
-  - name: grafana-kube-prometheus-stack-helm-value
-    files:
-      - values.yaml=./values/grafana.yaml
+      - values.yaml=./helm-values.yaml
 generatorOptions:
   disableNameSuffixHash: true
