@@ -16,8 +16,9 @@ sidecar:
     searchNamespace: ALL
     provider:
       disableDelete: true
+      foldersFromFilesStructure: true
   datasources:
-    enabled: false
+    enabled: true
     labelValue: "1"
     searchNamespace: ALL
   alert:
@@ -26,16 +27,31 @@ sidecar:
     searchNamespace: ALL
 dashboards:
   default:
-    cloudflared:
-      # renovate: depName="Cloudflare Tunnels (cloudflared)"
-      gnetId: 17457
-      revision: 6
-      datasource: Prometheus
     node-exporter-full:
       # renovate: depName="Node Exporter Full"
       gnetId: 1860
       revision: 41
       datasource: Prometheus
+    cloudflared:
+      # renovate: depName="Cloudflare Tunnels (cloudflared)"
+      gnetId: 17457
+      revision: 6
+      datasource: Prometheus
+    lokiStack:
+      # renovate: depName="Loki stack monitoring (Promtail, Loki)"
+      gnetId: 14055
+      revision: 6
+      datasource: Loki
+    flux:
+      flux-cluster:
+        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+        datasource: Prometheus
+      flux-control-plane:
+        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
+        datasource: Prometheus
+      flux-logs:
+        url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
+        datasource: Loki
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
@@ -48,16 +64,3 @@ dashboardProviders:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/default
-datasources:
-  datasources.yaml:
-    apiVersion: 1
-    datasources:
-      - name: Prometheus
-        type: prometheus
-        url: http://monitoring-kube-prometheus-prometheus:9090
-        access: proxy
-        isDefault: true
-      - name: Loki
-        type: loki
-        url: http://monitoring-loki-gateway:80
-        access: proxy

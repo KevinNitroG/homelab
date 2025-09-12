@@ -9,6 +9,7 @@ defaultRules:
 grafana:
   enabled: false
   forceDeployDashboards: true
+  forceDeployDatasources: true
 alertmanager:
   enabled: false
 kubeControllerManager:
