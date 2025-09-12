@@ -51,6 +51,28 @@ dashboards:
     flux-logs:
       url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
       datasource: Loki
+  istio:
+    extesions:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-extension-dashboard.json
+      datasource: Prometheus
+    mesh:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-mesh-dashboard.json
+      datasource: Prometheus
+    performance:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-performance-dashboard.json
+      datasource: Prometheus
+    service:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-service-dashboard.json
+      datasource: Prometheus
+    workload:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-workload-dashboard.json
+      datasource: Prometheus
+    pilot:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/pilot-dashboard.json
+      datasource: Prometheus
+    ztunnel:
+      url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/ztunnel-dashboard.json
+      datasource: Prometheus
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
@@ -66,3 +88,7 @@ dashboardProviders:
         folder: Kubernetes
         options:
           path: /var/lib/grafana/dashboards/kubernetes
+      - name: istio
+        folder: Istio
+        options:
+          path: /var/lib/grafana/dashboards/istio
