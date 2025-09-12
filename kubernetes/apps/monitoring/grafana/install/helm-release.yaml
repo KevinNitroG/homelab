@@ -11,9 +11,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *name
-  install:
-    crds: CreateReplace
-    createNamespace: true
   valuesFrom:
     - kind: ConfigMap
       name: grafana-helm-value

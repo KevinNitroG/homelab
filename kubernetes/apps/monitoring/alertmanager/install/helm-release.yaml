@@ -11,6 +11,8 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *name
+  dependsOn:
+    - name: prometheus-operator
   valuesFrom:
     - kind: ConfigMap
       name: alertmanager-helm-values

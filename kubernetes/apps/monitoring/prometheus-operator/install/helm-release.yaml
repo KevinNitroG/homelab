@@ -11,3 +11,5 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *name
+  install:
+    crds: CreateReplace
