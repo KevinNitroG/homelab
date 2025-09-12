@@ -63,3 +63,10 @@ dashboardProviders:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/default
+deleteDatasources:
+  - name: Alertmanager
+    orgId: 1
+  - name: Loki
+    orgId: 1
+  - name: Prometheus
+    orgId: 1
