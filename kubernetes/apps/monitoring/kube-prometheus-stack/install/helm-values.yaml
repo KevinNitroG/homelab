@@ -43,6 +43,14 @@ prometheus:
       repository: prometheus/prometheus
       tag: v3.5.0
     enableAdminAPI: true
+    scrapeInterval: 1m
+    resources:
+      limits:
+        cpu: 500m
+        memory: 2Gi
+      requests:
+        cpu: 100m
+        memory: 500Mi
     retention: 7d
     retentionSize: 10GiB
     storageSpec:
@@ -68,3 +76,9 @@ prometheus:
         - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
+prometheusOperator:
+  resources:
+    limits:
+      cpu: 200m
+    requests:
+      cpu: 100m
