@@ -8,30 +8,6 @@ persistence:
   size: 2Gi
 annotations:
   reloader.stakater.com/auto: "true"
-route:
-  redirect:
-    enabled: true
-    parentRefs:
-      - &gateway
-        name: default
-        sectionName: http-wildcard
-        namespace: gateway-api
-      - <<: *gateway
-        sectionName: http-wildcard-local
-    hostnames: &hostnames
-      - grafana.${IDVN_DOMAIN}
-      - grafana.${LOCAL_DOMAIN}
-    httpsRedirect: true
-  main:
-    enabled: true
-    parentRefs:
-      - &gateway
-        name: default
-        sectionName: https-wildcard
-        namespace: gateway-api
-      - <<: *gateway
-        sectionName: https-wildcard-local
-    hostnames: *hostnames
 datasources:
   loki.yaml:
     apiVersion: 1
