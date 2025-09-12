@@ -14,3 +14,15 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/monitoring/kube-prometheus-stack/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: common
+        optional: false
+      - kind: ConfigMap
+        name: common
+        optional: false
