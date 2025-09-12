@@ -10,7 +10,7 @@ spec:
       sectionName: https-wildcard
       namespace: gateway-api
   hostnames:
-    - "flux-webhook.${IDVN_DOMAIN}"
+    - flux-webhook.${IDVN_DOMAIN}
   rules:
     - matches:
         - path:

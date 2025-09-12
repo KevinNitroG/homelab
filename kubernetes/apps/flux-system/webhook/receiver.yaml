@@ -3,14 +3,14 @@
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
-  name: webhook
+  name: homelab
 spec:
   type: github
   events:
     - "ping"
     - "push"
   secretRef:
-    name: flux-webhook
+    name: flux-webhook-homelab
   resources:
     - kind: GitRepository
       name: flux-system
