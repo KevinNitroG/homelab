@@ -8,6 +8,7 @@ labels:
       app.kubernetes.io/name: *name
     includeSelectors: true
 resources:
+  - ./config-map.yaml
   - ./deployment.yaml
   - ./namespace.yaml
   - ./secret.sops.yaml
