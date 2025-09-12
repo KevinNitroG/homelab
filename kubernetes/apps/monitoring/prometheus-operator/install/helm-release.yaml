@@ -4,6 +4,8 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &name prometheus-operator
+  labels:
+    kevinnitro/project: homelab
 spec:
   targetNamespace: monitoring
   interval: 24h
