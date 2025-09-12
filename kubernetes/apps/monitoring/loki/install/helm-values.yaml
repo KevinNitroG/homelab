@@ -52,7 +52,7 @@ extraObjects:
         - name: Loki
           type: loki
           access: proxy
-          url: http://{{ include "loki.gatewayFullname" . }}:{{ .Values.loki.server.http_listen_port }}
+          url: http://{{ include "loki.gatewayFullname" . }}:{{ .Values.gateway.service.port }}
           version: 1
           isDefault: false
         deleteDatasources:
