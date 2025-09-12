@@ -26,11 +26,6 @@ sidecar:
     searchNamespace: ALL
 dashboards:
   default:
-    cert-manager:
-      # renovate: depName="Cert-manager-Kubernetes"
-      gnetId: 20842
-      revision: 3
-      datasource: Prometheus
     cloudflared:
       # renovate: depName="Cloudflare Tunnels (cloudflared)"
       gnetId: 17457
