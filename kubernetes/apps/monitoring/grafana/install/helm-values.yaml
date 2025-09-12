@@ -9,7 +9,7 @@ persistence:
 annotations:
   reloader.stakater.com/auto: "true"
 route:
-  http:
+  redirect:
     enabled: true
     parentRefs:
       - &gateway
@@ -22,7 +22,7 @@ route:
       - grafana.${IDVN_DOMAIN}
       - grafana.${LOCAL_DOMAIN}
     httpsRedirect: true
-  https:
+  main:
     enabled: true
     parentRefs:
       - &gateway
