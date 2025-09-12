@@ -25,10 +25,15 @@ sidecar:
     labelValue: "1"
     searchNamespace: ALL
 datasources:
-  loki.yaml:
+  datasources.yaml:
     apiVersion: 1
     datasources:
-      - access: proxy
-        name: loki
+      - name: Prometheus
+        type: prometheus
+        url: http://monitoring-kube-prometheus-prometheus:9090
+        access: proxy
+        isDefault: true
+      - name: Loki
         type: loki
-        url: http://loki-headless.monitoring:3100
+        url: http://monitoring-loki-gateway:80
+        access: proxy
