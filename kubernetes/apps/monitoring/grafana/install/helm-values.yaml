@@ -92,3 +92,8 @@ dashboardProviders:
         folder: Istio
         options:
           path: /var/lib/grafana/dashboards/istio
+resources:
+  limits:
+    cpu: 200m
+  requests:
+    cpu: 100m
