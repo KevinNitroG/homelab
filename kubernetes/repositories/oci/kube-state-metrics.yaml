@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 6.1.0
+    tag: 6.3.0
   url: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
