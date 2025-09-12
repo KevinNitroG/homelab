@@ -63,3 +63,7 @@ dashboardProviders:
         folder: Flux
         options:
           path: /var/lib/grafana/dashboards/flux
+      - name: kubernetes
+        folder: Kubernetes
+        options:
+          path: /var/lib/grafana/dashboards/kubernetes
