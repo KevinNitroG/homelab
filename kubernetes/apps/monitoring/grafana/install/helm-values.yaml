@@ -39,7 +39,7 @@ dashboards:
     lokiStack:
       # renovate: depName="Loki stack monitoring (Promtail, Loki)"
       gnetId: 14055
-      revision: 6
+      revision: 5
       datasource: Loki
     flux:
       flux-cluster:
