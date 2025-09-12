@@ -17,7 +17,7 @@ sidecar:
     provider:
       disableDelete: true
   datasources:
-    enabled: true
+    enabled: false
     labelValue: "1"
     searchNamespace: ALL
   alert:
