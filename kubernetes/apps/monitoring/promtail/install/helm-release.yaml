@@ -13,4 +13,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *name
-  values: # TODO: Later!!!
+  values:
+    config:
+      clients:
+        - url: http://monitoring-loki-gateway:80/loki/api/v1/push
