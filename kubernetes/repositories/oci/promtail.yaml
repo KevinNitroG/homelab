@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/ocirepository-source-v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: promtail
+spec:
+  interval: 24h
+  timeout: 5m
+  ref:
+    tag: 6.17.0
+  url: oci://ghcr.io/grafana/helm-charts/promtail
