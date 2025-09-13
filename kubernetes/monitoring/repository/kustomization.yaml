@@ -7,7 +7,6 @@ resources:
   - ./grafana.oci.yaml
   - ./kube-prometheus-stack.oci.yaml
   - ./kube-state-metrics.oci.yaml
-  - ./kustomization.oci.yaml
   - ./loki.oci.yaml
   - ./node-exporter.oci.yaml
   - ./prometheus-operator-crds.oci.yaml

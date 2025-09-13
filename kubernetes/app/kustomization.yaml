@@ -12,4 +12,3 @@ resources:
   - ./glance/ks.yaml
   - ./keycloak/ks.yaml
   - ./mltb/ks.yaml
-  - ./monitoring/ks.yaml
