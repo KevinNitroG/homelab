@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name kube-prometheus-stack
+  labels:
+    kevinnitro/project: homelab
+spec:
+  targetNamespace: monitoring
+  interval: 1h
+  timeout: 5m
+  chartRef:
+    kind: OCIRepository
+    name: *name
+  dependsOn:
+    - name: prometheus-operator-crds
+  valuesFrom:
+    - kind: ConfigMap
+      name: kube-prometheus-stack-helm-value

@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: webhook
+spec:
+  parentRefs:
+    - name: default
+      sectionName: https-wildcard
+      namespace: gateway
+  hostnames:
+    - flux-webhook.${IDVN_DOMAIN}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /hook/
+      backendRefs:
+        - name: webhook-receiver.flux-system
+          port: 80

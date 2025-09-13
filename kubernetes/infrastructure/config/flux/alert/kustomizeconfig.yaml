@@ -1,0 +1,11 @@
+---
+nameReference:
+  - kind: Secret
+    version: v1
+    fieldSpecs:
+      - path: spec/secretRef/name
+        kind: Provider
+  - kind: Provider
+    fieldSpecs:
+      - path: spec/providerRef/name
+        kind: Alert

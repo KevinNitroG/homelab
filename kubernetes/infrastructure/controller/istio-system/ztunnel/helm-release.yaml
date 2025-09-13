@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name ztunnel
+spec:
+  dependsOn:
+    - name: base
+  interval: 1h
+  timeout: 5m
+  chart:
+    spec:
+      chart: *name
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+      version: 1.27.1
+  values:
+    profile: ambient
+    env:
+      ENABLE_ORIG_SRC: false # https://github.com/istio/istio/issues/55937

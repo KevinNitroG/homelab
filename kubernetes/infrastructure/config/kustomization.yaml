@@ -1,0 +1,10 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./cert-manager/ks.yaml
+  - ./flux-system/ks.yaml
+  - ./gateway/ks.yaml
+  - ./istio-system/ks.yaml
+  - ./monitoring/ks.yaml

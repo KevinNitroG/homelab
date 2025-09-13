@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &name flux
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  prune: true
+  targetNamespace: *name
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: kubernetes/infrastructure/config/flux/
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: settings
