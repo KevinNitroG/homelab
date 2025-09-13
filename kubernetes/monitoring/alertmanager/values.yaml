@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prometheus-community/helm-charts/refs/heads/main/charts/alertmanager/values.schema.json
 config:
   receivers:
-    - name: homelab-telegram
+    - name: default-receiver
       telegram_configs:
         - chat_id: -1001644026686
           message_thread_id: 638
