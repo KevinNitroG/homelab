@@ -10,9 +10,6 @@ grafana:
   enabled: false
   forceDeployDashboards: true
   forceDeployDatasources: true
-  datasources:
-    alertmanager:
-      enabled: false
   deleteDatasources:
     - name: Prometheus
       orgId: 1
@@ -20,6 +17,9 @@ grafana:
     dashboards:
       annotations:
         grafana_folder: Kubernetes
+    datasources:
+      alertmanager:
+        enabled: false
 alertmanager:
   enabled: false
   forceDeployDashboards: true
