@@ -35,6 +35,11 @@
     {
       "matchManagers": ["git-submodules"],
       "matchUpdateTypes": ["digest"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["digest"],
+      "matchPackageNames": ["ghcr.io/kevinnitrog/homelab"]
     }
   ],
   "customManagers": [
@@ -46,6 +51,16 @@
       ],
       "versioningTemplate": "regex:^(?<major>\\d+)$",
       "datasourceTemplate": "custom.grafana-dashboards"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["(^|/)kustomization\\.yaml$"],
+      "matchStrings": [
+        "https://raw\\.githubusercontent\\.com/(?<packageName>[^/]+/[^/]+)/(?<currentValue>[^/]+)/(?<path>.+)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "packageNameTemplate": "{{packageName}}",
+      "depNameTemplate": "{{packageName}}"
     }
   ],
   "customDatasources": {
