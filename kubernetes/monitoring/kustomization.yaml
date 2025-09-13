@@ -7,8 +7,6 @@ resources:
   - ./alertmanager/
   - ./grafana/
   - ./kube-prometheus-stack/
-  - ./kube-state-metrics/
   - ./loki/
-  - ./node-exporter/
   - ./promtail/
   - ./repository/

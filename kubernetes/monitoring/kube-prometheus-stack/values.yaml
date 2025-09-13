@@ -23,9 +23,6 @@ grafana:
 alertmanager:
   enabled: false
   forceDeployDashboards: true
-nodeExporter:
-  enabled: false
-  forceDeployDashboards: true
 kubeControllerManager:
   enabled: false
 kubeEtcd:
@@ -33,8 +30,6 @@ kubeEtcd:
 kubeProxy:
   enabled: false
 kubeScheduler:
-  enabled: false
-kubeStateMetrics:
   enabled: false
 prometheus:
   prometheusSpec:
