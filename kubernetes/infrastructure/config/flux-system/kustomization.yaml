@@ -7,6 +7,5 @@ namespace: flux-system
 resources:
   - ./alert/
   - ./webhook/
-  - ./namespace.yaml
 configurations:
   - kustomizeconfig.yaml
