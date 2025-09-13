@@ -7,6 +7,6 @@ resources:
 configMapGenerator:
   - name: cert-manager-helm-value
     files:
-      - values.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+      - ./values.yaml
+configurations:
+  - kustomizeconfig.yaml

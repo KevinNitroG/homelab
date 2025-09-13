@@ -6,6 +6,6 @@ namePrefix: infrastructure-config-
 namespace: flux-system
 resources:
   - ./cert-manager/ks.yaml
-  - ./flux/ks.yaml
+  - ./flux-system/ks.yaml
   - ./gateway/ks.yaml
   - ./istio-system/ks.yaml

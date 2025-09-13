@@ -8,5 +8,5 @@ configMapGenerator:
   - name: loki-helm-value
     files:
       - ./values.yaml
-generatorOptions:
-  disableNameSuffixHash: true
+configurations:
+  - kustomizeconfig.yaml
