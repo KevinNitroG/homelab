@@ -21,9 +21,9 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: common
+        name: setting
       - kind: ConfigMap
-        name: common
+        name: setting
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
