@@ -5,7 +5,8 @@ config:
     - name: homelab-telegram
       telegram_configs:
         - bot_token: $TELEGRAM_BOT_TOKEN
-          chat_id: "-1001644026686:638"
+          chat_id: -1001644026686
+          message_thread_id: 638
           bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
 extraSecretMounts:
   - name: telegram-bot-token
