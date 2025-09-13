@@ -29,10 +29,10 @@ spec:
               containerPort: 8070
           envFrom:
             - secretRef:
-                name: mltb-mltb
+                name: mltb
                 optional: false
             - configMapRef:
-                name: mltb-mltb
+                name: mltb
                 optional: false
           volumeMounts:
             - name: &sa-account sa-accounts
