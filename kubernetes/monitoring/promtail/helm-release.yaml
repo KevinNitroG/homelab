@@ -13,7 +13,7 @@ spec:
   values:
     config:
       clients:
-        - url: http://monitoring-loki-gateway:80/loki/api/v1/push
+        - url: http://loki-gateway:80/loki/api/v1/push
     resources:
       limits:
         cpu: 200m
