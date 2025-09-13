@@ -7,7 +7,7 @@ labels:
       app.kubernetes.io/name: keycloak
     includeSelectors: true
 resources:
-  - ./cluster.yaml
+  - ./cnpg.yaml
   - ./deployment.yaml
   - ./http-route.yaml
   - ./secret.sops.yaml
