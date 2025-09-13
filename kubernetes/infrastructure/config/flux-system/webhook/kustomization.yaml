@@ -6,4 +6,3 @@ resources:
   - ./http-route.yaml
   - ./receiver.yaml
   - ./secret.sops.yaml
-  - ./reference-grant.yaml
