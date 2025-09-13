@@ -4,11 +4,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namePrefix: infrastructure-controller-
 resources:
-  - ./reloader/ks.yaml
-  - ./cnpg-system/ks.yaml
   - ./cert-manager/ks.yaml
+  - ./cnpg-system/ks.yaml
   - ./gateway/ks.yaml
   - ./istio-system/ks.yaml
+  - ./monitoring/ks.yaml
   - ./reloader/ks.yaml
 configurations:
   - kustomizeconfig.yaml
