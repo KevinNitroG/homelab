@@ -103,6 +103,10 @@ dashboardProviders:
         folder: Istio
         options:
           path: /var/lib/grafana/dashboards/istio
+      - name: programming
+        folder: Programming
+        options:
+          path: /var/lib/grafana/dashboards/programming
 resources:
   limits:
     cpu: 200m
