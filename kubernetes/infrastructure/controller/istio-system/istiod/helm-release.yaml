@@ -7,7 +7,6 @@ metadata:
 spec:
   dependsOn:
     - name: base
-    - name: gateway
   interval: 1h
   timeout: 5m
   chart:
