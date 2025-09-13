@@ -6,6 +6,7 @@ namespace: flux-system
 resources:
   - ./config-map.yaml
   - ./helm-release.yaml
+  - ./secret.sops.yaml
 configMapGenerator:
   - name: alertmanager-helm-values
     files:

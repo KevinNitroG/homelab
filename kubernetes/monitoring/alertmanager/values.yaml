@@ -1,3 +1,16 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prometheus-community/helm-charts/refs/heads/main/charts/alertmanager/values.schema.json
-
+extraArgs:
+  expand-env: true
+config:
+  receivers:
+    - name: homelab-telegram
+      telegram_configs:
+        - bot_token: $TELEGRAM_BOT_TOKEN
+          chat_id: "-1001644026686:638"
+extraEnv:
+  - name: TELEGRAM_BOT_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: alertmanager-telegram
+        key: bot_token
