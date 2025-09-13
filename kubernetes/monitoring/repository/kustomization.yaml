@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./alertmanager.oci.yaml
+  - ./grafana.oci.yaml
+  - ./kube-prometheus-stack.oci.yaml
+  - ./kube-state-metrics.oci.yaml
+  - ./kustomization.oci.yaml
+  - ./loki.oci.yaml
+  - ./node-exporter.oci.yaml
+  - ./prometheus-operator-crds.oci.yaml
+  - ./promtail.oci.yaml

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - kubernetes/apps/mltb/anasty17-mltb
+      - submodules/mltb/anasty17-mltb
 
 jobs:
   build:
@@ -12,5 +12,5 @@ jobs:
       packages: write
     uses: ./.github/workflows/build-image.yaml
     with:
-      app_dir: kubernetes/apps/mltb/anasty17-mltb
+      app_dir: submodules/mltb/anasty17-mltb
       image_name: mltb

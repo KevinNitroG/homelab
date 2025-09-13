@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - pairs:
+      app.kubernetes.io/name: glance
+    includeSelectors: true
+configMapGenerator:
+  - name: glance-config-config-map
+    files:
+      - glance.yml=./config/glance.yml
+secretGenerator:
+  - name: glance-config-secret
+    files:
+      - auth.yml=./config/auth.yml.encrypted
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    reloader.stakater.com/ignore: "true"
+resources:
+  - ./deployment.yaml
+  - ./http-route.yaml
+  - ./pvc.yaml
+  - ./secret.sops.yaml
+  - ./service.yaml

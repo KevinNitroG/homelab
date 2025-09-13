@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - pairs:
+      app.kubernetes.io/name: mltb
+    includeSelectors: true
+resources:
+  - ./config-map.yaml
+  - ./deployment.yaml
+  - ./http-route.yaml
+  - ./sa-accounts.secret.sops.yaml
+  - ./sa-token.secret.sops.yaml
+  - ./secret.sops.yaml
+  - ./service.yaml

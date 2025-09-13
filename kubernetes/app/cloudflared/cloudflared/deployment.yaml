@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: &name cloudflared
+  annotations:
+    reloader.stakater.com/auto: "true"
+    glance/icon: si:cloudflare
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: *name
+  template:
+    metadata:
+      name: *name
+    spec:
+      securityContext:
+        sysctls:
+          - name: net.ipv4.ping_group_range
+            value: "65532 65532"
+      containers:
+        - name: *name
+          image: cloudflare/cloudflared:1759-f9c2bd51ae24
+          ports:
+            - containerPort: 8080
+          command:
+            - cloudflared
+            - tunnel
+            - run
+          envFrom:
+            - secretRef:
+                name: *name
+                optional: false
+            - configMapRef:
+                name: *name
+                optional: false
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10

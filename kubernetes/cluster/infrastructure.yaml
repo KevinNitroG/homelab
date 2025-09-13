@@ -16,7 +16,7 @@ spec:
     name: flux-system
   path: kubernetes/infrastructure/controller/
   dependsOn:
-    - name: settings
+    - name: setting
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json

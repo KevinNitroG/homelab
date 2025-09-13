@@ -1,5 +1,3 @@
-mod mltb './kubernetes/apps/mltb'
-
 default:
   @just --list
 
