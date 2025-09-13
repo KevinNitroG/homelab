@@ -16,6 +16,8 @@ data:
         url: http://alertmanager:9093
         version: 1
         isDefault: false
+        jsonData:
+          implementation: prometheus
     deleteDatasources:
       - name: Alertmanager
         orgId: 1
