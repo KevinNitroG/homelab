@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prometheus-community/helm-charts/refs/heads/main/charts/alertmanager/values.schema.json
 extraArgs:
-  expand-env: true
+  config.expand-env: true
 config:
   receivers:
     - name: homelab-telegram
