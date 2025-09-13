@@ -9,7 +9,7 @@ spec:
     - &gateway
       name: default
       sectionName: http
-      namespace: gateway-api
+      namespace: gateway
     - <<: *gateway
       sectionName: http-wildcard
     - <<: *gateway
@@ -39,7 +39,7 @@ spec:
     - &gateway
       name: default
       sectionName: https
-      namespace: gateway-api
+      namespace: gateway
     - <<: *gateway
       sectionName: https-wildcard
     - <<: *gateway

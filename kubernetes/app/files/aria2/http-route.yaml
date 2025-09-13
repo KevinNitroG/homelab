@@ -9,7 +9,7 @@ spec:
     - &gateway
       name: default
       sectionName: https-wildcard
-      namespace: gateway-api
+      namespace: gateway
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:

@@ -66,7 +66,7 @@ prometheus:
         - &gateway
           name: default
           sectionName: http-wildcard-local
-          namespace: gateway-api
+          namespace: gateway
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
       httpsRedirect: true

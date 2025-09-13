@@ -8,7 +8,7 @@ spec:
   parentRefs:
     - name: default
       sectionName: http-wildcard-local
-      namespace: gateway-api
+      namespace: gateway
   hostnames:
     - cloudbeaver.${LOCAL_DOMAIN}
   rules:

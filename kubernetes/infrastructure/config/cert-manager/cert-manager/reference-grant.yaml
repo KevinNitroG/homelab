@@ -8,7 +8,7 @@ spec:
   from:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      namespace: gateway-api
+      namespace: gateway
   to:
     - group: ""
       kind: Secret

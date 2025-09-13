@@ -8,7 +8,7 @@ spec:
   parentRefs:
     - &gateway
       name: default
-      namespace: gateway-api
+      namespace: gateway
       sectionName: http-wildcard
     - <<: *gateway
       sectionName: http-wildcard-local
@@ -32,7 +32,7 @@ spec:
   parentRefs:
     - &gateway
       name: default
-      namespace: gateway-api
+      namespace: gateway
       sectionName: https-wildcard
     - <<: *gateway
       sectionName: https-wildcard-local
