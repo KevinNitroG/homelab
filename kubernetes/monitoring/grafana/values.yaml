@@ -73,6 +73,17 @@ dashboards:
     ztunnel:
       url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/ztunnel-dashboard.json
       datasource: Prometheus
+  programming:
+    go:
+      # renovate: depName="Go Metrics"
+      gnetId: 10826
+      revision: 2
+      datasource: Prometheus
+    nodejs:
+      # renovate: depName="Nodejs Metrics"
+      gnetId: 11956
+      revision: 1
+      datasource: Prometheus
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
