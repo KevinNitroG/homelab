@@ -7,6 +7,7 @@ namespace: flux-system
 resources:
   - ./cert-manager/ks.yaml
   - ./cnpg-system/ks.yaml
+  - ./elastic-system/ks.yaml
   - ./gateway/ks.yaml
   - ./istio-system/ks.yaml
   - ./monitoring/ks.yaml
