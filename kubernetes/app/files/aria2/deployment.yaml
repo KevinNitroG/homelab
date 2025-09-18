@@ -34,7 +34,6 @@ spec:
           envFrom:
             - secretRef:
                 name: *name
-                optional: false
           volumeMounts:
             - name: &config aria2-config
               mountPath: /config/

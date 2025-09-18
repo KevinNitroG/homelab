@@ -30,10 +30,8 @@ spec:
           envFrom:
             - secretRef:
                 name: mltb
-                optional: false
             - configMapRef:
                 name: mltb
-                optional: false
           volumeMounts:
             - name: &sa-account sa-accounts
               mountPath: /usr/src/app/accounts/
@@ -60,8 +58,6 @@ spec:
         - name: *sa-account
           secret:
             secretName: *sa-account
-            optional: false
         - name: *sa-token
           secret:
             secretName: *sa-token
-            optional: false

@@ -52,13 +52,11 @@ spec:
                 secretKeyRef:
                   key: username
                   name: keycloak-auth
-                  optional: false
             - name: KC_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
                   name: keycloak-auth
-                  optional: false
           ports:
             - name: http
               containerPort: 8080

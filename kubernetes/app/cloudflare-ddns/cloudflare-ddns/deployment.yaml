@@ -27,4 +27,3 @@ spec:
         - name: config
           secret:
             secretName: idvn-cloudflare-ddns
-            optional: false

@@ -32,7 +32,6 @@ spec:
         - name: *config
           secret:
             secretName: *name
-            optional: false
         - name: *database
           persistentVolumeClaim:
             claimName: *name

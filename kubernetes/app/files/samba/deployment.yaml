@@ -34,11 +34,9 @@ spec:
         - name: *config-map
           configMap:
             name: *name
-            optional: false
         - name: *secret
           secret:
             secretName: *name
-            optional: false
         - name: *aria2-downloads
           persistentVolumeClaim:
             claimName: *aria2-downloads

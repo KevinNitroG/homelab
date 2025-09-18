@@ -31,10 +31,8 @@ spec:
           envFrom:
             - secretRef:
                 name: *name
-                optional: false
             - configMapRef:
                 name: *name
-                optional: false
           livenessProbe:
             httpGet:
               path: /ready
