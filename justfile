@@ -1,3 +1,7 @@
+age_key_file := '~/.age-key.txt'
+encrypted_age_key := 'secret/encrypted_age.agekey'
+age_key := 'secret/age.agekey'
+
 default:
   @just --list
 
@@ -8,16 +12,16 @@ tmuxinator:
 minikube profile='homelab':
   minikube start --cpus=4 --memory=12000 --profile={{profile}}
 
-age-encrypt-age own='~/.age-key.txt':
-  age -i {{own}} -e -o secret/encrypted_age.agekey secret/age.agekey
+age-encrypt-age own=age_key_file:
+  age -i {{own}} -e -o {{encrypted_age_key}} {{age_key}}
 
-age-decrypt-age own='~/.age-key.txt':
-  age -i {{own}} -d -o secret/age.agekey secret/encrypted_age.agekey
+age-decrypt-age own=age_key_file:
+  age -i {{own}} -d -o {{age_key}} {{encrypted_age_key}}
 
 add-age-cluster:
   kubectl create secret generic sops-age \
   --namespace=flux-system \
-  --from-file=./secret/age.agekey
+  --from-file={{age_key}}
 
 wol:
   wol -i 192.168.28.255 $KEVBLINK_MAC
