@@ -9,7 +9,7 @@ minikube profile='homelab':
   minikube start --cpus=4 --memory=12000 --profile={{profile}}
 
 age-encrypt-age own='~/.age-key.txt':
-  age -i {{own}} -e -o secret/encrypted_age.agekey ecrets/age.agekey
+  age -i {{own}} -e -o secret/encrypted_age.agekey secret/age.agekey
 
 age-decrypt-age own='~/.age-key.txt':
   age -i {{own}} -d -o secret/age.agekey secret/encrypted_age.agekey
