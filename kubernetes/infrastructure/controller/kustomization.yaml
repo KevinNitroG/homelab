@@ -14,7 +14,7 @@ resources:
 
   # External usage: my projects,...
   # Maybe disabled when I don't need them
-  - ./atlas-operator/ks.yaml
+  # - ./atlas-operator/ks.yaml
   - ./elastic-system/ks.yaml
 configurations:
   - kustomizeconfig.yaml
