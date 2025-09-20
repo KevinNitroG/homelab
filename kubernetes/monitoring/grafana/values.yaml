@@ -84,6 +84,25 @@ dashboards:
       gnetId: 11956
       revision: 1
       datasource: Prometheus
+  minio:
+    server:
+      # renovate: depName="MinIO Dashboard"
+      gnetId: 13502
+      revision: 26
+      datasource: Prometheus
+    bucket:
+      # renovate: depName="MinIO Bucket Dashboard"
+      gnetId: 19237
+      revision: 2
+      datasource: Prometheus
+    node:
+      url: https://raw.githubusercontent.com/minio/minio/master/docs/metrics/prometheus/grafana/node/minio-node.json
+      datasource: Prometheus
+    replication:
+      # renovate: depName="MinIO Replication Dashboard"
+      gnetId: 15305
+      revision: 5
+      datasource: Prometheus
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
@@ -107,6 +126,10 @@ dashboardProviders:
         folder: Programming
         options:
           path: /var/lib/grafana/dashboards/programming
+      - name: minio
+        folder: MinIO
+        options:
+          path: /var/lib/grafana/dashboards/minio
 resources:
   limits:
     cpu: 200m
