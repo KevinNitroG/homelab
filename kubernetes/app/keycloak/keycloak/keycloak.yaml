@@ -27,7 +27,7 @@ spec:
       cpu: 10m
       memory: 500Mi
     limits:
-      cpu: 500m
+      cpu: 2
       memory: 1Gi
   hostname:
     backchannelDynamic: true
