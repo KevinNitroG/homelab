@@ -17,5 +17,6 @@ resources:
   # Maybe disabled when I don't need them
   # - ./atlas-operator/ks.yaml
   - ./elastic-system/ks.yaml
+  - ./minio-operator/ks.yaml
 configurations:
   - kustomizeconfig.yaml
