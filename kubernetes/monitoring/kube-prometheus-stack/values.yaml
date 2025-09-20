@@ -44,7 +44,7 @@ prometheus:
         cpu: 500m
         memory: 2Gi
       requests:
-        cpu: 100m
+        cpu: 10m
         memory: 500Mi
     retention: 7d
     retentionSize: 10GiB
@@ -76,4 +76,4 @@ prometheusOperator:
     limits:
       cpu: 200m
     requests:
-      cpu: 100m
+      cpu: 10m

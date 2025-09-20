@@ -111,4 +111,4 @@ resources:
   limits:
     cpu: 200m
   requests:
-    cpu: 100m
+    cpu: 10m
