@@ -9,10 +9,6 @@ defaultRules:
 grafana:
   enabled: false
   forceDeployDashboards: true
-  forceDeployDatasources: true
-  deleteDatasources:
-    - name: Prometheus
-      orgId: 1
   sidecar:
     dashboards:
       annotations:
