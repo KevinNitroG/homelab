@@ -13,3 +13,4 @@ spec:
     kind: GitRepository
     name: keycloak-k8s-resources
   path: kubernetes/
+  targetNamespace: keycloak # We have to, because service account bla bla need this?

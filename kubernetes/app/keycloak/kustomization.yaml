@@ -5,4 +5,3 @@ kind: Kustomization
 namespace: keycloak
 resources:
   - ./keycloak/
-  - ./namespace.yaml
