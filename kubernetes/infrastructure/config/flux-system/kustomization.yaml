@@ -8,4 +8,4 @@ resources:
   - ./alert/
   - ./webhook/
 configurations:
-  - kustomizeconfig.yaml
+  - ./kustomizeconfig.yaml

@@ -8,4 +8,4 @@ resources:
   - ./telegram.provider.yaml
   - ./telegram.secret.sops.yaml
 configurations:
-  - kustomizeconfig.yaml
+  - ./kustomizeconfig.yaml

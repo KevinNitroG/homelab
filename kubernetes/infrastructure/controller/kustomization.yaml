@@ -19,4 +19,4 @@ resources:
   - ./elastic-system/ks.yaml
   - ./minio-operator/ks.yaml
 configurations:
-  - kustomizeconfig.yaml
+  - ./kustomizeconfig.yaml
