@@ -57,9 +57,18 @@ spec:
                 secretKeyRef:
                   key: password
                   name: keycloak-auth
+            - name: KC_METRICS_ENABLED
+              value: "true"
           ports:
             - name: http
               containerPort: 8080
+          resources:
+            requests:
+              cpu: 10m
+              memory: 500Mi
+            limits:
+              cpu: 2
+              memory: 1Gi
           startupProbe:
             httpGet:
               path: /health/started
