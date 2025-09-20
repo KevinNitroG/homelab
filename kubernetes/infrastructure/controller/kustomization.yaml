@@ -9,7 +9,6 @@ resources:
   - ./cnpg-system/ks.yaml
   - ./gateway/ks.yaml
   - ./istio-system/ks.yaml
-  - ./keycloak/ks.yaml
   - ./monitoring/ks.yaml
   - ./reloader/ks.yaml
 
