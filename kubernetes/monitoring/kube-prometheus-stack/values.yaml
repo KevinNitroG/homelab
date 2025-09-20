@@ -18,11 +18,46 @@ grafana:
       annotations:
         grafana_folder: Kubernetes
     datasources:
-      alertmanager:
-        enabled: false
+      enabled: false
 alertmanager:
-  enabled: false
-  forceDeployDashboards: true
+  alertmanagerSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/alertmanager
+      tag: v0.28.1
+    alertmanagerConfiguration:
+      receivers:
+        - name: default-receiver
+          telegram_configs:
+            - chat_id: -1001644026686
+              message_thread_id: 638
+              bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
+    volumes:
+      - name: &alertmanager-secret alertmanager-telegram
+        secret:
+          secretName: *alertmanager-secret
+    volumeMounts:
+      - name: *alertmanager-secret
+        mountPath: /etc/alertmanager/secrets/telegram
+  serviceMonitor:
+    selfMonitor: false
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http-wildcard-local
+          namespace: gateway
+      hostnames: &hostnames
+        - prometheus.${LOCAL_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames: *hostnames
 kubeControllerManager:
   enabled: false
 kubeEtcd:
@@ -32,6 +67,8 @@ kubeProxy:
 kubeScheduler:
   enabled: false
 prometheus:
+  serviceMonitor:
+    selfMonitor: false
   prometheusSpec:
     image:
       registry: quay.io
@@ -72,6 +109,8 @@ prometheus:
           sectionName: https-wildcard-local
       hostnames: *hostnames
 prometheusOperator:
+  serviceMonitor:
+    selfMonitor: false
   resources:
     limits:
       cpu: 200m

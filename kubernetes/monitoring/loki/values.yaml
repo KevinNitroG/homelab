@@ -38,26 +38,6 @@ singleBinary:
   persistence:
     enabled: true
     size: 10Gi
-extraObjects:
-  - apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: loki-datasource
-      labels:
-        grafana_datasource: "1"
-    data:
-      loki-datasource.yaml: |- # language: yaml
-        apiVersion: 1
-        datasources:
-        - name: Loki
-          type: loki
-          access: proxy
-          url: http://{{ include "loki.gatewayFullname" . }}:{{ .Values.gateway.service.port }}
-          version: 1
-          isDefault: false
-        deleteDatasources:
-          - name: Loki
-            orgId: 1
 backend:
   replicas: 0
 read:

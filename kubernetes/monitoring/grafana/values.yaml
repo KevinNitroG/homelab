@@ -17,11 +17,11 @@ sidecar:
     provider:
       foldersFromFilesStructure: true
   datasources:
-    enabled: true
+    enabled: false
     labelValue: "1"
     searchNamespace: ALL
   alert:
-    enabled: true
+    enabled: false
     labelValue: "1"
     searchNamespace: ALL
 dashboards:
@@ -130,6 +130,36 @@ dashboardProviders:
         folder: MinIO
         options:
           path: /var/lib/grafana/dashboards/minio
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://monitoring-kube-prometheus-prometheus:9090
+        access: proxy
+        isDefault: true
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki-gateway:80
+        version: 1
+        isDefault: false
+      - name: Alertmanager
+        type: alertmanager
+        access: proxy
+        url: http://monitoring-kube-alertmanager-alertmanager:9093
+        version: 1
+        isDefault: false
+        jsonData:
+          implementation: prometheus
+    deleteDatasources:
+      - name: Prometheus
+        orgId: 1
+      - name: Loki
+        orgId: 1
+      - name: Alertmanager
+        orgId: 1
 resources:
   limits:
     cpu: 200m
