@@ -18,6 +18,7 @@ grafana:
 alertmanager:
   config:
     route:
+      receiver: default
       routes:
         - receiver: default
     receivers:
