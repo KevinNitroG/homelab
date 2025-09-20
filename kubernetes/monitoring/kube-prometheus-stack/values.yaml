@@ -16,18 +16,21 @@ grafana:
     datasources:
       enabled: false
 alertmanager:
+  config:
+    route:
+      routes:
+        - receiver: default
+    receivers:
+      - name: default
+        telegram_configs:
+          - chat_id: -1001644026686
+            message_thread_id: 638
+            bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
   alertmanagerSpec:
     image:
       registry: quay.io
       repository: prometheus/alertmanager
       tag: v0.28.1
-    alertmanagerConfiguration:
-      receivers:
-        - name: default-receiver
-          telegram_configs:
-            - chat_id: -1001644026686
-              message_thread_id: 638
-              bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
     volumes:
       - name: &alertmanager-secret alertmanager-telegram
         secret:
