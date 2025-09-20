@@ -11,7 +11,8 @@
   ],
   "kubernetes": {
     "enabled": true,
-    "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"]
+    "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"],
+    "ignorePaths": ["kubernetes/app/keycloak/keycloak/keycloak.yaml"]
   },
   "kustomize": {
     "enabled": true
