@@ -8,9 +8,6 @@ metadata:
     reloader.stakater.com/auto: "true"
     glance/icon: si:cloudflare
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: *name
   template:
     metadata:
       name: *name
@@ -40,3 +37,4 @@ spec:
             failureThreshold: 1
             initialDelaySeconds: 10
             periodSeconds: 10
+  selector: {}

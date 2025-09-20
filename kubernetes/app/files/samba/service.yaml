@@ -3,9 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: &name samba
+  name: samba
 spec:
-  selector:
-    app.kubernetes.io/name: *name
   ports:
     - port: 445

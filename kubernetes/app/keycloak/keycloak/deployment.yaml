@@ -8,9 +8,6 @@ metadata:
     reloader.stakater.com/auto: "true"
     glance/icon: si:keycloak
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: *name
   template:
     metadata:
       name: *name
@@ -87,3 +84,4 @@ spec:
               port: 9000
             periodSeconds: 10
             failureThreshold: 3
+  selector: {}

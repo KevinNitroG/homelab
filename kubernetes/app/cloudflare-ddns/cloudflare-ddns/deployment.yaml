@@ -8,9 +8,6 @@ metadata:
     reloader.stakater.com/auto: "true"
     glance/icon: si:cloudflare
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: *name
   template:
     metadata:
       name: *name
@@ -27,3 +24,4 @@ spec:
         - name: config
           secret:
             secretName: idvn-cloudflare-ddns
+  selector: {}

@@ -8,9 +8,6 @@ metadata:
     reloader.stakater.com/auto: "true"
     glance/icon: di:telegram
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: *name
   template:
     metadata:
       name: *name
@@ -61,3 +58,4 @@ spec:
         - name: *sa-token
           secret:
             secretName: *sa-token
+  selector: {}

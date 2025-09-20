@@ -7,9 +7,6 @@ metadata:
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: *name
   template:
     metadata:
       name: *name
@@ -43,3 +40,4 @@ spec:
         - name: *metube
           persistentVolumeClaim:
             claimName: *metube
+  selector: {}
