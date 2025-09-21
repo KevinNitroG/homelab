@@ -9,10 +9,10 @@ spec:
   timeout: 5m
   chart:
     spec:
-      chart: grafana
+      chart: *name
       sourceRef:
         kind: HelmRepository
-        name: *name
+        name: grafana
       version: 1.2.1
   valuesFrom:
     - kind: ConfigMap
