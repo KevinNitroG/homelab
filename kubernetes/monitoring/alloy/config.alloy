@@ -1,0 +1,68 @@
+// reference: https://github.com/grafana/alloy/issues/2211
+// reference: https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/
+
+logging {
+	level  = "info"
+	format = "logfmt"
+}
+
+discovery.kubernetes "pods" {
+	role = "pod"
+
+	selector {
+		alloyscrape = "1"
+	}
+}
+
+discovery.kubernetes "nodes" {
+	role = "node"
+
+	selector {
+		alloyscrape = "1"
+	}
+}
+
+discovery.kubernetes "services" {
+	role = "service"
+
+	selector {
+		alloyscrape = "1"
+	}
+}
+
+discovery.kubernetes "endpoints" {
+	role = "endpoints"
+
+	selector {
+		alloyscrape = "1"
+	}
+}
+
+discovery.kubernetes "endpointslices" {
+	role = "endpointslice"
+
+	selector {
+		alloyscrape = "1"
+	}
+}
+
+discovery.relabel "pod_logs" {
+	targets = discovery.kubernetes.pods.targets
+
+	rule {
+		regex       = "__meta_kubernetes_(namespace|pod_name|pod_label_app_kubernetes_io_name|pod_label_app_kubernetes_io_instance|pod_container_name|pod_container_image|pod_ready|pod_phase)"
+		action      = "labelmap"
+		replacement = "$1"
+	}
+}
+
+loki.source.kubernetes "pod_logs" {
+	targets    = discovery.relabel.pod_logs.output
+	forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+	endpoint {
+		url = "http://loki-gateway/loki/api/v1/push"
+	}
+}

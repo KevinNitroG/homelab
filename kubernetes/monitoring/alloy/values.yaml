@@ -1,0 +1,6 @@
+---
+alloy:
+  configMap:
+    name: alloy-config
+controller:
+  type: deployment
