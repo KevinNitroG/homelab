@@ -7,6 +7,6 @@ metadata:
 spec:
   type: *name
   address: https://api.telegram.org
-  channel: -1001644026686&message_thread_id=12345
+  channel: "-1001644026686"
   secretRef:
     name: telegram
