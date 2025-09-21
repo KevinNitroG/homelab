@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: *name
-          image: ghcr.io/kevinnitrog/homelab/mltb:615a34a89f7768ee3b36f1f53889dc537741d7b3
+          image: ghcr.io/kevinnitrog/homelab/mltb
           ports:
             - name: rclone
               containerPort: 8080

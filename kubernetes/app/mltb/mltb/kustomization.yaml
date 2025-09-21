@@ -14,3 +14,6 @@ resources:
   - ./sa-token.secret.sops.yaml
   - ./secret.sops.yaml
   - ./service.yaml
+images:
+  - name: ghcr.io/kevinnitrog/homelab/mltb
+    digest: sha256:175fb878b62edb802bc71dc6d4bdfdbd8c22a2f0e7fac8300d3441a2e9d21ca5
