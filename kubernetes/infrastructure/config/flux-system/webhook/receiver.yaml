@@ -14,6 +14,3 @@ spec:
   resources:
     - kind: GitRepository
       name: flux-system
-    - kind: Kustomization
-      apiVersion: kustomize.toolkit.fluxcd.io/v1
-      name: flux-system
