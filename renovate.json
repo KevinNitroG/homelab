@@ -34,12 +34,14 @@
   "packageRules": [
     {
       "matchManagers": ["git-submodules"],
-      "matchUpdateTypes": ["digest"]
+      "matchUpdateTypes": ["digest"],
+      "automerge": true
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
-      "matchPackageNames": ["ghcr.io/kevinnitrog/homelab/*"]
+      "matchPackageNames": ["ghcr.io/kevinnitrog/homelab/*"],
+      "automerge": true
     }
   ],
   "customManagers": [
