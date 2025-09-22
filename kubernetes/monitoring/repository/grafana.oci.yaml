@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 9.4.5
+    tag: 10.0.0
   url: oci://ghcr.io/grafana/helm-charts/grafana
