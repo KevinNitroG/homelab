@@ -9,40 +9,45 @@ logging {
 discovery.kubernetes "pods" {
 	role = "pod"
 
-	selector {
-		alloyscrape = "1"
+	selectors {
+		role  = "pod"
+		label = "alloy.kevinnitro/scrape=1"
 	}
 }
 
 discovery.kubernetes "nodes" {
 	role = "node"
 
-	selector {
-		alloyscrape = "1"
+	selectors {
+		role  = "node"
+		label = "alloy.kevinnitro/scrape=1"
 	}
 }
 
 discovery.kubernetes "services" {
 	role = "service"
 
-	selector {
-		alloyscrape = "1"
+	selectors {
+		role  = "service"
+		label = "alloy.kevinnitro/scrape=1"
 	}
 }
 
 discovery.kubernetes "endpoints" {
 	role = "endpoints"
 
-	selector {
-		alloyscrape = "1"
+	selectors {
+		role  = "endpoints"
+		label = "alloy.kevinnitro/scrape=1"
 	}
 }
 
 discovery.kubernetes "endpointslices" {
 	role = "endpointslice"
 
-	selector {
-		alloyscrape = "1"
+	selectors {
+		role  = "endpointslice"
+		label = "alloy.kevinnitro/scrape=1"
 	}
 }
 
