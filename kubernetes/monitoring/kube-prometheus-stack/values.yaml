@@ -76,6 +76,9 @@ prometheus:
       tag: v3.6.0
     enableAdminAPI: true
     scrapeInterval: 1m
+    ruleNamespaceSelector:
+      matchLabels:
+        prometheus.kevinnitro/enabled: "1"
     resources:
       limits:
         cpu: 500m
