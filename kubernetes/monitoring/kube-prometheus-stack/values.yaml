@@ -76,6 +76,11 @@ prometheus:
       tag: v3.6.0
     enableAdminAPI: true
     scrapeInterval: 1m
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
     ruleNamespaceSelector:
       matchLabels:
         prometheus.kevinnitro/enabled: "1"
