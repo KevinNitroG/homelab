@@ -15,6 +15,7 @@ sidecar:
     searchNamespace: ALL
     folderAnnotation: grafana_folder
     provider:
+      allowUiUpdates: true
       foldersFromFilesStructure: true
   datasources:
     enabled: false
@@ -83,7 +84,9 @@ dashboards:
       # renovate: depName="Go Host & Runtime Metrics Dashboard"
       gnetId: 21221
       revision: 1
-      datasource: Prometheus
+      datasource: &prometheus-datasource-value
+        - name: DS_PROMETHEUS
+          value: Prometheus
     nodejs:
       # renovate: depName="Nodejs Metrics"
       gnetId: 11956
@@ -94,9 +97,7 @@ dashboards:
       # renovate: depName="MinIO Dashboard"
       gnetId: 13502
       revision: 26
-      datasource: &prometheus-datasource-value
-        - name: DS_PROMETHEUS
-          value: Prometheus
+      datasource: *prometheus-datasource-value
     bucket:
       # renovate: depName="MinIO Bucket Dashboard"
       gnetId: 19237
