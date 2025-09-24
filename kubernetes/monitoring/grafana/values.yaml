@@ -74,13 +74,16 @@ dashboards:
       url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/ztunnel-dashboard.json
       datasource: Prometheus
   programming:
-    go:
-      # renovate: depName="Go Metrics"
-      gnetId: 10826
-      revision: 2
-      datasource: &prometheus-datasource
-        - name: DS_PROMETHEUS
-          value: Prometheus
+    go-process:
+      # renovate: depName="Go Processes"
+      gnetId: 11891
+      revision: 1
+      datasource: Prometheus
+    go-host-runtime:
+      # renovate: depName="Go Host & Runtime Metrics Dashboard"
+      gnetId: 21221
+      revision: 1
+      datasource: Prometheus
     nodejs:
       # renovate: depName="Nodejs Metrics"
       gnetId: 11956
@@ -91,20 +94,22 @@ dashboards:
       # renovate: depName="MinIO Dashboard"
       gnetId: 13502
       revision: 26
-      datasource: *prometheus-datasource
+      datasource: &prometheus-datasource-value
+        - name: DS_PROMETHEUS
+          value: Prometheus
     bucket:
       # renovate: depName="MinIO Bucket Dashboard"
       gnetId: 19237
       revision: 2
-      datasource: *prometheus-datasource
+      datasource: *prometheus-datasource-value
     node:
       url: https://raw.githubusercontent.com/minio/minio/master/docs/metrics/prometheus/grafana/node/minio-node.json
-      datasource: *prometheus-datasource
+      datasource: *prometheus-datasource-value
     replication:
       # renovate: depName="MinIO Replication Dashboard"
       gnetId: 15305
       revision: 5
-      datasource: *prometheus-datasource
+      datasource: *prometheus-datasource-value
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
