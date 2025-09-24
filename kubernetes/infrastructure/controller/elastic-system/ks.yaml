@@ -14,4 +14,4 @@ spec:
     name: flux-system
   path: kubernetes/infrastructure/controller/elastic-system/
   dependsOn:
-    - name: monitoring
+    - name: infrastructure-controller-monitoring
