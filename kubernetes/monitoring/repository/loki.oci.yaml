@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 6.41.0
+    tag: 6.41.1
   url: oci://ghcr.io/grafana/helm-charts/loki
