@@ -1,10 +1,10 @@
 variable "apps" {
-  type = list(string)
-  default = [
-    "cloudbeaver",
-    "metube",
-    "prometheus"
-  ]
+  type = map(string)
+  default = {
+    cloudbeaver = "http://cloudbeaver.cloudbeaver:8978"
+    metube      = "http://metube.files:8081"
+    prometheus  = "http://monitoring-kube-prometheus-prometheus.monitoring:9090"
+  }
 }
 
 variable "cf_api_token_zt" {

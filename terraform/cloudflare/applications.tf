@@ -1,11 +1,11 @@
 resource "cloudflare_zero_trust_access_application" "kube" {
-  for_each = toset(var.apps)
+  for_each = var.apps
 
   account_id = var.cf_account_id
-  name       = each.value
+  name       = each.key
   type       = "self_hosted"
   destinations = [{
-    uri = "${each.value}.${var.cf_domain}"
+    uri = "${each.key}.${var.cf_domain}"
   }]
   policies = [{
     id = cloudflare_zero_trust_access_policy.admin.id
