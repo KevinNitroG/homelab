@@ -107,14 +107,19 @@ prometheus:
           name: default
           sectionName: http-wildcard-local
           namespace: gateway
+        - <<: *gateway
+          sectionName: http-wildcard
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
+        - prometheus.${ID_DOMAIN}
       httpsRedirect: true
     https:
       enabled: true
       parentRefs:
         - <<: *gateway
           sectionName: https-wildcard-local
+        - <<: *gateway
+          sectionName: https-wildcard
       hostnames: *hostnames
 prometheusOperator:
   serviceMonitor:
