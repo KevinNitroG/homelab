@@ -22,6 +22,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kube" {
         service  = "http://metube.files:8081"
       },
       {
+        hostname = "prometheus.${var.cf_domain}"
+        service  = "http://monitoring-kube-prometheus-prometheus.monitoring:9090"
+      },
+      {
         service = "http_status:404"
       }
     ]
