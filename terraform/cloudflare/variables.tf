@@ -3,6 +3,7 @@ variable "apps" {
   default = [
     "cloudbeaver",
     "metube",
+    "prometheus"
   ]
 }
 
