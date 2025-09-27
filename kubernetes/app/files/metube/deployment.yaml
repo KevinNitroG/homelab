@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: *name
-          image: ghcr.io/alexta69/metube:2025.09.26
+          image: ghcr.io/alexta69/metube:2025.09.27
           ports:
             - containerPort: 8081
           volumeMounts:
