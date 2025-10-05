@@ -9,6 +9,7 @@
     ":timezone(Asia/Ho_Chi_Minh)",
     ":disableRateLimiting"
   ],
+  "schedule": ["* * * * 0,6"],
   "kubernetes": {
     "enabled": true,
     "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"],
