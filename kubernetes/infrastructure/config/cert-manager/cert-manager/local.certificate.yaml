@@ -13,6 +13,7 @@ spec:
   dnsNames:
     - ${LOCAL_DOMAIN}
     - alertmanager.${LOCAL_DOMAIN}
+    - alloy.${LOCAL_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
     - filebrowser.${LOCAL_DOMAIN}
     - glance.${LOCAL_DOMAIN}
