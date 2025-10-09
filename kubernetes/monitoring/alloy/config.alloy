@@ -15,42 +15,6 @@ discovery.kubernetes "pods" {
 	}
 }
 
-discovery.kubernetes "nodes" {
-	role = "node"
-
-	selectors {
-		role  = "node"
-		label = "alloy.kevinnitro/scrape=1"
-	}
-}
-
-discovery.kubernetes "services" {
-	role = "service"
-
-	selectors {
-		role  = "service"
-		label = "alloy.kevinnitro/scrape=1"
-	}
-}
-
-discovery.kubernetes "endpoints" {
-	role = "endpoints"
-
-	selectors {
-		role  = "endpoints"
-		label = "alloy.kevinnitro/scrape=1"
-	}
-}
-
-discovery.kubernetes "endpointslices" {
-	role = "endpointslice"
-
-	selectors {
-		role  = "endpointslice"
-		label = "alloy.kevinnitro/scrape=1"
-	}
-}
-
 discovery.relabel "pod_logs" {
 	targets = discovery.kubernetes.pods.targets
 
