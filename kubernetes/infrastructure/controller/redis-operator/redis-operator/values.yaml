@@ -1,0 +1,6 @@
+---
+redisOperator:
+  metrics:
+  enabled: false
+issuer:
+  create: false

@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/ocirepository-source-v1.json
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: redis-operator
+spec:
+  interval: 24h
+  timeout: 5m
+  ref:
+    tag: 0.22.1
+  url: oci://ghcr.io/ot-container-kit/charts/redis-operator
