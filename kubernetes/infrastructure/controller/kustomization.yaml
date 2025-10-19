@@ -17,5 +17,6 @@ resources:
   # - ./atlas-operator/ks.yaml
   # - ./elastic-system/ks.yaml
   - ./minio-operator/ks.yaml
+  - ./valkey-operator/ks.yaml
 configurations:
   - ./kustomizeconfig.yaml
