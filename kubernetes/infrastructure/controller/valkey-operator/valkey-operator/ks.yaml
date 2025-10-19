@@ -13,3 +13,7 @@ spec:
     kind: GitRepository
     name: *name
   path: config/default/
+  images:
+    - name: controller
+      newName: ghcr.io/hyperspike/valkey-operator
+      newTag: v0.0.61
