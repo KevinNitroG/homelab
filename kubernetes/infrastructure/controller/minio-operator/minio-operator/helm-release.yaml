@@ -16,3 +16,6 @@ spec:
       version: v7.1.1
   install:
     crds: CreateReplace
+  valuesFrom:
+    - kind: ConfigMap
+      name: minio-operator-helm-value
