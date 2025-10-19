@@ -92,6 +92,11 @@ dashboards:
       gnetId: 11956
       revision: 1
       datasource: Prometheus
+    redis:
+      # renovate: depName="Redis Dashboard for Prometheus Redis Exporter 1.x"
+      gnetId: 763
+      revision: 6
+      datasource: Prometheus
   minio:
     server:
       # renovate: depName="MinIO Dashboard"
