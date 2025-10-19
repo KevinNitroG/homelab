@@ -14,6 +14,6 @@ spec:
     name: *name
   path: config/default/
   images:
-    - name: valkey-operator
+    - name: localhost:5000/valkey-operator
       newName: ghcr.io/hyperspike/valkey-operator
       newTag: v0.0.61
