@@ -92,6 +92,12 @@ dashboards:
       gnetId: 11956
       revision: 1
       datasource: Prometheus
+  storage:
+    postgres:
+      # renovate: depName="PostgreSQL Database"
+      gnetId: 9628
+      revision: 8
+      datasource: *ds_prometheus
     redis:
       # renovate: depName="Redis Dashboard for Prometheus Redis Exporter 1.x"
       gnetId: 763
@@ -99,21 +105,20 @@ dashboards:
       datasource:
         - name: DS_PROM
           value: Prometheus
-  minio:
-    server:
+    minio-server:
       # renovate: depName="MinIO Dashboard"
       gnetId: 13502
       revision: 26
       datasource: *ds_prometheus
-    bucket:
+    minio-bucket:
       # renovate: depName="MinIO Bucket Dashboard"
       gnetId: 19237
       revision: 2
       datasource: *ds_prometheus
-    node:
+    minio-node:
       url: https://raw.githubusercontent.com/minio/minio/master/docs/metrics/prometheus/grafana/node/minio-node.json
       datasource: *ds_prometheus
-    replication:
+    minio-replication:
       # renovate: depName="MinIO Replication Dashboard"
       gnetId: 15305
       revision: 5
@@ -141,10 +146,10 @@ dashboardProviders:
         folder: Programming
         options:
           path: /var/lib/grafana/dashboards/programming
-      - name: minio
-        folder: MinIO
+      - name: storage
+        folder: Storage
         options:
-          path: /var/lib/grafana/dashboards/minio
+          path: /var/lib/grafana/dashboards/storage
 datasources:
   datasources.yaml:
     apiVersion: 1
