@@ -73,7 +73,7 @@ prometheus:
     image:
       registry: quay.io
       repository: prometheus/prometheus
-      tag: v3.7.1
+      tag: v3.7.2
     enableAdminAPI: true
     scrapeInterval: 1m
     podMonitorSelectorNilUsesHelmValues: false
