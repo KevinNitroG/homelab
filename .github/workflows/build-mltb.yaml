@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - submodules/mltb/anasty17-mltb
+    branches:
+      - main
 
 jobs:
   build:
