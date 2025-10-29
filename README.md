@@ -1,3 +1,7 @@
+# KevinNitro's Homelab
+
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m801664720-cfdf48c08ed1816b35a48879?style=for-the-badge)
+
 ### NOTE
 
 - Ensure those environment variables are set:
