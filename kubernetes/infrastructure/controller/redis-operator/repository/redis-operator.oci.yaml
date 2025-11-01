@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 0.22.1
+    tag: 0.22.2
   url: oci://ghcr.io/ot-container-kit/charts/redis-operator
