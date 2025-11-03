@@ -8,7 +8,7 @@ labels:
     includeSelectors: true
 resources:
   - ./cnpg.yaml
-  - ./deployment.yaml
+  - ./statefulset.yaml
   - ./http-route.yaml
   - ./secret.sops.yaml
   - ./service-monitor.yaml
