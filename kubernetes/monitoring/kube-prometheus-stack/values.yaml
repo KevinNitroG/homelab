@@ -76,18 +76,18 @@ prometheus:
       tag: v3.7.3
     enableAdminAPI: true
     scrapeInterval: 1m
-    podMonitorSelectorNilUsesHelmValues: false
-    podMonitorNamespaceSelector: &prometheus-namespace-selector
-      matchLabels:
-        prometheus.kevinnitro/enabled: "1"
-    probeSelectorNilUsesHelmValues: false
-    probeNamespaceSelector: *prometheus-namespace-selector
-    ruleSelectorNilUsesHelmValues: false
-    ruleNamespaceSelector: *prometheus-namespace-selector
-    scrapeConfigSelectorNilUsesHelmValues: false
-    scrapeConfigNamespaceSelector: *prometheus-namespace-selector
-    serviceMonitorSelectorNilUsesHelmValues: false
-    serviceMonitorNamespaceSelector: *prometheus-namespace-selector
+    # podMonitorSelectorNilUsesHelmValues: false
+    # podMonitorNamespaceSelector: &prometheus-namespace-selector
+    #   matchLabels:
+    #     prometheus.kevinnitro/enabled: "1"
+    # probeSelectorNilUsesHelmValues: false
+    # probeNamespaceSelector: *prometheus-namespace-selector
+    # ruleSelectorNilUsesHelmValues: false
+    # ruleNamespaceSelector: *prometheus-namespace-selector
+    # scrapeConfigSelectorNilUsesHelmValues: false
+    # scrapeConfigNamespaceSelector: *prometheus-namespace-selector
+    # serviceMonitorSelectorNilUsesHelmValues: false
+    # serviceMonitorNamespaceSelector: *prometheus-namespace-selector
     resources:
       limits:
         cpu: 500m
