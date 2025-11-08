@@ -31,7 +31,7 @@ alertmanager:
     image:
       registry: quay.io
       repository: prometheus/alertmanager
-      tag: v0.28.1
+      tag: v0.29.0
     volumes:
       - name: &alertmanager-secret alertmanager-telegram
         secret:
