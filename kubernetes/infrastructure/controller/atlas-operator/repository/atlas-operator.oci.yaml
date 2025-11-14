@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 0.7.11
+    tag: 0.7.13
   url: oci://ghcr.io/ariga/charts/atlas-operator
