@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 79.4.1
+    tag: 79.5.0
   url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
