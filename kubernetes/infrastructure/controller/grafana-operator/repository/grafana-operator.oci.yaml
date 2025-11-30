@@ -3,10 +3,10 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: grafana
+  name: grafana-operator
 spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 10.2.0
-  url: oci://ghcr.io/grafana/helm-charts/grafana
+    tag: v5.20.0
+  url: oci://ghcr.io/grafana/helm-charts/grafana-operator

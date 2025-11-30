@@ -4,7 +4,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./alertmanager-telegram.secret.sops.yaml
+  - ./alertmanager.grafanadatasource.yaml
   - ./helm-release.yaml
+  - ./prometheus.grafanadatasource.yaml
 configMapGenerator:
   - name: kube-prometheus-stack-helm-value
     files:
