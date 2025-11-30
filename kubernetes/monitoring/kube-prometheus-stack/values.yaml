@@ -76,17 +76,17 @@ prometheus:
       tag: v3.7.3
     enableAdminAPI: true
     scrapeInterval: 1m
-    # podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
     # podMonitorNamespaceSelector: &prometheus-namespace-selector
     #   matchLabels:
     #     prometheus.kevinnitro/enabled: "1"
-    # probeSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
     # probeNamespaceSelector: *prometheus-namespace-selector
-    # ruleSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
     # ruleNamespaceSelector: *prometheus-namespace-selector
-    # scrapeConfigSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false
     # scrapeConfigNamespaceSelector: *prometheus-namespace-selector
-    # serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
     # serviceMonitorNamespaceSelector: *prometheus-namespace-selector
     resources:
       limits:
