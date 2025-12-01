@@ -6,4 +6,5 @@ resources:
   - ./dashboard/
   - ./folder/
   - ./grafana.yaml
+  - ./http-route.yaml
   - ./secret.sops.yaml
