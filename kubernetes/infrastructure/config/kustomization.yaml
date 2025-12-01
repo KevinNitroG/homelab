@@ -8,4 +8,5 @@ resources:
   - ./cert-manager/ks.yaml
   - ./flux-system/ks.yaml
   - ./gateway/ks.yaml
+  - ./minio-operator/ks.yaml
   # - ./istio-system/ks.yaml

@@ -8,6 +8,7 @@ resources:
   - ./cert-manager/ks.yaml
   - ./cnpg-system/ks.yaml
   - ./gateway/ks.yaml
+  - ./grafana-operator/ks.yaml
   - ./istio-system/ks.yaml
   - ./monitoring/ks.yaml
   - ./reloader/ks.yaml

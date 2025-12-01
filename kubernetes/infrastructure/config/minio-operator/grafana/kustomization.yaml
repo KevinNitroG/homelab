@@ -2,11 +2,9 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: istio-system
 resources:
-  - ./base/
-  - ./cni/
-  - ./istiod/
-  - ./namespace.yaml
-  - ./repository/
-  - ./ztunnel/
+  - ./bucket.dashboard.yaml
+  - ./minio.folder.yaml
+  - ./node.dashboard.yaml
+  - ./replication.dashboard.yaml
+  - ./server.dashboard.yaml

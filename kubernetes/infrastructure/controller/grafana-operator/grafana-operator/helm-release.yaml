@@ -3,14 +3,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name grafana
+  name: &name grafana-operator
 spec:
-  targetNamespace: monitoring
-  interval: 24h
+  interval: 1h
   timeout: 5m
   chartRef:
     kind: OCIRepository
     name: *name
+  install:
+    crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
-      name: grafana-helm-value
+      name: grafana-operator-helm-value

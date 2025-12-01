@@ -6,6 +6,7 @@ namePrefix: homelab-
 namespace: flux-system
 resources:
   - ./alert/
+  - ./grafana/
   - ./webhook/
 configurations:
   - ./kustomizeconfig.yaml
