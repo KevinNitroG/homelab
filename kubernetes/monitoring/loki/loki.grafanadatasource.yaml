@@ -3,7 +3,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: Loki
+  name: loki
 spec:
   instanceSelector:
     matchLabels:
