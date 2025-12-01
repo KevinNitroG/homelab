@@ -6,6 +6,7 @@ resource "cloudflare_zero_trust_list" "admin" {
     { value = "trannguyenthaibinh46@gmail.com" },
     { value = "ntgnguyen563@gmail.com" },
     { value = "dongminhchi9120@gmail.com" },
+    { value = "hirohamada17092005@gmail.com" },
   ]
 }
 
