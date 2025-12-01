@@ -11,8 +11,8 @@ spec:
       grafana.internal/instance: grafana
   folderRef: programming
   grafanaCom:
-    id: 11891
-    revision: 1
+    id: 18452
+    revision: 2
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
