@@ -39,6 +39,22 @@ spec:
                   cpu: 200m
                 requests:
                   cpu: 10m
+            - image: ghcr.io/kiwigrid/k8s-sidecar:2.1.14
+              name: k8s-sidecar
+              env:
+                - name: LABEL
+                  value: grafana_dashboard
+                - name: LABEL_VALUE
+                  value: "1"
+                - name: FOLDER
+                  value: /var/lib/grafana/dashboards
+                - name: NAMESPACE
+                  value: ALL
+                - name: RESOURCE
+                  value: configmap
+              volumeMounts:
+                - mountPath: /var/lib/grafana/dashboards
+                  name: dashboards
           volumes:
             - name: grafana-data
               persistentVolumeClaim:
