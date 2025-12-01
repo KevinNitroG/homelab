@@ -10,7 +10,7 @@ spec:
     matchLabels:
       grafana.internal/instance: grafana
   folderRef: app
-  url: https://github.com/keycloak/keycloak-grafana-dashboard/raw/refs/heads/main/dashboards/keycloak-troubleshooting-dashboard.json
+  url: https://raw.githubusercontent.com/keycloak/keycloak-grafana-dashboard/refs/heads/main/dashboards/keycloak-troubleshooting-dashboard.json
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
