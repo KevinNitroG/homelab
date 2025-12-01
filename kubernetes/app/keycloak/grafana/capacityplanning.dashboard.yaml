@@ -9,7 +9,7 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
-  folderRef: app
+  folderRef: keycloak
   url: https://raw.githubusercontent.com/keycloak/keycloak-grafana-dashboard/refs/heads/main/dashboards/keycloak-capacity-planning-dashboard.json
   datasources:
     - inputName: DS_PROMETHEUS
