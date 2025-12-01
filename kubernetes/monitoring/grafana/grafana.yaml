@@ -68,7 +68,7 @@ spec:
               emptyDir: {}
             - name: provisioning-config
               configMap:
-                name: provisioning-config
+                name: grafana-provisioning-config
   persistentVolumeClaim:
     spec:
       accessModes:
