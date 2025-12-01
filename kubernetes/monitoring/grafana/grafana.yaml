@@ -15,18 +15,6 @@ spec:
       reporting_enabled: "false"
     news:
       news_feed_enabled: "false"
-  httpRoute:
-    spec:
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: https-wildcard
-          namespace: gateway
-        - <<: *gateway
-          sectionName: https-wildcard-local
-      hostnames:
-        - grafana.${IDVN_DOMAIN}
-        - grafana.${LOCAL_DOMAIN}
   deployment:
     spec:
       template:
@@ -44,6 +32,13 @@ spec:
                     secretKeyRef:
                       name: grafana-admin
                       key: admin-password
+                - name: GF_DATE_FORMATS_USE_BROWSER_LOCALE
+                  value: "true"
+              resources:
+                limits:
+                  cpu: 200m
+                requests:
+                  cpu: 10m
           volumes:
             - name: grafana-data
               persistentVolumeClaim:

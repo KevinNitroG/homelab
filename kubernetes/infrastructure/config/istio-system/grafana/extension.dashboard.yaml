@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: extension
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-extension-dashboard.json
+  datasources:
+    - inputName: DS_PROMETHEUS
+      datasourceName: Prometheus

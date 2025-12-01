@@ -3,10 +3,14 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: extension
+  name: lokistack
 spec:
-  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
-  url: https://storage.googleapis.com/istio-release/releases/1.27.1/grafana/istio-extension-dashboard.json
+  grafanaCom:
+    id: 14055
+    revision: 5
+  datasources:
+    - inputName: DS_LOKI
+      datasourceName: Loki
