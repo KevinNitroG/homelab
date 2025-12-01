@@ -9,6 +9,7 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
+  folderRef: cloudflare
   grafanaCom:
     id: 17457
     revision: 6

@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./alertmanager-telegram.secret.sops.yaml
   - ./alertmanager.grafanadatasource.yaml
+  - ./grafana/
   - ./helm-release.yaml
   - ./prometheus.grafanadatasource.yaml
 configMapGenerator:

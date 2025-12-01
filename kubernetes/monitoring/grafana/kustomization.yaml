@@ -8,3 +8,4 @@ resources:
   - ./grafana.yaml
   - ./http-route.yaml
   - ./secret.sops.yaml
+  - ./sidecar/
