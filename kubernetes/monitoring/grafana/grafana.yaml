@@ -44,7 +44,7 @@ spec:
                   name: provisioning-config
                 - mountPath: /var/lib/grafana/dashboards
                   name: dashboards
-            - image: ghcr.io/kiwigrid/k8s-sidecar:2.1.14
+            - image: ghcr.io/kiwigrid/k8s-sidecar:2.1.4
               name: k8s-sidecar
               env:
                 - name: LABEL
