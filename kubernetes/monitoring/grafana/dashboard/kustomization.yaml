@@ -7,3 +7,5 @@ resources:
   - ./goprocess.programming.yaml
   - ./nodeexporterfull.yaml
   - ./nodejsmetrics.programming.yaml
+  - ./postgresql.storage.yaml
+  - ./redis.storage.yaml
