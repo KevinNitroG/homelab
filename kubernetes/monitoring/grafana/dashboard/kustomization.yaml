@@ -7,7 +7,7 @@ resources:
   - ./cloudnativepg.dashboard.yaml
   - ./coredns.dashboard.yaml
   - ./gohostruntime.programming.yaml
-  - ./goprocesses.programming.yaml
+  - ./gometrics.dashboard.yaml
   - ./nodeexporterfull.yaml
   - ./nodejsmetrics.programming.yaml
   - ./postgresql.storage.yaml
