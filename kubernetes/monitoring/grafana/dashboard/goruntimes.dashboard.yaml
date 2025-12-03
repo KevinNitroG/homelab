@@ -10,9 +10,7 @@ spec:
     matchLabels:
       grafana.internal/instance: grafana
   folderRef: programming
-  grafanaCom:
-    id: 10826
-    revision: 2
+  url: https://raw.githubusercontent.com/djmgit/go_runtime_grafana/refs/heads/master/go_runtime.json
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
