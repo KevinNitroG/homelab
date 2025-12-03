@@ -12,5 +12,7 @@ spec:
   folderRef: programming
   url: https://raw.githubusercontent.com/djmgit/go_runtime_grafana/refs/heads/master/go_runtime.json
   datasources:
-    - inputName: DS_PROMETHEUS
+    - inputName: DS_PROMETHEUS # it doesn't use this!!!
+      datasourceName: Prometheus
+    - inputName: default
       datasourceName: Prometheus
