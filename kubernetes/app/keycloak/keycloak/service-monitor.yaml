@@ -9,6 +9,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: *name
   endpoints:
-    - port: http
+    - port: health
       interval: 30s
       path: /metrics
