@@ -6,7 +6,7 @@ metadata:
   name: keycloak
 spec:
   ports:
-    - name: main
+    - name: http
       port: 8080
     - name: health
       port: 9000
