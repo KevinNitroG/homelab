@@ -7,6 +7,4 @@ resources:
   - ./folder/
   - ./grafana.yaml
   - ./http-route.yaml
-  - ./provisioning.configmap.yaml
   - ./secret.sops.yaml
-  - ./sidecar/
