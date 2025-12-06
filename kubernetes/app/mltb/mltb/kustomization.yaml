@@ -16,4 +16,4 @@ resources:
   - ./service.yaml
 images:
   - name: ghcr.io/kevinnitrog/homelab/mltb
-    digest: sha256:db10ab484860fe59836231409e2e2e72d34a5d66f40c7a7894972f7569920e70
+    digest: sha256:affa7540ffa2b2d692761079bd5962c77c64c1c1d781fd74213b7e1b38658786
