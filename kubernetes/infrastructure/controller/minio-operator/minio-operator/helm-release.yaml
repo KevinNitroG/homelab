@@ -18,4 +18,4 @@ spec:
     crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
-      name: minio-operator-helm-value
+      name: minio-operator-helm-values

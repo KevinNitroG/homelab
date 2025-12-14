@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
 configMapGenerator:
-  - name: atlas-operator-helm-value
+  - name: atlas-operator-helm-values
     files:
       - ./values.yaml
 configurations:

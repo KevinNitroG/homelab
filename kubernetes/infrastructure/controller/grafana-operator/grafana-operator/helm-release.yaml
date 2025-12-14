@@ -14,4 +14,4 @@ spec:
     crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
-      name: grafana-operator-helm-value
+      name: grafana-operator-helm-values

@@ -15,4 +15,4 @@ spec:
     - name: prometheus-operator-crds
   valuesFrom:
     - kind: ConfigMap
-      name: kube-prometheus-stack-helm-value
+      name: kube-prometheus-stack-helm-values

@@ -16,4 +16,4 @@ spec:
       version: 1.5.0
   valuesFrom:
     - kind: ConfigMap
-      name: alloy-helm-value
+      name: alloy-helm-values

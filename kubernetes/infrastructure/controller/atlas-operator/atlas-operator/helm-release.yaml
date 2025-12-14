@@ -14,4 +14,4 @@ spec:
     crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
-      name: atlas-operator-helm-value
+      name: atlas-operator-helm-values

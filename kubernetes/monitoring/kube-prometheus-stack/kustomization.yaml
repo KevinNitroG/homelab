@@ -9,7 +9,7 @@ resources:
   - ./helm-release.yaml
   - ./prometheus.grafanadatasource.yaml
 configMapGenerator:
-  - name: kube-prometheus-stack-helm-value
+  - name: kube-prometheus-stack-helm-values
     files:
       - ./values.yaml
 configurations:

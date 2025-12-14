@@ -6,7 +6,7 @@ resources:
   - ./helm-release.yaml
   - ./http-route.yaml
 configMapGenerator:
-  - name: alloy-helm-value
+  - name: alloy-helm-values
     files:
       - ./values.yaml
   - name: alloy-config

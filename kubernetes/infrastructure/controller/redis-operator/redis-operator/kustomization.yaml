@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
 configMapGenerator:
-  - name: redis-operator-helm-value
+  - name: redis-operator-helm-values
     files:
       - ./values.yaml
 configurations:

@@ -2,11 +2,8 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: kite
 resources:
-  - ./helm-release.yaml
-configMapGenerator:
-  - name: minio-operator-helm-values
-    files:
-      - ./values.yaml
-configurations:
-  - ./kustomizeconfig.yaml
+  - ./kite/
+  - ./namespace.yaml
+  - ./repository/

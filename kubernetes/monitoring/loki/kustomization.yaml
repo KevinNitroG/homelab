@@ -7,7 +7,7 @@ resources:
   - ./loki.grafanadashboard.yaml
   - ./loki.grafanadatasource.yaml
 configMapGenerator:
-  - name: loki-helm-value
+  - name: loki-helm-values
     files:
       - ./values.yaml
 configurations:
