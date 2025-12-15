@@ -8,6 +8,22 @@ server:
   route:
     main:
       enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: https
+          namespace: gateway
+        - <<: *gateway
+          sectionName: https-wildcard
+        - <<: *gateway
+          sectionName: https-local
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames:
+        - authentik.${LOCAL_DOMAIN}
+        - authentik.${IDVN_DOMAIN}
+    redirect:
+      enabled: true
       httpsRedirect: true
       parentRefs:
         - &gateway
