@@ -18,6 +18,12 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: setting
+      - kind: ConfigMap
+        name: setting
   commonMetadata:
     labels:
       app.kubernetes.io/name: *name
