@@ -30,6 +30,9 @@ server:
         secretName: authentik-postgres-credentials
   volumeMounts:
     - &postgres-mount
+      name: postgres-creds
+      mountPath: /postgres-creds
+      readOnly: true
 worker:
   volumes:
     - *postgres-creds
