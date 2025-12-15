@@ -11,6 +11,6 @@ configMapGenerator:
 secretGenerator:
   - name: authentik-secret-helm-values
     files:
-      - ./secretvalues.yaml.encrypted
+      - secretvalues.yaml=./secretvalues.yaml.encrypted
 configurations:
   - ./kustomizeconfig.yaml
