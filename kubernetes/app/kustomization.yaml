@@ -11,5 +11,5 @@ resources:
   - ./files/ks.yaml
   - ./glance/ks.yaml
   - ./keycloak/ks.yaml
-  # - ./kite/ks.yaml # TODO: not done yet
+  - ./kite/ks.yaml
   - ./mltb/ks.yaml
