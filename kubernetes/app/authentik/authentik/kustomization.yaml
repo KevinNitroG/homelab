@@ -8,5 +8,9 @@ configMapGenerator:
   - name: authentik-helm-values
     files:
       - ./values.yaml
+secretGenerator:
+  - name: authentik-secret-helm-values
+    files:
+      - ./secretvalues.yaml.encrypted
 configurations:
   - ./kustomizeconfig.yaml
