@@ -10,3 +10,5 @@ configMapGenerator:
   - name: kite-helm-values
     files:
       - ./values.yaml
+configurations:
+  - ./kustomizeconfig.yaml
