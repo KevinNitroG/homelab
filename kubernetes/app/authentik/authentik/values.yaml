@@ -1,0 +1,37 @@
+---
+authentik:
+  postgresql:
+    host: authentik-cluster
+    user: file:///postgres-creds/username
+    password: file:///postgres-creds/password
+server:
+  route:
+    main:
+      enabled: true
+      httpsRedirect: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http
+          namespace: gateway
+        - <<: *gateway
+          sectionName: http-wildcard
+        - <<: *gateway
+          sectionName: http-local
+        - <<: *gateway
+          sectionName: http-wildcard-local
+      hostnames:
+        - authentik.${LOCAL_DOMAIN}
+        - authentik.${IDVN_DOMAIN}
+  volumes:
+    - &postgres-creds
+      name: postgres-creds
+      secret:
+        secretName: authentik-postgres-credentials
+  volumeMounts:
+    - &postgres-mount
+worker:
+  volumes:
+    - *postgres-creds
+  volumeMounts:
+    - *postgres-mount
