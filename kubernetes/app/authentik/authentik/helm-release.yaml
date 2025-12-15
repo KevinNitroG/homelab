@@ -19,3 +19,4 @@ spec:
       name: authentik-helm-values
     - kind: Secret
       name: authentik-secret-helm-values
+      valuesKey: values.yaml
