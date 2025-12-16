@@ -23,7 +23,7 @@ pages:
               - title: Kite
                 check-url: http://kite.kite:8080/health
                 url: https://kite.kevinnitro.id.vn
-                icon: sh:kite
+                icon: sh:kite-kubernetes
               - title: Grafana
                 check-url: http://grafana-service.monitoring:3000/api/health
                 url: https://grafana.kevinnitro.id.vn
@@ -39,9 +39,9 @@ pages:
               - title: Loki
                 check-url: http://loki.monitoring:3100/ready
                 url: https://loki.monitoring:3100
-                icon: si:loki
+                icon: sh:loki
               - title: Alloy
-                check-url: https://alloy.monitoring/-/healthy
+                check-url: http://alloy.monitoring/-/healthy
                 url: https://alloy.kev
                 icon: sh:grafana-alloy
               - title: Keycloak
