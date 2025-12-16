@@ -5,7 +5,7 @@ kind: Kustomization
 namePrefix: app-
 namespace: flux-system
 resources:
-  - ./authentik/ks.yaml
+  # - ./authentik/ks.yaml
   - ./cloudbeaver/ks.yaml
   - ./cloudflare-ddns/ks.yaml
   - ./cloudflared/ks.yaml
