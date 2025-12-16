@@ -14,10 +14,6 @@ secretGenerator:
   - name: glance-config-secret
     files:
       - auth.yml=./config/auth.yml.encrypted
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    reloader.stakater.com/ignore: "true"
 resources:
   - ./deployment.yaml
   - ./http-route.yaml

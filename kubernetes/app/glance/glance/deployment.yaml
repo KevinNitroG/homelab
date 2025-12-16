@@ -5,7 +5,7 @@ kind: Deployment
 metadata:
   name: &name glance
   annotations:
-    reloader.stakater.com/auto: "true"
+    reloader.stakater.com/auto: "false"
     glance/icon: si:glance
 spec:
   template:
