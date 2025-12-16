@@ -20,10 +20,30 @@ pages:
             cache: 1m
             title: Services
             sites:
+              - title: Kite
+                check-url: http://kite.kite:8080/health
+                url: https://kite.kevinnitro.id.vn
+                icon: sh:kite
               - title: Grafana
-                check-url: http://grafana-grafana.grafana/api/health
+                check-url: http://grafana-service.monitoring:3000/api/health
                 url: https://grafana.kevinnitro.id.vn
                 icon: si:grafana
+              - title: Prometheus
+                check-url: http://monitoring-kube-prometheus-prometheus.monitoring:9090/-/ready
+                url: https://prometheus.kev
+                icon: si:prometheus
+              - title: Alertmanager
+                check-url: http://monitoring-kube-prometheus-alertmanager.monitoring:9093/-/ready
+                url: https://alertmanager.kev
+                icon: mdi:torch
+              - title: Loki
+                check-url: http://loki.monitoring:3100/ready
+                url: https://loki.monitoring:3100
+                icon: si:loki
+              - title: Alloy
+                check-url: https://alloy.monitoring/-/healthy
+                url: https://alloy.kev
+                icon: sh:grafana-alloy
               - title: Keycloak
                 check-url: http://keycloak.keycloak:9000/health/live
                 url: https://keycloak.kevinnitro.id.vn
