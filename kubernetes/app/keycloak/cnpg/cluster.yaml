@@ -1,0 +1,45 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: &name cnpg
+spec:
+  instances: 1
+  storage:
+    size: 500Mi
+  monitoring:
+    enablePodMonitor: false
+  bootstrap:
+    recovery:
+      database: keycloak
+      secret:
+        name: keycloak-auth
+      source: &backupCluster backup-cluster
+  externalClusters:
+    - name: *backupCluster
+      barmanObjectStore: &barmanObjectStore
+        destinationPath: s3://homelab-keycloak/
+        endpointURL: https://4fea4870fb107289e4263bc6b05f7ffc.r2.cloudflarestorage.com
+        data:
+          compression: bzip2
+        s3Credentials:
+          secretAccessKey:
+            key: secretAccessKey
+            name: r2-credentials
+          accessKeyId:
+            key: accessKeyId
+            name: r2-credentials
+  backup:
+    retentionPolicy: 1m
+    barmanObjectStore: *barmanObjectStore
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: *name
