@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: cloudbeaver
+  name: plugin-barman-cloud
 spec:
   interval: 24h
   timeout: 5m
