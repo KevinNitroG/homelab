@@ -13,12 +13,9 @@ spec:
       sourceRef:
         kind: GitRepository
         name: *name
-  install:
-    createNamespace: true
   targetNamespace: *name
   values:
     cloudbeaver:
-      # TODO: let renovate track this version
       image: dbeaver/cloudbeaver
       imageTag: 25.2.0
       replicaCount: 1
