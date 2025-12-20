@@ -19,6 +19,9 @@ alertmanager:
     route:
       receiver: default
       routes:
+        - receiver: "null"
+          matchers:
+            - alertname = "InfoInhibitor"
         - receiver: default
     receivers:
       - name: default
@@ -26,6 +29,14 @@ alertmanager:
           - chat_id: -1001644026686
             message_thread_id: 638
             bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
+      - name: "null"
+    inhibit_rules:
+      - source_matchers:
+          - severity =~ "warning|critical"
+        target_matchers:
+          - severity = "info"
+        equal:
+          - namespace
   alertmanagerSpec:
     externalUrl: https://alertmanager.${LOCAL_DOMAIN}
     image:
