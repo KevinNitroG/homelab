@@ -19,5 +19,6 @@ spec:
     - glance.${LOCAL_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
     - keycloak.${LOCAL_DOMAIN}
+    - kite.${LOCAL_DOMAIN}
     - metube.${LOCAL_DOMAIN}
     - prometheus.${LOCAL_DOMAIN}

@@ -27,6 +27,7 @@ alertmanager:
             message_thread_id: 638
             bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
   alertmanagerSpec:
+    externalUrl: https://alertmanager.${LOCAL_DOMAIN}
     image:
       registry: quay.io
       repository: prometheus/alertmanager
@@ -49,7 +50,7 @@ alertmanager:
           sectionName: http-wildcard-local
           namespace: gateway
       hostnames: &hostnames
-        - prometheus.${LOCAL_DOMAIN}
+        - alertmanager.${LOCAL_DOMAIN}
       httpsRedirect: true
     https:
       enabled: true
@@ -73,6 +74,7 @@ prometheus:
       registry: quay.io
       repository: prometheus/prometheus
       tag: v3.8.1
+    externalUrl: https://prometheus.${LOCAL_DOMAIN}
     enableAdminAPI: true
     scrapeInterval: 1m
     podMonitorSelectorNilUsesHelmValues: false
