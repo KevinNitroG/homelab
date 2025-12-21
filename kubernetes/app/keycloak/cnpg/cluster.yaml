@@ -6,6 +6,10 @@ metadata:
   name: &name cnpg
 spec:
   instances: 1
+  imageCatalogRef:
+    kind: ClusterImageCatalog
+    major: 18
+    name: postgresql-minimal-trixie
   storage:
     size: 500Mi
   monitoring:
