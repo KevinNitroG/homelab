@@ -4,6 +4,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: &name cnpg
+  namespace: keycloak
 spec:
   instances: 1
   imageCatalogRef:
@@ -20,28 +21,26 @@ spec:
       timezone: Asia/Ho_Chi_Minh
       log_timezone: Asia/Ho_Chi_Minh
   bootstrap:
-    initdb:
-      database: keycloak
-      secret:
-        name: postgres-auth
-    # recovery:
+    # initdb:
     #   database: keycloak
     #   secret:
     #     name: postgres-auth
-    #   source: &backupName backup
-  backup:
-    retentionPolicy: 1m
-  # plugins:
-  #   - &barmanCloud
-  #     enabled: true
-  #     isWALArchiver: true
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: *name
-  #       serverName: *name
-  # externalClusters:
-  #   - name: *backupName
-  #     plugin: *barmanCloud
+    recovery:
+      database: keycloak
+      secret:
+        name: postgres-auth
+      source: &backupName backup
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: *name
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
