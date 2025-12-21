@@ -11,10 +11,24 @@ spec:
   monitoring:
     enablePodMonitor: false
   bootstrap:
-    initdb:
+    recovery:
       database: keycloak
       secret:
-        name: keycloak-auth
+        name: postgres-auth
+      source: &backupName backup
+  backup:
+    retentionPolicy: 1m
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: *name
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:

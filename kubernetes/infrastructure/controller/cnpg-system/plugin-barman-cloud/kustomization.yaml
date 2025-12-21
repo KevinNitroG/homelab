@@ -2,9 +2,5 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: cnpg-system
 resources:
-  - ./cnpg/
-  - ./namespace.yaml
-  - ./plugin-barman-cloud/
-  - ./repository/
+  - https://github.com/cloudnative-pg/plugin-barman-cloud/releases/download/v0.9.0/manifest.yaml

@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: cnpg
+spec:
+  configuration:
+    destinationPath: s3://homelab-keycloak/
+    endpointURL: https://4fea4870fb107289e4263bc6b05f7ffc.r2.cloudflarestorage.com
+    s3Credentials:
+      accessKeyId:
+        key: accessKeyId
+        name: r2-credentials
+      secretAccessKey:
+        key: secretAccessKey
+        name: r2-credentials
+    wal:
+      compression: bzip2
+  retentionPolicy: 1m

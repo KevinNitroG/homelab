@@ -48,12 +48,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: username
-                  name: keycloak-auth
+                  name: postgres-auth
             - name: KC_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: password
-                  name: keycloak-auth
+                  name: postgres-auth
             - name: KC_METRICS_ENABLED
               value: "true"
           ports:
