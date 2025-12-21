@@ -15,25 +15,38 @@ spec:
     size: 500Mi
   monitoring:
     enablePodMonitor: false
+  postgresql:
+    parameters:
+      timezone: Asia/Ho_Chi_Minh
+      log_timezone: Asia/Ho_Chi_Minh
+      lc_monetary: vi_VN.UTF-8
+      lc_numeric: vi_VN.UTF-8
+      lc_time: vi_VN.UTF-8
   bootstrap:
-    recovery:
+    initdb:
       database: keycloak
       secret:
         name: postgres-auth
-      source: &backupName backup
+      localeCollate: vi_VN.UTF-8
+      localeCType: vi_VN.UTF-8
+    # recovery:
+    #   database: keycloak
+    #   secret:
+    #     name: postgres-auth
+    #   source: &backupName backup
   backup:
     retentionPolicy: 1m
-  plugins:
-    - &barmanCloud
-      enabled: true
-      isWALArchiver: true
-      name: barman-cloud.cloudnative-pg.io
-      parameters:
-        barmanObjectName: *name
-        serverName: *name
-  externalClusters:
-    - name: *backupName
-      plugin: *barmanCloud
+  # plugins:
+  #   - &barmanCloud
+  #     enabled: true
+  #     isWALArchiver: true
+  #     name: barman-cloud.cloudnative-pg.io
+  #     parameters:
+  #       barmanObjectName: *name
+  #       serverName: *name
+  # externalClusters:
+  #   - name: *backupName
+  #     plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
