@@ -19,16 +19,11 @@ spec:
     parameters:
       timezone: Asia/Ho_Chi_Minh
       log_timezone: Asia/Ho_Chi_Minh
-      lc_monetary: vi_VN.UTF-8
-      lc_numeric: vi_VN.UTF-8
-      lc_time: vi_VN.UTF-8
   bootstrap:
     initdb:
       database: keycloak
       secret:
         name: postgres-auth
-      localeCollate: vi_VN.UTF-8
-      localeCType: vi_VN.UTF-8
     # recovery:
     #   database: keycloak
     #   secret:
