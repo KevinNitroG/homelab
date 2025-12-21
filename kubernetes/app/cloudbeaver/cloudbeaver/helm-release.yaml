@@ -38,3 +38,12 @@ spec:
                 path: /spec/accessModes
                 value:
                   - ReadWriteOnce
+          - target:
+              kind: Deployment
+              name: cloudbeaver
+            patch: | # language: yaml
+              - op: add
+                path: /spec/template/spec/containers/0/env/-
+                value:
+                  name: CLOUDBEAVER_DB_BACKUP_ENABLED
+                  value: "false"
