@@ -5,4 +5,4 @@ kind: Kustomization
 namespace: istio-system
 resources:
   - ./grafana/
-  - https://raw.githubusercontent.com/istio/istio/1.27.1/samples/addons/prometheus.yaml # TODO: or change to git repo if cannot track by renovate but...
+  - https://raw.githubusercontent.com/istio/istio/1.27.1/samples/addons/prometheus.yaml

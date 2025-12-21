@@ -64,6 +64,28 @@
       "datasourceTemplate": "github-tags",
       "packageNameTemplate": "{{packageName}}",
       "depNameTemplate": "{{packageName}}"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)kustomization\\.yaml$"],
+      "matchStrings": [
+        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)/",
+        "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)/"
+      ],
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "customManagers": [
+        {
+          "customType": "regex",
+          "fileMatch": ["\\.yaml$"],
+          "matchStrings": [
+            "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+imageTag: \"?(?<currentValue>[^\"\\s]+)\"?"
+          ],
+          "datasourceTemplate": "{{{datasource}}}",
+          "depNameTemplate": "{{{depName}}}"
+        }
+      ]
     }
   ],
   "customDatasources": {

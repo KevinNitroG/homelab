@@ -18,8 +18,8 @@ spec:
   targetNamespace: *name
   values:
     cloudbeaver:
-      # TODO: let renovate track this version
       image: dbeaver/cloudbeaver
+      # renovate: datasource=docker depName=dbeaver/cloudbeaver
       imageTag: 25.2.0
       replicaCount: 1
     backend:
