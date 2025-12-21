@@ -8,6 +8,8 @@ spec:
   interval: 24h
   timeout: 5m
   url: https://github.com/cloudnative-pg/artifacts
+  ref:
+    branch: main
   ignore: |
     /*
     !/image-catalogs/
