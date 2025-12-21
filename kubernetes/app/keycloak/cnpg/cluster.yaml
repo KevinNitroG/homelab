@@ -15,24 +15,20 @@ spec:
       database: keycloak
       secret:
         name: postgres-auth
-      source: &backupCluster backup-cluster
-  externalClusters:
-    - name: *backupCluster
-      barmanObjectStore: &barmanObjectStore
-        destinationPath: s3://homelab-keycloak/
-        endpointURL: https://4fea4870fb107289e4263bc6b05f7ffc.r2.cloudflarestorage.com
-        data:
-          compression: bzip2
-        s3Credentials:
-          secretAccessKey:
-            key: secretAccessKey
-            name: r2-credentials
-          accessKeyId:
-            key: accessKeyId
-            name: r2-credentials
+      source: &backupName backup
   backup:
     retentionPolicy: 1m
-    barmanObjectStore: *barmanObjectStore
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: objectstore
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
