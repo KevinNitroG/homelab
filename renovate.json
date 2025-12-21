@@ -12,8 +12,7 @@
   "schedule": ["* * * * 0,6"],
   "kubernetes": {
     "enabled": true,
-    "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"],
-    "ignorePaths": ["kubernetes/app/keycloak/keycloak/keycloak.yaml"]
+    "managerFilePatterns": ["/kubernetes/.+\\.yaml$/"]
   },
   "kustomize": {
     "enabled": true
@@ -57,7 +56,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)kustomization\\.yaml$"],
+      "managerFilePatterns": ["(^|/)kustomization\\.yaml$"],
       "matchStrings": [
         "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)/",
         "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)/"
@@ -66,7 +65,7 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["\\.yaml$"],
+      "managerFilePatterns": ["\\.yaml$"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+imageTag: \"?(?<currentValue>[^\"\\s]+)\"?"
       ],
