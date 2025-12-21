@@ -58,8 +58,8 @@
       "customType": "regex",
       "managerFilePatterns": ["(^|/)kustomization\\.yaml$"],
       "matchStrings": [
-        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)/",
-        "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)/"
+        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)(?:\/.*)?",
+        "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)(?:\/.*)?"
       ],
       "datasourceTemplate": "github-releases"
     },
