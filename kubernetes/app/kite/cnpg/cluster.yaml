@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: &name kite-cnpg
+spec:
+  instances: 1
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql-minimal-trixie
+    major: 18
+  storage:
+    size: 500Mi
+  monitoring:
+    enablePodMonitor: false
+  postgresql:
+    parameters:
+      timezone: Asia/Ho_Chi_Minh
+      log_timezone: Asia/Ho_Chi_Minh
+  bootstrap:
+    initdb:
+      database: kite
+      secret:
+        name: cnpg-auth
+    recovery:
+      database: kite
+      secret:
+        name: kite-cnpg-auth
+      source: &backupName backup
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: *name
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: *name
