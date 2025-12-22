@@ -25,3 +25,5 @@ spec:
         name: setting
       - kind: ConfigMap
         name: setting
+      - kind: Secret
+        name: grafana

@@ -6,3 +6,4 @@ namespace: flux-system
 resources:
   - ./config-map.yaml
   - ./secret.sops.yaml
+  - ./grafana.secrets.sops.yaml

@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: grafana
+  name: &name grafana
 spec:
   instances: 1
   imageCatalogRef:
@@ -20,26 +20,26 @@ spec:
       timezone: Asia/Ho_Chi_Minh
       log_timezone: Asia/Ho_Chi_Minh
   bootstrap:
-    initdb:
-      database: grafana
-      secret:
-        name: grafana-postgres-auth
-    # recovery:
+    # initdb:
     #   database: grafana
     #   secret:
     #     name: grafana-postgres-auth
-    #   source: &backupName backup
-  # plugins:
-  #   - &barmanCloud
-  #     enabled: true
-  #     isWALArchiver: true
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: *name
-  #       serverName: *name
-  # externalClusters:
-  #   - name: *backupName
-  #     plugin: *barmanCloud
+    recovery:
+      database: grafana
+      secret:
+        name: grafana-postgres-auth
+      source: &backupName backup
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: *name
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:

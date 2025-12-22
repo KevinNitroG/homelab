@@ -20,9 +20,26 @@ spec:
     database:
       type: postgres
       host: grafana-postgres:5432
-      name: grafana
-      user: grafana
-      password: grafana
+      name: ${GRAFANA_DB_NAME}
+      user: ${GRAFANA_DB_USER}
+      password: ${GRAFANA_DB_PASSWORD}
+    auth:
+      disable_login_form: "false"
+    auth.generic_oauth:
+      enabled: "true"
+      name: Keycloak SSO
+      allow_sign_up: "true"
+      client_id: ${GRAFANA_AUTH_CLIENT_ID}
+      client_secret: ${GRAFANA_AUTH_CLIENT_SECRET}
+      scopes: "openid email profile offline_access roles"
+      email_attribute_path: email
+      login_attribute_path: username
+      name_attribute_path: full_name
+      groups_attribute_path: groups
+      auth_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/auth"
+      token_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/token"
+      api_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/userinfo"
+      role_attribute_path: "contains(roles[*], 'grafana-admin') && 'Admin' || contains(roles[*], 'grafana-editor') && 'Editor' || 'Viewer'"
   deployment:
     spec:
       template:
