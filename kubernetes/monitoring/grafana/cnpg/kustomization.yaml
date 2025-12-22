@@ -8,8 +8,8 @@ labels:
     includeSelectors: true
 resources:
   - ./cluster.yaml
-  # - ./objectstore.yaml
+  - ./objectstore.yaml
   - ./postgres-auth.secret.sops.yaml
-  # - ./r2-credential.secret.sops.yaml
-  # - ./scheduledbackup.yaml
-  # - ./tlsroute.yaml
+  - ./r2-credential.secret.sops.yaml
+  - ./scheduledbackup.yaml
+  - ./tlsroute.yaml

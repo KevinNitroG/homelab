@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
 metadata:
-  name: cnpg
+  name: &name grafana-postgres
 spec:
   parentRefs:
     - &gateway
@@ -13,9 +13,9 @@ spec:
     - <<: *gateway
       sectionName: 5432-tls-wildcard-local
   hostnames:
-    - keycloak-db.${IDVN_DOMAIN}
-    - keycloak-db.${LOCAL_DOMAIN}
+    - grafana-db.${IDVN_DOMAIN}
+    - grafana-db.${LOCAL_DOMAIN}
   rules:
     - backendRefs:
-        - name: cnpg
+        - name: *name
           port: 5432

@@ -17,4 +17,4 @@ spec:
         name: r2-credentials
     wal:
       compression: bzip2
-  retentionPolicy: 1m
+  retentionPolicy: 7d
