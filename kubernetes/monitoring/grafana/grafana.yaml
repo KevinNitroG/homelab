@@ -8,6 +8,8 @@ metadata:
     grafana.internal/instance: grafana
 spec:
   config:
+    server:
+      root_url: https://grafana.${IDVN_DOMAIN}/
     analytics:
       check_for_updates: "false"
       check_for_plugin_updates: "false"
@@ -40,10 +42,6 @@ spec:
                       key: admin-password
                 - name: GF_DATE_FORMATS_USE_BROWSER_LOCALE
                   value: "true"
-                - name: GF_SERVER_DOMAIN
-                  value: grafana.${IDVN_DOMAIN}
-                - name: GF_SERVER_ROOT_URL
-                  value: https://grafana.${IDVN_DOMAIN}/
               resources:
                 limits:
                   cpu: 200m
