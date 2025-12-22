@@ -36,9 +36,9 @@ spec:
       login_attribute_path: username
       name_attribute_path: full_name
       groups_attribute_path: groups
-      auth_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/auth"
-      token_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/token"
-      api_url: "https://${IDVN_DOMAIN}/realms/master/protocol/openid-connect/userinfo"
+      auth_url: "https://keycloak.${IDVN_DOMAIN}/realms/master/protocol/openid-connect/auth"
+      token_url: "https://keycloak.${IDVN_DOMAIN}/realms/master/protocol/openid-connect/token"
+      api_url: "https://keycloak.${IDVN_DOMAIN}/realms/master/protocol/openid-connect/userinfo"
       role_attribute_path: "contains(roles[*], 'grafana-admin') && 'Admin' || contains(roles[*], 'grafana-editor') && 'Editor' || 'Viewer'"
   deployment:
     spec:
