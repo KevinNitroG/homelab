@@ -15,6 +15,12 @@ spec:
       reporting_enabled: "false"
     news:
       news_feed_enabled: "false"
+    database:
+      type: postgres
+      host: grafana-postgres:5432
+      name: grafana
+      user: grafana
+      password: grafana
   deployment:
     spec:
       template:
