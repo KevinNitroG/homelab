@@ -23,7 +23,7 @@ spec:
     initdb:
       database: kite
       secret:
-        name: cnpg-auth
+        name: kite-cnpg-auth
     # recovery:
     #   database: kite
     #   secret:
