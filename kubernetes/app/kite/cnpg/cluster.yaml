@@ -24,22 +24,22 @@ spec:
       database: kite
       secret:
         name: cnpg-auth
-    recovery:
-      database: kite
-      secret:
-        name: kite-cnpg-auth
-      source: &backupName backup
-  plugins:
-    - &barmanCloud
-      enabled: true
-      isWALArchiver: true
-      name: barman-cloud.cloudnative-pg.io
-      parameters:
-        barmanObjectName: *name
-        serverName: *name
-  externalClusters:
-    - name: *backupName
-      plugin: *barmanCloud
+    # recovery:
+    #   database: kite
+    #   secret:
+    #     name: kite-cnpg-auth
+    #   source: &backupName backup
+  # plugins:
+  #   - &barmanCloud
+  #     enabled: true
+  #     isWALArchiver: true
+  #     name: barman-cloud.cloudnative-pg.io
+  #     parameters:
+  #       barmanObjectName: *name
+  #       serverName: *name
+  # externalClusters:
+  #   - name: *backupName
+  #     plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
