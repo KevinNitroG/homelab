@@ -82,5 +82,5 @@
       ]
     }
   },
-  "ignorePaths": ["**/*.sops.*", "**/config/**", "**/.archive/**"]
+  "ignorePaths": ["**/*.sops.*", "config/**", "**/.archive/**"]
 }
