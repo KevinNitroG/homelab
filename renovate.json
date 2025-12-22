@@ -56,16 +56,16 @@
     },
     {
       "customType": "regex",
-      "managerFilePatterns": ["(^|/)kustomization\\.yaml$"],
+      "managerFilePatterns": ["/(^|/)kustomization\\.yaml$/"],
       "matchStrings": [
-        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)(?:\/.*)?",
-        "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)(?:\/.*)?"
+        "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)(?:/.*)?",
+        "https://github\\.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)(?:/.*)?"
       ],
       "datasourceTemplate": "github-releases"
     },
     {
       "customType": "regex",
-      "managerFilePatterns": ["\\.yaml$"],
+      "managerFilePatterns": ["/\\.yaml$/"],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\s+imageTag: \"?(?<currentValue>[^\"\\s]+)\"?"
       ],
