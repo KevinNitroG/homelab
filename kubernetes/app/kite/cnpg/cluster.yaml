@@ -20,26 +20,26 @@ spec:
       timezone: Asia/Ho_Chi_Minh
       log_timezone: Asia/Ho_Chi_Minh
   bootstrap:
-    initdb:
-      database: kite
-      secret:
-        name: kite-cnpg-auth
-    # recovery:
+    # initdb:
     #   database: kite
     #   secret:
     #     name: kite-cnpg-auth
-    #   source: &backupName backup
-  # plugins:
-  #   - &barmanCloud
-  #     enabled: true
-  #     isWALArchiver: true
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: *name
-  #       serverName: *name
-  # externalClusters:
-  #   - name: *backupName
-  #     plugin: *barmanCloud
+    recovery:
+      database: kite
+      secret:
+        name: kite-cnpg-auth
+      source: &backupName backup
+  plugins:
+    - &barmanCloud
+      enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: *name
+        serverName: *name
+  externalClusters:
+    - name: *backupName
+      plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
