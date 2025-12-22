@@ -34,7 +34,7 @@ spec:
       <<: *https
       name: https-local
       hostname: ${LOCAL_DOMAIN}
-      tls:
+      tls: &tls-local
         mode: Terminate
         certificateRefs:
           - name: local-tls
@@ -68,7 +68,7 @@ spec:
       port: 5432
       protocol: TLS
       hostname: "*.${IDVN_DOMAIN}"
-      tls: &5432-tls
+      tls:
         <<: *tls
         mode: Passthrough
       allowedRoutes:
@@ -78,4 +78,6 @@ spec:
     - <<: *tls-wildcard
       name: 5432-tls-wildcard-local
       hostname: "*.${LOCAL_DOMAIN}"
-      tls: *5432-tls
+      tls:
+        <<: *tls-local
+        mode: Passthrough
