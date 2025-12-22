@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/gateway.networking.k8s.io/tlsroute_v1alpha2.json
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TLSRoute
+metadata:
+  name: cnpg
+spec:
+  parentRefs:
+    - &gateway
+      name: default
+      sectionName: 5432-tls-wildcard
+      namespace: gateway
+    - <<: *gateway
+      sectionName: 5432-tls-wildcard-local
+  hostnames:
+    - keycloak-db.${IDVN_DOMAIN}
+    - keycloak-db.${LOCAL_DOMAIN}
+  rules:
+    - backendRefs:
+        - name: cnpg
+          port: 5432

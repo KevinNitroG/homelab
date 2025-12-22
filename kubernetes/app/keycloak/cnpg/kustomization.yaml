@@ -12,3 +12,4 @@ resources:
   - ./postgres-auth.secret.sops.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
+  - ./tlsroute.yaml

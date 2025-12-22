@@ -26,7 +26,7 @@ spec:
       protocol: HTTPS
       hostname: ${IDVN_DOMAIN}
       allowedRoutes: *allowed-routes
-      tls:
+      tls: &tls
         mode: Terminate
         certificateRefs:
           - name: idvn-tls
@@ -63,3 +63,19 @@ spec:
         <<: *allowed-routes
         kinds:
           - kind: TCPRoute
+    - &tls-wildcard
+      name: 5432-tls-wildcard
+      port: 5432
+      protocol: TLS
+      hostname: "*.${IDVN_DOMAIN}"
+      tls: &5432-tls
+        <<: *tls
+        mode: Passthrough
+      allowedRoutes:
+        <<: *allowed-routes
+        kinds:
+          - kind: TLSRoute
+    - <<: *tls-wildcard
+      name: 5432-tls-wildcard-local
+      hostname: "*.${LOCAL_DOMAIN}"
+      tls: *5432-tls
