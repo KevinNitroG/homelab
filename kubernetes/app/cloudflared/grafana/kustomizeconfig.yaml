@@ -1,8 +1,0 @@
----
-nameReference:
-  - version: grafana.integreatly.org/v1beta1
-    kind: GrafanaFolder
-    fieldSpecs:
-      - path: spec/folderRef
-        kind: GrafanaDashboard
-        version: grafana.integreatly.org/v1beta1

@@ -3,30 +3,6 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: keycloak-http
-spec:
-  parentRefs:
-    - &gateway
-      name: default
-      sectionName: http-wildcard
-      namespace: gateway
-    - <<: *gateway
-      sectionName: http-wildcard-local
-  hostnames:
-    - keycloak.${PUBLIC_DOMAIN}
-    - keycloak.${LOCAL_DOMAIN}
-  rules:
-    - filters:
-        - type: RequestRedirect
-          requestRedirect:
-            scheme: https
-            statusCode: 301
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
   name: keycloak-https
 spec:
   parentRefs:

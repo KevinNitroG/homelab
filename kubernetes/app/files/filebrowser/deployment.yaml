@@ -17,9 +17,9 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: &config config
+            - name: &config filebrowser-config
               mountPath: /config/
-            - name: &database database
+            - name: &database filebrowser-database
               mountPath: /database/
             - name: &aria2 aria2-downloads
               mountPath: /srv/aria2/

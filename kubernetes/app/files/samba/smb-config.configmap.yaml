@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config
+  name: samba-smb-config
 data:
   smb.conf: | # language: samba
     [global]

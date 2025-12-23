@@ -2,17 +2,16 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namePrefix: glance-
 labels:
   - pairs:
       app.kubernetes.io/name: glance
     includeSelectors: true
 configMapGenerator:
-  - name: config
+  - name: glance-config
     files:
       - glance.yml=./config/glance.yml
 secretGenerator:
-  - name: auth-config
+  - name: glance-auth-config
     files:
       - auth.yml=./config/auth.yml.encrypted
 resources:

@@ -32,7 +32,7 @@ spec:
               value: "true"
           envFrom:
             - secretRef:
-                name: config
+                name: cloudflared-env
           livenessProbe:
             httpGet:
               path: /ready

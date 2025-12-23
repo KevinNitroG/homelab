@@ -17,11 +17,11 @@ spec:
           ports:
             - containerPort: 8081
           volumeMounts:
-            - name: &downloads downloads
+            - name: &downloads metube-downloads
               mountPath: /downloads/
           envFrom:
             - secretRef:
-                name: env
+                name: metube-env
       volumes:
         - name: *downloads
           persistentVolumeClaim:

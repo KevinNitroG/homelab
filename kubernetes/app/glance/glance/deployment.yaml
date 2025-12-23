@@ -19,17 +19,17 @@ spec:
             - containerPort: 8080
           envFrom:
             - secretRef:
-                name: env
+                name: glance-env
           volumeMounts:
-            - name: &config config
+            - name: &config glance-config
               mountPath: /app/config/glance.yml
               subPath: glance.yml
               readOnly: true
-            - name: &auth-config auth-config
+            - name: &auth-config glance-auth-config
               mountPath: /app/config/auth.yml
               subPath: auth.yml
               readOnly: true
-            - name: &assets assets
+            - name: &assets glance-assets
               mountPath: /app/assets/
           startupProbe: &health
             httpGet:

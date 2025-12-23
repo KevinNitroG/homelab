@@ -17,10 +17,10 @@ spec:
           ports:
             - containerPort: 445
           volumeMounts:
-            - name: &smb-config smb-config
+            - name: &smb-config samba-smb-config
               mountPath: /etc/samba/smb.conf
               subPath: smb.conf
-            - name: &user-config user-config
+            - name: &user-config samba-user-config
               mountPath: /etc/samba/users.conf
               subPath: users.conf
             - name: &aria2 aria2-downloads

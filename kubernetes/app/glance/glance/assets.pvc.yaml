@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: assets
+  name: glance-assets
 spec:
   accessModes:
     - ReadWriteOnce

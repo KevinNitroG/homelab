@@ -30,11 +30,11 @@ spec:
               value: "022"
           envFrom:
             - secretRef:
-                name: env
+                name: aria2-env
           volumeMounts:
-            - name: &config config
+            - name: &config aria2-config
               mountPath: /config/
-            - name: &downloads downloads
+            - name: &downloads aria2-downloads
               mountPath: /downloads/
       volumes:
         - name: *config

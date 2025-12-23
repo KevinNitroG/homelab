@@ -7,7 +7,8 @@ labels:
       app.kubernetes.io/name: keycloak
     includeSelectors: true
 resources:
-  - ./http-route.yaml
-  - ./service-monitor.yaml
+  - ./http.httproute.yaml
+  - ./https.httproute.yaml
+  - ./servicemonitor.yaml
   - ./service.yaml
   - ./statefulset.yaml
