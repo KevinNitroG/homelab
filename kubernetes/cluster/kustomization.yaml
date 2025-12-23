@@ -9,3 +9,5 @@ resources:
   - ./ks/app.yaml
   - ./ks/config.infrastructure.yaml
   - ./ks/controller.infrastructure.yaml
+components:
+  - ../component/setting/

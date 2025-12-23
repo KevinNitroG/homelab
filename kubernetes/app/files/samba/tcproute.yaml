@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
 metadata:
-  name: idvn-samba
+  name: samba
 spec:
   parentRefs:
     - name: default

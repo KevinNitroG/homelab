@@ -10,7 +10,7 @@ spec:
       sectionName: http-wildcard
       namespace: gateway
   hostnames:
-    - mltb.${IDVN_DOMAIN}
+    - mltb.${PUBLIC_DOMAIN}
   rules:
     - matches:
         - path:
@@ -32,7 +32,7 @@ spec:
       sectionName: 8080-https-wildcard
       namespace: gateway
   hostnames:
-    - "mltb.${IDVN_DOMAIN}"
+    - "mltb.${PUBLIC_DOMAIN}"
   rules:
     - matches:
         - path:

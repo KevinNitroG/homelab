@@ -12,7 +12,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: ${IDVN_DOMAIN}
+      hostname: ${PUBLIC_DOMAIN}
       name: http
       port: 80
       protocol: HTTP
@@ -26,7 +26,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: ${IDVN_DOMAIN}
+      hostname: ${PUBLIC_DOMAIN}
       name: https
       port: 443
       protocol: HTTPS
@@ -49,7 +49,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: "*.${IDVN_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       name: http-wildcard
       port: 80
       protocol: HTTP
@@ -63,7 +63,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: "*.${IDVN_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       name: https-wildcard
       port: 443
       protocol: HTTPS
@@ -86,7 +86,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: "*.${IDVN_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       name: 8080-https-wildcard
       port: 8080
       protocol: HTTPS
@@ -107,7 +107,7 @@ spec:
           - kind: TLSRoute
         namespaces:
           from: All
-      hostname: "*.${IDVN_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       name: 5432-tls-wildcard
       port: 5432
       protocol: TLS

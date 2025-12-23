@@ -3,18 +3,25 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudflare-ddns
+  name: metube
 spec:
   interval: 12h
   retryInterval: 1m
   timeout: 5m
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/cloudflare-ddns/cloudflare-ddns/
-  targetNamespace: cloudflare-ddns
+  path: kubernetes/app/files/metube/
+  targetNamespace: files
   decryption:
     provider: sops
     secretRef:
       name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: setting
+      - kind: ConfigMap
+        name: setting

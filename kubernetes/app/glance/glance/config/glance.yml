@@ -92,7 +92,7 @@ pages:
                         <img class="docker-container-icon" src="https://developers.cloudflare.com/logo.svg" alt="" loading="lazy">
                     </div>
                     <div class="min-width-0 grow">
-                      <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix ".${IDVN_DOMAIN}" }}</a>
+                      <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix ".${PUBLIC_DOMAIN}" }}</a>
                       {{ if (.String "service") }}
                       <div class="flex items-center gap-10" style="margin-bottom: 5px">
                         <div class="size-h6 flex-1 text-left">

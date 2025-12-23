@@ -2,10 +2,6 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: files
 resources:
-  - ./aria2/
-  - ./filebrowser/
-  - ./metube/
-  - ./samba/
+  - ./ks/
   - ./namespace.yaml

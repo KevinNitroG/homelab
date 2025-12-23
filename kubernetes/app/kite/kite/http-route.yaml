@@ -18,7 +18,7 @@ spec:
       sectionName: http-wildcard-local
   hostnames:
     - kite.${LOCAL_DOMAIN}
-    - kite.${IDVN_DOMAIN}
+    - kite.${PUBLIC_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -46,7 +46,7 @@ spec:
       sectionName: https-wildcard-local
   hostnames:
     - kite.${LOCAL_DOMAIN}
-    - kite.${IDVN_DOMAIN}
+    - kite.${PUBLIC_DOMAIN}
   rules:
     - matches:
         - path:

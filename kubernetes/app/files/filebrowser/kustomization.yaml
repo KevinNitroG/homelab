@@ -2,13 +2,15 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namePrefix: filebrowser-
 labels:
   - pairs:
       app.kubernetes.io/name: filebrowser
     includeSelectors: true
 resources:
+  - ./database.pvc.yaml
+  - ./config.secret.sops.yaml
   - ./deployment.yaml
-  - ./http-route.yaml
-  - ./pvc.yaml
-  - ./secret.sops.yaml
+  - ./http.httproute.yaml
+  - ./https.httproute.yaml
   - ./service.yaml

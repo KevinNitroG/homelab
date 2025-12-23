@@ -3,19 +3,23 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: homelab-webhook
+  name: filebrowser-https
 spec:
   parentRefs:
-    - name: default
-      sectionName: https-wildcard
+    - &gateway
+      name: default
       namespace: gateway
+      sectionName: https-wildcard
+    - <<: *gateway
+      sectionName: https-wildcard-local
   hostnames:
-    - flux-webhook.${PUBLIC_DOMAIN}
+    - filebrowser.${PUBLIC_DOMAIN}
+    - filebrowser.${LOCAL_DOMAIN}
   rules:
     - matches:
         - path:
             type: PathPrefix
-            value: /hook/
+            value: /
       backendRefs:
-        - name: webhook-receiver
+        - name: filebrowser
           port: 80

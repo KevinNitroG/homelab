@@ -7,8 +7,8 @@ labels:
       app.kubernetes.io/name: samba
     includeSelectors: true
 resources:
-  - ./config-map.yaml
   - ./deployment.yaml
-  - ./idvn.tcp-route.yaml
-  - ./secret.sops.yaml
+  - ./tcproute.yaml
   - ./service.yaml
+  - ./smb-config.configmap.yaml
+  - ./user-config.secret.sops.yaml

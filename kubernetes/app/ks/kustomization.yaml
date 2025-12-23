@@ -7,10 +7,10 @@ resources:
   - ./cloudbeaver.yaml
   - ./cloudflare-ddns.yaml
   - ./cloudflared.yaml
-  - ./files.yaml
-  - ./glance.yaml
-  - ./keycloak.yaml
-  - ./kite.yaml
-  - ./mltb.yaml
+  # - ./files.yaml
+  # - ./glance.yaml
+  # - ./keycloak.yaml
+  # - ./kite.yaml
+  # - ./mltb.yaml
 configurations:
   - ./kustomizeconfig.yaml

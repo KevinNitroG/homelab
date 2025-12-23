@@ -17,13 +17,13 @@ spec:
           ports:
             - containerPort: 8081
           volumeMounts:
-            - name: *name
+            - name: &downloads downloads
               mountPath: /downloads/
           envFrom:
             - secretRef:
-                name: *name
+                name: env
       volumes:
-        - name: *name
+        - name: *downloads
           persistentVolumeClaim:
-            claimName: *name
+            claimName: *downloads
   selector: {}

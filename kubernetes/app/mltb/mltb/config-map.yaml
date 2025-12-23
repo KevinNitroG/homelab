@@ -6,7 +6,7 @@ metadata:
   name: mltb
 data:
   AS_DOCUMENT: "true"
-  BASE_URL: http://mltb.${IDVN_DOMAIN}
+  BASE_URL: http://mltb.${PUBLIC_DOMAIN}
   BASE_URL_PORT: "80"
   # DATABASE_URL: mongodb://root:pass@mltb-mongodb/?retryWrites=true&w=majority
   DEFAULT_UPLOAD: gd

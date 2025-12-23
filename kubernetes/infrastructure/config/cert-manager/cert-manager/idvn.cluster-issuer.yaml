@@ -18,7 +18,7 @@ spec:
               key: api-token
         selector:
           dnsZones:
-            - ${IDVN_DOMAIN}
+            - ${PUBLIC_DOMAIN}
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/clusterissuer_v1.json
@@ -40,4 +40,4 @@ spec:
               key: api-token
         selector:
           dnsZones:
-            - ${IDVN_DOMAIN}
+            - ${PUBLIC_DOMAIN}

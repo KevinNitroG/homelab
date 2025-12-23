@@ -17,9 +17,9 @@ spec:
     - <<: *gateway
       sectionName: http-wildcard-local
   hostnames:
-    - ${IDVN_DOMAIN}
+    - ${PUBLIC_DOMAIN}
     - ${LOCAL_DOMAIN}
-    - glance.${IDVN_DOMAIN}
+    - glance.${PUBLIC_DOMAIN}
     - glance.${LOCAL_DOMAIN}
   rules:
     - filters:
@@ -47,9 +47,9 @@ spec:
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:
-    - ${IDVN_DOMAIN}
+    - ${PUBLIC_DOMAIN}
     - ${LOCAL_DOMAIN}
-    - glance.${IDVN_DOMAIN}
+    - glance.${PUBLIC_DOMAIN}
     - glance.${LOCAL_DOMAIN}
   rules:
     - matches:

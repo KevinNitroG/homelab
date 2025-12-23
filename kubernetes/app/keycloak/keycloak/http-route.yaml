@@ -13,7 +13,7 @@ spec:
     - <<: *gateway
       sectionName: http-wildcard-local
   hostnames:
-    - keycloak.${IDVN_DOMAIN}
+    - keycloak.${PUBLIC_DOMAIN}
     - keycloak.${LOCAL_DOMAIN}
   rules:
     - filters:
@@ -37,7 +37,7 @@ spec:
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:
-    - keycloak.${IDVN_DOMAIN}
+    - keycloak.${PUBLIC_DOMAIN}
     - keycloak.${LOCAL_DOMAIN}
   rules:
     - matches:

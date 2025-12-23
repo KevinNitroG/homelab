@@ -13,6 +13,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/app/cloudbeaver/cloudbeaver/
+  targetNamespace: cloudbeaver
   postBuild:
     substituteFrom:
       - kind: Secret

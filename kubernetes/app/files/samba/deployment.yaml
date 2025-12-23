@@ -17,26 +17,26 @@ spec:
           ports:
             - containerPort: 445
           volumeMounts:
-            - name: &config-map config-map
+            - name: &smb-config smb-config
               mountPath: /etc/samba/smb.conf
               subPath: smb.conf
-            - name: &secret secret
+            - name: &user-config user-config
               mountPath: /etc/samba/users.conf
               subPath: users.conf
-            - name: &aria2-downloads aria2-downloads
+            - name: &aria2 aria2-downloads
               mountPath: /storage/aria2/
-            - name: &metube metube
+            - name: &metube metube-downloads
               mountPath: /storage/metube/
       volumes:
-        - name: *config-map
+        - name: *smb-config
           configMap:
-            name: *name
-        - name: *secret
+            name: *smb-config
+        - name: *user-config
           secret:
-            secretName: *name
-        - name: *aria2-downloads
+            secretName: *user-config
+        - name: *aria2
           persistentVolumeClaim:
-            claimName: *aria2-downloads
+            claimName: *aria2
         - name: *metube
           persistentVolumeClaim:
             claimName: *metube
