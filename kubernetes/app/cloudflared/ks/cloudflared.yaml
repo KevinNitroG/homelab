@@ -3,16 +3,17 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudflare-ddns
+  name: cloudflared
 spec:
   interval: 12h
   retryInterval: 1m
   timeout: 5m
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/cloudflare-ddns/cloudflare-ddns/
+  path: kubernetes/app/cloudflared/cloudflared/
   decryption:
     provider: sops
     secretRef:

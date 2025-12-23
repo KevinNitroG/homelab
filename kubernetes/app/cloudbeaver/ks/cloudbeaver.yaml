@@ -12,11 +12,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-    namespace: flux-system
   path: kubernetes/app/cloudbeaver/cloudbeaver/
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: setting
-      - kind: ConfigMap
         name: setting
