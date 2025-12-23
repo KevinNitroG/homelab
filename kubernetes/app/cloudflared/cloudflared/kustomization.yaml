@@ -2,13 +2,13 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namePrefix: cloudflared-
 labels:
   - pairs:
       app.kubernetes.io/name: cloudflared
     includeSelectors: true
 resources:
-  - ./config-map.yaml
   - ./deployment.yaml
-  - ./secret.sops.yaml
-  - ./service-monitor.yaml
+  - ./env.secret.sops.yaml
+  - ./servicemonitor.yaml
   - ./service.yaml

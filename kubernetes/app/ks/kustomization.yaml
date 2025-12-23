@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namePrefix: app-
+resources:
+  # - ./authentik.yaml
+  - ./cloudbeaver.yaml
+  - ./cloudflare-ddns.yaml
+  - ./cloudflared.yaml
+  - ./files.yaml
+  - ./glance.yaml
+  - ./keycloak.yaml
+  - ./kite.yaml
+  - ./mltb.yaml

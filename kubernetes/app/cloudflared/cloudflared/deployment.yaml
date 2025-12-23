@@ -25,11 +25,14 @@ spec:
             - cloudflared
             - tunnel
             - run
+          env:
+            - name: TUNNEL_METRICS
+              value: 0.0.0.0:8080
+            - name: NO_AUTOUPDATE
+              value: "true"
           envFrom:
             - secretRef:
-                name: *name
-            - configMapRef:
-                name: *name
+                name: config
           livenessProbe:
             httpGet:
               path: /ready

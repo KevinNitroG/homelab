@@ -1,9 +1,8 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: flux-system
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
 resources:
-  - ./config-map.yaml
+  - ./configmap.yaml
   - ./secret.sops.yaml
   - ./grafana.secrets.sops.yaml

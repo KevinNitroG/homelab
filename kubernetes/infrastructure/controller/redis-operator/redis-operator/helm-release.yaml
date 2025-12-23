@@ -5,7 +5,7 @@ kind: HelmRelease
 metadata:
   name: &name redis-operator
 spec:
-  interval: 1h
+  interval: 12h
   timeout: 5m
   chartRef:
     kind: OCIRepository

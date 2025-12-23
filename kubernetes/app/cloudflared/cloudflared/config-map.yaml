@@ -1,9 +1,0 @@
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: cloudflared
-data:
-  NO_AUTOUPDATE: "true"
-  TUNNEL_METRICS: 0.0.0.0:8080

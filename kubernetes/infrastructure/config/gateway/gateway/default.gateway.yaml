@@ -3,81 +3,129 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: default
   annotations:
     cert-manager.io/cluster-issuer: idvn-prod
+  name: default
 spec:
   gatewayClassName: istio
   listeners:
-    - &http
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: ${IDVN_DOMAIN}
       name: http
       port: 80
       protocol: HTTP
-      hostname: ${IDVN_DOMAIN}
-      allowedRoutes: &allowed-routes
+    - allowedRoutes:
         namespaces:
           from: All
-    - <<: *http
-      name: http-local
       hostname: ${LOCAL_DOMAIN}
-    - &https
+      name: http-local
+      port: 80
+      protocol: HTTP
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: ${IDVN_DOMAIN}
       name: https
       port: 443
       protocol: HTTPS
-      hostname: ${IDVN_DOMAIN}
-      allowedRoutes: *allowed-routes
-      tls: &tls
-        mode: Terminate
+      tls:
         certificateRefs:
           - name: idvn-tls
-    - &https-local
-      <<: *https
-      name: https-local
-      hostname: ${LOCAL_DOMAIN}
-      tls: &tls-local
         mode: Terminate
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: ${LOCAL_DOMAIN}
+      name: https-local
+      port: 443
+      protocol: HTTPS
+      tls:
         certificateRefs:
           - name: local-tls
             namespace: cert-manager
-    - &http-wildcard
-      <<: *http
+        mode: Terminate
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: "*.${IDVN_DOMAIN}"
       name: http-wildcard
-      hostname: "*.${IDVN_DOMAIN}"
-    - <<: *http-wildcard
+      port: 80
+      protocol: HTTP
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: "*.${LOCAL_DOMAIN}"
       name: http-wildcard-local
-      hostname: "*.${LOCAL_DOMAIN}"
-    - &https-wildcard
-      <<: *https
-      name: https-wildcard
+      port: 80
+      protocol: HTTP
+    - allowedRoutes:
+        namespaces:
+          from: All
       hostname: "*.${IDVN_DOMAIN}"
-    - <<: *https-local
-      name: https-wildcard-local
+      name: https-wildcard
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - name: idvn-tls
+        mode: Terminate
+    - allowedRoutes:
+        namespaces:
+          from: All
       hostname: "*.${LOCAL_DOMAIN}"
-    - <<: *https-wildcard
+      name: https-wildcard-local
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - name: local-tls
+            namespace: cert-manager
+        mode: Terminate
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: "*.${IDVN_DOMAIN}"
       name: 8080-https-wildcard
       port: 8080
-    - name: samba
-      port: 445
-      protocol: TCP
-      allowedRoutes:
-        <<: *allowed-routes
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - name: idvn-tls
+        mode: Terminate
+    - allowedRoutes:
         kinds:
           - kind: TCPRoute
-    - &tls-wildcard
+        namespaces:
+          from: All
+      name: samba
+      port: 445
+      protocol: TCP
+    - allowedRoutes:
+        kinds:
+          - kind: TLSRoute
+        namespaces:
+          from: All
+      hostname: "*.${IDVN_DOMAIN}"
       name: 5432-tls-wildcard
       port: 5432
       protocol: TLS
-      hostname: "*.${IDVN_DOMAIN}"
       tls:
-        <<: *tls
+        certificateRefs:
+          - name: idvn-tls
         mode: Passthrough
-      allowedRoutes:
-        <<: *allowed-routes
+    - allowedRoutes:
         kinds:
           - kind: TLSRoute
-    - <<: *tls-wildcard
-      name: 5432-tls-wildcard-local
+        namespaces:
+          from: All
       hostname: "*.${LOCAL_DOMAIN}"
+      name: 5432-tls-wildcard-local
+      port: 5432
+      protocol: TLS
       tls:
-        <<: *tls-local
+        certificateRefs:
+          - name: local-tls
+            namespace: cert-manager
         mode: Passthrough
