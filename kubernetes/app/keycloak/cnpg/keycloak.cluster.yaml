@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: &name cnpg
+  name: &name keycloak
 spec:
   instances: 1
   imageCatalogRef:
@@ -43,10 +43,5 @@ spec:
   managed:
     services:
       disabledDefaultServices:
-        - ro
         - r
-      additional:
-        - selectorType: rw
-          serviceTemplate:
-            metadata:
-              name: *name
+        - ro

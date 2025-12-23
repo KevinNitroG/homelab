@@ -3,10 +3,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: cnpg
+  name: keycloak
 spec:
   cluster:
-    name: cnpg
+    name: keycloak
   schedule: 0 0 20 * * 0,3
   backupOwnerReference: self
   method: plugin

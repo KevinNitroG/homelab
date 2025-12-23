@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
 metadata:
-  name: cnpg
+  name: keycloak
 spec:
   parentRefs:
     - &gateway
@@ -17,5 +17,5 @@ spec:
     - keycloak-db.${LOCAL_DOMAIN}
   rules:
     - backendRefs:
-        - name: cnpg
+        - name: cnpg-keycloak-rw
           port: 5432
