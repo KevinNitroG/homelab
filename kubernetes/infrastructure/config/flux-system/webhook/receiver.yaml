@@ -14,3 +14,7 @@ spec:
   resources:
     - kind: GitRepository
       name: flux-system
+    - kind: HelmRepository
+      name: "*"
+      matchLabels:
+        flux.kevinnitro/repository: homelab
