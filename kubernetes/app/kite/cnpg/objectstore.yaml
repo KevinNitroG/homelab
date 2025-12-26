@@ -3,7 +3,7 @@
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: kite-cnpg
+  name: cnpg-cnpg
 spec:
   configuration:
     destinationPath: s3://homelab-kite/
@@ -11,10 +11,10 @@ spec:
     s3Credentials:
       accessKeyId:
         key: accessKeyId
-        name: r2-credentials
+        name: cnpg-r2-credentials
       secretAccessKey:
         key: secretAccessKey
-        name: r2-credentials
+        name: cnpg-r2-credentials
     wal:
       compression: bzip2
   retentionPolicy: 4d

@@ -3,7 +3,7 @@
 apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
 metadata:
-  name: &name kite-cnpg
+  name: cnpg-kite
 spec:
   parentRefs:
     - &gateway
@@ -17,5 +17,5 @@ spec:
     - kite-db.${LOCAL_DOMAIN}
   rules:
     - backendRefs:
-        - name: *name
+        - name: cnpg-kite-rw
           port: 5432

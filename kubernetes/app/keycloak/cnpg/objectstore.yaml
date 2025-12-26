@@ -3,7 +3,7 @@
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: cnpg
+  name: cnpg-cnpg
 spec:
   configuration:
     destinationPath: s3://homelab-keycloak/

@@ -3,10 +3,10 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: &name kite-cnpg
+  name: cnpg-kite
 spec:
   cluster:
-    name: *name
+    name: cnpg-kite
   schedule: 0 0 20 * * 0,3
   backupOwnerReference: self
   method: plugin

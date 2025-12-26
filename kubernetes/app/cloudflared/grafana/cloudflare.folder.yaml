@@ -3,7 +3,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaFolder
 metadata:
-  name: cloudflared
+  name: grafana-cloudflared
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:

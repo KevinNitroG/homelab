@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: files
+  name: app-files
 spec:
   interval: 12h
   retryInterval: 1m

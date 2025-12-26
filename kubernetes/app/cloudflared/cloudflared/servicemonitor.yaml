@@ -3,11 +3,11 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: &name cloudflared
+  name: cloudflared-cloudflared
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: *name
+      app.kubernetes.io/name: cloudflared
   endpoints:
     - port: metrics
       interval: 30s

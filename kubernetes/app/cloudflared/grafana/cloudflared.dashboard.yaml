@@ -3,13 +3,13 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: cloudflared
+  name: grafana-cloudflared
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
-  folderRef: cloudflared
+  folderRef: grafana-cloudflared
   grafanaCom:
     id: 17457
     revision: 6

@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kite
+  name: kite-kite
   labels:
     flux.kevinnitro/repository: homelab
 spec:

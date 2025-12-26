@@ -15,8 +15,6 @@ spec:
     name: flux-system
   path: kubernetes/app/keycloak/grafana/
   targetNamespace: keycloak
-  dependsOn:
-    - name: app-keycloak-grafana
   decryption:
     provider: sops
     secretRef:

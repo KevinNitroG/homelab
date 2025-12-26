@@ -1,17 +1,17 @@
 db:
-  dsn: ENC[AES256_GCM,data:wRKrYQqL1cIuPWeZKU22vzoN+97GyxzBtw2cWNhk860QTPD7RgBM3XGyW00WUOmHEOUFVRp+uvPfrw==,iv:M6Gr5sLGzYNAR69rn6iHxVz9TRS+SNxjnd0KXXJz02c=,tag:lmJFYMVFmYeZro1dnpbMEw==,type:str]
+  dsn: ENC[AES256_GCM,data:Na1uKhd11sjQEQVHK61kYBt22eA0oTUnRy1Xequ3MxZ9wMJ3oyeW2cXCT+7QjlgABa8KkLqE/1sntxzIkw==,iv:iY03TIUy41sDa5TYxZxGUy7iDTiAyZzM4cMe99gwC9A=,tag:u5AUmV2gH586g1hGyUJI/g==,type:str]
 sops:
   age:
     - recipient: age1ytym5g6mxf0974syp2g2ecrh0y74tnl0u9ee4xm8caawhyv25pls3f2sy4
       enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6NGFpZkxXT0p4OGphZFpt
-        Nm13YThsL2Vzd1R5eE84d0cwMklRd2liZlZvCjlLdnZmcGVjMmQvOG1TN1MwM09w
-        UTZFa3R6dWhxUldTS1lnTTVrMGhFRGsKLS0tIDk3YyttcjJvZjNWSTJsSDcwSUoz
-        eVBLbExoUmJDYUFXOWwwMGZ6cllYWTQKWRqGpeDe85r8lJzrX7JQLEvE+d9DgMRD
-        iMs5lqLbO9hOBiErgi7sBRjiubJFk7uth12TuyLKyWvP739FUbd4SQ==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB6eDUrNUdlbElieXQ0N0Vt
+        S2hsamFTOUJ3L2IzMGg4eFc5ZGVrekV2WTFBCmx6NVRrWm1QR1RLeWpDWjR4YnBk
+        d2FXYUFPS25NMC8rUVJJSGNHclF0NTgKLS0tIEFuMThLWHM4Yk9USzBRQTFQakdL
+        V0RGcG1nV1NSK20zc09oNVd1VVBjZTAKym7wXxbMwaemQk5uhVln2PdxZCBuR0Te
+        BzXQ8/3icXet7hLdLXQ1Ffw/K40FLttmuRgatM0+Zzo3ZcsbGQIvOw==
         -----END AGE ENCRYPTED FILE-----
-  lastmodified: "2025-12-22T03:17:37Z"
-  mac: ENC[AES256_GCM,data:Dt+6RBp7GuV8XYsvFp33rCzVcd6OsKPCBD5rS6TqoqZTKCAWbM6ry5Jhc4JX/DSJi6KmEI/HJbJ2c3ZRuI0cPq3FOrwag7j69UTi+Z/8vLZw54aLwqVk5Dty96mv6lQd+AeQ50m0UfFQR/L/Jr8I6HeeA+VjWIS7bnoGI9eHEQg=,iv:FEtceax/kL8XMgPXy6b7MKkgH4NB+gEdMedw8OCWDy8=,tag:7dFWmjwTA88KCfkmUT5rzg==,type:str]
+  lastmodified: "2025-12-26T11:38:09Z"
+  mac: ENC[AES256_GCM,data:shDqkR2RIW7x2LMSBTRouXXVvFeYSXsby/1lA5P3dFlTMghQfTE2TSyHEQsFUaK14QVF8hXGubKwT2jI6t+PSS9mVVBz3ZAMnt6oGnOFYuQiulVm9VeBCpRA+vMYB2PYmu+2WBYYPAMlv0+qZ1VgQF1bMtGmWje2dLCCERVXwo8=,iv:qd0RpTgTGlEH8MY38HJmnvfYbIRgGad86ocYusilKRI=,tag:I05FZ2aoJJ/4SHarVnZKZQ==,type:str]
   unencrypted_suffix: _unencrypted
-  version: 3.10.2
+  version: 3.11.0

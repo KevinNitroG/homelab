@@ -3,16 +3,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name filebrowser
+  name: filebrowser-filebrowser
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
-      name: *name
+      name: filebrowser-filebrowser
     spec:
       containers:
-        - name: *name
+        - name: filebrowser
           image: filebrowser/filebrowser:v2.52.0
           ports:
             - containerPort: 80

@@ -3,17 +3,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name glance
+  name: glance-glance
   annotations:
     reloader.stakater.com/auto: "false"
     glance/icon: si:glance
 spec:
   template:
     metadata:
-      name: *name
+      name: glance-glance
     spec:
       containers:
-        - name: *name
+        - name: glance
           image: glanceapp/glance:v0.8.4
           ports:
             - containerPort: 8080

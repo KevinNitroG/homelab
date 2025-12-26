@@ -3,16 +3,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name kite
+  name: kite-kite
 spec:
   interval: 12h
   timeout: 5m
   chart:
     spec:
-      chart: *name
+      chart: kite
       sourceRef:
         kind: HelmRepository
-        name: *name
+        name: kite-kite
       version: 0.7.5
   valuesFrom:
     - kind: ConfigMap

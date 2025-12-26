@@ -3,16 +3,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name aria2
+  name: aria2-aria2
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
-      name: *name
+      name: aria2-aria2
     spec:
       containers:
-        - name: *name
+        - name: aria2
           image: p3terx/aria2-pro:202209060423
           ports:
             - name: main-tcp

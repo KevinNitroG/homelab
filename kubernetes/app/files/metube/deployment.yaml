@@ -3,16 +3,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name metube
+  name: metube-metube
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
-      name: *name
+      name: metube-metube
     spec:
       containers:
-        - name: *name
+        - name: metube
           image: ghcr.io/alexta69/metube:2025.12.14
           ports:
             - containerPort: 8081

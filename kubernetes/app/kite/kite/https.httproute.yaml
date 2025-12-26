@@ -3,19 +3,27 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: metube-https
+  name: kite-https
 spec:
   parentRefs:
-    - name: default
+    - &gateway
+      name: default
+      sectionName: https
       namespace: gateway
+    - <<: *gateway
+      sectionName: https-wildcard
+    - <<: *gateway
+      sectionName: https-local
+    - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:
-    - metube.${LOCAL_DOMAIN}
+    - kite.${LOCAL_DOMAIN}
+    - kite.${PUBLIC_DOMAIN}
   rules:
     - matches:
         - path:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: metube-metube
-          port: 8081
+        - name: kite-kite
+          port: 8080

@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: metube
+  name: metube-metube
 spec:
   ports:
     - port: 8081

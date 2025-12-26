@@ -2,15 +2,12 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namePrefix: app-
 resources:
   - ./cloudbeaver.yaml
   - ./cloudflare-ddns.yaml
   - ./cloudflared.yaml
-  # - ./files.yaml
-  # - ./glance.yaml
-  # - ./keycloak.yaml
-  # - ./kite.yaml
-  # - ./mltb.yaml
-configurations:
-  - ./kustomizeconfig.yaml
+  - ./files.yaml
+  - ./glance.yaml
+  - ./keycloak.yaml
+  - ./kite.yaml
+  - ./mltb.yaml

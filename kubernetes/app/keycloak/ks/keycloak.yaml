@@ -16,7 +16,7 @@ spec:
   path: kubernetes/app/keycloak/keycloak/
   targetNamespace: keycloak
   dependsOn:
-    - name: app-keycloak-keycloak
+    - name: app-keycloak-cnpg
   decryption:
     provider: sops
     secretRef:

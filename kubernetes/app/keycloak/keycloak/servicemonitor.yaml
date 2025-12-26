@@ -3,11 +3,11 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: &name keycloak
+  name: keycloak-keycloak
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: *name
+      app.kubernetes.io/name: keycloak
   endpoints:
     - port: health
       interval: 30s

@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: kite
+  name: cnpg-kite
 spec:
   instances: 1
   imageCatalogRef:
@@ -23,11 +23,11 @@ spec:
     # initdb:
     #   database: kite
     #   secret:
-    #     name: kite-cnpg-auth
+    #     name: cnpg-kite-auth
     recovery:
       database: kite
       secret:
-        name: kite-cnpg-auth
+        name: cnpg-kite-auth
       source: &backupName backup
   plugins:
     - &barmanCloud
@@ -35,8 +35,8 @@ spec:
       isWALArchiver: true
       name: barman-cloud.cloudnative-pg.io
       parameters:
-        barmanObjectName: *name
-        serverName: *name
+        barmanObjectName: cnpg-cnpg
+        serverName: kite
   externalClusters:
     - name: *backupName
       plugin: *barmanCloud
@@ -45,8 +45,3 @@ spec:
       disabledDefaultServices:
         - ro
         - r
-      additional:
-        - selectorType: rw
-          serviceTemplate:
-            metadata:
-              name: *name

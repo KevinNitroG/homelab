@@ -3,24 +3,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name samba
+  name: samba-samba
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
-      name: *name
+      name: samba-samba
     spec:
       containers:
-        - name: *name
+        - name: samba
           image: dockurr/samba:4.22.6
           ports:
             - containerPort: 445
           volumeMounts:
-            - name: &smb-config samba-smb-config
+            - name: &smbConfig samba-smb-config
               mountPath: /etc/samba/smb.conf
               subPath: smb.conf
-            - name: &user-config samba-user-config
+            - name: &userConfig samba-user-config
               mountPath: /etc/samba/users.conf
               subPath: users.conf
             - name: &aria2 aria2-downloads
@@ -28,12 +28,12 @@ spec:
             - name: &metube metube-downloads
               mountPath: /storage/metube/
       volumes:
-        - name: *smb-config
+        - name: *smbConfig
           configMap:
-            name: *smb-config
-        - name: *user-config
+            name: *smbConfig
+        - name: *userConfig
           secret:
-            secretName: *user-config
+            secretName: *userConfig
         - name: *aria2
           persistentVolumeClaim:
             claimName: *aria2

@@ -3,17 +3,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: &name cloudflare-ddns
+  name: cloudflare-ddns-cloudflare-ddns
   annotations:
     reloader.stakater.com/auto: "true"
     glance/icon: si:cloudflare
 spec:
   template:
     metadata:
-      name: *name
+      name: cloudflare-ddns-cloudflare-ddns
     spec:
       containers:
-        - name: *name
+        - name: cloudflare-ddns
           image: ghcr.io/irfanhakim-as/cloudflare-ddns:1.0.2-fix-wrong-ip-r2
           volumeMounts:
             - name: config
@@ -23,5 +23,5 @@ spec:
       volumes:
         - name: config
           secret:
-            secretName: config
+            secretName: cloudflare-ddns-config
   selector: {}
