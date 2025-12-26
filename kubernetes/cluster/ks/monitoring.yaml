@@ -15,15 +15,3 @@ spec:
   path: kubernetes/monitoring/
   dependsOn:
     - name: infrastructure-controller
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: setting
-      - kind: ConfigMap
-        name: setting
-      - kind: Secret
-        name: grafana

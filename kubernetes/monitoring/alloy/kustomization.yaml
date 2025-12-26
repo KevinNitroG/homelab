@@ -15,3 +15,5 @@ configMapGenerator:
       - ./config.alloy
     options:
       disableNameSuffixHash: true
+configurations:
+  - ./kustomizeconfig.yaml
