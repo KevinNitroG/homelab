@@ -3,12 +3,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name cnpg
+  name: cnpg
 spec:
   interval: 12h
   timeout: 5m
   chartRef:
     kind: OCIRepository
-    name: *name
+    name: cnpg
   install:
     crds: CreateReplace

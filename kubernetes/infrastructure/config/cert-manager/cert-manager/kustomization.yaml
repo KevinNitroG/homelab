@@ -3,9 +3,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./idvn.cluster-issuer.yaml
+  - ./idvn-prod.clusterissuer.yaml
+  - ./idvn-stag.clusterissuer.yaml
   - ./idvn.secret.sops.yaml
   - ./local-ca.secret.sops.yaml
   - ./local.certificate.yaml
-  - ./local.cluster-issuer.yaml
-  - ./reference-grant.yaml
+  - ./local.clusterissuer.yaml
+  - ./referencegrant.yaml

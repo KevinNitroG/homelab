@@ -3,10 +3,10 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
-  name: homelab-telegram
+  name: telegram
 spec:
   providerRef:
-    name: homelab-telegram
+    name: telegram
   eventSeverity: error
   eventSources:
     - kind: GitRepository

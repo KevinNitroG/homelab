@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name ztunnel
+  name: ztunnel
 spec:
   dependsOn:
     - name: base
@@ -10,7 +10,7 @@ spec:
   timeout: 5m
   chart:
     spec:
-      chart: *name
+      chart: ztunnel
       sourceRef:
         kind: HelmRepository
         name: istio

@@ -3,15 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: elastic-system
+  name: infrastructure-config-cnpg-system
 spec:
   interval: 12h
   retryInterval: 1m
-  timeout: 1m
+  timeout: 5m
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/infrastructure/controller/elastic-system/
-  dependsOn:
-    - name: infrastructure-controller-monitoring
+  path: kubernetes/infrastructure/config/cnpg-system/

@@ -1,7 +1,0 @@
-nameReference:
-  - kind: Kustomization
-    group: kustomize.toolkit.fluxcd.io
-    version: v1
-    fieldSpecs:
-      - path: spec/dependsOn/name
-        kind: Kustomization

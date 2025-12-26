@@ -3,13 +3,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name cert-manager
+  name: cert-manager
 spec:
   interval: 12h
   timeout: 5m
   chart:
     spec:
-      chart: *name
+      chart: cert-manager
       sourceRef:
         kind: HelmRepository
         name: jetstack

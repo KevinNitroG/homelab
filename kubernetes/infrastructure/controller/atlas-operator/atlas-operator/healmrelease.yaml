@@ -3,13 +3,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name atlas-operator
+  name: atlas-operator
 spec:
   interval: 12h
   timeout: 5m
   chartRef:
     kind: OCIRepository
-    name: *name
+    name: atlas-operator
   install:
     crds: CreateReplace
   valuesFrom:
