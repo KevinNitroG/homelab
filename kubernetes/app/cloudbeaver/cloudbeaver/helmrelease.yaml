@@ -12,7 +12,7 @@ spec:
       chart: k8s
       sourceRef:
         kind: GitRepository
-        name: cloudbeaver-cloudbeaver
+        name: cloudbeaver
   install:
     createNamespace: true
   targetNamespace: cloudbeaver

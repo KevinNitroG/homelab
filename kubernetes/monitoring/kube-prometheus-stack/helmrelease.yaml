@@ -3,17 +3,14 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name alloy
+  name: kube-prometheus-stack-kube-prometheus-stack
 spec:
+  targetNamespace: monitoring
   interval: 12h
   timeout: 5m
-  chart:
-    spec:
-      chart: *name
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-      version: 1.5.1
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
   valuesFrom:
     - kind: ConfigMap
-      name: alloy-helm-values
+      name: kube-prometheus-stack-helm-values

@@ -12,7 +12,7 @@ spec:
       chart: kite
       sourceRef:
         kind: HelmRepository
-        name: kite-kite
+        name: kite
       version: 0.7.5
   valuesFrom:
     - kind: ConfigMap

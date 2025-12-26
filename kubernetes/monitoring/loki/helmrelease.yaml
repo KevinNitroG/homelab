@@ -3,13 +3,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &name loki
+  name: loki-loki
 spec:
   interval: 12h
   timeout: 5m
   chartRef:
     kind: OCIRepository
-    name: *name
+    name: loki
   valuesFrom:
     - kind: ConfigMap
       name: loki-helm-values

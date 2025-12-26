@@ -8,6 +8,7 @@ resources:
   - ./coredns.dashboard.yaml
   - ./gohostruntime.programming.yaml
   - ./goruntimes.dashboard.yaml
+  - ./loki.yaml
   - ./nodeexporterfull.yaml
   - ./nodejsmetrics.programming.yaml
   - ./postgresql.storage.yaml

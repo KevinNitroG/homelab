@@ -3,7 +3,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: alertmanager
+  name: kube-prometheus-stack-alertmanager
 spec:
   instanceSelector:
     matchLabels:

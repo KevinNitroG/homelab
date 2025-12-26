@@ -33,11 +33,11 @@ alertmanager:
       repository: prometheus/alertmanager
       tag: v0.30.0
     volumes:
-      - name: &alertmanager-secret alertmanager-telegram
+      - name: &alertmanagerSecret alertmanager-telegram
         secret:
-          secretName: *alertmanager-secret
+          secretName: *alertmanagerSecret
     volumeMounts:
-      - name: *alertmanager-secret
+      - name: *alertmanagerSecret
         mountPath: /etc/alertmanager/secrets/telegram
   serviceMonitor:
     selfMonitor: false

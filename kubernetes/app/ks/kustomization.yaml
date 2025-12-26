@@ -11,3 +11,4 @@ resources:
   - ./keycloak.yaml
   - ./kite.yaml
   - ./mltb.yaml
+  - ./monitoring.yaml

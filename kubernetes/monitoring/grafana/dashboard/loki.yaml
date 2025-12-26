@@ -5,9 +5,11 @@ kind: GrafanaDashboard
 metadata:
   name: lokistack
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
+  folderRef: logging
   grafanaCom:
     id: 14055
     revision: 5
