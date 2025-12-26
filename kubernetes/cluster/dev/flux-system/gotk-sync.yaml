@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 10m
   ref:
-    branch: main
+    branch: dev
   secretRef:
     name: flux-system
   url: ssh://git@github.com/KevinNitroG/homelab.git
@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h0s
-  path: ./kubernetes/cluster/
+  path: ./kubernetes/cluster/dev/
   prune: true
   sourceRef:
     kind: GitRepository

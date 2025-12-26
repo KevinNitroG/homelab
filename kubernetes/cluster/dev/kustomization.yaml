@@ -10,4 +10,4 @@ resources:
   - ./ks/infrastructure-controller.yaml
   - ./ks/monitoring.yaml
 components:
-  - ../component/setting/
+  - ../../component/setting/
