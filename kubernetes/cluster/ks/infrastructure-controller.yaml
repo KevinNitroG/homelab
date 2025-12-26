@@ -9,9 +9,8 @@ spec:
   retryInterval: 1m
   timeout: 10m
   prune: true
+  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/infrastructure/controller/
-  dependsOn:
-    - name: setting
+  path: kubernetes/infrastructure-controller/

@@ -3,15 +3,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./apiserver.dashboard.yaml
+  - ./api-server.dashboard.yaml
   - ./cloudnativepg.dashboard.yaml
   - ./coredns.dashboard.yaml
-  - ./gohostruntime.programming.yaml
-  - ./goruntimes.dashboard.yaml
+  - ./go-host-runtime.programming.yaml
+  - ./go-runtimes.dashboard.yaml
   - ./loki.yaml
-  - ./nodeexporterfull.yaml
-  - ./nodejsmetrics.programming.yaml
+  - ./node-exporter-full.yaml
+  - ./nodejs-metrics.programming.yaml
   - ./postgresql.storage.yaml
   - ./prometheus.dashboard.yaml
   - ./redis.storage.yaml
-  - ./viewsglobal.dashboard.yaml
+  - ./views-global.dashboard.yaml

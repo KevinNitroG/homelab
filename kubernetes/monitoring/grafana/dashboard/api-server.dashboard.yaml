@@ -3,16 +3,11 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: gohostruntime
+  name: api-server
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
-  folderRef: programming
-  grafanaCom:
-    id: 21221
-    revision: 1
-  datasources:
-    - inputName: DS_PROMETHEUS
-      datasourceName: Prometheus
+  folderRef: kubernetes
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json

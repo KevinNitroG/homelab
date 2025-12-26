@@ -3,13 +3,23 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure-controller-redis-operator
+  name: monitoring-grafana
 spec:
   interval: 12h
   retryInterval: 1m
-  timeout: 1m
+  timeout: 5m
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/infrastructure/controller/redis-operator/
+  path: kubernetes/monitoring/kube-prometheus-stack/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: setting
+      - kind: Secret
+        name: grafana-setting
