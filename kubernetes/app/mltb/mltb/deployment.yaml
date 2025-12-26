@@ -26,14 +26,14 @@ spec:
               containerPort: 8070
           envFrom:
             - secretRef:
-                name: mltb
+                name: mltb-env
             - configMapRef:
-                name: mltb
+                name: mltb-env
           volumeMounts:
-            - name: &sa-account sa-accounts
+            - name: &saAccount mltb-sa-accounts
               mountPath: /usr/src/app/accounts/
               readOnly: true
-            - name: &sa-token sa-token
+            - name: &saToken mltb-sa-token
               mountPath: /usr/src/app/token_sa.pickle
               subPath: token_sa.pickle
               readOnly: true
@@ -52,10 +52,10 @@ spec:
             periodSeconds: 10
             failureThreshold: 3
       volumes:
-        - name: *sa-account
+        - name: *saAccount
           secret:
-            secretName: *sa-account
-        - name: *sa-token
+            secretName: *saAccount
+        - name: *saToken
           secret:
-            secretName: *sa-token
+            secretName: *saToken
   selector: {}

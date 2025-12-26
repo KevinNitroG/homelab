@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &name mltb
+  name: app-mltb-mltb
 spec:
   interval: 12h
   retryInterval: 1m
@@ -13,7 +13,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/mltb/
+  path: kubernetes/app/mltb/mltb/
+  targetNamespace: mltb
   decryption:
     provider: sops
     secretRef:
@@ -22,6 +23,3 @@ spec:
     substituteFrom:
       - kind: Secret
         name: setting
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *name

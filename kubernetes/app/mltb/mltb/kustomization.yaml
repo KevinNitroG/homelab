@@ -7,12 +7,13 @@ labels:
       app.kubernetes.io/name: mltb
     includeSelectors: true
 resources:
-  - ./config-map.yaml
+  - ./base.httproute.yaml
   - ./deployment.yaml
-  - ./http-route.yaml
+  - ./env.configmap.yaml
+  - ./env.secret.sops.yaml
+  - ./rlcone.httproute.yaml
   - ./sa-accounts.secret.sops.yaml
   - ./sa-token.secret.sops.yaml
-  - ./secret.sops.yaml
   - ./service.yaml
 images:
   - name: ghcr.io/kevinnitrog/homelab/mltb
