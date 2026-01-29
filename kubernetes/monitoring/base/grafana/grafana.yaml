@@ -8,8 +8,6 @@ metadata:
     grafana.internal/instance: grafana
 spec:
   config:
-    server:
-      root_url: https://grafana.${PUBLIC_DOMAIN}/
     analytics:
       check_for_updates: "false"
       check_for_plugin_updates: "false"
@@ -23,23 +21,6 @@ spec:
       name: ${GRAFANA_DB_NAME}
       user: ${GRAFANA_DB_USER}
       password: ${GRAFANA_DB_PASSWORD}
-    auth:
-      disable_login_form: "false"
-    auth.generic_oauth:
-      enabled: "true"
-      name: Keycloak SSO
-      allow_sign_up: "true"
-      client_id: ${GRAFANA_AUTH_CLIENT_ID}
-      client_secret: ${GRAFANA_AUTH_CLIENT_SECRET}
-      scopes: "openid email profile offline_access roles"
-      email_attribute_path: email
-      login_attribute_path: username
-      name_attribute_path: full_name
-      groups_attribute_path: groups
-      auth_url: "https://keycloak.${PUBLIC_DOMAIN}/realms/master/protocol/openid-connect/auth"
-      token_url: "https://keycloak.${PUBLIC_DOMAIN}/realms/master/protocol/openid-connect/token"
-      api_url: "https://keycloak.${PUBLIC_DOMAIN}/realms/master/protocol/openid-connect/userinfo"
-      role_attribute_path: "contains(resource_access.grafana.roles[*], 'admin') && 'Admin' || contains(resource_access.grafana.roles[*], 'editor') && 'Editor' || 'Viewer'"
   deployment:
     spec:
       template:

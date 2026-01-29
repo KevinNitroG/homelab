@@ -17,8 +17,8 @@ spec:
     enablePodMonitor: false
   postgresql:
     parameters:
-      timezone: Asia/Ho_Chi_Minh
-      log_timezone: Asia/Ho_Chi_Minh
+      timezone: 
+      log_timezone: 
   bootstrap:
     # initdb:
     #   database: kite

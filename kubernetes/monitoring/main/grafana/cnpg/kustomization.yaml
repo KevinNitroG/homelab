@@ -7,5 +7,7 @@ labels:
       app.kubernetes.io/name: cnpg
     includeSelectors: true
 resources:
-  - ./cluster.yaml
-  - ./postgres-auth.secret.sops.yaml
+  - ./objectstore.yaml
+  - ./r2-credential.secret.sops.yaml
+  - ./scheduledbackup.yaml
+  - ./tlsroute.yaml

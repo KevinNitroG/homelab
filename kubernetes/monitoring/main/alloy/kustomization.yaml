@@ -3,6 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./grafana.helm.yaml
-  - ./kube-prometheus-stack.oci.yaml
-  - ./loki.oci.yaml
+  - ./http.httproute.yaml
+  - ./https.httproute.yaml
+  - ../../base/alloy/

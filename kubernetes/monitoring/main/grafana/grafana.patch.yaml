@@ -1,0 +1,27 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/grafana.integreatly.org/grafana_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+spec:
+  config:
+    server:
+      root_url: https://grafana.${PUBLIC_DOMAIN}/
+    auth:
+      disable_login_form: "false"
+    auth.generic_oauth:
+      enabled: "true"
+      name: Authentik
+      allow_sign_up: "true"
+      client_id: ${GRAFANA_AUTH_CLIENT_ID}
+      client_secret: ${GRAFANA_AUTH_CLIENT_SECRET}
+      scopes: openid email profile
+      email_attribute_path: email
+      login_attribute_path: preferred_username
+      name_attribute_path: name
+      groups_attribute_path: groups
+      auth_url: https://authentik.${PUBLIC_DOMAIN}/application/o/authorize/
+      token_url: https://authentik.${PUBLIC_DOMAIN}/application/o/token/
+      api_url: https://authentik.${PUBLIC_DOMAIN}/application/o/userinfo/
+      role_attribute_path: contains(groups, 'Grafana Admins') && 'Admin' || contains(groups, 'Grafana Editors') && 'Editor' || 'Viewer'

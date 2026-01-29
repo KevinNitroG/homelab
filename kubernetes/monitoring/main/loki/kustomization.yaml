@@ -2,16 +2,12 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: monitoring
 resources:
   - ./helmrelease.yaml
 configMapGenerator:
-  - name: alloy-helm-values
+  - name: loki-helm-values
     files:
       - ./values.yaml
-  - name: alloy-config
-    files:
-      - ./config.alloy
-    options:
-      disableNameSuffixHash: true
 configurations:
   - ./kustomizeconfig.yaml
