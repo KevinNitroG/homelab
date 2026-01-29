@@ -1,19 +1,5 @@
 ---
 namespaceOverride: monitoring
-crds:
-  enabled: false
-cleanPrometheusOperatorObjectNames: true
-defaultRules:
-  rules:
-    windows: false
-grafana:
-  enabled: false
-  forceDeployDashboards: false
-  sidecar:
-    dashboards:
-      enabled: false
-    datasources:
-      enabled: false
 alertmanager:
   config:
     route:
@@ -27,105 +13,10 @@ alertmanager:
             message_thread_id: 638
             bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
   alertmanagerSpec:
-    externalUrl: https://alertmanager.${LOCAL_DOMAIN}
-    image:
-      registry: quay.io
-      repository: prometheus/alertmanager
-      tag: v0.30.0
     volumes:
-      - name: &alertmanagerSecret alertmanager-telegram
+      - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
         secret:
           secretName: *alertmanagerSecret
     volumeMounts:
       - name: *alertmanagerSecret
         mountPath: /etc/alertmanager/secrets/telegram
-  serviceMonitor:
-    selfMonitor: false
-  route:
-    http:
-      enabled: true
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: http-wildcard-local
-          namespace: gateway
-      hostnames: &hostnames
-        - alertmanager.${LOCAL_DOMAIN}
-      httpsRedirect: true
-    https:
-      enabled: true
-      parentRefs:
-        - <<: *gateway
-          sectionName: https-wildcard-local
-      hostnames: *hostnames
-kubeControllerManager:
-  enabled: false
-kubeEtcd:
-  enabled: false
-kubeProxy:
-  enabled: false
-kubeScheduler:
-  enabled: false
-prometheus:
-  serviceMonitor:
-    selfMonitor: false
-  prometheusSpec:
-    image:
-      registry: quay.io
-      repository: prometheus/prometheus
-      tag: v3.8.1
-    externalUrl: https://prometheus.${LOCAL_DOMAIN}
-    enableAdminAPI: true
-    scrapeInterval: 1m
-    podMonitorSelectorNilUsesHelmValues: false
-    # podMonitorNamespaceSelector: &prometheus-namespace-selector
-    #   matchLabels:
-    #     prometheus.kevinnitro/enabled: "1"
-    probeSelectorNilUsesHelmValues: false
-    # probeNamespaceSelector: *prometheus-namespace-selector
-    ruleSelectorNilUsesHelmValues: false
-    # ruleNamespaceSelector: *prometheus-namespace-selector
-    scrapeConfigSelectorNilUsesHelmValues: false
-    # scrapeConfigNamespaceSelector: *prometheus-namespace-selector
-    serviceMonitorSelectorNilUsesHelmValues: false
-    # serviceMonitorNamespaceSelector: *prometheus-namespace-selector
-    resources:
-      limits:
-        cpu: 500m
-        memory: 2Gi
-      requests:
-        cpu: 10m
-        memory: 500Mi
-    retention: 7d
-    retentionSize: 10GiB
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          resources:
-            requests:
-              storage: 10Gi
-  route:
-    http:
-      enabled: true
-      parentRefs:
-        - &gateway
-          name: default
-          sectionName: http-wildcard-local
-          namespace: gateway
-      hostnames: &hostnames
-        - prometheus.${LOCAL_DOMAIN}
-      httpsRedirect: true
-    https:
-      enabled: true
-      parentRefs:
-        - <<: *gateway
-          sectionName: https-wildcard-local
-      hostnames: *hostnames
-prometheusOperator:
-  serviceMonitor:
-    selfMonitor: false
-  resources:
-    limits:
-      cpu: 200m
-    requests:
-      cpu: 10m

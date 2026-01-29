@@ -1,5 +1,4 @@
 ---
-namespaceOverride: monitoring
 crds:
   enabled: false
 cleanPrometheusOperatorObjectNames: true
@@ -16,29 +15,12 @@ grafana:
       enabled: false
 alertmanager:
   config:
-    route:
-      receiver: default
-      routes:
-        - receiver: default
-    receivers:
-      - name: default
-        telegram_configs:
-          - chat_id: -1001644026686
-            message_thread_id: 638
-            bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
   alertmanagerSpec:
     externalUrl: https://alertmanager.${LOCAL_DOMAIN}
     image:
       registry: quay.io
       repository: prometheus/alertmanager
       tag: v0.30.0
-    volumes:
-      - name: &alertmanagerSecret alertmanager-telegram
-        secret:
-          secretName: *alertmanagerSecret
-    volumeMounts:
-      - name: *alertmanagerSecret
-        mountPath: /etc/alertmanager/secrets/telegram
   serviceMonitor:
     selfMonitor: false
   route:
