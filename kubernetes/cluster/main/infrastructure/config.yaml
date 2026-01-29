@@ -12,6 +12,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/cluster/main/infrastructure/config.yaml
+  path: kubernetes/cluster/main/infrastructure/config/
   dependsOn:
     - name: infrastructure-controller

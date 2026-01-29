@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+resources:
+  - ./cert-manager.yaml
+  - ./cnpg-system.yaml
+  - ./grafana-operator.yaml
+  - ./minio-operator.yaml
+  - ./monitoring.yaml
+  - ./redis-operator.yaml
+  - ./reloader.yaml
+  - ./trafik.yaml
