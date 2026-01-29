@@ -6,3 +6,4 @@ resources:
   - ./grafana.helm.yaml
   - ./kube-prometheus-stack.oci.yaml
   - ./loki.oci.yaml
+  - ./tempo.oci.yaml

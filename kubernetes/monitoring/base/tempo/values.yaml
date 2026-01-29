@@ -1,0 +1,9 @@
+---
+tempo:
+  receivers:
+    jaeger:
+    opencensus:
+
+persistence:
+  enabled: true
+  size: 2Gi

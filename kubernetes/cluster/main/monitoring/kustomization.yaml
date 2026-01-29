@@ -8,3 +8,4 @@ resources:
   - ./grafana.yaml
   - ./kube-prometheus-stack.yaml
   - ./loki.yaml
+  - ./tempo.yaml
