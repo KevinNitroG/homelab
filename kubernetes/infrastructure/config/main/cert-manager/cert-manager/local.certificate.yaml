@@ -14,11 +14,11 @@ spec:
     - ${LOCAL_DOMAIN}
     - alertmanager.${LOCAL_DOMAIN}
     - alloy.${LOCAL_DOMAIN}
+    - authentik.${LOCAL_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
     - filebrowser.${LOCAL_DOMAIN}
     - glance.${LOCAL_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
-    - keycloak.${LOCAL_DOMAIN}
     - kite.${LOCAL_DOMAIN}
     - metube.${LOCAL_DOMAIN}
     - prometheus.${LOCAL_DOMAIN}
