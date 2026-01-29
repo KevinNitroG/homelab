@@ -23,6 +23,6 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: setting
+        name: clustersetting
       - kind: ConfigMap
-        name: setting
+        name: clustersetting

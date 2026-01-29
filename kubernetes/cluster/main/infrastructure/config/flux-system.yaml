@@ -21,4 +21,4 @@ spec:
   postBuild:
     substituteFrom:
       - kind: Secret
-        name: setting
+        name: clustersetting
