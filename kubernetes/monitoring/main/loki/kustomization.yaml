@@ -2,12 +2,5 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: monitoring
 resources:
-  - ./helmrelease.yaml
-configMapGenerator:
-  - name: loki-helm-values
-    files:
-      - ./values.yaml
-configurations:
-  - ./kustomizeconfig.yaml
+  - ../../base/loki/
