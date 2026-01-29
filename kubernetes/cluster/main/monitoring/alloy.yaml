@@ -12,7 +12,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/monitoring/alloy
+  path: kubernetes/monitoring/main/alloy
+  targetNamespace: monitoring
   decryption:
     provider: sops
     secretRef:
@@ -20,6 +21,6 @@ spec:
   postBuild:
     substituteFrom:
       - kind: ConfigMap
-        name: setting
+        name: clustersetting
       - kind: Secret
-        name: setting
+        name: clustersetting

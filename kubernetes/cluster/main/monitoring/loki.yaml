@@ -12,5 +12,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/monitoring/loki/
+  path: kubernetes/monitoring/main/loki/
   targetNamespace: monitoring

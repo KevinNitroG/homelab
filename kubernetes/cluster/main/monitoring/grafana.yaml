@@ -12,7 +12,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/monitoring/kube-prometheus-stack/
+  path: kubernetes/monitoring/main/kube-prometheus-stack/
+  targetNamespace: monitoring
   decryption:
     provider: sops
     secretRef:
@@ -20,6 +21,6 @@ spec:
   postBuild:
     substituteFrom:
       - kind: ConfigMap
-        name: setting
+        name: clustersetting
       - kind: Secret
-        name: grafana-setting
+        name: grafana-clustersetting
