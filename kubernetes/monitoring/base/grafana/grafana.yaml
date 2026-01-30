@@ -17,7 +17,7 @@ spec:
       news_feed_enabled: "false"
     database:
       type: postgres
-      host: grafana-postgres:5432
+      host: grafana-cnpg-grafana-rw:5432
       name: ${GRAFANA_DB_NAME}
       user: ${GRAFANA_DB_USER}
       password: ${GRAFANA_DB_PASSWORD}

@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-authentik
+spec: {}
+  # bootstrap:
+  #   initdb: {}
+  #   recovery:
+  #     database: authentik
+  #     secret:
+  #       name: cnpg-authentik-auth
+  #     source: &backupName backup
+  # plugins:
+  #   - &barmanCloud
+  #     enabled: true
+  #     isWALArchiver: true
+  #     name: barman-cloud.cloudnative-pg.io
+  #     parameters:
+  #       barmanObjectName: cnpg-cnpg
+  #       serverName: authentik
+  # externalClusters:
+  #   - name: *backupName
+  #     plugin: *barmanCloud

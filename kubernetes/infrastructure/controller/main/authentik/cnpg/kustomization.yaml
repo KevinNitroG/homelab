@@ -7,5 +7,9 @@ labels:
       app.kubernetes.io/name: cnpg
     includeSelectors: true
 resources:
-  - ./grafana-auth.secret.sops.yaml
-  - ./grafana.cluster.yaml
+  - ../../../base/authentik/cnpg/
+  - ./objectstore.yaml
+  - ./r2-credential.secret.sops.yaml
+  - ./scheduledbackup.yaml
+patches:
+  - path: ./authentik.cluster.patch.yaml

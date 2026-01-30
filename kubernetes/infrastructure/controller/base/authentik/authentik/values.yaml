@@ -1,0 +1,13 @@
+---
+authentik:
+  secret_key: ${AUTHENTIK_SECRET_KEY}
+  error_reporting:
+    enabled: false
+  postgresql:
+    host: cnpg-authentik-rw
+    name: authentik
+    user: authentik
+    password: ${AUTHENTIK_DB_PASSWORD}
+blueprints:
+  configMaps:
+    - authentik-traefik-blueprint
