@@ -10,3 +10,11 @@ ports:
           to: websecure
           scheme: https
           permanent: true
+providers:
+  kubernetesGateway:
+    enabled: true
+experimental:
+  plugins:
+    jwt:
+      moduleName: github.com/traefik-plugins/traefik-jwt-plugin
+      version: v0.7.1 # TODO: renovate track this
