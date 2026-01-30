@@ -13,7 +13,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/monitoring/main/kube-prometheus-stack/
-  targetNamespace: monitoring
   decryption:
     provider: sops
     secretRef:

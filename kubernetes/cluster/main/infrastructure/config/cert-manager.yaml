@@ -13,7 +13,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infrastructure/config/main/cert-manager/
-  targetNamespace: cert-manager
   dependsOn:
     - name: infrastructure-controller-cert-manager
   decryption:

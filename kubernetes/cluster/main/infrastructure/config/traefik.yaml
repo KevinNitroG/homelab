@@ -13,7 +13,6 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infrastructure/config/main/traefik/
-  targetNamespace: traefik
   dependsOn:
     - name: infrastructure-controller-traefik
   postBuild:

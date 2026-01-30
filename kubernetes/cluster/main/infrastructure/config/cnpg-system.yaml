@@ -13,6 +13,5 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infrastructure/config/main/cnpg-system/
-  targetNamespace: cnpg-system
   dependsOn:
     - name: infrastructure-controller-cnpg-system

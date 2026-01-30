@@ -13,6 +13,5 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/infrastructure/config/main/minio-operator/
-  targetNamespace: minio-operator
   dependsOn:
     - name: infrastructure-config-minio-operator
