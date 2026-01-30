@@ -5,9 +5,10 @@ kind: Kustomization
 resources:
   - ./cert-manager.yaml
   - ./cnpg-system.yaml
-  - ./gateway.yaml
+  - ./gatewayapi.yaml
   - ./grafana-operator.yaml
   - ./minio-operator.yaml
   - ./monitoring.yaml
   - ./redis-operator.yaml
   - ./reloader.yaml
+  - ./traefik.yaml

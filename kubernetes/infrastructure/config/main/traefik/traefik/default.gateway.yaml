@@ -3,11 +3,11 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  annotations:
-    cert-manager.io/cluster-issuer: idvn-prod
   name: default
+  annotations:
+    cert-manager.io/cluster-issuer: public-prod
 spec:
-  gatewayClassName: istio
+  gatewayClassName: traefik
   listeners:
     - allowedRoutes:
         namespaces:
@@ -32,7 +32,7 @@ spec:
       protocol: HTTPS
       tls:
         certificateRefs:
-          - name: idvn-tls
+          - name: public-certificate-prod
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -69,7 +69,7 @@ spec:
       protocol: HTTPS
       tls:
         certificateRefs:
-          - name: idvn-tls
+          - name: public-certificate-prod
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -92,7 +92,7 @@ spec:
       protocol: HTTPS
       tls:
         certificateRefs:
-          - name: idvn-tls
+          - name: public-certificate-prod
         mode: Terminate
     - allowedRoutes:
         kinds:
@@ -113,7 +113,7 @@ spec:
       protocol: TLS
       tls:
         certificateRefs:
-          - name: idvn-tls
+          - name: public-certificate-prod
         mode: Passthrough
     - allowedRoutes:
         kinds:
