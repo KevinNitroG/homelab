@@ -11,5 +11,5 @@ resources:
   - ./objectstore.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
-patches:
-  - path: ./authentik.cluster.patch.yaml
+patches: []
+  # - path: ./authentik.cluster.patch.yaml

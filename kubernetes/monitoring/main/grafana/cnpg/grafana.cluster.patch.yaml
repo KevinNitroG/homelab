@@ -3,14 +3,14 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: cnpg-authentik
+  name: &name grafana-cnpg-grafana
 spec:
   bootstrap:
     initdb: null
     recovery:
-      database: authentik
+      database: grafana
       secret:
-        name: cnpg-authentik-auth
+        name: grafana-cnpg-grafana-auth
       source: &backupName backup
   plugins:
     - &barmanCloud
@@ -18,8 +18,8 @@ spec:
       isWALArchiver: true
       name: barman-cloud.cloudnative-pg.io
       parameters:
-        barmanObjectName: cnpg-cnpg
-        serverName: authentik
+        barmanObjectName: *name
+        serverName: *name
   externalClusters:
     - name: *backupName
       plugin: *barmanCloud

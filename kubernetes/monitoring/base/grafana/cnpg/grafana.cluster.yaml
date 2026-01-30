@@ -24,22 +24,6 @@ spec:
       database: grafana
       secret:
         name: grafana-cnpg-grafana-auth
-  #   recovery:
-  #     database: grafana
-  #     secret:
-  #       name: grafana-cnpg-grafana-auth
-  #     source: &backupName backup
-  # plugins:
-  #   - &barmanCloud
-  #     enabled: true
-  #     isWALArchiver: true
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: *name
-  #       serverName: *name
-  # externalClusters:
-  #   - name: *backupName
-  #     plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:

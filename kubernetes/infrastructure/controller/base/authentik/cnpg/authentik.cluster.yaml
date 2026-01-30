@@ -24,22 +24,6 @@ spec:
       database: authentik
       secret:
         name: cnpg-authentik-auth
-  #   recovery:
-  #     database: authentik
-  #     secret:
-  #       name: cnpg-authentik-auth
-  #     source: &backupName backup
-  # plugins:
-  #   - &barmanCloud
-  #     enabled: true
-  #     isWALArchiver: true
-  #     name: barman-cloud.cloudnative-pg.io
-  #     parameters:
-  #       barmanObjectName: cnpg-cnpg
-  #       serverName: authentik
-  # externalClusters:
-  #   - name: *backupName
-  #     plugin: *barmanCloud
   managed:
     services:
       disabledDefaultServices:
