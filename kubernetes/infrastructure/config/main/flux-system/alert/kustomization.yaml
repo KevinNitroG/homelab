@@ -6,5 +6,3 @@ resources:
   - ./telegram-token.secret.sops.yaml
   - ./telegram.alert.yaml
   - ./telegram.provider.yaml
-configurations:
-  - ./kustomizeconfig.yaml
