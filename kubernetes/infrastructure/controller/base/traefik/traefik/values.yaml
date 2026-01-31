@@ -8,10 +8,10 @@ ports:
           to: websecure
           scheme: https
           permanent: true
-  8080-port:
-    port: 8080
-    expose:
-      default: true
+  # 8080-port:
+  #   port: 8080
+  #   expose:
+  #     default: true
   samba:
     port: 445
     expose:
