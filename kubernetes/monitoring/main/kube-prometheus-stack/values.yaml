@@ -13,6 +13,7 @@ alertmanager:
             message_thread_id: 638
             bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
   alertmanagerSpec:
+    externalUrl: https://alertmanager.${LOCAL_DOMAIN}
     volumes:
       - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
         secret:
@@ -20,3 +21,40 @@ alertmanager:
     volumeMounts:
       - name: *alertmanagerSecret
         mountPath: /etc/alertmanager/secrets/telegram
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http-wildcard-local
+          namespace: traefik
+      hostnames: &hostnames
+        - alertmanager.${LOCAL_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames: *hostnames
+prometheus:
+  prometheusSpec:
+    externalUrl: https://prometheus.${LOCAL_DOMAIN}
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - &gateway
+          name: default
+          sectionName: http-wildcard-local
+          namespace: traefik
+      hostnames: &hostnames
+        - prometheus.${LOCAL_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - <<: *gateway
+          sectionName: https-wildcard-local
+      hostnames: *hostnames
