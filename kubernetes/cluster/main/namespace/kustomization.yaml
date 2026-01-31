@@ -13,4 +13,4 @@ resources:
   - ./monitoring.yaml
   - ./redis-operator.yaml
   - ./reloader.yaml
-  - ./trafik.yaml
+  - ./traefik.yaml
