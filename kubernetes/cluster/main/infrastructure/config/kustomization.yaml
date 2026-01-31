@@ -7,5 +7,4 @@ resources:
   - ./cnpg-system.yaml
   - ./flux-system.yaml
   - ./minio-operator.yaml
-  - ./redis-operator.yaml
   - ./traefik.yaml
