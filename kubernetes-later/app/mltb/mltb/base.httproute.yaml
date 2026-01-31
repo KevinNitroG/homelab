@@ -8,7 +8,7 @@ spec:
   parentRefs:
     - name: default
       sectionName: http-wildcard
-      namespace: gateway
+      namespace: traefik
   hostnames:
     - mltb.${PUBLIC_DOMAIN}
   rules:

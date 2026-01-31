@@ -12,4 +12,14 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/kite/
+  path: kubernetes/app/main/kite/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: clustersetting
+      - kind: ConfigMap
+        name: clustersetting

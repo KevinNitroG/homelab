@@ -3,27 +3,25 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: kite-https
+  name: kite-http
 spec:
   parentRefs:
     - &gateway
       name: default
-      sectionName: https
-      namespace: gateway
+      sectionName: http
+      namespace: traefik
     - <<: *gateway
-      sectionName: https-wildcard
+      sectionName: http-wildcard
     - <<: *gateway
-      sectionName: https-local
+      sectionName: http-local
     - <<: *gateway
-      sectionName: https-wildcard-local
+      sectionName: http-wildcard-local
   hostnames:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: kite-kite
-          port: 8080
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
+            statusCode: 301

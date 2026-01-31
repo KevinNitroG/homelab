@@ -30,7 +30,7 @@ alertmanager:
         - &gateway
           name: default
           sectionName: http-wildcard-local
-          namespace: gateway
+          namespace: traefik
       hostnames: &hostnames
         - alertmanager.${LOCAL_DOMAIN}
       httpsRedirect: true
@@ -93,7 +93,7 @@ prometheus:
         - &gateway
           name: default
           sectionName: http-wildcard-local
-          namespace: gateway
+          namespace: traefik
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
       httpsRedirect: true

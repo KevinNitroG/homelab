@@ -8,5 +8,3 @@ labels:
     includeSelectors: true
 resources:
   - ./helmrelease.yaml
-  - ./http.httproute.yaml
-  - ./https.httproute.yaml

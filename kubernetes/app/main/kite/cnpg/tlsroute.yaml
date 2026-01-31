@@ -9,7 +9,7 @@ spec:
     - &gateway
       name: default
       sectionName: 5432-tls-wildcard
-      namespace: gateway
+      namespace: traefik
     - <<: *gateway
       sectionName: 5432-tls-wildcard-local
   hostnames:

@@ -5,10 +5,7 @@ kind: Kustomization
 resources:
   - ./cloudbeaver.yaml
   - ./cloudflare-ddns.yaml
-  - ./cloudflared.yaml
-  - ./files.yaml
-  - ./glance.yaml
-  - ./keycloak.yaml
+  # - ./files.yaml
+  # - ./glance.yaml
   - ./kite.yaml
-  - ./mltb.yaml
-  - ./monitoring.yaml
+  # - ./mltb.yaml

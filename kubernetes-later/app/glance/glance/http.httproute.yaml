@@ -9,7 +9,7 @@ spec:
     - &gateway
       name: default
       sectionName: http
-      namespace: gateway
+      namespace: traefik
     - <<: *gateway
       sectionName: http-wildcard
     - <<: *gateway

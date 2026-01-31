@@ -8,7 +8,7 @@ spec:
   parentRefs:
     - name: default
       sectionName: samba
-      namespace: gateway
+      namespace: traefik
   rules:
     - backendRefs:
         - name: samba-samba

@@ -7,7 +7,7 @@ metadata:
 spec:
   parentRefs:
     - name: default
-      namespace: gateway
+      namespace: traefik
       sectionName: http-local
   hostnames:
     - metube.${LOCAL_DOMAIN}

@@ -7,5 +7,10 @@ labels:
       app.kubernetes.io/name: cnpg
     includeSelectors: true
 resources:
-  - ./kite-auth.secret.sops.yaml
-  - ./kite.cluster.yaml
+  - ../../../base/kite/cnpg/
+  - ./objectstore.yaml
+  - ./r2-credential.secret.sops.yaml
+  - ./scheduledbackup.yaml
+  - ./tlsroute.yaml
+patches: []
+#   - path: ./kite.cluster.patch.yaml

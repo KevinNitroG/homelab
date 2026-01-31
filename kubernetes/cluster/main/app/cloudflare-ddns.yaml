@@ -12,4 +12,8 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/cloudflare-ddns/
+  path: kubernetes/app/main/cloudflare-ddns/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

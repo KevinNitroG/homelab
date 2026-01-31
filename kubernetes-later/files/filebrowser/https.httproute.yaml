@@ -8,7 +8,7 @@ spec:
   parentRefs:
     - &gateway
       name: default
-      namespace: gateway
+      namespace: traefik
       sectionName: https-wildcard
     - <<: *gateway
       sectionName: https-wildcard-local
