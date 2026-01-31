@@ -3,12 +3,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: local
+  name: cert-manager-local
 spec:
   issuerRef:
     name: local
     kind: ClusterIssuer
-  secretName: local-tls
+  secretName: cert-manager-local-tls
   commonName: "${LOCAL_DOMAIN}"
   dnsNames:
     - ${LOCAL_DOMAIN}

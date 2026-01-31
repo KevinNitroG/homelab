@@ -5,7 +5,7 @@ kind: Gateway
 metadata:
   name: default
   annotations:
-    cert-manager.io/cluster-issuer: public-prod
+    cert-manager.io/cluster-issuer: cert-manager-public-prod
 spec:
   gatewayClassName: traefik
   listeners:
@@ -44,7 +44,6 @@ spec:
       tls:
         certificateRefs:
           - name: local-tls
-            namespace: cert-manager
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -81,7 +80,6 @@ spec:
       tls:
         certificateRefs:
           - name: local-tls
-            namespace: cert-manager
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -127,5 +125,4 @@ spec:
       tls:
         certificateRefs:
           - name: local-tls
-            namespace: cert-manager
         mode: Passthrough

@@ -6,4 +6,4 @@ metadata:
   name: local
 spec:
   ca:
-    secretName: local-ca
+    secretName: cert-manager-local-ca

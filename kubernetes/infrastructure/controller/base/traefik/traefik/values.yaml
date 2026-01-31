@@ -8,9 +8,22 @@ ports:
           to: websecure
           scheme: https
           permanent: true
+  8080-https:
+    port: 8080
+    expose:
+      default: true
+  samba:
+    port: 445
+    expose:
+      default: true
+  postgres:
+    port: 5432
+    expose:
+      default: true
 providers:
   kubernetesGateway:
     enabled: true
+    experimentalChannel: true
 gateway:
   enabled: false
 experimental:
