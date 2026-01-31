@@ -14,21 +14,21 @@ spec:
           from: All
       hostname: ${PUBLIC_DOMAIN}
       name: http
-      port: 80
+      port: 8000
       protocol: HTTP
     - allowedRoutes:
         namespaces:
           from: All
       hostname: ${LOCAL_DOMAIN}
       name: http-local
-      port: 80
+      port: 8000
       protocol: HTTP
     - allowedRoutes:
         namespaces:
           from: All
       hostname: ${PUBLIC_DOMAIN}
       name: https
-      port: 443
+      port: 8443
       protocol: HTTPS
       tls:
         certificateRefs:
@@ -39,7 +39,7 @@ spec:
           from: All
       hostname: ${LOCAL_DOMAIN}
       name: https-local
-      port: 443
+      port: 8443
       protocol: HTTPS
       tls:
         certificateRefs:
@@ -50,21 +50,21 @@ spec:
           from: All
       hostname: "*.${PUBLIC_DOMAIN}"
       name: http-wildcard
-      port: 80
+      port: 8000
       protocol: HTTP
     - allowedRoutes:
         namespaces:
           from: All
       hostname: "*.${LOCAL_DOMAIN}"
       name: http-wildcard-local
-      port: 80
+      port: 8000
       protocol: HTTP
     - allowedRoutes:
         namespaces:
           from: All
       hostname: "*.${PUBLIC_DOMAIN}"
       name: https-wildcard
-      port: 443
+      port: 8443
       protocol: HTTPS
       tls:
         certificateRefs:
@@ -75,7 +75,7 @@ spec:
           from: All
       hostname: "*.${LOCAL_DOMAIN}"
       name: https-wildcard-local
-      port: 443
+      port: 8443
       protocol: HTTPS
       tls:
         certificateRefs:
