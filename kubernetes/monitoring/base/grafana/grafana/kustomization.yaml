@@ -3,5 +3,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./admin-credentials.secret.sops.yaml
+  - ./admin-creds.secret.sops.yaml
   - ./grafana.yaml
