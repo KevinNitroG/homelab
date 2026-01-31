@@ -1,8 +1,8 @@
 ---
 tempo:
   receivers:
-    jaeger:
-    opencensus:
+    jaeger: {}
+    opencensus: {}
 
 persistence:
   enabled: true
