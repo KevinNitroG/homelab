@@ -10,6 +10,7 @@ spec:
       sectionName: https-wildcard-local
       namespace: traefik
   hostnames:
+    - cloudbeaver.${PUBLIC_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
   rules:
     - matches:
@@ -17,5 +18,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: cloudbeaver
+        - name: cloudbeaver-cloudbeaver
           port: 8978
