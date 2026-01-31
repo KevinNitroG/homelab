@@ -15,6 +15,10 @@ spec:
   path: kubernetes/infrastructure/config/main/traefik/
   dependsOn:
     - name: infrastructure-controller-traefik
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   postBuild:
     substituteFrom:
       - kind: Secret
