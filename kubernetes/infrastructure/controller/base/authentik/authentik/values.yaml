@@ -1,5 +1,7 @@
 ---
 authentik:
+  bootstrap_token: ${AUTHENTIK_BOOTSTRAP_TOKEN}
+  bootstrap_password: ${AUTHENTIK_BOOTSTRAP_PASSWORD}
   secret_key: ${AUTHENTIK_SECRET_KEY}
   error_reporting:
     enabled: false
