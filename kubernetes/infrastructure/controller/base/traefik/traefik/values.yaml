@@ -1,7 +1,5 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/traefik/traefik-helm-chart/refs/heads/master/traefik/values.schema.json
-crds:
-  enabled: true
 ports:
   web:
     http:
