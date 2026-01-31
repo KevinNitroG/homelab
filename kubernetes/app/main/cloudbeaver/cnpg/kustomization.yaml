@@ -6,6 +6,10 @@ labels:
   - pairs:
       app.kubernetes.io/name: cnpg
     includeSelectors: true
-resources: []
+resources:
+  - ../../../base/cloudbeaver/cnpg/
+  - ./objectstore.yaml
+  - ./r2-credential.secret.sops.yaml
+  - ./scheduledbackup.yaml
 patches: []
   # - path: ./cloudbeaver.cluster.patch.yaml
