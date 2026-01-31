@@ -8,6 +8,3 @@ authentik:
     name: authentik
     user: authentik
     password: ${AUTHENTIK_DB_PASSWORD}
-blueprints:
-  configMaps:
-    - authentik-traefik-blueprint
