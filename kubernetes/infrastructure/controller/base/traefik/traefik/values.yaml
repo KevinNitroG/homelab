@@ -11,6 +11,8 @@ ports:
 providers:
   kubernetesGateway:
     enabled: true
+gateway:
+  enabled: false
 experimental:
   plugins:
     jwt:
