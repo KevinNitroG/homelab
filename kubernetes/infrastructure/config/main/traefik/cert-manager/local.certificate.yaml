@@ -11,7 +11,6 @@ spec:
   secretName: cert-manager-local-tls
   commonName: "${LOCAL_DOMAIN}"
   dnsNames:
-    - ${LOCAL_DOMAIN}
     - alertmanager.${LOCAL_DOMAIN}
     - alloy.${LOCAL_DOMAIN}
     - authentik.${LOCAL_DOMAIN}
