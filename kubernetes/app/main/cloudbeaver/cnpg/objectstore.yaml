@@ -3,18 +3,18 @@
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: grafana-cnpg
+  name: cnpg-cnpg
 spec:
   configuration:
-    destinationPath: s3://homelab-grafana/
+    destinationPath: s3://homelab-cloudbeaver/
     endpointURL: https://4fea4870fb107289e4263bc6b05f7ffc.r2.cloudflarestorage.com
     s3Credentials:
       accessKeyId:
         key: accessKeyId
-        name: r2-credentials
+        name: cnpg-r2-credentials
       secretAccessKey:
         key: secretAccessKey
-        name: r2-credentials
+        name: cnpg-r2-credentials
     wal:
       compression: bzip2
   retentionPolicy: 4d

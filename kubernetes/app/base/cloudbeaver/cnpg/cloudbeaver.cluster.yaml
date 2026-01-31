@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-cloudbeaver
+spec:
+  instances: 1
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql-minimal-trixie
+    major: 18
+  storage:
+    size: 500Mi
+  monitoring:
+    enablePodMonitor: false
+  postgresql:
+    parameters:
+      timezone: ${TIMEZONE}
+      log_timezone: ${TIMEZONE}
+  bootstrap:
+    initdb:
+      database: cloudbeaver
+      secret:
+        name: cnpg-cloudbeaver-auth
+  managed:
+    services:
+      disabledDefaultServices:
+        - ro
+        - r

@@ -3,14 +3,14 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: grafana-cnpg-grafana
+  name: cnpg-cloudbeaver
 spec:
   bootstrap:
     initdb: null
     recovery:
-      database: grafana
+      database: cloudbeaver
       secret:
-        name: grafana-cnpg-grafana-auth
+        name: cnpg-cloudbeaver-auth
       source: &backupName backup
   plugins:
     - &barmanCloud
@@ -18,8 +18,8 @@ spec:
       isWALArchiver: true
       name: barman-cloud.cloudnative-pg.io
       parameters:
-        barmanObjectName: grafana-cnpg
-        serverName: cnpg-grafana
+        barmanObjectName: cnpg-cnpg
+        serverName: cnpg-cloudbeaver
   externalClusters:
     - name: *backupName
       plugin: *barmanCloud

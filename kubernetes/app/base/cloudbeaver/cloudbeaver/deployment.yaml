@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudbeaver-cloudbeaver
+spec:
+  template:
+    metadata:
+      name: cloudbeaver-cloudbeaver
+    spec:
+      containers:
+        - name: cloudbeaver
+          image: dbeaver/cloudbeaver:25.3.3
+          ports:
+            - containerPort: 8978
+          env:
+            - name: CLOUDBEAVER_DB_DRIVER
+              value: &dbDriver postgres-jdbc
+            - name: CLOUDBEAVER_DB_URL
+              value: &dbUrl jdbc:postgresql://cnpg-cloudbeaver-rw:5432/cloudbeaver
+            - name: CLOUDBEAVER_DB_USER
+              valueFrom: &dbUser
+                secretKeyRef:
+                  name: cnpg-cloudbeaver-auth
+                  key: username
+            - name: CLOUDBEAVER_DB_PASSWORD
+              valueFrom: &dbPassword
+                secretKeyRef:
+                  name: cnpg-cloudbeaver-auth
+                  key: password
+            - name: CLOUDBEAVER_QM_DB_DRIVER
+              value: *dbDriver
+            - name: CLOUDBEAVER_QM_DB_URL
+              value: *dbUrl
+            - name: CLOUDBEAVER_QM_DB_USER
+              valueFrom: *dbUser
+            - name: CLOUDBEAVER_QM_DB_PASSWORD
+              valueFrom: *dbPassword
+          volumeMounts:
+            - mountPath: /opt/cloudbeaver/workspace
+              name: data
+            - mountPath: /opt/cloudbeaver/conf/keys
+              name: api-tokens
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: cloudbeaver-data
+        - name: api-tokens
+          persistentVolumeClaim:
+            claimName: cloudbeaver-api-tokens
+  selector: {}
