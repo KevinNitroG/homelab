@@ -31,5 +31,5 @@ spec:
             kind: Middleware
             name: auth
       backendRefs:
-        - name: api@internal
+        - name: traefik
           port: 8080
