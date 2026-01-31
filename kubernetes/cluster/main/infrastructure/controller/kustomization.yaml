@@ -8,7 +8,6 @@ resources:
   - ./gatewayapi.yaml
   - ./grafana-operator.yaml
   - ./minio-operator.yaml
-  - ./monitoring.yaml
   - ./redis-operator.yaml
   - ./reloader.yaml
   - ./traefik.yaml
