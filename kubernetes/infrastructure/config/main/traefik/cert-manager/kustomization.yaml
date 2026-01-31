@@ -6,6 +6,6 @@ resources:
   - ./cloudflare.secret.sops.yaml
   - ./local-ca.secret.sops.yaml
   - ./local.certificate.yaml
-  - ./local.clusterissuer.yaml
+  - ./local.issuer.yaml
   - ./public-prod.clusterissuer.yaml
   - ./public-stag.clusterissuer.yaml
