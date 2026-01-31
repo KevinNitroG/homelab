@@ -3,7 +3,7 @@
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: local
+  name: cert-manager-local
 spec:
   ca:
     secretName: cert-manager-local-ca

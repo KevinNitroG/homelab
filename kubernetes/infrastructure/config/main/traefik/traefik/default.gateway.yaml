@@ -44,6 +44,8 @@ spec:
       tls:
         certificateRefs:
           - name: cert-manager-local-tls
+        options:
+          cert-manager.io/issuer: cert-manager-local
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -80,6 +82,8 @@ spec:
       tls:
         certificateRefs:
           - name: cert-manager-local-tls
+        options:
+          cert-manager.io/issuer: cert-manager-local
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -125,4 +129,6 @@ spec:
       tls:
         certificateRefs:
           - name: cert-manager-local-tls
+        options:
+          cert-manager.io/issuer: cert-manager-local
         mode: Passthrough
