@@ -28,6 +28,8 @@ providers:
     allowCrossNamespace: true
 gateway:
   enabled: false
+api:
+  dashboard: true
 experimental:
   plugins:
     jwt:
