@@ -4,8 +4,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: default
-  annotations:
-    cert-manager.io/cluster-issuer: cert-manager-public-prod
 spec:
   gatewayClassName: traefik
   listeners:
@@ -33,6 +31,8 @@ spec:
       tls:
         certificateRefs:
           - name: public-certificate-prod
+        options:
+          cert-manager.io/cluster-issuer: cert-manager-public-prod
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -71,6 +71,8 @@ spec:
       tls:
         certificateRefs:
           - name: public-certificate-prod
+        options:
+          cert-manager.io/cluster-issuer: cert-manager-public-prod
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -95,6 +97,8 @@ spec:
       tls:
         certificateRefs:
           - name: public-certificate-prod
+        options:
+          cert-manager.io/cluster-issuer: cert-manager-public-prod
         mode: Terminate
     - allowedRoutes:
         kinds:
@@ -116,6 +120,8 @@ spec:
       tls:
         certificateRefs:
           - name: public-certificate-prod
+        options:
+          cert-manager.io/cluster-issuer: cert-manager-public-prod
         mode: Passthrough
     - allowedRoutes:
         kinds:
