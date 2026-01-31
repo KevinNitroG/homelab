@@ -6,4 +6,3 @@ resources:
   - ./flux-system/
   - ./ks/
   - ./namespace/
-  - ./setting/

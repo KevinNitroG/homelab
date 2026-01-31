@@ -7,3 +7,4 @@ resources:
   - ./app.yaml
   - ./infrastructure.yaml
   - ./monitoring.yaml
+  - ./setting.yaml
