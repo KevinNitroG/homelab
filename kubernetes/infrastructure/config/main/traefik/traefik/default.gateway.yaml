@@ -43,7 +43,7 @@ spec:
       protocol: HTTPS
       tls:
         certificateRefs:
-          - name: local-tls
+          - name: cert-manager-local-tls
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -79,7 +79,7 @@ spec:
       protocol: HTTPS
       tls:
         certificateRefs:
-          - name: local-tls
+          - name: cert-manager-local-tls
         mode: Terminate
     - allowedRoutes:
         namespaces:
@@ -124,5 +124,5 @@ spec:
       protocol: TLS
       tls:
         certificateRefs:
-          - name: local-tls
+          - name: cert-manager-local-tls
         mode: Passthrough
