@@ -34,10 +34,6 @@ spec:
                   value: ${GRAFANA_ADMIN_PASSWORD}
                 - name: GF_DATE_FORMATS_USE_BROWSER_LOCALE
                   value: "true"
-                - name: AUTH_CLIENT_ID
-                  value: ${GRAFANA_AUTH_CLIENT_ID}
-                - name: AUTH_CLIENT_SECRET
-                  value: ${GRAFANA_AUTH_CLIENT_SECRET}
               resources:
                 limits:
                   cpu: 200m
