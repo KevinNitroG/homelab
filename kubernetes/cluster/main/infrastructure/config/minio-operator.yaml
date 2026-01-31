@@ -14,4 +14,4 @@ spec:
     name: flux-system
   path: kubernetes/infrastructure/config/main/minio-operator/
   dependsOn:
-    - name: infrastructure-config-minio-operator
+    - name: infrastructure-controller-minio-operator
