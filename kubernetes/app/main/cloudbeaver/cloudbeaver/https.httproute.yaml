@@ -25,7 +25,7 @@ spec:
           extensionRef:
             group: traefik.io
             kind: Middleware
-            name: auth
+            name: traefik-auth
       backendRefs:
         - name: cloudbeaver-cloudbeaver
           port: 8978
