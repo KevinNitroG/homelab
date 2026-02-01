@@ -12,5 +12,5 @@ resources:
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
   - ./tlsroute.yaml
-patches: []
-#   - path: ./kite.cluster.patch.yaml
+patches:
+  - path: ./kite.cluster.patch.yaml
