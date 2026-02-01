@@ -6,9 +6,12 @@ metadata:
   name: cloudbeaver-https
 spec:
   parentRefs:
-    - name: default
-      sectionName: https-wildcard-local
+    - &gateway
+      name: default
       namespace: traefik
+      sectionName: http-wildcard
+    - <<: *gateway
+      sectionName: http-wildcard-local
   hostnames:
     - cloudbeaver.${PUBLIC_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
@@ -17,6 +20,12 @@ spec:
         - path:
             type: PathPrefix
             value: /
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: auth
       backendRefs:
         - name: cloudbeaver-cloudbeaver
           port: 8978
