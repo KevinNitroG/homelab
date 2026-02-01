@@ -17,6 +17,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: kite-helm-values
-    - kind: Secret
-      name: kite-helm-secret-values
-      valuesKey: values.yaml

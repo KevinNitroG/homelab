@@ -9,9 +9,5 @@ configMapGenerator:
   - name: kite-helm-values
     files:
       - ./values.yaml
-secretGenerator:
-  - name: kite-helm-secret-values
-    files:
-      - values.yaml=./values.yaml.encrypted
 configurations:
   - ./kustomizeconfig.yaml
