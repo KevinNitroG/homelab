@@ -1,13 +1,12 @@
 ---
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
 labels:
   - pairs:
       app.kubernetes.io/name: cnpg
     includeSelectors: true
 resources:
-  - ../../../base/grafana/cnpg/
   - ./objectstore.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
