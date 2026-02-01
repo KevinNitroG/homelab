@@ -8,12 +8,8 @@ spec:
   parentRefs:
     - &gateway
       name: default
-      sectionName: https
-      namespace: traefik
-    - <<: *gateway
       sectionName: https-wildcard
-    - <<: *gateway
-      sectionName: https-local
+      namespace: traefik
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:

@@ -13,6 +13,10 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/app/main/kite/
+  dependsOn:
+    - name: infrastructure-controller-gatewayapi
+    - name: infrastructure-controller-cnpg-system
+    - name: infrastructure-config-cnpg-system
   decryption:
     provider: sops
     secretRef:
