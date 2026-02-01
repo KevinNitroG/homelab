@@ -1,3 +1,5 @@
 ---
 secret:
   create: false
+db:
+  type: postgres
