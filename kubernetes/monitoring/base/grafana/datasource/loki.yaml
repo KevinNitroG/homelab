@@ -16,7 +16,7 @@ spec:
     jsonData:
       derivedFields:
         - name: TraceID
-          url: http://tempo-tempo:3200/trace/$${__value.raw}
+          url: $${__value.raw}
           datasourceUid: Tempo
           matcherRegex: (?:trace_id|traceid|trace)="([^"]+)"
           urlFormat: "TraceID: {{__value.raw}}"
