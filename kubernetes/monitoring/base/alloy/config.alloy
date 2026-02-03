@@ -32,7 +32,7 @@ loki.source.kubernetes "pod_logs" {
 
 loki.write "default" {
 	endpoint {
-		url = "http://loki-gateway/loki/api/v1/push"
+		url = "http://loki-loki-gateway/loki/api/v1/push"
 	}
 }
 
