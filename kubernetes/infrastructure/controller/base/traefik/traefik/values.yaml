@@ -73,8 +73,7 @@ logs:
     enabled: true
     format: json
     filters:
-      statuscodes:
-        - "400-599"
+      statuscodes: "400-599"
 
 deployment:
   podLabels:
