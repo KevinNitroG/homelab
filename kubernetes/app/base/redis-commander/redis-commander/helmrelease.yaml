@@ -9,7 +9,7 @@ spec:
   timeout: 1m
   chart:
     spec:
-      chart: redis-commander
+      chart: k8s/helm-chart/redis-commander/
       sourceRef:
         kind: GitRepository
         name: redis-commander
