@@ -62,6 +62,7 @@ tracing:
       enabled: true
       endpoint: alloy-alloy.monitoring:4317
       insecure: true
+      tls: null
 
 experimental:
   plugins:
