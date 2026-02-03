@@ -1,6 +1,17 @@
 ---
 namespaceOverride: monitoring
+
 alertmanager:
+  alertmanagerSpec:
+    externalUrl: https://alertmanager.${PUBLIC_DOMAIN}
+    volumes:
+      - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
+        secret:
+          secretName: *alertmanagerSecret
+    volumeMounts:
+      - name: *alertmanagerSecret
+        mountPath: /etc/alertmanager/secrets/telegram
+
   config:
     route:
       receiver: default
@@ -12,49 +23,85 @@ alertmanager:
           - chat_id: -1001644026686
             message_thread_id: 638
             bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
-  alertmanagerSpec:
-    externalUrl: https://alertmanager.${LOCAL_DOMAIN}
-    volumes:
-      - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
-        secret:
-          secretName: *alertmanagerSecret
-    volumeMounts:
-      - name: *alertmanagerSecret
-        mountPath: /etc/alertmanager/secrets/telegram
+
   route:
     http:
       enabled: true
       parentRefs:
         - &gateway
           name: default
-          sectionName: http-wildcard-local
+          sectionName: http-wildcard
           namespace: traefik
+        - <<: *gateway
+          sectionName: http-wildcard-local
       hostnames: &hostnames
         - alertmanager.${LOCAL_DOMAIN}
+        - alertmanager.${PUBLIC_DOMAIN}
       httpsRedirect: true
+
     https:
       enabled: true
       parentRefs:
         - <<: *gateway
+          sectionName: https-wildcard
+        - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: kube-prometheus-stack-auth
+      additionalRules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /outpost.goauthentik.io/
+          backendRefs:
+            - name: ak-outpost-authentik-embedded-outpost
+              namespace: authentik
+              port: 9000
+
 prometheus:
   prometheusSpec:
-    externalUrl: https://prometheus.${LOCAL_DOMAIN}
+    externalUrl: https://prometheus.${PUBLIC_DOMAIN}
+
   route:
     http:
       enabled: true
       parentRefs:
         - &gateway
           name: default
-          sectionName: http-wildcard-local
+          sectionName: http-local
           namespace: traefik
+        - <<: *gateway
+          sectionName: http-wildcard-local
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
+        - prometheus.${PUBLIC_DOMAIN}
       httpsRedirect: true
+
     https:
       enabled: true
       parentRefs:
         - <<: *gateway
+          sectionName: https-local
+        - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: kube-prometheus-stack-auth
+      additionalRules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /outpost.goauthentik.io/
+          backendRefs:
+            - name: ak-outpost-authentik-embedded-outpost
+              namespace: authentik
+              port: 9000
