@@ -3,8 +3,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  # - ./minio-operator.yaml
   - ./authentik.yaml
   - ./cnpg-system.yaml
   - ./flux-system.yaml
-  - ./minio-operator.yaml
   - ./traefik.yaml
