@@ -17,3 +17,7 @@ spec:
   dependsOn:
     - name: infrastructure-controller-gatewayapi
     - name: infrastructure-controller-monitoring
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: clustersetting
