@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: redis-commander-redis-commander
+spec:
+  interval: 12h
+  timeout: 1m
+  chart:
+    spec:
+      chart: redis-commander
+      sourceRef:
+        kind: GitRepository
+        name: redis-commander
+  valuesFrom:
+    - kind: ConfigMap
+      name: redis-commander-helm-values

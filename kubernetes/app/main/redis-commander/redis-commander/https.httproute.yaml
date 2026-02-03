@@ -3,18 +3,22 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: traefik-https
+  name: redis-commander-https
 spec:
   parentRefs:
     - &gateway
       name: default
-      sectionName: https-wildcard
+      sectionName: https
       namespace: traefik
+    - <<: *gateway
+      sectionName: https-wildcard
+    - <<: *gateway
+      sectionName: https-local
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:
-    - traefik.${LOCAL_DOMAIN}
-    - traefik.${PUBLIC_DOMAIN}
+    - redis-commander.${LOCAL_DOMAIN}
+    - redis-commander.${PUBLIC_DOMAIN}
   rules:
     - matches:
         - path:
@@ -35,5 +39,5 @@ spec:
             kind: Middleware
             name: traefik-traefik-auth
       backendRefs:
-        - name: traefik-api
-          port: 8080
+        - name: redis-commander
+          port: 80

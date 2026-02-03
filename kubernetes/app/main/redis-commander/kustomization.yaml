@@ -2,9 +2,9 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: redis-commander
 resources:
-  - ./api.service.yaml
-  - ./auth.middleware.yaml
-  - ./default.gateway.yaml
-  - ./http.httproute.yaml
-  - ./https.httproute.yaml
+  - ../../base/redis-commander/
+components:
+  - ./redis-commander/
+  - ./traefik/

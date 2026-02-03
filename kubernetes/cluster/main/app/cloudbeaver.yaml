@@ -15,6 +15,7 @@ spec:
   path: kubernetes/app/main/cloudbeaver/
   dependsOn:
     - name: infrastructure-controller-gatewayapi
+    - name: infrastructure-controller-traefik
     - name: infrastructure-controller-cnpg-system
     - name: infrastructure-config-cnpg-system
   decryption:
