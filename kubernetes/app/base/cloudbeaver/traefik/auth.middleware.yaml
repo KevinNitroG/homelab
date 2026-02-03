@@ -6,7 +6,7 @@ metadata:
   name: traefik-cloudbeaver-auth
 spec:
   forwardAuth:
-    address: http://ak-outpost-authentik-embedded-outpost.authentik:9000/outpost.goauthentik.io/auth/cloudbeaver
+    address: http://ak-outpost-authentik-embedded-outpost.authentik:9000/outpost.goauthentik.io/auth/traefik
     trustForwardHeader: true
     authResponseHeaders:
       - X-authentik-username
