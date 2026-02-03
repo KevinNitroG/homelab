@@ -7,7 +7,7 @@ metadata:
 spec:
   targetNamespace: monitoring
   interval: 12h
-  timeout: 5m
+  timeout: 1m
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack

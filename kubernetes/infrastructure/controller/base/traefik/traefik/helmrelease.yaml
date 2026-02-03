@@ -6,7 +6,7 @@ metadata:
   name: traefik
 spec:
   interval: 12h
-  timeout: 5m
+  timeout: 1m
   chartRef:
     kind: OCIRepository
     name: traefik
