@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./cloudbeaver.referencegrant.yaml
   - ./traefik.referencegrant.yaml
+  - ./redis-commander.referencegrant.yaml
