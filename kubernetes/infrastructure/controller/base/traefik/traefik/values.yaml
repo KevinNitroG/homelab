@@ -19,7 +19,7 @@ ports:
     expose:
       default: true
     observability:
-      tracing: false
+      tracing: true
       metrics: false
   samba:
     port: 445
@@ -35,14 +35,17 @@ ports:
     observability:
       tracing: false
       metrics: false
+
 providers:
   kubernetesGateway:
     enabled: true
     experimentalChannel: true
   kubernetesCRD:
     allowCrossNamespace: true
+
 gateway:
   enabled: false
+
 additionalArguments:
   - --api.insecure=true
 api:
@@ -56,6 +59,7 @@ metrics:
       enabled: true
 
 tracing:
+  sampleRate: 0.5
   otlp:
     enabled: true
     grpc:
@@ -63,6 +67,18 @@ tracing:
       endpoint: alloy-alloy.monitoring:4317
       insecure: true
       tls: null
+
+logs:
+  access:
+    enabled: true
+    format: json
+    filters:
+      statuscodes:
+        - "400-599"
+
+deployment:
+  podLabels:
+    alloy.kevinnitro/scrape: "1"
 
 experimental:
   plugins:
