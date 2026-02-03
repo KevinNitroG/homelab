@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/grafana/loki/refs/heads/main/production/helm/loki/values.schema.json
 loki:
   image:
     registry: docker.io
@@ -38,6 +39,8 @@ singleBinary:
   persistence:
     enabled: true
     size: 10Gi
+gateway:
+  replicas: 0
 backend:
   replicas: 0
 read:

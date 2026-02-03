@@ -12,7 +12,7 @@ spec:
     type: loki
     name: Loki
     access: proxy
-    url: http://loki-loki-gateway:80
+    url: http://loki-loki:3100
     jsonData:
       derivedFields:
         - name: TraceID
