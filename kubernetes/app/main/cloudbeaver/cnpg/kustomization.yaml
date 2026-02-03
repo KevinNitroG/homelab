@@ -10,5 +10,5 @@ resources:
   - ./objectstore.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
-patches: []
-  # - path: ./cloudbeaver.cluster.patch.yaml
+patches:
+  - path: ./cloudbeaver.cluster.patch.yaml
