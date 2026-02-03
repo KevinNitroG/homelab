@@ -1,6 +1,9 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/traefik/traefik-helm-chart/refs/heads/master/traefik/values.schema.json
 ports:
+  traefik:
+    expose:
+      default: true
   web:
     port: 8000
     expose:
