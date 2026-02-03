@@ -12,4 +12,4 @@ spec:
     type: tempo
     name: Tempo
     access: proxy
-    url: http://tempo:3100
+    url: http://tempo-tempo:3200
