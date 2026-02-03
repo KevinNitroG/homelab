@@ -73,7 +73,7 @@ prometheus:
       parentRefs:
         - &gateway
           name: default
-          sectionName: http-local
+          sectionName: http-wildcard
           namespace: traefik
         - <<: *gateway
           sectionName: http-wildcard-local
@@ -86,7 +86,7 @@ prometheus:
       enabled: true
       parentRefs:
         - <<: *gateway
-          sectionName: https-local
+          sectionName: https-wildcard
         - <<: *gateway
           sectionName: https-wildcard-local
       hostnames: *hostnames
