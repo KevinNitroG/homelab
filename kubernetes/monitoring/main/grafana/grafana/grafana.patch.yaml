@@ -14,6 +14,7 @@ spec:
       enabled: "true"
       name: Authentik
       allow_sign_up: "true"
+      auto_login: "true"
       client_id: ${GRAFANA_AUTH_CLIENT_ID}
       client_secret: ${GRAFANA_AUTH_CLIENT_SECRET}
       scopes: openid email profile
@@ -24,4 +25,5 @@ spec:
       auth_url: https://authentik.${PUBLIC_DOMAIN}/application/o/authorize/
       token_url: https://authentik.${PUBLIC_DOMAIN}/application/o/token/
       api_url: https://authentik.${PUBLIC_DOMAIN}/application/o/userinfo/
+      signout_redirect_url: https://authentik.${PUBLIC_DOMAIN}/application/o/grafana/end-session/
       role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
