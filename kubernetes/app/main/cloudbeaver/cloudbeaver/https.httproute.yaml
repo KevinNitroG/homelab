@@ -9,9 +9,9 @@ spec:
     - &gateway
       name: default
       namespace: traefik
-      sectionName: http-wildcard
+      sectionName: https-wildcard
     - <<: *gateway
-      sectionName: http-wildcard-local
+      sectionName: https-wildcard-local
   hostnames:
     - cloudbeaver.${PUBLIC_DOMAIN}
     - cloudbeaver.${LOCAL_DOMAIN}
