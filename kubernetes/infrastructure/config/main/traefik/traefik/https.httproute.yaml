@@ -35,5 +35,5 @@ spec:
             kind: Middleware
             name: traefik-auth
       backendRefs:
-        - name: traefik
+        - name: traefik-api
           port: 8080
