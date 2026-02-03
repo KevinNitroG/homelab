@@ -6,30 +6,35 @@ ports:
       default: true
     observability:
       tracing: false
+      metrics: false
   web:
     port: 8000
     expose:
       default: true
     observability:
       tracing: false
+      metrics: false
   websecure:
     port: 8443
     expose:
       default: true
     observability:
       tracing: false
+      metrics: false
   samba:
     port: 445
     expose:
       default: true
     observability:
       tracing: false
+      metrics: false
   postgres:
     port: 5432
     expose:
       default: true
     observability:
       tracing: false
+      metrics: false
 providers:
   kubernetesGateway:
     enabled: true
@@ -42,6 +47,14 @@ additionalArguments:
   - --api.insecure=true
 api:
   dashboard: true
+
+metrics:
+  prometheus:
+    service:
+      enabled: true
+    serviceMonitor:
+      enabled: true
+
 tracing:
   otlp:
     enabled: true
@@ -49,6 +62,7 @@ tracing:
       enabled: true
       endpoint: alloy-alloy.monitoring:4317
       insecure: true
+
 experimental:
   plugins:
     jwt:

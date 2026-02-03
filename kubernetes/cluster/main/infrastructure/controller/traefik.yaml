@@ -16,3 +16,4 @@ spec:
   path: kubernetes/infrastructure/controller/main/traefik/
   dependsOn:
     - name: infrastructure-controller-gatewayapi
+    - name: infrastructure-controller-monitoring
