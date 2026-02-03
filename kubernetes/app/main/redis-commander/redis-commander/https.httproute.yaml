@@ -39,5 +39,5 @@ spec:
             kind: Middleware
             name: traefik-traefik-auth
       backendRefs:
-        - name: redis-commander
+        - name: redis-commander-redis-commander
           port: 80
