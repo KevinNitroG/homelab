@@ -4,27 +4,32 @@ ports:
   traefik:
     expose:
       default: true
+    observability:
+      tracing: false
   web:
     port: 8000
     expose:
       default: true
-    # http:
-    #   redirections:
-    #     entryPoint:
-    #       to: websecure
-    #       scheme: https
+    observability:
+      tracing: false
   websecure:
     port: 8443
     expose:
       default: true
+    observability:
+      tracing: false
   samba:
     port: 445
     expose:
       default: true
+    observability:
+      tracing: false
   postgres:
     port: 5432
     expose:
       default: true
+    observability:
+      tracing: false
 providers:
   kubernetesGateway:
     enabled: true
@@ -37,6 +42,13 @@ additionalArguments:
   - --api.insecure=true
 api:
   dashboard: true
+tracing:
+  otlp:
+    enabled: true
+    grpc:
+      enabled: true
+      endpoint: alloy-alloy.monitoring:4317
+      insecure: true
 experimental:
   plugins:
     jwt:
