@@ -37,7 +37,7 @@ spec:
           extensionRef:
             group: traefik.io
             kind: Middleware
-            name: traefik-traefik-auth
+            name: traefik-redis-commander-auth
       backendRefs:
         - name: redis-commander-redis-commander
           port: 80
