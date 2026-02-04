@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: cloudbeaver
-          image: dbeaver/cloudbeaver:25.3.3
+          image: dbeaver/cloudbeaver:25.3.4
           ports:
             - containerPort: 8978
           env:
