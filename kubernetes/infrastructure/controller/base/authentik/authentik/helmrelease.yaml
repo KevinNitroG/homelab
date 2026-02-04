@@ -6,7 +6,7 @@ metadata:
   name: authentik
 spec:
   interval: 12h
-  timeout: 1m
+  timeout: 5m # Because authentik is slow to start at first, and when upgrade also
   chart:
     spec:
       chart: authentik
