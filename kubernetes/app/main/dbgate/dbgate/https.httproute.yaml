@@ -19,7 +19,21 @@ spec:
     - matches:
         - path:
             type: PathPrefix
+            value: /outpost.goauthentik.io/
+      backendRefs:
+        - name: ak-outpost-authentik-embedded-outpost
+          namespace: authentik
+          port: 9000
+    - matches:
+        - path:
+            type: PathPrefix
             value: /
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: traefik-cloudbeaver-auth
       backendRefs:
         - name: dbgate-dbgate
           port: 3100
