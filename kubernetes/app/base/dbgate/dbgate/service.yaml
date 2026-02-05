@@ -6,4 +6,4 @@ metadata:
   name: dbgate-dbgate
 spec:
   ports:
-    - port: 3100
+    - port: 3000

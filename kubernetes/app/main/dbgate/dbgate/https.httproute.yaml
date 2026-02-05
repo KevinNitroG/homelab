@@ -36,4 +36,4 @@ spec:
             name: traefik-cloudbeaver-auth
       backendRefs:
         - name: dbgate-dbgate
-          port: 3100
+          port: 3000
