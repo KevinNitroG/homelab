@@ -5,3 +5,5 @@ kind: Kustomization
 namespace: dbgate
 resources:
   - ../../base/dbgate/
+components:
+  - ./dbgate/
