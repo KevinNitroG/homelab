@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+labels:
+  - pairs:
+      app.kubernetes.io/name: dbgate-dbgate
+    includeSelectors: true
+resources:
+  - ./data.pvc.yaml
+  - ./deployment.yaml
+  - ./env.secret.sops.yaml
+  - ./service.yaml

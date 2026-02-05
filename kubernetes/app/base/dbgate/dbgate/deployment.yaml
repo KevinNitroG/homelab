@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbgate-dbgate
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  template:
+    metadata:
+      name: dbgate-dbgate
+    spec:
+      containers:
+        - name: dbgate
+          image: dbgate/dbgate:7.0.1-alpine
+          ports:
+            - containerPort: 3100
+          envFrom:
+            - secretRef:
+                name: dbgate-env
+          volumeMounts:
+            - name: &data dbgate-data
+              mountPath: /root/.dbgate
+      volumes:
+        - name: *data
+          persistentVolumeClaim:
+            claimName: *data
+  selector: {}

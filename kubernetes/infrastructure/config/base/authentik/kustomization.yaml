@@ -3,7 +3,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./cloudbeaver.referencegrant.yaml
+  # - ./cloudbeaver.referencegrant.yaml
+  # - ./redis-commander.referencegrant.yaml
+  - ./dbgate.referencegrant.yaml
   - ./monitoring.referencegrant.yaml
-  - ./redis-commander.referencegrant.yaml
   - ./traefik.referencegrant.yaml
