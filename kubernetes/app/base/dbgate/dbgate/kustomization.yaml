@@ -9,5 +9,4 @@ labels:
 resources:
   - ./data.pvc.yaml
   - ./deployment.yaml
-  - ./env.secret.sops.yaml
   - ./service.yaml

@@ -4,8 +4,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: dbgate-dbgate
-  annotations:
-    reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
@@ -16,9 +14,9 @@ spec:
           image: dbgate/dbgate:7.0.1-alpine
           ports:
             - containerPort: 3000
-          envFrom:
-            - secretRef:
-                name: dbgate-env
+          env:
+            - name: SKIP_ALL_AUTH
+              value: "1"
           volumeMounts:
             - name: &data dbgate-data
               mountPath: /root/.dbgate
