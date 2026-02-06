@@ -52,11 +52,13 @@ api:
   dashboard: true
 
 metrics:
-  prometheus:
-    service:
+  otlp:
+    enabled: true
+    grpc:
       enabled: true
-    serviceMonitor:
-      enabled: true
+      endpoint: alloy-alloy.monitoring:4317
+      insecure: true
+      tls: null
 
 tracing:
   sampleRate: 0.5

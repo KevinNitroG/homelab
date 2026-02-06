@@ -39,6 +39,7 @@ prometheus:
       tag: v3.9.1
     enableAdminAPI: true
     scrapeInterval: 1m
+    enableRemoteWriteReceiver: true
     podMonitorSelectorNilUsesHelmValues: false
     # podMonitorNamespaceSelector: &prometheus-namespace-selector
     #   matchLabels:

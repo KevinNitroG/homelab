@@ -6,6 +6,74 @@ logging {
 	format = "logfmt"
 }
 
+loki.write "default" {
+	endpoint {
+		url = "http://loki-loki:3100/loki/api/v1/push"
+	}
+}
+
+prometheus.remote_write "default" {
+	endpoint {
+		url = "http://kube-prometheus-stack-prometheus:9090/api/v1/write"
+	}
+}
+
+otelcol.exporter.otlp "default" {
+	client {
+		endpoint = "tempo-tempo:4317"
+
+		tls {
+			insecure = true
+		}
+	}
+}
+
+otelcol.receiver.otlp "default" {
+	grpc {
+		endpoint = "0.0.0.0:4317"
+	}
+
+	http {
+		endpoint = "0.0.0.0:4318"
+	}
+
+	output {
+		metrics = [otelcol.processor.k8sattributes.default.input]
+		logs    = [otelcol.processor.k8sattributes.default.input]
+		traces  = [otelcol.processor.k8sattributes.default.input]
+	}
+}
+
+otelcol.processor.k8sattributes "default" {
+	extract {
+		metadata = [
+			"k8s.namespace.name",
+			"k8s.pod.name",
+			"k8s.container.name",
+		]
+	}
+
+	output {
+		metrics = [otelcol.processor.batch.default.input]
+		logs    = [otelcol.processor.batch.default.input]
+		traces  = [otelcol.processor.batch.default.input]
+	}
+}
+
+otelcol.processor.batch "default" {
+	output {
+		metrics = [otelcol.exporter.prometheus.default.input]
+		logs    = [otelcol.exporter.otlp.default.input]
+		traces  = [otelcol.exporter.otlp.default.input]
+	}
+}
+
+otelcol.exporter.prometheus "default" {
+	forward_to = [prometheus.remote_write.default.receiver]
+}
+
+// Kubernetes Pod Logs Discovery
+
 discovery.kubernetes "pods" {
 	role = "pod"
 
@@ -28,56 +96,4 @@ discovery.relabel "pod_logs" {
 loki.source.kubernetes "pod_logs" {
 	targets    = discovery.relabel.pod_logs.output
 	forward_to = [loki.write.default.receiver]
-}
-
-loki.write "default" {
-	endpoint {
-		url = "http://loki-loki:3100/loki/api/v1/push"
-	}
-}
-
-otelcol.receiver.otlp "default" {
-	grpc {
-		endpoint = "0.0.0.0:4317"
-	}
-
-	http {
-		endpoint = "0.0.0.0:4318"
-	}
-
-	output {
-		// metrics = []
-		// logs    = []
-		traces = [otelcol.processor.k8sattributes.default.input]
-	}
-}
-
-otelcol.processor.k8sattributes "default" {
-	extract {
-		metadata = [
-			"k8s.namespace.name",
-			"k8s.pod.name",
-			"k8s.container.name",
-		]
-	}
-
-	output {
-		traces = [otelcol.processor.batch.default.input]
-	}
-}
-
-otelcol.processor.batch "default" {
-	output {
-		traces = [otelcol.exporter.otlp.tempo.input]
-	}
-}
-
-otelcol.exporter.otlp "tempo" {
-	client {
-		endpoint = "tempo-tempo:4317"
-
-		tls {
-			insecure = true
-		}
-	}
 }
