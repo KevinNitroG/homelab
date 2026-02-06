@@ -10,5 +10,5 @@ spec:
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip # need this
   ref:
-    tag: 0.27.0
+    tag: 0.27.1
   url: oci://ghcr.io/cloudnative-pg/charts/cloudnative-pg
