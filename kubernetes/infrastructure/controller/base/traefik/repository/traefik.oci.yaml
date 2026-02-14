@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 39.0.0
+    tag: 39.0.1
   url: oci://ghcr.io/traefik/helm/traefik
