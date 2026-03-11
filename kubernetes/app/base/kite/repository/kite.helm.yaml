@@ -9,4 +9,4 @@ metadata:
 spec:
   interval: 24h
   timeout: 5m
-  url: https://zxh326.github.io/kite
+  url: https://kite-org.github.io/kite
