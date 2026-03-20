@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: dbgate
-          image: dbgate/dbgate:7.1.2-alpine
+          image: dbgate/dbgate:7.1.4-alpine
           ports:
             - containerPort: 3000
           env:
