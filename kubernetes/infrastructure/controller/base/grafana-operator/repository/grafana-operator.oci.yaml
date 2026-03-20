@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 5.22.1
+    tag: 5.22.2
   url: oci://ghcr.io/grafana/helm-charts/grafana-operator
