@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: authentik
-      version: 2026.2.1
+      version: 2025.12.3 # https://docs.goauthentik.io/install-config/upgrade/
   valuesFrom:
     - kind: ConfigMap
       name: authentik-helm-values
