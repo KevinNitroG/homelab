@@ -42,6 +42,18 @@
       "matchUpdateTypes": ["digest"],
       "matchPackageNames": ["ghcr.io/kevinnitrog/homelab/*"],
       "automerge": true
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["authentik"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["authentik"],
+      "matchUpdateTypes": ["major", "minor"],
+      "automerge": false
     }
   ],
   "customManagers": [
