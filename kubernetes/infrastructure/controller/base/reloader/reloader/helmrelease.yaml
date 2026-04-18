@@ -13,6 +13,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: stakater
-      version: 2.2.9
+      version: 2.2.11
   install:
     crds: CreateReplace
