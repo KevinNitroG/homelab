@@ -6,19 +6,27 @@ logging {
 	format = "logfmt"
 }
 
-loki.write "default" {
+loki.write "loki" {
 	endpoint {
 		url = "http://loki-loki:3100/loki/api/v1/push"
 	}
 }
 
-prometheus.remote_write "default" {
+prometheus.remote_write "loki" {
 	endpoint {
 		url = "http://kube-prometheus-stack-prometheus:9090/api/v1/write"
 	}
 }
 
-otelcol.exporter.otlp "default" {
+otelcol.exporter.loki "loki" {
+	forward_to = [loki.write.loki.receiver]
+}
+
+otelcol.exporter.prometheus "prometheus" {
+	forward_to = [prometheus.remote_write.prometheus.receiver]
+}
+
+otelcol.exporter.otlp "tempo" {
 	client {
 		endpoint = "tempo-tempo:4317"
 
@@ -63,13 +71,9 @@ otelcol.processor.k8sattributes "default" {
 otelcol.processor.batch "default" {
 	output {
 		metrics = [otelcol.exporter.prometheus.default.input]
-		logs    = [otelcol.exporter.otlp.default.input]
-		traces  = [otelcol.exporter.otlp.default.input]
+		logs    = [otelcol.exporter.loki.default.input]
+		traces  = [otelcol.exporter.otlp.tempo.input]
 	}
-}
-
-otelcol.exporter.prometheus "default" {
-	forward_to = [prometheus.remote_write.default.receiver]
 }
 
 // Kubernetes Pod Logs Discovery
@@ -95,5 +99,5 @@ discovery.relabel "pod_logs" {
 
 loki.source.kubernetes "pod_logs" {
 	targets    = discovery.relabel.pod_logs.output
-	forward_to = [loki.write.default.receiver]
+	forward_to = [loki.write.loki.receiver]
 }
