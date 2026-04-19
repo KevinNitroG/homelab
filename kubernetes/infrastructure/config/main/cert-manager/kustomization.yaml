@@ -2,10 +2,6 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: cert-manager
 resources:
-  # - ./minio-operator.yaml
-  - ./authentik.yaml
-  - ./cert-manager.yaml
-  - ./cnpg-system.yaml
-  - ./flux-system.yaml
-  - ./traefik.yaml
+  - ./cert-manager/
