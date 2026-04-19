@@ -14,6 +14,7 @@ spec:
     name: flux-system
   path: kubernetes/app/main/kite/
   dependsOn:
+    - name: infrastructure-controller-gatewayapi
     - name: infrastructure-controller-traefik
     - name: infrastructure-controller-cnpg-system
     - name: infrastructure-config-cnpg-system
