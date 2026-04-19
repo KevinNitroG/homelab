@@ -39,6 +39,7 @@ ports:
 providers:
   kubernetesGateway:
     enabled: true
+    experimentalChannel: true
   kubernetesCRD:
     allowCrossNamespace: true
 
