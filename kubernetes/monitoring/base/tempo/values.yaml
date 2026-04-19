@@ -1,9 +1,45 @@
 ---
+replicas: 1
+
 tempo:
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: http://monitoring-kube-prometheus-prometheus.monitoring:9090/api/v1/write
+    storage:
+      path: /var/tempo/metrics
+    traces_storage:
+      path: /var/tempo/traces
+
+  ingester:
+    trace_idle_period: 10s
+    max_block_duration: 30m
+
+  queryFrontend:
+    search:
+      concurrent_jobs: 1000
+      target_bytes_per_job: 104857600
+
+  retention: 24h
+
   receivers:
-    jaeger: {}
-    opencensus: {}
+    jaeger: null
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+  reportingEnabled: false
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
 
 persistence:
   enabled: true
-  size: 2Gi
+  size: 5Gi
