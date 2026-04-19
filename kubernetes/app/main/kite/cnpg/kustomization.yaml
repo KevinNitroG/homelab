@@ -11,6 +11,5 @@ resources:
   - ./objectstore.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
-  - ./tlsroute.yaml
 patches:
   - path: ./kite.cluster.patch.yaml
