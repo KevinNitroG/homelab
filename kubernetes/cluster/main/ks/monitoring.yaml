@@ -15,6 +15,5 @@ spec:
   path: kubernetes/cluster/main/monitoring/
   dependsOn:
     - name: infrastructure-controller-monitoring
-    - name: infrastructure-controller-gatewayapi
     - name: infrastructure-controller-cnpg-system
     - name: infrastructure-controller-traefik
