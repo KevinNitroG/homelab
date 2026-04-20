@@ -7,3 +7,4 @@ resources:
   - ./https.httproute.yaml
   - ./public.listenerset.yaml
   - ./local.listenerset.yaml
+  - ./authorizationpolicy.yaml

@@ -2,18 +2,18 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: kube-prometheus-stack-prometheus-authorization-policy
+  name: dbgate-authorization-policy
 spec:
   selector:
     matchLabels:
-      app: kube-prometheus-stack-prometheus
+      app: dbgate-dbgate
   targetRefs:
     - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: public
+      kind: ListenerSet
+      name: dbgate-public
     - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: local
+      kind: ListenerSet
+      name: dbgate-local
   action: CUSTOM
   provider:
     name: authentik
@@ -21,4 +21,4 @@ spec:
     - to:
         - operation:
             hosts:
-              - prometheus.*
+              - dbgate.*
