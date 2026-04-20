@@ -8,6 +8,7 @@ resources:
   - ./authentik.yaml
   - ./cert-manager.yaml
   - ./cnpg-system.yaml
+  - ./gatewayapi.yaml
   - ./grafana-operator.yaml
   - ./monitoring.yaml
   - ./reloader.yaml
