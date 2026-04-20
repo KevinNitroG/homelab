@@ -2,7 +2,7 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: kube-prometheus-stack-prometheus-authentik-policy
+  name: kube-prometheus-stack-prometheus-authorization-policy
 spec:
   selector:
     matchLabels:
