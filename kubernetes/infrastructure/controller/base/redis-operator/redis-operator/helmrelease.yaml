@@ -12,3 +12,6 @@ spec:
     name: redis-operator
   install:
     crds: CreateReplace
+  valuesFrom:
+    - kind: ConfigMap
+      name: redis-operator-helm-values
