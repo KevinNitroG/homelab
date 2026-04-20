@@ -59,12 +59,13 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/\\.yml$/"],
+      "managerFilePatterns": ["/(^|/).*dashboard.yaml$/"],
       "matchStrings": [
-        "#\\s+renovate:\\s+depName=\"(?<depName>.*)\"\\n\\s+gnetId:\\s+(?<packageName>.*?)\\n\\s+revision:\\s+(?<currentValue>.*)"
+        "dashboards\\/(?<depName>\\d+)\\/revisions\\/(?<currentValue>\\d+)\\/download"
       ],
+      "datasourceTemplate": "custom.grafana-dashboards",
       "versioningTemplate": "regex:^(?<major>\\d+)$",
-      "datasourceTemplate": "custom.grafana-dashboards"
+      "autoReplaceStringTemplate": "dashboards/{{depName}}/revisions/{{newValue}}/download"
     },
     {
       "customType": "regex",
@@ -90,7 +91,7 @@
       "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
       "format": "json",
       "transformTemplates": [
-        "{\"releases\":[{\"version\": $string(revision)}]}"
+        "{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"
       ]
     }
   },
