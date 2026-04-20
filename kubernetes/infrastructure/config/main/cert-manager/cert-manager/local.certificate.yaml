@@ -4,10 +4,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cert-manager-local
+  namespace: istio-system
 spec:
   issuerRef:
     name: cert-manager-local
-    kind: Issuer
+    kind: ClusterIssuer
   secretName: cert-manager-local-tls
   commonName: "${LOCAL_DOMAIN}"
   dnsNames:

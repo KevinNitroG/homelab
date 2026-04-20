@@ -35,9 +35,8 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: cert-manager-public-prod
-        options:
-          cert-manager.io/cluster-issuer: cert-manager-public-prod
+          - name: cert-manager-public-prod-tls
+            namespace: cert-manager
     - allowedRoutes:
         namespaces:
           from: All
@@ -48,9 +47,8 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: cert-manager-local
-        options:
-          cert-manager.io/cluster-issuer: cert-manager-local
+          - name: cert-manager-local-tls
+            namespace: cert-manager
 
     - allowedRoutes:
         namespaces:
@@ -77,9 +75,8 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: cert-manager-public-prod
-        options:
-          cert-manager.io/cluster-issuer: cert-manager-public-prod
+          - name: cert-manager-public-prod-tls
+            namespace: cert-manager
     - allowedRoutes:
         namespaces:
           from: All
@@ -90,9 +87,8 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: cert-manager-local
-        options:
-          cert-manager.io/cluster-issuer: cert-manager-local
+          - name: cert-manager-local-tls
+            namespace: cert-manager
 
     - allowedRoutes:
         namespaces:
@@ -104,6 +100,5 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: cert-manager-public-prod
-        options:
-          cert-manager.io/cluster-issuer: cert-manager-public-prod
+          - name: cert-manager-public-prod-tls
+            namespace: cert-manager

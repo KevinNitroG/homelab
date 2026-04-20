@@ -4,11 +4,12 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cert-manager-public-prod
+  namespace: istio-system
 spec:
   issuerRef:
     name: cert-manager-public-prod
     kind: ClusterIssuer
-  secretName: cert-manager-public-prod
+  secretName: cert-manager-public-prod-tls
   commonName: ${PUBLIC_DOMAIN}
   dnsNames:
     - "${PUBLIC_DOMAIN}"
