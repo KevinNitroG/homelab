@@ -6,9 +6,10 @@ metadata:
   name: webhook
 spec:
   parentRefs:
-    - name: webhook
-      sectionName: https
-      kind: ListenerSet
+    - name: default
+      namespace: istio-system
+      sectionName: https-wildcard
+      kind: Gateway
   hostnames:
     - flux-webhook.${PUBLIC_DOMAIN}
   rules:
