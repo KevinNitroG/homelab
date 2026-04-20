@@ -28,13 +28,11 @@ alertmanager:
     http:
       enabled: true
       parentRefs:
-        - &publicGateway
-          name: public
+        - name: default
           sectionName: http-wildcard
           namespace: istio-system
-        - &localGateway
-          name: local
-          sectionName: http-wildcard
+        - name: default
+          sectionName: http-wildcard-local
           namespace: istio-system
       hostnames: &hostnames
         - alertmanager.${LOCAL_DOMAIN}
@@ -44,10 +42,12 @@ alertmanager:
     https:
       enabled: true
       parentRefs:
-        - <<: *publicGateway
+        - name: default
           sectionName: https-wildcard
-        - <<: *localGateway
-          sectionName: https-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: https-wildcard-local
+          namespace: istio-system
       hostnames: *hostnames
 
 prometheus:
@@ -58,10 +58,12 @@ prometheus:
     http:
       enabled: true
       parentRefs:
-        - <<: *publicGateway
+        - name: default
           sectionName: http-wildcard
-        - <<: *localGateway
-          sectionName: http-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: http-wildcard-local
+          namespace: istio-system
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
         - prometheus.${PUBLIC_DOMAIN}
@@ -70,8 +72,10 @@ prometheus:
     https:
       enabled: true
       parentRefs:
-        - <<: *publicGateway
+        - name: default
           sectionName: https-wildcard
-        - <<: *localGateway
-          sectionName: https-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: https-wildcard-local
+          namespace: istio-system
       hostnames: *hostnames
