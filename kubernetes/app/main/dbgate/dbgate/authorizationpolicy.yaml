@@ -9,11 +9,11 @@ spec:
       app: dbgate-dbgate
   targetRefs:
     - group: gateway.networking.k8s.io
-      kind: ListenerSet
-      name: dbgate-public
+      kind: Gateway
+      name: public
     - group: gateway.networking.k8s.io
-      kind: ListenerSet
-      name: dbgate-local
+      kind: Gateway
+      name: local
   action: CUSTOM
   provider:
     name: authentik
