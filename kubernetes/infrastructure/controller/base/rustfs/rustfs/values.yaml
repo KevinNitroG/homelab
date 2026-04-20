@@ -5,10 +5,10 @@ config:
     obs_endpoint:
       trace:
         enabled: true
-        endpoint: http://alloy.monitoring:4317
+        endpoint: http://alloy-alloy.monitoring:4317
       log:
         enabled: true
-        endpoint: http://alloy.monitoring:4317
+        endpoint: http://alloy-alloy.monitoring:4317
 mode:
   distributed:
     enabled: false
