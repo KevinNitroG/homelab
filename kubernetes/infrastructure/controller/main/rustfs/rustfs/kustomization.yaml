@@ -15,9 +15,9 @@ patches:
         path: /spec/valuesFrom/-
         value:
           kind: Secret
-          name: rustfs-helm-values
+          name: rustfs-secret-helm-values
 secretGenerator:
-  - name: rustfs-helm-values
+  - name: rustfs-secret-helm-values
     files:
       - values.yaml=./values.yaml.encrypted
 configurations:
