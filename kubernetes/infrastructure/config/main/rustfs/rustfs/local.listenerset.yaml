@@ -22,9 +22,13 @@ spec:
       port: 443
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: rustfs-local-tls
     - name: endpoint
       hostname: "rustfs.${LOCAL_DOMAIN}"
       protocol: HTTPS
       port: 9000
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: rustfs-local-tls

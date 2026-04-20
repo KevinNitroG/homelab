@@ -18,3 +18,5 @@ spec:
       port: 443
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: flux-webhook-tls

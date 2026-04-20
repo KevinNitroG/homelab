@@ -22,3 +22,5 @@ spec:
       port: 443
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: kube-prometheus-stack-alertmanager-local-tls
