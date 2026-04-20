@@ -37,11 +37,7 @@ spec:
     - name: default
       namespace: istio-system
       kind: Gateway
-      sectionName: endpoint
-    - name: default
-      namespace: istio-system
-      kind: Gateway
-      sectionName: endpoint-local
+      sectionName: 9000-https-wildcard
   hostnames:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}

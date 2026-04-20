@@ -98,3 +98,15 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-public-prod-tls
+
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: "*.${PUBLIC_DOMAIN}"
+      name: 9000-https-wildcard
+      port: 9000
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: cert-manager-public-prod-tls
