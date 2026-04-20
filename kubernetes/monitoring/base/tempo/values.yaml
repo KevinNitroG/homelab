@@ -39,6 +39,10 @@ tempo:
 
   reportingEnabled: false
 
+  extraEnv:
+    - name: GODEBUG
+      value: "netdns=cgo"
+
   resources:
     requests:
       cpu: 100m

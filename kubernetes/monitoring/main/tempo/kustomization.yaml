@@ -5,15 +5,3 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ../../base/tempo/
-patchesJson6902:
-  - target:
-      group: apps
-      version: v1
-      kind: StatefulSet
-      name: tempo-tempo
-    patch: |-
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: GODEBUG
-          value: "netdns=cgo"
