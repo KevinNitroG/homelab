@@ -2,10 +2,8 @@
 # yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: monitoring
 resources:
-  - ../../base/alloy/
-  - ./http.httproute.yaml
-  - ./https.httproute.yaml
-  - ./local.listenerset.yaml
-  - ./public.listenerset.yaml
+  - ./alertmanager.yaml
+  - ./alloy.yaml
+  - ./dbgate.yaml
+  - ./prometheus.yaml

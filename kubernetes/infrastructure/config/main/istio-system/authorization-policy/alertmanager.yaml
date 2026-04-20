@@ -2,11 +2,8 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: kube-prometheus-stack-prometheus-authorization-policy
+  name: alertmanager
 spec:
-  selector:
-    matchLabels:
-      app: kube-prometheus-stack-prometheus
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -21,4 +18,4 @@ spec:
     - to:
         - operation:
             hosts:
-              - prometheus.*
+              - alertmanager.*

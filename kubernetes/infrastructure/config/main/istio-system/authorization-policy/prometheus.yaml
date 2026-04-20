@@ -2,11 +2,8 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: dbgate-authorization-policy
+  name: prometheus
 spec:
-  selector:
-    matchLabels:
-      app: dbgate-dbgate
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -21,4 +18,4 @@ spec:
     - to:
         - operation:
             hosts:
-              - dbgate.*
+              - prometheus.*

@@ -2,11 +2,8 @@
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: alloy-authorization-policy
+  name: dbgate
 spec:
-  selector:
-    matchLabels:
-      app: alloy
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
@@ -21,4 +18,4 @@ spec:
     - to:
         - operation:
             hosts:
-              - alloy.*
+              - dbgate.*
