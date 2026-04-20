@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+resources:
+  - ../../../base/rustfs/rustfs/
+patches:
+  - target:
+      kind: HelmRelease
+      name: rustfs
+      group: helm.toolkit.fluxcd.io
+      version: v2
+    patch: |- # language: yaml
+      - op: add
+        path: /spec/valuesFrom/-
+        value:
+          kind: Secret
+          name: rustfs-helm-values
+secretGenerator:
+  - name: rustfs-helm-values
+    files:
+      - values.yaml=./values.yaml.encrypted
+configurations:
+  - ./kustomizeconfig.yaml

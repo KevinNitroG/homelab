@@ -1,0 +1,26 @@
+---
+config:
+  rustfs:
+    obs_endpoint:
+      trace:
+        enabled: true
+        endpoint: http://alloy.monitoring:4317
+      log:
+        enabled: true
+        endpoint: http://alloy.monitoring:4317
+mode:
+  distributed:
+    enabled: false
+  standalone:
+    enabled: true
+
+resource:
+  limits:
+    cpu: 200m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+storageclass:
+  dataStorageSize: 10Gi

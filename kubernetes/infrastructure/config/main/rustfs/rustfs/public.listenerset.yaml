@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/gateway.networking.k8s.io/listenerset_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: ListenerSet
+metadata:
+  name: rustfs-public
+  annotations:
+    cert-manager.io/cluster-issuer: cert-manager-public-prod
+spec:
+  parentRef:
+    namespace: istio-system
+    name: public
+    kind: Gateway
+    group: gateway.networking.k8s.io
+  listeners:
+    - name: http
+      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      protocol: HTTP
+      port: 80
+    - name: https
+      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      protocol: HTTPS
+      port: 443
+      tls:
+        mode: Terminate
+    - name: endpoint
+      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      protocol: HTTPS
+      port: 9000
+      tls:
+        mode: Terminate

@@ -9,3 +9,4 @@ resources:
   - ./cnpg-system.yaml
   - ./flux-system.yaml
   - ./istio-system.yaml
+  - ./rustfs.yaml

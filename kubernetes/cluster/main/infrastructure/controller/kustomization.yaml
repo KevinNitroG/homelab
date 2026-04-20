@@ -13,3 +13,4 @@ resources:
   - ./istio-system.yaml
   - ./monitoring.yaml
   - ./reloader.yaml
+  - ./rustfs.yaml
