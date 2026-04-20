@@ -15,3 +15,14 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: traefik-helm-values
+  postRenderers:
+    - kustomize:
+        patches:
+          # https://github.com/traefik/traefik-helm-chart/issues/1669?fbclid=IwY2xjawRSwMpleHRuA2FlbQIxMQBzcnRjBmFwcF9pZAEwAAEeTPi1gJu7Q4yoBH72JsNbN07Du3dqMIdIePivasMl4exNiSaJlIE-YPblK5w_aem_nQkDE43tXocg491875r8aA#issuecomment-4090769759
+          - target:
+              group: apiextensions.k8s.io
+              kind: CustomResourceDefinition
+              name: .*\.gateway\.networking\.k8s\.io
+            patch: | # language: yaml
+              - op: remove
+                path: /metadata/labels/some-label
