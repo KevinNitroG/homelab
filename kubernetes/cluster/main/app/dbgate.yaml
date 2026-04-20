@@ -15,7 +15,7 @@ spec:
   path: kubernetes/app/main/dbgate/
   dependsOn:
     - name: infrastructure-controller-gatewayapi
-    - name: infrastructure-controller-traefik
+    - name: infrastructure-controller-istio-system
   postBuild:
     substituteFrom:
       - kind: Secret

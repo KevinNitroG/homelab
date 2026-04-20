@@ -4,5 +4,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./httproute.yaml
+  - ./listenerset.yaml
   - ./receiver.yaml
   - ./token.secret.sops.yaml

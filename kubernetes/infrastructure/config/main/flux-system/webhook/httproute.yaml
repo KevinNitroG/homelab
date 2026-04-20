@@ -6,9 +6,9 @@ metadata:
   name: webhook
 spec:
   parentRefs:
-    - name: default
-      sectionName: https-wildcard
-      namespace: traefik
+    - name: webhook
+      sectionName: https
+      kind: ListenerSet
   hostnames:
     - flux-webhook.${PUBLIC_DOMAIN}
   rules:
