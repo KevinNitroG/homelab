@@ -6,12 +6,14 @@ metadata:
   name: authentik-https
 spec:
   parentRefs:
-     - name: authentik-public
+     - name: default
+       namespace: istio-system
+       kind: Gateway
        sectionName: https
-       kind: ListenerSet
-     - name: authentik-local
-       sectionName: https
-       kind: ListenerSet
+     - name: default
+       namespace: istio-system
+       kind: Gateway
+       sectionName: https-local
   hostnames:
     - authentik.${PUBLIC_DOMAIN}
     - authentik.${LOCAL_DOMAIN}

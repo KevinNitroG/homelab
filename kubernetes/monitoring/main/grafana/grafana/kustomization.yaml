@@ -5,7 +5,5 @@ kind: Component
 resources:
   - ./http.httproute.yaml
   - ./https.httproute.yaml
-  - ./public.listenerset.yaml
-  - ./local.listenerset.yaml
 patches:
   - path: ./grafana.patch.yaml

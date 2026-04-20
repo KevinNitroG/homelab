@@ -6,5 +6,3 @@ resources:
   - ../../../base/kite/kite/
   - ./http.httproute.yaml
   - ./https.httproute.yaml
-  - ./public.listenerset.yaml
-  - ./local.listenerset.yaml

@@ -6,12 +6,14 @@ metadata:
   name: dbgate-https
 spec:
   parentRefs:
-    - name: dbgate-public
+    - name: default
       sectionName: https
-      kind: ListenerSet
-    - name: dbgate-local
-      sectionName: https
-      kind: ListenerSet
+      kind: Gateway
+      namespace: istio-system
+    - name: default
+      sectionName: https-local
+      kind: Gateway
+      namespace: istio-system
   hostnames:
     - dbgate.${PUBLIC_DOMAIN}
     - dbgate.${LOCAL_DOMAIN}

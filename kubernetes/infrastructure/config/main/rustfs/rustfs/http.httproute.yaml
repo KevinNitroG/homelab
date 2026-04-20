@@ -6,12 +6,14 @@ metadata:
   name: rustfs-http
 spec:
   parentRefs:
-     - name: rustfs-public
+     - name: default
+       namespace: istio-system
+       kind: Gateway
        sectionName: http
-       kind: ListenerSet
-     - name: rustfs-local
-       sectionName: http
-       kind: ListenerSet
+     - name: default
+       namespace: istio-system
+       kind: Gateway
+       sectionName: http-local
   hostnames:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}

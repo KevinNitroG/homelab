@@ -6,9 +6,10 @@ metadata:
   name: default
 spec:
   gatewayClassName: istio
-  allowedListeners:
-    namespaces:
-      from: All
+  # For now listeners stuck on "waiting for controller"
+  # allowedListeners:
+  #   namespaces:
+  #     from: All
   listeners:
     - allowedRoutes:
         namespaces:

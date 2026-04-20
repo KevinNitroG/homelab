@@ -6,10 +6,6 @@ namespace: monitoring
 resources:
   - ../../base/kube-prometheus-stack/
   - ./alertmanager-telegram.secret.sops.yaml
-  - ./alertmanager.local.listenerset.yaml
-  - ./alertmanager.public.listenerset.yaml
-  - ./prometheus.local.listenerset.yaml
-  - ./prometheus.public.listenerset.yaml
 patches:
   - target:
       kind: HelmRelease

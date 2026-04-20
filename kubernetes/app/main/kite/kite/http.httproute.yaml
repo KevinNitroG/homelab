@@ -6,12 +6,14 @@ metadata:
   name: kite-http
 spec:
   parentRefs:
-     - name: kite-public
+     - name: default
+       namespace: istio-system
+       kind: Gateway
        sectionName: http
-       kind: ListenerSet
-     - name: kite-local
-       sectionName: http
-       kind: ListenerSet
+     - name: default
+       namespace: istio-system
+       kind: Gateway
+       sectionName: http-local
   hostnames:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}
