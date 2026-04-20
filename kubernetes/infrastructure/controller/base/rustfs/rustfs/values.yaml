@@ -1,6 +1,7 @@
 ---
 config:
   rustfs:
+    log_level: warn
     obs_endpoint:
       trace:
         enabled: true
