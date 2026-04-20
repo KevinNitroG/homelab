@@ -9,11 +9,11 @@ spec:
      - name: default
        namespace: istio-system
        kind: Gateway
-       sectionName: http
+       sectionName: http-wildcard
      - name: default
        namespace: istio-system
        kind: Gateway
-       sectionName: http-local
+       sectionName: http-wildcard-local
   hostnames:
     - alloy.${PUBLIC_DOMAIN}
     - alloy.${LOCAL_DOMAIN}

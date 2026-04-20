@@ -9,11 +9,11 @@ spec:
      - name: default
        namespace: istio-system
        kind: Gateway
-       sectionName: https
+       sectionName: https-wildcard
      - name: default
        namespace: istio-system
        kind: Gateway
-       sectionName: https-local
+       sectionName: https-wildcard-local
   hostnames:
     - grafana.${PUBLIC_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
