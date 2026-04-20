@@ -37,7 +37,6 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-public-prod-tls
-            namespace: cert-manager
     - allowedRoutes:
         namespaces:
           from: All
@@ -49,7 +48,6 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-local-tls
-            namespace: cert-manager
 
     - allowedRoutes:
         namespaces:
@@ -77,7 +75,6 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-public-prod-tls
-            namespace: cert-manager
     - allowedRoutes:
         namespaces:
           from: All
@@ -89,7 +86,6 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-local-tls
-            namespace: cert-manager
 
     - allowedRoutes:
         namespaces:
@@ -102,4 +98,3 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: cert-manager-public-prod-tls
-            namespace: cert-manager
