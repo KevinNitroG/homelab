@@ -28,7 +28,7 @@ otelcol.exporter.prometheus "prometheus" {
 
 otelcol.exporter.otlp "tempo" {
 	client {
-		endpoint = "tempo-tempo:4317"
+		endpoint = "tempo-tempo-0.tempo-tempo-headless.monitoring.svc.cluster.local:4317"
 
 		tls {
 			insecure = true
