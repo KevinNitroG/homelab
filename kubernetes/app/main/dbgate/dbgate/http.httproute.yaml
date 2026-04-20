@@ -6,12 +6,12 @@ metadata:
   name: dbgate-http
 spec:
   parentRefs:
-    - &gateway
-      name: default
-      sectionName: http-wildcard
-      namespace: traefik
-    - <<: *gateway
-      sectionName: http-wildcard-local
+    - name: dbgate-public
+      sectionName: http
+      kind: ListenerSet
+    - name: dbgate-local
+      sectionName: http
+      kind: ListenerSet
   hostnames:
     - dbgate.${PUBLIC_DOMAIN}
     - dbgate.${LOCAL_DOMAIN}

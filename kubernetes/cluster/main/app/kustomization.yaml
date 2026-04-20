@@ -4,11 +4,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: flux-system
 resources:
-  # - ./cloudbeaver.yaml
   # - ./files.yaml
   # - ./glance.yaml
   # - ./mltb.yaml
-  # - ./redis-commander.yaml
   - ./cloudflare-ddns.yaml
   - ./dbgate.yaml
   - ./kite.yaml

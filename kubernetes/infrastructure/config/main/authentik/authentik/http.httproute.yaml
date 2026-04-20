@@ -6,12 +6,12 @@ metadata:
   name: authentik-http
 spec:
   parentRefs:
-    - &gateway
-      name: default
-      sectionName: http-wildcard
-      namespace: traefik
-    - <<: *gateway
-      sectionName: http-wildcard-local
+    - name: authentik-public
+      sectionName: http
+      kind: ListenerSet
+    - name: authentik-local
+      sectionName: http
+      kind: ListenerSet
   hostnames:
     - authentik.${PUBLIC_DOMAIN}
     - authentik.${LOCAL_DOMAIN}

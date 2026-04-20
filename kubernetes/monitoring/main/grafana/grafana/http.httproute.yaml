@@ -6,12 +6,12 @@ metadata:
   name: grafana-http
 spec:
   parentRefs:
-    - &gateway
-      name: default
-      sectionName: http-wildcard
-      namespace: traefik
-    - <<: *gateway
-      sectionName: http-wildcard-local
+    - name: grafana-public
+      sectionName: http
+      kind: ListenerSet
+    - name: grafana-local
+      sectionName: http
+      kind: ListenerSet
   hostnames:
     - grafana.${PUBLIC_DOMAIN}
     - grafana.${LOCAL_DOMAIN}

@@ -6,16 +6,12 @@ metadata:
   name: kite-https
 spec:
   parentRefs:
-    - &gateway
-      name: default
+    - name: kite-public
       sectionName: https
-      namespace: traefik
-    - <<: *gateway
-      sectionName: https-wildcard
-    - <<: *gateway
-      sectionName: https-local
-    - <<: *gateway
-      sectionName: https-wildcard-local
+      kind: ListenerSet
+    - name: kite-local
+      sectionName: https
+      kind: ListenerSet
   hostnames:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}
