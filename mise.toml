@@ -1,3 +1,7 @@
+[env]
+_.file = ".env"
+SOPS_AGE_KEY_FILE = "./secret/age.agekey"
+
 [tools]
 age = "latest"
 cmctl = "latest"

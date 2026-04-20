@@ -2,10 +2,16 @@
   "$schema": "https://www.schemastore.org/prettierrc.json",
   "overrides": [
     {
-      "files": ["**/*.json(c)?", "./.renovaterc.json5"],
+      "files": ["**/*.json(c)?", "./.renovaterc.json5", "*.json.encrypted"],
       "options": {
         "trailingComma": "none",
         "quoteProps": "preserve"
+      }
+    },
+    {
+      "files": ["*.yaml.encrypted", "*.yml.encrypted"],
+      "options": {
+        "parser": "yaml"
       }
     }
   ]

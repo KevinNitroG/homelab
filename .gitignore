@@ -1,4 +1,3 @@
-.env
 kubernetes/**/*secret.yaml
 secret/*
 !secret/.gitkeep
