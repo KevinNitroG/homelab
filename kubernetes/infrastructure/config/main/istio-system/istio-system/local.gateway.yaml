@@ -28,6 +28,8 @@ spec:
       protocol: HTTPS
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: local-tls
     - allowedRoutes:
         namespaces:
           from: All
@@ -44,3 +46,5 @@ spec:
       protocol: HTTPS
       tls:
         mode: Terminate
+        certificateRefs:
+          - name: local-tls
