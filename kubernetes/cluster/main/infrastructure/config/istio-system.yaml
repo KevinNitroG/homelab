@@ -16,3 +16,11 @@ spec:
   path: kubernetes/infrastructure/config/main/istio-system/
   dependsOn:
     - name: infrastructure-controller-istio-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: clustersetting
