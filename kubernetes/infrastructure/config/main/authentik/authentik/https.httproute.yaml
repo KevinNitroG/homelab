@@ -6,12 +6,12 @@ metadata:
   name: authentik-https
 spec:
   parentRefs:
-    - name: authentik-public
-      sectionName: https
-      kind: ListenerSet
-    - name: authentik-local
-      sectionName: https
-      kind: ListenerSet
+     - name: authentik-public
+       sectionName: https
+       kind: ListenerSet
+     - name: authentik-local
+       sectionName: https
+       kind: ListenerSet
   hostnames:
     - authentik.${PUBLIC_DOMAIN}
     - authentik.${LOCAL_DOMAIN}

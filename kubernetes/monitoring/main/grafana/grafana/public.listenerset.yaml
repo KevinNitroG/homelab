@@ -8,16 +8,16 @@ metadata:
 spec:
   parentRef:
     namespace: istio-system
-    name: public
+    name: default
     kind: Gateway
     group: gateway.networking.k8s.io
   listeners:
     - name: http
-      hostname: "grafana.${PUBLIC_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       protocol: HTTP
       port: 80
     - name: https
-      hostname: "grafana.${PUBLIC_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       protocol: HTTPS
       port: 443
       tls:

@@ -6,12 +6,12 @@ metadata:
   name: rustfs-https
 spec:
   parentRefs:
-    - name: rustfs-public
-      sectionName: https
-      kind: ListenerSet
-    - name: rustfs-local
-      sectionName: https
-      kind: ListenerSet
+     - name: rustfs-public
+       sectionName: https
+       kind: ListenerSet
+     - name: rustfs-local
+       sectionName: https
+       kind: ListenerSet
   hostnames:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}
@@ -32,12 +32,12 @@ metadata:
   name: rustfs-endpoint
 spec:
   parentRefs:
-    - name: rustfs-public
-      sectionName: endpoint
-      kind: ListenerSet
-    - name: rustfs-local
-      sectionName: endpoint
-      kind: ListenerSet
+     - name: rustfs-public
+       sectionName: endpoint
+       kind: ListenerSet
+     - name: rustfs-local
+       sectionName: endpoint
+       kind: ListenerSet
   hostnames:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}

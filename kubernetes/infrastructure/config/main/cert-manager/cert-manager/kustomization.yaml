@@ -5,6 +5,8 @@ kind: Kustomization
 resources:
   - ./cloudflare.secret.sops.yaml
   - ./local-ca.secret.sops.yaml
+  - ./local.certificate.yaml
   - ./local.clusterissuer.yaml
+  - ./public-prod.certificate.yaml
   - ./public-prod.clusterissuer.yaml
   - ./public-stag.clusterissuer.yaml

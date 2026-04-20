@@ -8,16 +8,16 @@ metadata:
 spec:
   parentRef:
     namespace: istio-system
-    name: public
+    name: default
     kind: Gateway
     group: gateway.networking.k8s.io
   listeners:
     - name: http
-      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       protocol: HTTP
       port: 80
     - name: https
-      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       protocol: HTTPS
       port: 443
       tls:
@@ -25,9 +25,9 @@ spec:
         certificateRefs:
           - name: rustfs-public-tls
     - name: endpoint
-      hostname: "rustfs.${PUBLIC_DOMAIN}"
+      hostname: "*.${PUBLIC_DOMAIN}"
       protocol: HTTPS
-      port: 9000
+      port: 8080
       tls:
         mode: Terminate
         certificateRefs:

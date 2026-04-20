@@ -6,12 +6,12 @@ metadata:
   name: alloy-http
 spec:
   parentRefs:
-    - name: alloy-public
-      sectionName: http
-      kind: ListenerSet
-    - name: alloy-local
-      sectionName: http
-      kind: ListenerSet
+     - name: alloy-public
+       sectionName: http
+       kind: ListenerSet
+     - name: alloy-local
+       sectionName: http
+       kind: ListenerSet
   hostnames:
     - alloy.${PUBLIC_DOMAIN}
     - alloy.${LOCAL_DOMAIN}

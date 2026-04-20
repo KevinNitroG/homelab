@@ -6,12 +6,12 @@ metadata:
   name: rustfs-http
 spec:
   parentRefs:
-    - name: rustfs-public
-      sectionName: http
-      kind: ListenerSet
-    - name: rustfs-local
-      sectionName: http
-      kind: ListenerSet
+     - name: rustfs-public
+       sectionName: http
+       kind: ListenerSet
+     - name: rustfs-local
+       sectionName: http
+       kind: ListenerSet
   hostnames:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}

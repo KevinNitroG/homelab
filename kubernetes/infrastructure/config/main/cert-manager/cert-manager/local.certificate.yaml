@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/cert-manager.io/certificate_v1.json
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cert-manager-local
+spec:
+  issuerRef:
+    name: cert-manager-local
+    kind: Issuer
+  secretName: cert-manager-local-tls
+  commonName: "${LOCAL_DOMAIN}"
+  dnsNames:
+    - alertmanager.${LOCAL_DOMAIN}
+    - alloy.${LOCAL_DOMAIN}
+    - authentik.${LOCAL_DOMAIN}
+    - dbgate.${LOCAL_DOMAIN}
+    - filebrowser.${LOCAL_DOMAIN}
+    - glance.${LOCAL_DOMAIN}
+    - grafana.${LOCAL_DOMAIN}
+    - kite.${LOCAL_DOMAIN}
+    - metube.${LOCAL_DOMAIN}
+    - prometheus.${LOCAL_DOMAIN}
+    - tempo.${LOCAL_DOMAIN}

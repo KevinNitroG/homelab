@@ -6,12 +6,12 @@ metadata:
   name: alloy-https
 spec:
   parentRefs:
-    - name: alloy-public
-      sectionName: https
-      kind: ListenerSet
-    - name: alloy-local
-      sectionName: https
-      kind: ListenerSet
+     - name: alloy-public
+       sectionName: https
+       kind: ListenerSet
+     - name: alloy-local
+       sectionName: https
+       kind: ListenerSet
   hostnames:
     - alloy.${PUBLIC_DOMAIN}
     - alloy.${LOCAL_DOMAIN}

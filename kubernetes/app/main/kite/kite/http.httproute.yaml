@@ -6,12 +6,12 @@ metadata:
   name: kite-http
 spec:
   parentRefs:
-    - name: kite-public
-      sectionName: http
-      kind: ListenerSet
-    - name: kite-local
-      sectionName: http
-      kind: ListenerSet
+     - name: kite-public
+       sectionName: http
+       kind: ListenerSet
+     - name: kite-local
+       sectionName: http
+       kind: ListenerSet
   hostnames:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}

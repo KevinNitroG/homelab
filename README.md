@@ -29,3 +29,7 @@
 ### Acknowledge
 
 - <https://github.com/tuilakhanh/home-ops>
+
+### Memo
+
+- Public gateway and local gateway share the same port, so they need to be included in the same gateway

@@ -6,12 +6,12 @@ metadata:
   name: grafana-http
 spec:
   parentRefs:
-    - name: grafana-public
-      sectionName: http
-      kind: ListenerSet
-    - name: grafana-local
-      sectionName: http
-      kind: ListenerSet
+     - name: grafana-public
+       sectionName: http
+       kind: ListenerSet
+     - name: grafana-local
+       sectionName: http
+       kind: ListenerSet
   hostnames:
     - grafana.${PUBLIC_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
