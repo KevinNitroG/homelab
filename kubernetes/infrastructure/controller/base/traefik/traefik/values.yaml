@@ -86,4 +86,4 @@ experimental:
   plugins:
     jwt:
       moduleName: github.com/traefik-plugins/traefik-jwt-plugin
-      version: v0.7.1 # TODO: renovate track this
+      version: v0.10.0 # TODO: renovate track this
