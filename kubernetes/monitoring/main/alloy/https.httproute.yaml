@@ -6,12 +6,12 @@ metadata:
   name: alloy-https
 spec:
   parentRefs:
-    - &gateway
-      name: default
-      sectionName: https-wildcard
-      namespace: traefik
-    - <<: *gateway
-      sectionName: https-wildcard-local
+    - name: alloy-public
+      sectionName: https
+      kind: ListenerSet
+    - name: alloy-local
+      sectionName: https
+      kind: ListenerSet
   hostnames:
     - alloy.${PUBLIC_DOMAIN}
     - alloy.${LOCAL_DOMAIN}
@@ -19,21 +19,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /outpost.goauthentik.io/
-      backendRefs:
-        - name: ak-outpost-authentik-embedded-outpost
-          namespace: authentik
-          port: 9000
-    - matches:
-        - path:
-            type: PathPrefix
             value: /
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: alloy-auth
       backendRefs:
         - name: alloy-alloy
           port: 12345

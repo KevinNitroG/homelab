@@ -10,6 +10,6 @@ resources:
   - ./cnpg-system.yaml
   - ./gatewayapi.yaml
   - ./grafana-operator.yaml
+  - ./istio-system.yaml
   - ./monitoring.yaml
   - ./reloader.yaml
-  - ./traefik.yaml

@@ -6,6 +6,9 @@ config:
   apiVersion: controller.config.cert-manager.io/v1alpha1
   kind: ControllerConfiguration
   enableGatewayAPI: true
+  enableGatewayAPIListenerSet: true
+  featureGates:
+    ListenerSets: true
 # extraArgs: # need those for duckdns because it's bruhhh
 #   - --dns01-recursive-nameservers-only
 #   - --dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53

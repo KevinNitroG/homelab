@@ -6,14 +6,15 @@ resources:
   # - ./cloudbeaver.yaml
   # - ./redis-commander.yaml
   # - ./redis-operator.yaml
+  # - ./traefik.yaml
   - ./authentik.yaml
   - ./cert-manager.yaml
   - ./cloudflare-ddns.yaml
   - ./cnpg-system.yaml
   - ./dbgate.yaml
   - ./grafana-operator.yaml
+  - ./istio-system.yaml
   - ./kite.yaml
   - ./minio-operator.yaml
   - ./monitoring.yaml
   - ./reloader.yaml
-  - ./traefik.yaml

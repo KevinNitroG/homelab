@@ -28,12 +28,14 @@ alertmanager:
     http:
       enabled: true
       parentRefs:
-        - &gateway
-          name: default
+        - &publicGateway
+          name: public
           sectionName: http-wildcard
-          namespace: traefik
-        - <<: *gateway
-          sectionName: http-wildcard-local
+          namespace: istio-system
+        - &localGateway
+          name: local
+          sectionName: http-wildcard
+          namespace: istio-system
       hostnames: &hostnames
         - alertmanager.${LOCAL_DOMAIN}
         - alertmanager.${PUBLIC_DOMAIN}
@@ -42,26 +44,11 @@ alertmanager:
     https:
       enabled: true
       parentRefs:
-        - <<: *gateway
+        - <<: *publicGateway
           sectionName: https-wildcard
-        - <<: *gateway
-          sectionName: https-wildcard-local
+        - <<: *localGateway
+          sectionName: https-wildcard
       hostnames: *hostnames
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: kube-prometheus-stack-auth
-      additionalRules:
-        - matches:
-            - path:
-                type: PathPrefix
-                value: /outpost.goauthentik.io/
-          backendRefs:
-            - name: ak-outpost-authentik-embedded-outpost
-              namespace: authentik
-              port: 9000
 
 prometheus:
   prometheusSpec:
@@ -71,12 +58,10 @@ prometheus:
     http:
       enabled: true
       parentRefs:
-        - &gateway
-          name: default
+        - <<: *publicGateway
           sectionName: http-wildcard
-          namespace: traefik
-        - <<: *gateway
-          sectionName: http-wildcard-local
+        - <<: *localGateway
+          sectionName: http-wildcard
       hostnames: &hostnames
         - prometheus.${LOCAL_DOMAIN}
         - prometheus.${PUBLIC_DOMAIN}
@@ -85,23 +70,8 @@ prometheus:
     https:
       enabled: true
       parentRefs:
-        - <<: *gateway
+        - <<: *publicGateway
           sectionName: https-wildcard
-        - <<: *gateway
-          sectionName: https-wildcard-local
+        - <<: *localGateway
+          sectionName: https-wildcard
       hostnames: *hostnames
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: kube-prometheus-stack-auth
-      additionalRules:
-        - matches:
-            - path:
-                type: PathPrefix
-                value: /outpost.goauthentik.io/
-          backendRefs:
-            - name: ak-outpost-authentik-embedded-outpost
-              namespace: authentik
-              port: 9000

@@ -6,7 +6,8 @@ namespace: monitoring
 resources:
   - ../../base/kube-prometheus-stack/
   - ./alertmanager-telegram.secret.sops.yaml
-  - ./auth.middleware.yaml
+  - ./alertmanager.authorizationpolicy.yaml
+  - ./prometheus.authorizationpolicy.yaml
 patches:
   - target:
       kind: HelmRelease
