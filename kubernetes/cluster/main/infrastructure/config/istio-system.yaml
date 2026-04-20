@@ -24,3 +24,5 @@ spec:
     substituteFrom:
       - kind: Secret
         name: clustersetting
+      - kind: ConfigMap
+        name: clustersetting
