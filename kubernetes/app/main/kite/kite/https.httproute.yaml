@@ -6,14 +6,14 @@ metadata:
   name: kite-https
 spec:
   parentRefs:
-     - name: default
-       namespace: istio-system
-       kind: Gateway
-       sectionName: https-wildcard
-     - name: default
-       namespace: istio-system
-       kind: Gateway
-       sectionName: https-wildcard-local
+    - name: default
+      namespace: istio-system
+      kind: Gateway
+      sectionName: https-wildcard
+    - name: default
+      namespace: istio-system
+      kind: Gateway
+      sectionName: https-wildcard-local
   hostnames:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}

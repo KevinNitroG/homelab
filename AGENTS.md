@@ -35,11 +35,13 @@ app/
 ```
 
 **Key Pattern:**
+
 - `base/` contains minimal, shared Kubernetes manifests
 - `main/` contains kustomization patches and overlays for production deployment
 - Database manifests often include CNPG (CloudNativePG) cluster definitions and backups
 
 **Notable Files:**
+
 - `base/kite/cnpg/kite.cluster.yaml` - PostgreSQL cluster definition
 - `main/kite/cnpg/` - Recovery, backup, and plugin configuration patches
 
@@ -63,6 +65,7 @@ cluster/
 ```
 
 **Key Concept:**
+
 - `cluster/main/kustomization.yaml` is the **root kustomization** that aggregates all app, infrastructure, and monitoring overlays
 - This is the primary target for `kubectl apply` or Flux reconciliation
 - Changes to base configs propagate through this aggregation point
@@ -88,11 +91,13 @@ infrastructure/
 ```
 
 **Key Components:**
+
 - `controller/base/authentik/cnpg/` - Authentik PostgreSQL cluster (CNPG)
 - `controller/main/authentik/cnpg/` - Authentik backup, recovery, and plugin patches
 - Each app may have PostgreSQL backups configured here (plugin method for Barman Cloud)
 
 **Note on Backups:**
+
 - All databases use `method: plugin` for backups (Barman Cloud plugin)
 - ScheduledBackup objects reference the correct cluster names
 - See "CNPG Backup Configuration" below for details
@@ -121,6 +126,7 @@ monitoring/
 ```
 
 **Key Components:**
+
 - **Grafana Database**: PostgreSQL cluster `grafana-cnpg-grafana` with CNPG backups
 - **Stack**: Prometheus (metrics), Loki (logs), Tempo (traces), Alloy (collection)
 
@@ -128,28 +134,31 @@ monitoring/
 
 ### Finding Configuration
 
-| Task | Location |
-|------|----------|
-| Add/modify an app | `app/base/[app-name]/` then patch in `app/main/[app-name]/` |
-| Add infrastructure controller | `infrastructure/controller/base/[app]/` then overlay in `main/` |
-| Configure database backup | `[location]/base/[app]/cnpg/*.cluster.yaml` and patches in `main/` |
-| Modify monitoring stack | `monitoring/base/[component]/` then overlay in `monitoring/main/` |
-| Deploy to production | Ensure `cluster/main/kustomization.yaml` includes all desired overlays |
+| Task                          | Location                                                               |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| Add/modify an app             | `app/base/[app-name]/` then patch in `app/main/[app-name]/`            |
+| Add infrastructure controller | `infrastructure/controller/base/[app]/` then overlay in `main/`        |
+| Configure database backup     | `[location]/base/[app]/cnpg/*.cluster.yaml` and patches in `main/`     |
+| Modify monitoring stack       | `monitoring/base/[component]/` then overlay in `monitoring/main/`      |
+| Deploy to production          | Ensure `cluster/main/kustomization.yaml` includes all desired overlays |
 
 ### Base vs Main Pattern
 
 **Base Configuration** (`base/`)
+
 - Minimal, reusable Kubernetes manifests
 - Should be environment-agnostic
 - Contains the core definition (cluster, service, deployment)
 
 **Main Overlay** (`main/`)
+
 - Kustomization overlays and patches
 - Production-specific customizations
 - Recovery sources, backup plugins, environment variables
 - Import and patch base configurations
 
 **Example:**
+
 ```
 base/kite/cnpg/kite.cluster.yaml         # Core PostgreSQL cluster
                                           # (1 instance, base storage)
@@ -164,13 +173,14 @@ All databases use the **plugin method** with Barman Cloud:
 
 - **Method**: `plugin` (not `barmanObjectStore`)
 - **Plugin**: `barman-cloud.cloudnative-pg.io`
-- **Configuration Location**: 
+- **Configuration Location**:
   - Cluster patches: `[location]/main/[app]/cnpg/[app].cluster.patch.yaml`
   - ScheduledBackup: `[location]/main/[app]/cnpg/scheduledbackup.yaml`
 
 **Important:** Old `barmanObjectStore` backups should be deleted. They fail because the cluster specs don't include the old backup section.
 
 ### Current Databases with CNPG:
+
 - `authentik` (infrastructure/controller)
 - `kite` (app)
 - `grafana` (monitoring) - cluster name: `grafana-cnpg-grafana`

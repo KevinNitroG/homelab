@@ -6,9 +6,9 @@ metadata:
   name: webhook
 spec:
   parentRefs:
-     - name: webhook
-       sectionName: https
-       kind: ListenerSet
+    - name: webhook
+      sectionName: https
+      kind: ListenerSet
   hostnames:
     - flux-webhook.${PUBLIC_DOMAIN}
   rules:

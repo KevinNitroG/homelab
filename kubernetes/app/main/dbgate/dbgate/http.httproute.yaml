@@ -6,14 +6,14 @@ metadata:
   name: dbgate-http
 spec:
   parentRefs:
-     - name: default
-       sectionName: http-wildcard
-       kind: Gateway
-       namespace: istio-system
-     - name: default
-       sectionName: http-wildcard-local
-       kind: Gateway
-       namespace: istio-system
+    - name: default
+      sectionName: http-wildcard
+      kind: Gateway
+      namespace: istio-system
+    - name: default
+      sectionName: http-wildcard-local
+      kind: Gateway
+      namespace: istio-system
   hostnames:
     - dbgate.${PUBLIC_DOMAIN}
     - dbgate.${LOCAL_DOMAIN}
