@@ -1,0 +1,31 @@
+---
+profile: ambient
+pilot:
+  env:
+    PILOT_ENABLE_ALPHA_GATEWAY_API: "true"
+
+meshConfig:
+  enableTracing: true
+  extensionProviders:
+    - name: authentik
+      envoyExtAuthzHttp:
+        service: ak-outpost-authentik-embedded-outpost.authentik.svc.cluster.local
+        port: "9000"
+        pathPrefix: /outpost.goauthentik.io/auth/envoy
+        headersToDownstreamOnAllow:
+          - cookie
+        headersToUpstreamOnAllow:
+          - set-cookie
+          - x-authentik-*
+        includeRequestHeadersInCheck:
+          - cookie
+
+    - name: otel-tracing
+      opentelemetry:
+        service: alloy-alloy.monitoring
+        port: 4317
+
+    - name: otel-log
+      envoyOtelAls:
+        service: alloy-alloy.monitoring
+        port: 4317
