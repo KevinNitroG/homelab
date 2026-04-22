@@ -3,3 +3,9 @@ secret:
   create: false
 db:
   type: postgres
+
+clusters:
+  - name: local
+    inCluster: true
+    default: true
+    prometheusURL: http://monitoring-kube-prometheus-prometheus.monitoring:9090
