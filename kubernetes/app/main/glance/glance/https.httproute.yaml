@@ -22,6 +22,14 @@ spec:
     - glance.${PUBLIC_DOMAIN}
     - glance.${LOCAL_DOMAIN}
   rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /outpost.goauthentik.io/
+      backendRefs:
+        - name: ak-outpost-authentik-embedded-outpost
+          namespace: authentik
+          port: 9000
     - backendRefs:
         - name: glance-glance
           port: 8080
