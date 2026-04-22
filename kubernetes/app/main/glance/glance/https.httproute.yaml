@@ -8,17 +8,11 @@ spec:
   parentRefs:
     - &gateway
       name: default
-      sectionName: https
-      namespace: istio-system
-    - <<: *gateway
       sectionName: https-wildcard
-    - <<: *gateway
-      sectionName: https-local
+      namespace: istio-system
     - <<: *gateway
       sectionName: https-wildcard-local
   hostnames:
-    - ${PUBLIC_DOMAIN}
-    - ${LOCAL_DOMAIN}
     - glance.${PUBLIC_DOMAIN}
     - glance.${LOCAL_DOMAIN}
   rules:
