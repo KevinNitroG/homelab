@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cloudflare-ddns
-          image: ghcr.io/irfanhakim-as/cloudflare-ddns:1.0.2-fix-wrong-ip-r2
+          image: timothyjmiller/cloudflare-ddns:2.1.0
           volumeMounts:
             - name: config
               mountPath: /config.json
