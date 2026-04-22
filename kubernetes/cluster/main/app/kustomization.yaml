@@ -5,8 +5,8 @@ kind: Kustomization
 namespace: flux-system
 resources:
   # - ./files.yaml
-  # - ./glance.yaml
   # - ./mltb.yaml
   - ./cloudflare-ddns.yaml
   - ./dbgate.yaml
+  - ./glance.yaml
   - ./kite.yaml
