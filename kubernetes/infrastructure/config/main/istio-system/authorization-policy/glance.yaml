@@ -19,4 +19,4 @@ spec:
               - ${LOCAL_DOMAIN}
               - ${PUBLIC_DOMAIN}
             notPaths:
-              - /healthz
+              - /api/healthz
