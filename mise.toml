@@ -1,13 +1,17 @@
 [env]
-_.file = ".env"
+_.file = ".env.yaml"
 SOPS_AGE_KEY_FILE = "./secret/age.agekey"
 
+[settings]
+sops = { age_key_file = "./secret/age.agekey" }
+
 [tools]
-age = "latest"
-cmctl = "latest"
-flux2 = "latest"
-gh = "latest"
-kustomize = "latest"
-sops = "latest"
-terraform = "latest"
-uv = "latest"
+"github:cloudnative-pg/cloudnative-pg" = "1.29.0"
+age = "1.3.1"
+cmctl = "2.4.1"
+flux2 = "2.8.6"
+gh = "2.90.0"
+kustomize = "5.8.1"
+sops = "3.12.2"
+terraform = "1.14.9"
+uv = "0.11.7"
