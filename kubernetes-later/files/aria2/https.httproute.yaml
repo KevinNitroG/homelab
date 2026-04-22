@@ -16,10 +16,6 @@ spec:
     - aria2.${PUBLIC_DOMAIN}
     - aria2.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: aria2-aria2
           port: 6800

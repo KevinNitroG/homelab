@@ -18,10 +18,6 @@ spec:
     - alloy.${PUBLIC_DOMAIN}
     - alloy.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: alloy-alloy
           port: 12345

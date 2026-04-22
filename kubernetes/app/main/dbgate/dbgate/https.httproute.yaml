@@ -18,10 +18,6 @@ spec:
     - dbgate.${PUBLIC_DOMAIN}
     - dbgate.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: dbgate-dbgate
           port: 3000

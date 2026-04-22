@@ -12,10 +12,6 @@ spec:
   hostnames:
     - metube.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: metube-metube
           port: 8081

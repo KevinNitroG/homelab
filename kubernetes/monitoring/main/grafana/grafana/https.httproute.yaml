@@ -18,10 +18,6 @@ spec:
     - grafana.${PUBLIC_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: grafana-service
           port: 3000

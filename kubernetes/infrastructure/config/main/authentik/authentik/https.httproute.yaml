@@ -18,10 +18,6 @@ spec:
     - authentik.${PUBLIC_DOMAIN}
     - authentik.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: authentik-server
           port: 80

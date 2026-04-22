@@ -18,10 +18,6 @@ spec:
     - kite.${LOCAL_DOMAIN}
     - kite.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: kite-kite
           port: 8080

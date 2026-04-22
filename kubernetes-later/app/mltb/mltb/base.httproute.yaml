@@ -12,10 +12,6 @@ spec:
   hostnames:
     - mltb.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: mltb-mltb
           port: 80

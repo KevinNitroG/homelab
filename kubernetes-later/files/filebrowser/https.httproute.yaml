@@ -16,10 +16,6 @@ spec:
     - filebrowser.${PUBLIC_DOMAIN}
     - filebrowser.${LOCAL_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: filebrowser-filebrowser
           port: 80

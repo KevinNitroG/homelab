@@ -18,11 +18,7 @@ spec:
     - rustfs.${LOCAL_DOMAIN}
     - rustfs.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: rustfs-svc
           port: 9001
 
@@ -37,15 +33,15 @@ spec:
     - name: default
       namespace: istio-system
       kind: Gateway
-      sectionName: 9000-https-wildcard
+      sectionName: https-wildcard
+    - name: default
+      namespace: istio-system
+      kind: Gateway
+      sectionName: https-wildcard-local
   hostnames:
-    - rustfs.${LOCAL_DOMAIN}
-    - rustfs.${PUBLIC_DOMAIN}
+    - rustfs-api.${LOCAL_DOMAIN}
+    - rustfs-api.${PUBLIC_DOMAIN}
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+    - backendRefs:
         - name: rustfs-svc
           port: 9000
