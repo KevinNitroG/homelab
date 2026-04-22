@@ -4,6 +4,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: default
+  annotations:
+    networking.istio.io/service-external-traffic-policy: Local
 spec:
   gatewayClassName: istio
   # For now listeners stuck on "waiting for controller"

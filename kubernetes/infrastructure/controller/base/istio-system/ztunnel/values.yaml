@@ -1,0 +1,8 @@
+---
+profile: ambient
+env:
+  ENABLE_ORIG_SRC: false # https://github.com/istio/istio/issues/55937
+meshConfig:
+  defaultConfig:
+    gatewayTopology:
+      numTrustedProxies: 1

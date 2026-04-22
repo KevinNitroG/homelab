@@ -11,7 +11,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: *name
-  values:
-    profile: ambient
-    env:
-      ENABLE_ORIG_SRC: false # https://github.com/istio/istio/issues/55937
+  valuesFrom:
+    - kind: ConfigMap
+      name: ztunnel-helm-values
