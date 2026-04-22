@@ -10,5 +10,6 @@ resources:
   - ./objectstore.yaml
   - ./r2-credential.secret.sops.yaml
   - ./scheduledbackup.yaml
+  - ./tlsroute.yaml
 patches:
   - path: ./grafana.cluster.patch.yaml
