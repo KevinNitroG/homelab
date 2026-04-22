@@ -1,12 +1,12 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/not-first/glance-schema/master/schema.json
 server:
-  proxied: false
+  proxied: true
 branding:
   hide-footer: true
   logo-text: K
   app-name: Kevglance
-$include: auth.yml
+
 pages:
   - name: Home
     desktop-navigation-width: slim
@@ -30,32 +30,35 @@ pages:
                 icon: si:grafana
               - title: Prometheus
                 check-url: http://monitoring-kube-prometheus-prometheus.monitoring:9090/-/ready
-                url: https://prometheus.kev
+                url: https://prometheus.kevinnitro.id.vn
                 icon: si:prometheus
               - title: Alertmanager
                 check-url: http://monitoring-kube-prometheus-alertmanager.monitoring:9093/-/ready
-                url: https://alertmanager.kev
+                url: https://alertmanager.kevinnitro.id.vn
                 icon: mdi:torch
               - title: Loki
                 check-url: http://loki.monitoring:3100/ready
-                url: https://loki.monitoring:3100
+                url: https://loki.kevinnitro.id.vn
                 icon: sh:loki
+              - title: Tempo
+                check-url: http://tempo-tempo.monitoring:3200/ready
+                url: https://tempo.kevinnitro.id.vn
+                icon: sh:tempo
               - title: Alloy
-                check-url: http://alloy.monitoring/-/healthy
-                url: https://alloy.kev
+                check-url: http://alloy-alloy.monitoring/-/healthy
+                url: https://alloy.kevinnitro.id.vn
                 icon: sh:grafana-alloy
-              - title: Keycloak
-                check-url: http://keycloak.keycloak:9000/health/live
-                url: https://keycloak.kevinnitro.id.vn
-                icon: si:keycloak
-              - title: Cloudbeaver
-                check-url: http://cloudbeaver.cloudbeaver:8978/status
-                url: https://cloudbeaver.kevinnitro.id.vn
+              - title: Authentik
+                check-url: http://authentik-server.authentik:80/-/health/live/
+                url: https://authentik.kevinnitro.id.vn
+                icon: si:authentik
+              - title: DbGate
+                check-url: http://dbgate.dbgate:8978/status
+                url: https://dbgate.kevinnitro.id.vn
                 icon: si:dbeaver
               - title: Ariang
                 check-url: https://ariang.mayswind.net/latest/#!/settings/ariang
                 url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc/$${ARIA2_RPC_SECRET}
-                #   url: https://ariang.kevinnitro.id.vn
                 icon: sh:aria2
               - title: Metube
                 check-url: http://metube.files:8081
@@ -69,42 +72,6 @@ pages:
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn
                 icon: si:telegram
-          - type: custom-api
-            title: Cloudflared Tunnels
-            css-class: "widget-type-cloudflared"
-            cache: 4h
-            url: https://api.cloudflare.com/client/v4/accounts/$${CLOUDFLARE_ACCOUNT_ID}/cfd_tunnel/$${CLOUDFLARE_TUNNEL_ID}/configurations
-            headers:
-              Authorization: Bearer $${CLOUDFLARE_API_KEY}
-            template: | # language: html
-              <style>
-                .widget-type-cloudflared li {
-                  margin-top: var(--list-half-gap);
-                  border-top: 1px solid var(--color-separator);
-                  padding-top: var(--list-half-gap);
-                }
-              </style>
-              <ul class="dynamic-columns list-gap-15 list-with-separator">
-              {{ range .JSON.Array "result.config.ingress" }}
-                {{ if (.String "hostname") }}
-                <li class="flex items-center gap-20">
-                    <div class="shrink-0">
-                        <img class="docker-container-icon" src="https://developers.cloudflare.com/logo.svg" alt="" loading="lazy">
-                    </div>
-                    <div class="min-width-0 grow">
-                      <a href='https://{{ .String "hostname" }}' class="color-highlight size-title-dynamic block text-truncate" target="_blank" rel="noreferrer">{{ .String "hostname" | trimSuffix ".${PUBLIC_DOMAIN}" }}</a>
-                      {{ if (.String "service") }}
-                      <div class="flex items-center gap-10" style="margin-bottom: 5px">
-                        <div class="size-h6 flex-1 text-left">
-                          <a href='{{ .String "service" }}' target="_blank" rel="noreferrer">{{ .String "service" }}</a>
-                        </div>
-                      </div>
-                      {{ end}}
-                    </div>
-                </li>
-                {{ end }}
-              {{ end }}
-              </ul>
           - type: bookmarks
             groups:
               - title: Mine
@@ -122,6 +89,7 @@ pages:
           #   url: http://glance-k8s/extension/nodes
           #   allow-potentially-dangerous-html: true
           #   cache: 10s
+
   - name: News
     desktop-navigation-width: slim
     columns:
@@ -157,6 +125,7 @@ pages:
                 title: Software Falcuty
               - url: https://forum.uit.edu.vn/c/cong-dong-uit/10.rss
                 title: Network Falcuty
+
 theme:
   background-color: 240 21 15
   contrast-multiplier: 1.2
