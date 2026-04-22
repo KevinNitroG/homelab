@@ -6,4 +6,5 @@ resources:
   - ./alertmanager.yaml
   - ./alloy.yaml
   - ./dbgate.yaml
+  - ./glance.yaml
   - ./prometheus.yaml

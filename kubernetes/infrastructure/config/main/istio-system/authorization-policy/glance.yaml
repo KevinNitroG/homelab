@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/security.istio.io/authorizationpolicy_v1.json
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: glance
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: default
+  action: CUSTOM
+  provider:
+    name: authentik
+  rules:
+    - to:
+        - operation:
+            hosts:
+              - glance.*
+              - ${LOCAL_DOMAIN}
+              - ${PUBLIC_DOMAIN}

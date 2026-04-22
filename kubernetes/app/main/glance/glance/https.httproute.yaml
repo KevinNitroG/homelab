@@ -9,7 +9,7 @@ spec:
     - &gateway
       name: default
       sectionName: https
-      namespace: traefik
+      namespace: istio-system
     - <<: *gateway
       sectionName: https-wildcard
     - <<: *gateway

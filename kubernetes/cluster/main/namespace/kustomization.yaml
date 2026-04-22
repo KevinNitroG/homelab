@@ -9,6 +9,7 @@ resources:
   - ./cloudflare-ddns.yaml
   - ./cnpg-system.yaml
   - ./dbgate.yaml
+  - ./glance.yaml
   - ./grafana-operator.yaml
   - ./istio-system.yaml
   - ./kite.yaml

@@ -10,14 +10,8 @@ configMapGenerator:
   - name: glance-config
     files:
       - glance.yml=./config/glance.yml
-secretGenerator:
-  - name: glance-auth-config
-    files:
-      - auth.yml=./config/auth.yml.encrypted
 resources:
   - ./assets.pvc.yaml
   - ./deployment.yaml
   - ./env.secret.sops.yaml
-  - ./http.httproute.yaml
-  - ./https.httproute.yaml
   - ./service.yaml

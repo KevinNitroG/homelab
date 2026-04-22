@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: app-glance-glance
+  name: app-glance
 spec:
   interval: 12h
   retryInterval: 1m
@@ -12,8 +12,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: kubernetes/app/glance/glance/
-  targetNamespace: glance
+  path: kubernetes/app/main/glance/
+  dependsOn:
+    - name: infrastructure-controller-gatewayapi
+    - name: infrastructure-controller-istio-system
   decryption:
     provider: sops
     secretRef:
