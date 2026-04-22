@@ -21,7 +21,7 @@ pages:
             title: Services
             sites:
               - title: Kite
-                check-url: http://kite.kite:8080/health
+                check-url: http://kite.kite:8080/healthz
                 url: https://kite.kevinnitro.id.vn
                 icon: sh:kite-kubernetes
               - title: Grafana
@@ -37,7 +37,7 @@ pages:
                 url: https://alertmanager.kevinnitro.id.vn
                 icon: mdi:torch
               - title: Loki
-                check-url: http://loki.monitoring:3100/ready
+                check-url: http://loki-loki.monitoring:3100/ready
                 url: https://loki.kevinnitro.id.vn
                 icon: sh:loki
               - title: Tempo
@@ -45,7 +45,7 @@ pages:
                 url: https://tempo.kevinnitro.id.vn
                 icon: sh:tempo
               - title: Alloy
-                check-url: http://alloy-alloy.monitoring/-/healthy
+                check-url: http://alloy-alloy.monitoring:12345/-/healthy
                 url: https://alloy.kevinnitro.id.vn
                 icon: sh:grafana-alloy
               - title: Authentik
