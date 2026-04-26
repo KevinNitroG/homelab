@@ -56,19 +56,22 @@
       "automerge": false
     },
     {
-      "groupName": "Istio",
-      "matchPackageNames": ["/^gcr.io/istio-release/charts/", "/^istiocli$/"]
+      "groupName": "istio",
+      "matchPackageNames": [
+        "/^gcr.io/istio-release/charts/",
+        "github:istio/istio"
+      ]
     },
     {
       "groupName": "CNPG",
       "matchPackageNames": [
-        "/^ghcr.io/cloudnative-pg/charts/cloudnative-pg$/",
-        "/^kubectl-cnpg$/"
+        "ghcr.io/cloudnative-pg/charts/cloudnative-pg",
+        "github:cloudnative-pg/cloudnative-pg"
       ]
     },
     {
       "groupName": "Flux2",
-      "matchPackageNames": ["/^fluxcd/flux2$/", "/^flux2$/"]
+      "matchPackageNames": ["fluxcd/flux2", "flux2"]
     }
   ],
   "customManagers": [
