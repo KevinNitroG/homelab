@@ -40,7 +40,7 @@
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
-      "matchPackageNames": ["ghcr.io/kevinnitrog/homelab/*"],
+      "matchPackageNames": ["ghcr.io/kevinnitrog/homelab/**"],
       "automerge": true
     },
     {
@@ -54,6 +54,21 @@
       "matchPackageNames": ["authentik"],
       "matchUpdateTypes": ["major", "minor"],
       "automerge": false
+    },
+    {
+      "groupName": "Istio",
+      "matchPackageNames": ["/^gcr.io/istio-release/charts/", "/^istiocli$/"]
+    },
+    {
+      "groupName": "CNPG",
+      "matchPackageNames": [
+        "/^ghcr.io/cloudnative-pg/charts/cloudnative-pg$/",
+        "/^kubectl-cnpg$/"
+      ]
+    },
+    {
+      "groupName": "Flux2",
+      "matchPackageNames": ["/^fluxcd/flux2$/", "/^flux2$/"]
     }
   ],
   "customManagers": [
