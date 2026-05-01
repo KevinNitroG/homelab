@@ -16,5 +16,5 @@ gh = "2.91.0"                                                               # !R
 kustomize = "5.8.1"
 sops = "3.12.2"
 terraform = "1.14.9"
-uv = "0.11.7"
+uv = "0.11.8"
 "github:istio/istio" = { version = "1.29.2", asset_pattern = "istioctl-*" }
