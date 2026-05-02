@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: *name
-      version: 0.0.99
+      version: 0.1.0
   install:
     crds: CreateReplace
   valuesFrom:
