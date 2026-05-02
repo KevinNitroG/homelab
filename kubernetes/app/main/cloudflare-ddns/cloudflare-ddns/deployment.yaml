@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cloudflare-ddns
-          image: timothyjmiller/cloudflare-ddns:2.1.0
+          image: timothyjmiller/cloudflare-ddns:2.1.2
           volumeMounts:
             - name: config
               mountPath: /config.json
