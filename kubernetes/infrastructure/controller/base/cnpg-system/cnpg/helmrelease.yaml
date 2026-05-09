@@ -12,3 +12,7 @@ spec:
     name: cnpg
   install:
     crds: CreateReplace
+  values:
+    config:
+      data:
+        INHERITED_ANNOTATIONS: alloy.kevinnitro/scrape
