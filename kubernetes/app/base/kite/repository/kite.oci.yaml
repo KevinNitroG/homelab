@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: loki
+  name: kite
 spec:
   interval: 24h
   timeout: 5m
