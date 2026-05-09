@@ -20,7 +20,7 @@ meshConfig:
         includeRequestHeadersInCheck:
           - cookie
 
-    - name: otel-tracing
+    - name: otel-trace
       opentelemetry:
         service: alloy-alloy.monitoring
         port: 4317
