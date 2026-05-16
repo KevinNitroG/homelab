@@ -14,7 +14,7 @@ sops = { age_key_file = "./secret/age.agekey" }
 flux2 = "2.8.7"
 gh = "2.92.0"                                                               # !R
 kustomize = "5.8.1"
-sops = "3.13.0"
+sops = "3.13.1"
 terraform = "1.15.3"
 uv = "0.11.14"
 "github:istio/istio" = { version = "1.29.2", asset_pattern = "istioctl-*" }
