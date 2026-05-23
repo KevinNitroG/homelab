@@ -21,3 +21,15 @@ spec:
     - backendRefs:
         - name: authentik-server
           port: 80
+      filters:
+        - type: CORS
+          cors:
+            allowCredentials: true
+            allowOrigins:
+              - "*"
+            allowMethods:
+              - "*"
+            allowHeaders:
+              - "*"
+            exposeHeaders:
+              - "*"
