@@ -19,6 +19,17 @@ spec:
     - authentik.${LOCAL_DOMAIN}
   rules:
     - filters:
+        - type: CORS
+          cors:
+            allowCredentials: true
+            allowOrigins:
+              - "*"
+            allowMethods:
+              - "*"
+            allowHeaders:
+              - "*"
+            exposeHeaders:
+              - "*"
         - type: RequestRedirect
           requestRedirect:
             scheme: https
