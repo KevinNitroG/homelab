@@ -1,7 +1,9 @@
 ---
 alloy:
   configMap:
+    create: false
     name: alloy-config
+    key: config.alloy
   extraPorts:
     - name: grpc-otlp
       port: 4317
