@@ -22,10 +22,10 @@ meshConfig:
 
     - name: otel-trace
       opentelemetry:
-        service: alloy-alloy.monitoring
+        service: alloy-alloy.monitoring.svc.cluster.local
         port: 4317
 
     - name: otel-log
       envoyOtelAls:
-        service: alloy-alloy.monitoring
+        service: alloy-alloy.monitoring.svc.cluster.local
         port: 4317
