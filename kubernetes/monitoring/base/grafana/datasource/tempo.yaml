@@ -19,3 +19,10 @@ spec:
         datasourceUid: prometheus
       nodeGraph:
         enabled: true
+      tracesToLogsV2:
+        customQuery: false
+        datasourceUid: loki
+        filterBySpanID: true
+        filterByTraceID: true
+      tracesToMetrics:
+        datasourceUid: prometheus
