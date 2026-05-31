@@ -5,6 +5,9 @@ tempo:
   metricsGenerator:
     enabled: true
     remoteWriteUrl: http://monitoring-kube-prometheus-prometheus.monitoring:9090/api/v1/write
+    processor:
+      service_graphs:
+        enabled: true
     storage:
       path: /var/tempo/metrics
     traces_storage:
