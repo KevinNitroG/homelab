@@ -21,6 +21,18 @@ spec:
     - backendRefs:
         - name: rustfs-svc
           port: 9001
+      filters:
+        - type: CORS
+          cors:
+            allowCredentials: true
+            allowOrigins:
+              - "*"
+            allowMethods:
+              - "*"
+            allowHeaders:
+              - "*"
+            exposeHeaders:
+              - "*"
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/gateway.networking.k8s.io/httproute_v1.json
@@ -45,3 +57,15 @@ spec:
     - backendRefs:
         - name: rustfs-svc
           port: 9000
+      filters:
+        - type: CORS
+          cors:
+            allowCredentials: true
+            allowOrigins:
+              - "*"
+            allowMethods:
+              - "*"
+            allowHeaders:
+              - "*"
+            exposeHeaders:
+              - "*"
