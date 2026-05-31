@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: kube-prometheus-stack-alertmanager
 spec:
+  uid: alertmanager
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana

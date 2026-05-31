@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: kube-prometheus-stack-prometheus
 spec:
+  uid: prometheus
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana

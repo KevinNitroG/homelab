@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: tempo
 spec:
+  uid: tempo
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
@@ -13,3 +14,8 @@ spec:
     name: Tempo
     access: proxy
     url: http://tempo-tempo:3200
+    jsonData:
+      serviceMap:
+        datasourceUid: prometheus
+      nodeGraph:
+        enabled: true

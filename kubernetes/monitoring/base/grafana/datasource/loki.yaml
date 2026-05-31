@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: loki
 spec:
+  uid: loki
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana

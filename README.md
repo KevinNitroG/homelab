@@ -8,8 +8,6 @@
 - Ensure those environment variables are set:
   - `GH_TOKEN`
 - Tempo is configured to enable service map.
-  But need to enable in grafana datasource setting.
-  Because we shouldn't declare uid in this manifest.
 
 ### Bootstrap
 
