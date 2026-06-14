@@ -59,7 +59,8 @@
       "groupName": "istio",
       "matchPackageNames": [
         "/^gcr.io/istio-release/charts/",
-        "github:istio/istio"
+        "github:istio/istio",
+        "istioctl"
       ]
     },
     {
