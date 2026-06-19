@@ -7,6 +7,6 @@ metadata:
 spec:
   type: telegram
   address: https://api.telegram.org
-  channel: "-1001644026686"
+  channel: "-1001790089939:18810"
   secretRef:
     name: telegram-token
