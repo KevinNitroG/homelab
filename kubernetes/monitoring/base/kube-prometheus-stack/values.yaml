@@ -60,7 +60,7 @@ prometheus:
         cpu: 10m
         memory: 500Mi
     retention: 7d
-    retentionSize: 10GiB
+    retentionSize: 8GiB
     storageSpec:
       volumeClaimTemplate:
         spec:
