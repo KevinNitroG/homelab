@@ -16,8 +16,12 @@ alertmanager:
     route:
       receiver: default
       routes:
+        - matchers:
+            - alertname =~ "InfoInhibitor|Watchdog"
+          receiver: "null"
         - receiver: default
     receivers:
+      - name: "null"
       - name: default
         telegram_configs:
           - chat_id: -1001790089939
