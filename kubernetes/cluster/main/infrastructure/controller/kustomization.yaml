@@ -12,5 +12,6 @@ resources:
   - ./grafana-operator.yaml
   - ./istio-system.yaml
   - ./monitoring.yaml
+  - ./redpanda.yaml
   - ./reloader.yaml
   - ./rustfs.yaml
