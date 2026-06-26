@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=https://github.com/redpanda-data/redpanda-operator/raw/bd4604e3c6019caeaf9485930adb5e7e8d50c9be/charts/redpanda/chart/values.schema.json
+statefulset:
+  replicas: 1
+  podAntiAffinity:
+    type: soft
+
+logging:
+  logLevel: warn
+
+storage:
+  persistentVolume:
+    size: 5Gi
+
+resources:
+  cpu:
+    cores: 1
+  memory:
+    container:
+      max: 1Gi
+      min: 512Mi
+    redpanda:
+      memory: 512Mi
+      reserveMemory: 0
+
+tls:
+  enabled: false
+
+console:
+  enabled: true
+
+# post_install_job:
+#   enabled: false # not needed for dev
+
+# tuning:
+#   tune_aio_events: false        # avoid privileged container
+
+config:
+  cluster:
+    auto_create_topics_enabled: true
+    partition_autobalancing_mode: off
+    core_balancing_continuous: false
+    group_max_session_timeout_ms: 3600000
