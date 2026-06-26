@@ -8,3 +8,5 @@ configMapGenerator:
   - name: redpanda-helm-values
     files:
       - ./values.yaml
+configurations:
+  - ./kustomizeconfig.yaml
