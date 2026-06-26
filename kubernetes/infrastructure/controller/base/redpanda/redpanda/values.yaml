@@ -4,6 +4,8 @@ statefulset:
   replicas: 1
   podAntiAffinity:
     type: soft
+  additionalRedpandaCmdFlags:
+    - --check=false
 
 logging:
   logLevel: warn
@@ -38,6 +40,6 @@ console:
 config:
   cluster:
     auto_create_topics_enabled: true
-    partition_autobalancing_mode: off
+    partition_autobalancing_mode: "off"
     core_balancing_continuous: false
     group_max_session_timeout_ms: 3600000
