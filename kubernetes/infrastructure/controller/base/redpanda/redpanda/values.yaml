@@ -4,8 +4,6 @@ statefulset:
   replicas: 1
   podAntiAffinity:
     type: soft
-  additionalRedpandaCmdFlags:
-    - --check=false
 
 logging:
   logLevel: warn
@@ -19,10 +17,10 @@ resources:
     cores: 1
   memory:
     container:
-      max: 1Gi
-      min: 512Mi
+      max: 1536Mi
+      min: 1Gi
     redpanda:
-      memory: 512Mi
+      memory: 1Gi
       reserveMemory: 0
 
 tls:
@@ -43,3 +41,9 @@ config:
     partition_autobalancing_mode: "off"
     core_balancing_continuous: false
     group_max_session_timeout_ms: 3600000
+    # idk it says this is a preset of --mode dev-container
+    write_caching_default: true
+    group_topic_partitions: 3
+    storage_min_free_bytes: 10485760
+    topic_partitions_per_shard: 1000
+    fetch_reads_debounce_timeout: 10
