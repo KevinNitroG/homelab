@@ -15,5 +15,6 @@ resources:
   - ./kite.yaml
   - ./minio-operator.yaml
   - ./monitoring.yaml
+  - ./redpanda.yaml
   - ./reloader.yaml
   - ./rustfs.yaml
