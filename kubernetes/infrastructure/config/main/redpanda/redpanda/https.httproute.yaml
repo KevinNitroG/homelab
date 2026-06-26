@@ -19,5 +19,5 @@ spec:
     - redpanda.${PUBLIC_DOMAIN}
   rules:
     - backendRefs:
-        - name: redpanda
+        - name: redpanda-console
           port: 8080
