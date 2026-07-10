@@ -11,7 +11,7 @@ sops = { age_key_file = "./secret/age.agekey" }
 "github:cloudnative-pg/cloudnative-pg" = "1.30.0" # !R
 "age" = "1.3.1"
 cmctl = "2.5.0"
-flux2 = "2.9.0"
+flux2 = "2.9.1"
 gh = "2.96.0"
 kustomize = "5.8.1"
 sops = "3.13.2"
