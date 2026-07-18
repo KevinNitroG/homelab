@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 0.13.0
+    tag: 0.14.0
   url: oci://ghcr.io/kite-org/charts/kite
