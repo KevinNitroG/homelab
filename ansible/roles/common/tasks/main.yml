@@ -1,0 +1,48 @@
+---
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ timezone }}"
+
+- name: Update pacman cache
+  community.general.pacman:
+    update_cache: true
+  when: ansible_os_family == "Archlinux"
+
+- name: Install base packages
+  community.general.pacman:
+    name: "{{ common_packages }}"
+    state: present
+  when: ansible_os_family == "Archlinux"
+
+- name: Ensure SSH service is enabled
+  ansible.builtin.systemd:
+    name: sshd
+    enabled: true
+    state: started
+
+- name: Configure SSHd
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^#?PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
+    - { regexp: '^#?PasswordAuthentication', line: 'PasswordAuthentication no' }
+    - { regexp: '^#?PubkeyAuthentication', line: 'PubkeyAuthentication yes' }
+  notify: Restart sshd
+
+- name: Ensure key-based auth works
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?AuthorizedKeysFile'
+    line: 'AuthorizedKeysFile .ssh/authorized_keys'
+  notify: Restart sshd
+
+- name: Ensure wheel group has sudo NOPASSWD
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/wheel
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL:ALL) NOPASSWD: ALL'
+    create: true
+    mode: "0440"
+    validate: "visudo -cf %s"

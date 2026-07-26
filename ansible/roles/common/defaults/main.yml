@@ -1,0 +1,10 @@
+---
+common_packages:
+  - git
+  - curl
+  - base-devel
+  - openssh
+  - sudo
+  - tmux
+  - jq
+  - yq

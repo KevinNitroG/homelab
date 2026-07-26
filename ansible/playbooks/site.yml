@@ -1,0 +1,15 @@
+---
+- name: Base system configuration
+  hosts: server
+  become: true
+  roles:
+    - common
+
+- name: Deploy K3s cluster
+  ansible.builtin.import_playbook: k3s.orchestration.site
+
+- name: Bootstrap Flux
+  hosts: server
+  become: true
+  roles:
+    - flux

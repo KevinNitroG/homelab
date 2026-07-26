@@ -1,0 +1,6 @@
+---
+- name: Bootstrap Flux
+  hosts: server
+  become: true
+  roles:
+    - flux

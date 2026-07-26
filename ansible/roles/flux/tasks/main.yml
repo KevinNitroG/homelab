@@ -1,0 +1,92 @@
+---
+- name: Precheck - validate required files and environment
+  block:
+    - name: Check age key file exists
+      ansible.builtin.stat:
+        path: "{{ flux_age_key_path }}"
+      delegate_to: localhost
+      become: false
+      register: flux_age_key_stat
+
+    - name: Fail if age key is missing
+      ansible.builtin.fail:
+        msg: >-
+          Age key not found at {{ flux_age_key_path }}.
+          Run 'just age-decrypt-age' or provide the key before continuing.
+      when: not flux_age_key_stat.stat.exists
+
+    - name: Check kubeconfig exists on target
+      ansible.builtin.stat:
+        path: "{{ flux_kubeconfig }}"
+      register: flux_kubeconfig_stat
+
+    - name: Fail if kubeconfig is missing
+      ansible.builtin.fail:
+        msg: >-
+          Kubeconfig not found at {{ flux_kubeconfig }} on {{ inventory_hostname }}.
+          K3s must be installed and running first.
+      when: not flux_kubeconfig_stat.stat.exists
+
+    - name: Check GH_TOKEN is set
+      ansible.builtin.assert:
+        that:
+          - lookup('env', 'GH_TOKEN') | length > 0
+        fail_msg: >-
+          GH_TOKEN environment variable is not set.
+          Export it before running: export GH_TOKEN=ghp_xxxxx
+      delegate_to: localhost
+      become: false
+
+- name: Ensure flux install directory exists
+  ansible.builtin.file:
+    path: "{{ flux_install_path }}"
+    state: directory
+    mode: "0755"
+
+- name: Download and install flux
+  ansible.builtin.shell: |
+    set -o pipefail
+    curl -s {{ flux_download_url }} | tar -xz -C {{ flux_install_path }} flux
+    chmod +x {{ flux_install_path }}/flux
+  args:
+    creates: "{{ flux_install_path }}/flux"
+    executable: /bin/bash
+  environment:
+    FLUX_VERSION: "{{ flux_version }}"
+
+- name: Bootstrap Flux via GitHub
+  ansible.builtin.shell: |
+    {{ flux_install_path }}/flux bootstrap github \
+      --owner={{ flux_github_owner }} \
+      --repository={{ flux_github_repo }} \
+      --path={{ flux_bootstrap_path }} \
+      --interval={{ flux_interval }} \
+      --private \
+      --personal
+  args:
+    creates: /var/lib/rancher/k3s/server/manifests/flux-system.yaml
+  environment:
+    KUBECONFIG: "{{ flux_kubeconfig }}"
+    GITHUB_TOKEN: "{{ flux_github_token }}"
+
+- name: Verify Flux is running
+  ansible.builtin.command: "{{ flux_install_path }}/flux check"
+  register: flux_check
+  changed_when: false
+  environment:
+    KUBECONFIG: "{{ flux_kubeconfig }}"
+
+- name: Create sops-age secret for Flux decryption
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: sops-age
+        namespace: flux-system
+      type: Opaque
+      data:
+        age.agekey: "{{ lookup('file', flux_age_key_path) | b64encode }}"
+  environment:
+    KUBECONFIG: "{{ flux_kubeconfig }}"

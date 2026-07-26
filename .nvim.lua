@@ -6,6 +6,7 @@ vim.filetype.add({
     [".*ya?ml%.encrypted"] = "yaml",
     [".*json%.encrypted"] = "json",
     [".*env%.encrypted"] = "dotenv",
+    ["ansible/.*%.yml"] = "yaml.ansible",
   },
 })
 
