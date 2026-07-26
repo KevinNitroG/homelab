@@ -6,7 +6,7 @@ metadata:
   name: prometheus-operator-crds
 spec:
   interval: 24h
-  timeout: 1m
+  timeout: 5m
   chartRef:
     kind: OCIRepository
     name: prometheus-operator-crds
