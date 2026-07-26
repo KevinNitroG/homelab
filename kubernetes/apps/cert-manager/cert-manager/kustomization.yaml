@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./helmrelease.yaml
+  - ./cloudflare.secret.sops.yaml
+  - ./local-ca.secret.sops.yaml
+  - ./local.clusterissuer.yaml
+  - ./public-prod.clusterissuer.yaml
+  - ./public-stag.clusterissuer.yaml
+configMapGenerator:
+  - name: cert-manager-helm-values
+    files:
+      - ./values.yaml
+configurations:
+  - ./kustomizeconfig.yaml

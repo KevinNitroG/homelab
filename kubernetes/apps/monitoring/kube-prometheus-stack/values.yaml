@@ -1,0 +1,161 @@
+---
+namespaceOverride: monitoring
+
+crds:
+  enabled: false
+
+cleanPrometheusOperatorObjectNames: true
+
+defaultRules:
+  rules:
+    windows: false
+
+grafana:
+  enabled: false
+  forceDeployDashboards: false
+  sidecar:
+    dashboards:
+      enabled: false
+    datasources:
+      enabled: false
+
+alertmanager:
+  alertmanagerSpec:
+    image:
+      registry: quay.io
+      repository: prometheus/alertmanager
+      tag: v0.33.1
+    externalUrl: https://alertmanager.${PUBLIC_DOMAIN}
+    volumes:
+      - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
+        secret:
+          secretName: *alertmanagerSecret
+    volumeMounts:
+      - name: *alertmanagerSecret
+        mountPath: /etc/alertmanager/secrets/telegram
+  serviceMonitor:
+    selfMonitor: false
+  config:
+    route:
+      receiver: default
+      routes:
+        - matchers:
+            - alertname =~ "InfoInhibitor|Watchdog"
+          receiver: "null"
+        - receiver: default
+    receivers:
+      - name: "null"
+      - name: default
+        telegram_configs:
+          - chat_id: -1001790089939
+            message_thread_id: 18810
+            bot_token_file: /etc/alertmanager/secrets/telegram/bot_token
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - name: default
+          sectionName: http-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: http-wildcard-local
+          namespace: istio-system
+      hostnames: &hostnames
+        - alertmanager.${LOCAL_DOMAIN}
+        - alertmanager.${PUBLIC_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - name: default
+          sectionName: https-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: https-wildcard-local
+          namespace: istio-system
+      hostnames: *hostnames
+
+kubeControllerManager:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+kubeProxy:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+prometheus:
+  serviceMonitor:
+    selfMonitor: false
+  prometheusSpec:
+    externalUrl: https://prometheus.${PUBLIC_DOMAIN}
+    image:
+      registry: quay.io
+      repository: prometheus/prometheus
+      tag: v3.13.1
+    enableAdminAPI: true
+    scrapeInterval: 1m
+    enableRemoteWriteReceiver: true
+    podMonitorSelectorNilUsesHelmValues: false
+    # podMonitorNamespaceSelector: &prometheus-namespace-selector
+    #   matchLabels:
+    #     prometheus.kevinnitro/enabled: "1"
+    probeSelectorNilUsesHelmValues: false
+    # probeNamespaceSelector: *prometheus-namespace-selector
+    ruleSelectorNilUsesHelmValues: false
+    # ruleNamespaceSelector: *prometheus-namespace-selector
+    scrapeConfigSelectorNilUsesHelmValues: false
+    # scrapeConfigNamespaceSelector: *prometheus-namespace-selector
+    serviceMonitorSelectorNilUsesHelmValues: false
+    # serviceMonitorNamespaceSelector: *prometheus-namespace-selector
+    resources:
+      limits:
+        cpu: 500m
+        memory: 2Gi
+      requests:
+        cpu: 10m
+        memory: 500Mi
+    retention: 7d
+    retentionSize: 8GiB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          resources:
+            requests:
+              storage: 10Gi
+  route:
+    http:
+      enabled: true
+      parentRefs:
+        - name: default
+          sectionName: http-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: http-wildcard-local
+          namespace: istio-system
+      hostnames: &hostnames
+        - prometheus.${LOCAL_DOMAIN}
+        - prometheus.${PUBLIC_DOMAIN}
+      httpsRedirect: true
+    https:
+      enabled: true
+      parentRefs:
+        - name: default
+          sectionName: https-wildcard
+          namespace: istio-system
+        - name: default
+          sectionName: https-wildcard-local
+          namespace: istio-system
+      hostnames: *hostnames
+
+prometheusOperator:
+  serviceMonitor:
+    selfMonitor: false
+  resources:
+    limits:
+      cpu: 200m
+    requests:
+      cpu: 10m

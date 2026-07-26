@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://www.schemastore.org/kustomization.json
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./authentik/
+  - ./cert-manager/
+  - ./cloudflare-ddns/
+  - ./cnpg-system/
+  - ./default/
+  - ./glance/
+  - ./grafana-operator/
+  - ./istio-system/
+  - ./kite/
+  - ./monitoring/
+  - ./redpanda/
+  - ./reloader/
+  - ./rustfs/

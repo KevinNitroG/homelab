@@ -1,0 +1,79 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/grafana.integreatly.org/grafana_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    grafana.internal/instance: grafana
+spec:
+  config:
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+    news:
+      news_feed_enabled: "false"
+    database:
+      type: postgres
+      host: grafana-cnpg-grafana-rw:5432
+      name: ${GRAFANA_DB_NAME}
+      user: ${GRAFANA_DB_USER}
+      password: ${GRAFANA_DB_PASSWORD}
+    server:
+      root_url: https://grafana.${PUBLIC_DOMAIN}/
+    auth:
+      disable_login_form: "false"
+    auth.generic_oauth:
+      enabled: "true"
+      name: Authentik
+      allow_sign_up: "true"
+      auto_login: "true"
+      client_id: ${GRAFANA_AUTH_CLIENT_ID}
+      client_secret: ${GRAFANA_AUTH_CLIENT_SECRET}
+      scopes: openid email profile
+      email_attribute_path: email
+      login_attribute_path: preferred_username
+      name_attribute_path: name
+      groups_attribute_path: groups
+      auth_url: https://authentik.${PUBLIC_DOMAIN}/application/o/authorize/
+      token_url: https://authentik.${PUBLIC_DOMAIN}/application/o/token/
+      api_url: https://authentik.${PUBLIC_DOMAIN}/application/o/userinfo/
+      signout_redirect_url: https://authentik.${PUBLIC_DOMAIN}/application/o/grafana/end-session/
+      role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              env:
+                - name: GF_SECURITY_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-creds
+                      key: admin-user
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-creds
+                      key: admin-password
+                - name: GF_DATE_FORMATS_USE_BROWSER_LOCALE
+                  value: "true"
+              resources:
+                limits:
+                  cpu: 200m
+                requests:
+                  cpu: 10m
+          volumes:
+            - name: grafana-data
+              persistentVolumeClaim:
+                claimName: grafana-pvc
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi

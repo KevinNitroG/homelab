@@ -1,0 +1,125 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: authentik
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudbeaver
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudflare-ddns
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cnpg-system
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dbgate
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: glance
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grafana-operator
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: istio-system
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kite
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kustomization
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio-operator
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redis-commander
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redis-operator
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redpanda
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reloader
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rustfs
