@@ -103,6 +103,24 @@
       ],
       "datasourceTemplate": "{{{datasource}}}",
       "depNameTemplate": "{{{depName}}}"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/ansible/inventory/group_vars/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "flux_version:\\s+\"(?<currentValue>v?[\\d.]+)\""
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "fluxcd/flux2"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/ansible/inventory/group_vars/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "k3s_version:\\s+\"(?<currentValue>v?[\\d.+k3s]+)\""
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "k3s-io/k3s"
     }
   ],
   "customDatasources": {
