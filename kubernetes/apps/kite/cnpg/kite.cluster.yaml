@@ -36,7 +36,7 @@ spec:
       name: barman-cloud.cloudnative-pg.io
       parameters:
         barmanObjectName: cnpg-cnpg
-        serverName: cnpg-kite
+        serverName: cnpg-kite-1
   externalClusters:
     - name: *backupName
       plugin: *barmanCloud

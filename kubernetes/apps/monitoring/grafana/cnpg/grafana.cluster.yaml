@@ -36,7 +36,7 @@ spec:
       name: barman-cloud.cloudnative-pg.io
       parameters:
         barmanObjectName: grafana-cnpg
-        serverName: cnpg-grafana
+        serverName: cnpg-grafana-1
   externalClusters:
     - name: *backupName
       plugin: *barmanCloud
