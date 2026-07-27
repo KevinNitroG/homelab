@@ -18,3 +18,9 @@ spec:
   path: kubernetes/apps/istio-system/gateway/
   dependsOn:
     - name: default-gatewayapi
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: clustersetting
+      - kind: ConfigMap
+        name: clustersetting

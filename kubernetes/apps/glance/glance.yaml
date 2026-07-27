@@ -16,6 +16,8 @@ spec:
     name: flux-system
     namespace: flux-system
   path: kubernetes/apps/glance/glance/
+  dependsOn:
+    - name: default-gatewayapi
   decryption:
     provider: sops
     secretRef:
