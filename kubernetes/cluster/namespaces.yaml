@@ -17,13 +17,6 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: cloudbeaver
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
-apiVersion: v1
-kind: Namespace
-metadata:
   name: cloudflare-ddns
 
 ---
@@ -80,28 +73,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: minio-operator
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
-apiVersion: v1
-kind: Namespace
-metadata:
   name: monitoring
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: redis-commander
-
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: redis-operator
 
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
