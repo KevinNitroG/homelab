@@ -6,3 +6,4 @@ resources:
   - ./admin-creds.secret.sops.yaml
   - ./grafana.yaml
   - ./httproute.yaml
+namespace: monitoring

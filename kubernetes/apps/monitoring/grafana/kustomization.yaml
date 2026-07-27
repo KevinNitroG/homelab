@@ -8,3 +8,4 @@ resources:
   - ./datasource/
   - ./folder/
   - ./grafana/
+namespace: monitoring

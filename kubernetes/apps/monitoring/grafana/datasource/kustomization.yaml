@@ -7,3 +7,4 @@ resources:
   - ./loki.yaml
   - ./prometheus.yaml
   - ./tempo.yaml
+namespace: monitoring

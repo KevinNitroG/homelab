@@ -8,3 +8,4 @@ resources:
   - ./loki.oci.yaml
   - ./prometheus-operator-crds.oci.yaml
   - ./tempo.oci.yaml
+namespace: monitoring

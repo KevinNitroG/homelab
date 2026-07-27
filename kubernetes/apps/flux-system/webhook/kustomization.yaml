@@ -6,3 +6,4 @@ resources:
   - ./httproute.yaml
   - ./receiver.yaml
   - ./token.secret.sops.yaml
+namespace: flux-system

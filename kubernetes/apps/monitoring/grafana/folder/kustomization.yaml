@@ -9,3 +9,4 @@ resources:
   - ./monitoring.yaml
   - ./programming.yaml
   - ./storage.yaml
+namespace: monitoring

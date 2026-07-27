@@ -16,3 +16,4 @@ configMapGenerator:
       disableNameSuffixHash: true
 configurations:
   - ./kustomizeconfig.yaml
+namespace: monitoring

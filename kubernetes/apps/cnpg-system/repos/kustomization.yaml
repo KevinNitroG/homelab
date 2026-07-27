@@ -6,3 +6,4 @@ resources:
   - ./artifacts.git.yaml
   - ./cnpg.oci.yaml
   - ./plugin-barman-cloud.oci.yaml
+namespace: cnpg-system

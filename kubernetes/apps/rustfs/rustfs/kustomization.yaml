@@ -9,3 +9,4 @@ configMapGenerator:
   - name: rustfs-helm-values
     files:
       - ./values.yaml
+namespace: rustfs

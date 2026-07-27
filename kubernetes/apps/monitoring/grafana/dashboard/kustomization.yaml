@@ -18,3 +18,4 @@ resources:
   - ./prometheus.yaml
   - ./redis.storage.yaml
   - ./views-global.yaml
+namespace: monitoring

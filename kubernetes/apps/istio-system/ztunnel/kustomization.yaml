@@ -10,3 +10,4 @@ configMapGenerator:
       - ./values.yaml
 configurations:
   - ./kustomizeconfig.yaml
+namespace: istio-system

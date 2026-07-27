@@ -16,3 +16,4 @@ configMapGenerator:
   - name: glance-config
     files:
       - glance.yml=./config/glance.yml
+namespace: glance

@@ -6,3 +6,4 @@ resources:
   # - ./referencegrant.yaml # TODO: remove?
   - ./local.certificate.yaml
   - ./public-prod.certificate.yaml
+namespace: istio-system

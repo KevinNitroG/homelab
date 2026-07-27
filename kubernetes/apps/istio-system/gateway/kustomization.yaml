@@ -6,3 +6,4 @@ resources:
   - ./gateway.yaml
   # TODO: Just wonder do we need
   # - ./referencegrant.yaml
+namespace: istio-system

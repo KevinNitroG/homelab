@@ -7,3 +7,4 @@ resources:
   - ./cni.oci.yaml
   - ./istiod.oci.yaml
   - ./ztunnel.oci.yaml
+namespace: istio-system

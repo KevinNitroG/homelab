@@ -9,3 +9,4 @@ labels:
 resources:
   - ./config.secret.sops.yaml
   - ./deployment.yaml
+namespace: cloudflare-ddns
