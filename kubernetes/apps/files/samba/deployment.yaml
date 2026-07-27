@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: samba
-          image: dockurr/samba:4.22.6
+          image: dockurr/samba:4.23.8
           ports:
             - containerPort: 445
           volumeMounts:
