@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/service.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: aria2-aria2
+spec:
+  ports:
+    - name: main-tcp
+      port: 6888
+      protocol: TCP
+    - name: main-udp
+      port: 6888
+      protocol: UDP
+    - name: rpc
+      port: 6800

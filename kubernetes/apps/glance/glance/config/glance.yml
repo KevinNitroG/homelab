@@ -58,7 +58,8 @@ pages:
                 icon: si:dbeaver
               - title: Ariang
                 check-url: https://ariang.mayswind.net/latest/#!/settings/ariang
-                url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc/$${ARIA2_RPC_SECRET}
+                # url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc/$${ARIA2_RPC_SECRET}
+                url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc # change the secret myself
                 icon: sh:aria2
               - title: Metube
                 check-url: http://metube.files:8081

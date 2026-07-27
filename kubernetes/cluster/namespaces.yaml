@@ -38,6 +38,13 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: files
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
   name: glance
 
 ---

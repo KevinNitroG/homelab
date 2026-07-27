@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/gateway.networking.k8s.io/tcproute_v1alpha2.json
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: samba-samba
+spec:
+  parentRefs:
+    - name: default
+      sectionName: samba
+      namespace: istio-system
+  rules:
+    - backendRefs:
+        - name: samba-samba
+          port: 445
