@@ -39,7 +39,10 @@ spec:
         serverName: cnpg-authentik-1
   externalClusters:
     - name: *backupName
-      plugin: *barmanCloud
+      plugin:
+        <<: *barmanCloud
+        parameters:
+          serverName: cnpg-authentik
   managed:
     services:
       disabledDefaultServices:

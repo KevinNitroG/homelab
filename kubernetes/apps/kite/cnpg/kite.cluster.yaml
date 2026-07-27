@@ -39,7 +39,10 @@ spec:
         serverName: cnpg-kite-1
   externalClusters:
     - name: *backupName
-      plugin: *barmanCloud
+      plugin:
+        <<: *barmanCloud
+        parameters:
+          serverName: cnpg-kite
   managed:
     services:
       disabledDefaultServices:
