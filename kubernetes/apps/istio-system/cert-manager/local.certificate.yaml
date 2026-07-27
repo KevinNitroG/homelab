@@ -6,7 +6,7 @@ metadata:
   name: cert-manager-local
 spec:
   issuerRef:
-    name: cert-manager-local
+    name: certs-local
     kind: ClusterIssuer
   secretName: cert-manager-local-tls
   commonName: "${LOCAL_DOMAIN}"
