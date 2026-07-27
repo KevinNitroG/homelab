@@ -13,5 +13,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: artifacts
-    namespace: flux-system
   path: image-catalogs/
