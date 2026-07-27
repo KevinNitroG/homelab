@@ -7,7 +7,7 @@ labels:
       app.kubernetes.io/name: files-filebrowser
     includeSelectors: true
 resources:
-  - ./config.secret.sops.yaml
+  - ./config.configmap.yaml
   - ./database.pvc.yaml
   - ./deployment.yaml
   - ./httproute.yaml
