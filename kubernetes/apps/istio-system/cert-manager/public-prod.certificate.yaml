@@ -6,7 +6,7 @@ metadata:
   name: cert-manager-public-prod
 spec:
   issuerRef:
-    name: cert-manager-public-prod
+    name: certs-public-prod
     kind: ClusterIssuer
   secretName: cert-manager-public-prod-tls
   commonName: ${PUBLIC_DOMAIN}
