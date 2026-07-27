@@ -21,7 +21,7 @@ pages:
             title: Services
             sites:
               - title: Kite
-                check-url: http://kite.kite:8080/healthz
+                check-url: http://kite-kite.kite:8080/healthz
                 url: https://kite.kevinnitro.id.vn
                 icon: sh:kite-kubernetes
               - title: Grafana
