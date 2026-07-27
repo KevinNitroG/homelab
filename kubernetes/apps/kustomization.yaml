@@ -8,6 +8,7 @@ resources:
   - ./cloudflare-ddns/
   - ./cnpg-system/
   - ./default/
+  - ./flux-system/
   - ./glance/
   - ./grafana-operator/
   - ./istio-system/
