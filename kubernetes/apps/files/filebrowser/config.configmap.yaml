@@ -1,9 +1,9 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/secret.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
   name: filebrowser-config
-stringData:
+data:
   # language: yaml
   config.yaml: |
     address: 0.0.0.0
