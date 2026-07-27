@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/cnpg-system/plugin-barman-cloud/
   dependsOn:
     - name: cnpg-system-cnpg
+  targetNamespace: cnpg-system

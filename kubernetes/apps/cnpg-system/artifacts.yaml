@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/cnpg-system/artifacts/
   dependsOn:
     - name: cnpg-system-cnpg
+  targetNamespace: cnpg-system

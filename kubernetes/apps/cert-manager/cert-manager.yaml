@@ -24,3 +24,4 @@ spec:
         name: clustersetting
       - kind: ConfigMap
         name: clustersetting
+  targetNamespace: cert-manager

@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/cnpg-system/cnpg/
   dependsOn:
     - name: cert-manager-cert-manager # cnpg itself hard depends
+  targetNamespace: cnpg-system

@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/istio-system/istiod/
   dependsOn:
     - name: istio-system-base
+  targetNamespace: istio-system

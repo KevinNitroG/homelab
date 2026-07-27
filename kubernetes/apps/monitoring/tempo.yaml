@@ -14,3 +14,4 @@ spec:
     kind: GitRepository
     name: flux-system
   path: kubernetes/apps/monitoring/tempo/
+  targetNamespace: monitoring

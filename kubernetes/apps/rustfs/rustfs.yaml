@@ -26,3 +26,4 @@ spec:
         name: clustersetting
       - kind: Secret
         name: rustfs-clustersettings
+  targetNamespace: rustfs

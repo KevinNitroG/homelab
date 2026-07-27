@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/istio-system/gateway/
   dependsOn:
     - name: default-gatewayapi
+  targetNamespace: istio-system

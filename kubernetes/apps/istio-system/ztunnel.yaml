@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/istio-system/ztunnel/
   dependsOn:
     - name: istio-system-base
+  targetNamespace: istio-system

@@ -16,3 +16,4 @@ spec:
   path: kubernetes/apps/istio-system/cert-manager/
   dependsOn:
     - name: cert-manager-cert-manager
+  targetNamespace: istio-system

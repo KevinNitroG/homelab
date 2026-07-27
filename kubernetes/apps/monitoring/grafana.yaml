@@ -27,3 +27,4 @@ spec:
         name: clustersetting
       - kind: ConfigMap
         name: clustersetting
+  targetNamespace: monitoring

@@ -13,3 +13,4 @@ spec:
     kind: GitRepository
     name: artifacts
   path: image-catalogs/
+  targetNamespace: cnpg-system
