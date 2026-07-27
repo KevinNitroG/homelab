@@ -28,5 +28,3 @@ spec:
         name: clustersetting
       - kind: ConfigMap
         name: clustersetting
-      - kind: Secret
-        name: authentik-clustersetting
