@@ -4,6 +4,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./gateway.yaml
+  - ./alertmanager.authorizationpolicy.yaml
+  - ./alloy.authorizationpolicy.yaml
+  - ./dbgate.authorizationpolicy.yaml
+  - ./prometheus.authorizationpolicy.yaml
   # TODO: Just wonder do we need
   # - ./referencegrant.yaml
 namespace: istio-system
