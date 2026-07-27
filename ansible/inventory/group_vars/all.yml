@@ -8,4 +8,4 @@ flux_version: "2.9.3"
 
 github_owner: KevinNitroG
 github_repo: homelab
-github_token: "{{ lookup('env', 'GH_TOKEN') }}"
+github_token: "{{ lookup('env', 'GITHUB_TOKEN') }}"

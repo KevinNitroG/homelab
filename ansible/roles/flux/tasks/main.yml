@@ -27,13 +27,13 @@
           K3s must be installed and running first.
       when: not flux_kubeconfig_stat.stat.exists
 
-    - name: Check GH_TOKEN is set
+    - name: Check GITHUB_TOKEN is set
       ansible.builtin.assert:
         that:
-          - lookup('env', 'GH_TOKEN') | length > 0
+          - lookup('env', 'GITHUB_TOKEN') | length > 0
         fail_msg: >-
-          GH_TOKEN environment variable is not set.
-          Export it before running: export GH_TOKEN=ghp_xxxxx
+          GITHUB_TOKEN environment variable is not set.
+          Export it before running: export GITHUB_TOKEN=ghp_xxxxx
       delegate_to: localhost
       become: false
 
@@ -46,7 +46,7 @@
 - name: Download and install flux
   ansible.builtin.shell: |
     set -o pipefail
-    curl -s {{ flux_download_url }} | tar -xz -C {{ flux_install_path }} flux
+    curl -sSLf {{ flux_download_url }} | tar -xz -C {{ flux_install_path }} flux
     chmod +x {{ flux_install_path }}/flux
   args:
     creates: "{{ flux_install_path }}/flux"
@@ -76,17 +76,23 @@
   environment:
     KUBECONFIG: "{{ flux_kubeconfig }}"
 
+- name: Read age key file locally
+  ansible.builtin.slurp:
+    src: "{{ flux_age_key_path }}"
+  delegate_to: localhost
+  become: false
+  register: flux_age_key_content
+
 - name: Create sops-age secret for Flux decryption
-  kubernetes.core.k8s:
-    state: present
-    definition:
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: sops-age
-        namespace: flux-system
-      type: Opaque
-      data:
-        age.agekey: "{{ lookup('file', flux_age_key_path) | b64encode }}"
+  ansible.builtin.shell: |
+    set -o pipefail
+    echo '{{ flux_age_key_content.content | b64decode }}' | \
+      kubectl -n flux-system create secret generic sops-age \
+        --from-file=age.agekey=/dev/stdin \
+        --dry-run=client -o yaml | kubectl apply -f -
+  args:
+    executable: /bin/bash
+  register: flux_sops_secret
+  changed_when: "'created' in flux_sops_secret.stdout"
   environment:
     KUBECONFIG: "{{ flux_kubeconfig }}"

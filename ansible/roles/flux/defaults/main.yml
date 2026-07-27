@@ -4,7 +4,7 @@ flux_download_url: "https://github.com/fluxcd/flux2/releases/download/v{{ flux_v
 flux_github_owner: "{{ github_owner }}"
 flux_github_repo: "{{ github_repo }}"
 flux_github_token: "{{ github_token }}"
-flux_bootstrap_path: "kubernetes/cluster/main"
+flux_bootstrap_path: "kubernetes/cluster/"
 flux_interval: "10m"
 flux_components_extra: []
 flux_kubeconfig: "/etc/rancher/k3s/k3s.yaml"

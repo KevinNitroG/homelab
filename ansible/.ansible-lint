@@ -1,5 +1,8 @@
+# vim:set ft=yaml:
 exclude_paths:
   - collections/
   - .cache/
 kinds:
   - playbook: "playbooks/*.yml"
+skip_list:
+  - yaml[indentation]

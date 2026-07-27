@@ -7,5 +7,3 @@ collections:
     version: ">=13.2.0"
   - name: ansible.posix
     version: ">=2.2.2"
-  - name: kubernetes.core
-    version: ">=6.5.0"
