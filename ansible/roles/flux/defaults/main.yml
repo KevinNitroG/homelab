@@ -9,3 +9,4 @@ flux_interval: "10m"
 flux_components_extra: []
 flux_kubeconfig: "/etc/rancher/k3s/k3s.yaml"
 flux_age_key_path: "{{ inventory_dir }}/../../secret/age.agekey"
+flux_force_rebootstrap: false

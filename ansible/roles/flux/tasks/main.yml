@@ -54,6 +54,29 @@
   environment:
     FLUX_VERSION: "{{ flux_version }}"
 
+- name: Delete existing flux-system Kustomization to allow path change
+  when: flux_force_rebootstrap | bool
+  block:
+    - name: Patch out finalizers on flux-system Kustomization
+      ansible.builtin.shell: |
+        kubectl patch kustomization flux-system -n flux-system \
+          -p '{"metadata":{"finalizers":null}}' --type=merge 2>/dev/null || true
+      args:
+        executable: /bin/bash
+      changed_when: false
+      environment:
+        KUBECONFIG: "{{ flux_kubeconfig }}"
+
+    - name: Delete flux-system Kustomization
+      ansible.builtin.shell: |
+        kubectl delete kustomization flux-system -n flux-system --ignore-not-found --wait=true
+      args:
+        executable: /bin/bash
+      register: flux_delete_kustomization
+      changed_when: "'deleted' in flux_delete_kustomization.stdout"
+      environment:
+        KUBECONFIG: "{{ flux_kubeconfig }}"
+
 - name: Bootstrap Flux via GitHub
   ansible.builtin.shell: |
     {{ flux_install_path }}/flux bootstrap github \
@@ -64,7 +87,9 @@
       --private \
       --personal
   args:
-    creates: /var/lib/rancher/k3s/server/manifests/flux-system.yaml
+    executable: /bin/bash
+  register: flux_bootstrap_result
+  changed_when: "'✔' in flux_bootstrap_result.stderr"
   environment:
     KUBECONFIG: "{{ flux_kubeconfig }}"
     GITHUB_TOKEN: "{{ flux_github_token }}"
