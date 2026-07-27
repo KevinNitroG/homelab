@@ -42,7 +42,7 @@ spec:
       plugin:
         <<: *barmanCloud
         parameters:
-          barmanObjectName: cnpg
+          barmanObjectName: grafana-cnpg
           serverName: cnpg-grafana
   managed:
     services:
