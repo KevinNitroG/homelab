@@ -7,7 +7,11 @@ metadata:
 spec:
   parentRefs:
     - name: default
-      sectionName: http-local
+      sectionName: https-wildcard
+      kind: Gateway
+      namespace: istio-system
+    - name: default
+      sectionName: https-wildcard-local
       kind: Gateway
       namespace: istio-system
   hostnames:
@@ -28,6 +32,10 @@ metadata:
   name: metube-https
 spec:
   parentRefs:
+    - name: default
+      sectionName: https-wildcard
+      kind: Gateway
+      namespace: istio-system
     - name: default
       sectionName: https-wildcard-local
       kind: Gateway
