@@ -3,13 +3,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: files-rclone
+  name: rclone-rclone
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
   template:
     metadata:
-      name: files-rclone
+      name: rclone-rclone
     spec:
       containers:
         - name: rclone

@@ -48,19 +48,21 @@
               url: https://dbgate.kevinnitro.id.vn
               icon: si:dbeaver
             - title: Ariang
-              check-url: https://ariang.mayswind.net/latest/#!/settings/ariang
+              check-url: http://aria2-aria2.files:6800/jsonrpc
               url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc
               icon: sh:aria2
+              alt-status-codes:
+                - 400
             - title: Metube
-              check-url: http://metube.files:8081
+              check-url: http://metube-metube.files:8081
               url: https://metube.kevinnitro.id.vn
               icon: sh:metube
             - title: Filebrowser
-              check-url: http://filebrowser.files:80/health
+              check-url: http://filebrowser-filebrowser.files:80/health
               url: https://filebrowser.kevinnitro.id.vn
               icon: sh:file-browser
             - title: Rclone
-              check-url: http://files-rclone.files:8080/
+              check-url: http://rclone-rclone.files:8080/
               url: https://rclone.kevinnitro.id.vn
               icon: si:rclone
               alt-status-codes:

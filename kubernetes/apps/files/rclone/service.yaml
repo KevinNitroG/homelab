@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: files-rclone
+  name: rclone-rclone
 spec:
   ports:
     - name: webdav
