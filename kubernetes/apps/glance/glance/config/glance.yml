@@ -69,6 +69,10 @@ pages:
                 check-url: http://filebrowser.files:80/health
                 url: https://filebrowser.kevinnitro.id.vn
                 icon: sh:file-browser
+              - title: Copyparty
+                check-url: http://copyparty.files:3923/health
+                url: https://copyparty.kevinnitro.id.vn
+                icon: sh:copyparty
               - title: MLTB
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn
