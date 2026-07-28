@@ -1,0 +1,67 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: files-rclone
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  template:
+    metadata:
+      name: files-rclone
+    spec:
+      containers:
+        - name: rclone
+          image: rclone/rclone:sha-b6ffdfa
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              rclone serve webdav /data \
+                --addr :8080 \
+                --log-level INFO \
+                --user "$${RCLONE_USER}" \
+                --pass "$${RCLONE_PASS}" \
+                --vfs-cache-mode full \
+                --vfs-cache-max-size 10G \
+                --buffer-size 16M \
+                --vfs-read-ahead 64M \
+                --transfers 2 \
+                --checkers 2
+          ports:
+            - name: webdav
+              containerPort: 8080
+          env:
+            - name: RCLONE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: rclone-webdav
+                  key: RCLONE_USER
+            - name: RCLONE_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: rclone-webdav
+                  key: RCLONE_PASS
+          volumeMounts:
+            - name: &aria2 aria2-downloads
+              mountPath: /data/aria2
+            - name: &metube metube-downloads
+              mountPath: /data/metube
+          livenessProbe:
+            tcpSocket:
+              port: webdav
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: webdav
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: *aria2
+          persistentVolumeClaim:
+            claimName: *aria2
+        - name: *metube
+          persistentVolumeClaim:
+            claimName: *metube
+  selector: {}

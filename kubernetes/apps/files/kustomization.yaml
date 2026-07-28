@@ -6,4 +6,4 @@ resources:
   - ./aria2.yaml
   - ./filebrowser.yaml
   - ./metube.yaml
-  - ./samba.yaml
+  - ./rclone.yaml

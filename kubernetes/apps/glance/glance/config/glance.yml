@@ -73,6 +73,10 @@ pages:
                 check-url: http://filebrowser.files:80/health
                 url: https://filebrowser.kevinnitro.id.vn
                 icon: sh:file-browser
+              - title: Rclone
+                check-url: http://files-rclone.files:8080/
+                url: https://rclone.kevinnitro.id.vn
+                icon: si:rclone
               - title: MLTB
                 check-url: http://mltb-mltb.mltb
                 url: http://mltb.kevinnitro.id.vn

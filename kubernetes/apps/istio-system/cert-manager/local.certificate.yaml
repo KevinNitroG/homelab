@@ -21,4 +21,5 @@ spec:
     - kite.${LOCAL_DOMAIN}
     - metube.${LOCAL_DOMAIN}
     - prometheus.${LOCAL_DOMAIN}
+    - rclone.${LOCAL_DOMAIN}
     - tempo.${LOCAL_DOMAIN}
