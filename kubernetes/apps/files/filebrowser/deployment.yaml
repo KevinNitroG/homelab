@@ -33,6 +33,7 @@ spec:
           image: filebrowser/filebrowser:v2.63.21
           args:
             - --config=/config/config.yaml
+            - --database=/database/filebrowser.db
           ports:
             - containerPort: 80
           volumeMounts:
