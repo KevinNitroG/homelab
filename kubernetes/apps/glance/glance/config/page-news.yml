@@ -4,6 +4,7 @@
   columns:
     - size: full
       widgets:
+        # ── UIT ──────────────────────────────────────────────────────
         - type: rss
           title: UIT
           style: detailed-list
@@ -18,6 +19,7 @@
             - url: https://www.uit.edu.vn/taxonomy/term/201/feed
               title: Student Activities
 
+        # ── UIT Forum ───────────────────────────────────────────────
         - type: rss
           title: UIT Forum
           style: detailed-list
@@ -31,13 +33,15 @@
               url: https://forum.uit.edu.vn/c/ho-tro-doi-song/viec-lam-thuc-tap/32.rss
             - title: Companies
               url: https://forum.uit.edu.vn/c/ho-tro-doi-song/hoi-thao-tham-quan-doanh-nghiep-cac-cuoc-thi/33.rss
-            - title: Software Falcuty
+            - title: Software Faculty
               url: https://forum.uit.edu.vn/c/goc-hoc-tap/cong-nghe-phan-mem/20.rss
-            - title: Network Falcuty
+            - title: Network Faculty
               url: https://forum.uit.edu.vn/c/cong-dong-uit/10.rss
 
+        # ── Forum + YouTube (side by side) ──────────────────────────
         - type: split-column
           widgets:
+            # ── Forum ─────────────────────────────────────────────
             - type: rss
               title: Forum
               style: detailed-list
@@ -53,13 +57,29 @@
                   url: https://www.reddit.com/r/vozforums/.rss
                 - title: r/neovim
                   url: https://www.reddit.com/r/neovim/.rss
+
+            # ── YouTube: Tech ─────────────────────────────────────
             - type: videos
-              title: YouTube
+              title: YouTube - Tech
               style: horizontal-cards
               cache: 1h
               limit: 15
               channels:
-                - UChfAI8bOPOJIQOTE-qHRwew
-                - UCYeiozh-4QwuC1sjgCmB92w
+                # TheLinuxNinja
                 - UC3ECq823SyuR1Is4zhxfuOA
+                # devopstoolbox
+                - UCYeiozh-4QwuC1sjgCmB92w
+                # yousuckatprogramming
                 - UCMN0a7GHQnC6H74SmCGSmdw
+                # vinamuse203
+                - UC7aT5OieA6-AGD48qZCDnUA
+
+            # ── YouTube: Blog ─────────────────────────────────────
+            - type: videos
+              title: YouTube - Blog
+              style: horizontal-cards
+              cache: 1h
+              limit: 10
+              channels:
+                # tumivn
+                - UChfAI8bOPOJIQOTE-qHRwew
