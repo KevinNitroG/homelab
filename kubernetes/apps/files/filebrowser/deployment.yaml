@@ -21,7 +21,9 @@ spec:
               if [ ! -f /database/filebrowser.db ]; then
                 filebrowser --database=/database/filebrowser.db config init
               fi
-              filebrowser --database=/database/filebrowser.db users import /config/user.json --overwrite
+              if ! filebrowser --database=/database/filebrowser.db users find kevinnitro > /dev/null 2>&1; then
+                filebrowser --database=/database/filebrowser.db users import /config/user.json
+              fi
           volumeMounts:
             - name: filebrowser-user
               mountPath: /config/user.json
