@@ -63,6 +63,8 @@
               check-url: http://files-rclone.files:8080/
               url: https://rclone.kevinnitro.id.vn
               icon: si:rclone
+              alt-status-codes:
+                - 403
             - title: MLTB
               check-url: http://mltb-mltb.mltb
               url: http://mltb.kevinnitro.id.vn

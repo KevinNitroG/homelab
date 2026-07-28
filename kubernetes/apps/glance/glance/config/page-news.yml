@@ -4,10 +4,10 @@
   columns:
     - size: full
       widgets:
-        # ── Forum + YouTube (side by side) ──────────────────────────
+        # Forum + YouTube (side by side)
         - type: split-column
           widgets:
-            # ── Forum ─────────────────────────────────────────────
+            # Forum
             - type: rss
               title: Forum
               style: detailed-list
@@ -24,28 +24,24 @@
                 - title: r/neovim
                   url: https://www.reddit.com/r/neovim/.rss
 
-            # ── YouTube: Tech ─────────────────────────────────────
+            # YouTube: Tech
             - type: videos
               title: YouTube - Tech
               style: horizontal-cards
               cache: 1h
-              limit: 15
+              limit: 20
               channels:
-                # TheLinuxNinja
-                - UC3ECq823SyuR1Is4zhxfuOA
-                # devopstoolbox
-                - UCYeiozh-4QwuC1sjgCmB92w
-                # yousuckatprogramming
-                - UCMN0a7GHQnC6H74SmCGSmdw
-                # vinamuse203
-                - UC7aT5OieA6-AGD48qZCDnUA
+                - UC3ECq823SyuR1Is4zhxfuOA # TheLinuxNinja
+                - UCYeiozh-4QwuC1sjgCmB92w # devopstoolbox
+                - UCMN0a7GHQnC6H74SmCGSmdw # yousuckatprogramming
+                - UCqAL_b-jUOTPjrTSNl2SNaQ # SoftwareDeveloperDiaries
 
-            # ── YouTube: Blog ─────────────────────────────────────
+            # YouTube: Blog
             - type: videos
               title: YouTube - Blog
               style: horizontal-cards
               cache: 1h
-              limit: 10
+              limit: 20
               channels:
-                # tumivn
-                - UChfAI8bOPOJIQOTE-qHRwew
+                - UChfAI8bOPOJIQOTE-qHRwew # tumivn
+                - UC7aT5OieA6-AGD48qZCDnUA # vinamuse203
