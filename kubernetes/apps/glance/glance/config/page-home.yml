@@ -64,7 +64,7 @@
               url: https://rclone.kevinnitro.id.vn
               icon: si:rclone
               alt-status-codes:
-                - 403
+                - 401
             - title: MLTB
               check-url: http://mltb-mltb.mltb
               url: http://mltb.kevinnitro.id.vn
