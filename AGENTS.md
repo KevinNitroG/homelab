@@ -283,6 +283,33 @@ cert-manager
 8. Add namespace to `cluster/namespaces.yaml`
 9. Include `components: [../../components/clustersettings/]` in kustomization.yaml if app needs shared config
 
+## SOPS Encryption/Decryption
+
+This repo uses `sops` with age encryption (key: `age1ytym...f2sy4`). The `.sops.yaml` config has two relevant rules:
+
+- `kubernetes/.*\.sops\.ya?ml` — encrypts `^(data|stringData)$` (K8s secrets with `stringData` or `data`)
+- `kubernetes/.*values\.sops\.ya?ml` — encrypts `^(.*)$` (Helm values files, everything)
+
+**Commands:**
+
+```bash
+# Encrypt a new secret (in-place)
+sops encrypt -i kubernetes/apps/<app>/<sub>/<file>.sops.yaml
+
+# Decrypt to view contents (stdout)
+sops decrypt kubernetes/apps/<app>/<sub>/<file>.sops.yaml
+
+# Edit a SOPS file in-place (decrypts, opens $EDITOR, re-encrypts)
+sops kubernetes/apps/<app>/<sub>/<file>.sops.yaml
+```
+
+**Workflow:**
+1. Create the plain `secret.yaml` (or `values.yaml`) with `stringData`/`data` as normal
+2. Rename to `<name>.secret.sops.yaml` or `<name>.sops.yaml` (must match `.sops.yaml` regex)
+3. Run `sops encrypt -i <file>`
+4. Update the sub-app kustomization.yaml to reference `./<file>.sops.yaml`
+5. The app-level Flux Kustomization CRD must have `decryption: provider: sops` + `secretRef: sops-age`
+
 ## Environment Variables & Secrets
 
 - Shared config: `components/clustersettings/configmap.yaml` + `secret.sops.yaml`
