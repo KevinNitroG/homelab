@@ -67,6 +67,7 @@
               check-url: http://mltb-mltb.mltb
               url: http://mltb.kevinnitro.id.vn
               icon: si:telegram
+
         - type: bookmarks
           groups:
             - title: Mine
@@ -74,6 +75,7 @@
                 - title: Kevindex
                   url: https://kevindex.kevinnitro.id.vn/
                   icon: si:cloudflareworkers
+
     - size: small
       widgets:
         - type: server-stats
