@@ -12,6 +12,7 @@ spec:
       namespace: istio-system
   hostnames:
     - metube.${LOCAL_DOMAIN}
+    - metube.${PUBLIC_DOMAIN}
   rules:
     - filters:
         - type: RequestRedirect
@@ -33,6 +34,7 @@ spec:
       namespace: istio-system
   hostnames:
     - metube.${LOCAL_DOMAIN}
+    - metube.${PUBLIC_DOMAIN}
   rules:
     - backendRefs:
         - name: metube-metube
