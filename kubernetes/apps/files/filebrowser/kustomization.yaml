@@ -10,7 +10,6 @@ resources:
   - ./config.configmap.yaml
   - ./database.pvc.yaml
   - ./deployment.yaml
-  - ./env.secret.sops.yaml
   - ./httproute.yaml
   - ./service.yaml
 namespace: files

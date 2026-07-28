@@ -19,17 +19,6 @@ spec:
             - --database=/database/filebrowser.db
           ports:
             - containerPort: 80
-          env:
-            - name: FB_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: filebrowser-env
-                  key: FB_USERNAME
-            - name: FB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: filebrowser-env
-                  key: FB_PASSWORD
           volumeMounts:
             - name: &config filebrowser-config
               mountPath: /config/config.yaml
