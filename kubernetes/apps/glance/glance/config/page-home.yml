@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/not-first/glance-schema/master/schema.json#/properties/pages
+- name: Home
+  desktop-navigation-width: slim
+  head-widgets:
+    - type: search
+      autofocus: false
+  columns:
+    - size: full
+      widgets:
+        - type: monitor
+          cache: 1m
+          title: Services
+          sites:
+            - title: Kite
+              check-url: http://kite-kite.kite:8080/healthz
+              url: https://kite.kevinnitro.id.vn
+              icon: sh:kite-kubernetes
+            - title: Grafana
+              check-url: http://grafana-service.monitoring:3000/api/health
+              url: https://grafana.kevinnitro.id.vn
+              icon: si:grafana
+            - title: Prometheus
+              check-url: http://monitoring-kube-prometheus-prometheus.monitoring:9090/-/ready
+              url: https://prometheus.kevinnitro.id.vn
+              icon: si:prometheus
+            - title: Alertmanager
+              check-url: http://monitoring-kube-prometheus-alertmanager.monitoring:9093/-/ready
+              url: https://alertmanager.kevinnitro.id.vn
+              icon: mdi:torch
+            - title: Loki
+              check-url: http://loki-loki.monitoring:3100/ready
+              url: https://loki.kevinnitro.id.vn
+              icon: sh:loki
+            - title: Tempo
+              check-url: http://tempo-tempo.monitoring:3200/ready
+              url: https://tempo.kevinnitro.id.vn
+              icon: sh:tempo
+            - title: Alloy
+              check-url: http://alloy-alloy.monitoring:12345/-/healthy
+              url: https://alloy.kevinnitro.id.vn
+              icon: sh:grafana-alloy
+            - title: Authentik
+              check-url: http://authentik-server.authentik:80/-/health/live/
+              url: https://authentik.kevinnitro.id.vn
+              icon: si:authentik
+            - title: DbGate
+              check-url: http://dbgate.dbgate:8978/status
+              url: https://dbgate.kevinnitro.id.vn
+              icon: si:dbeaver
+            - title: Ariang
+              check-url: https://ariang.mayswind.net/latest/#!/settings/ariang
+              url: https://ariang.mayswind.net/latest/#!/settings/rpc/set/https/aria2.kevinnitro.id.vn/443/jsonrpc
+              icon: sh:aria2
+            - title: Metube
+              check-url: http://metube.files:8081
+              url: https://metube.kevinnitro.id.vn
+              icon: sh:metube
+            - title: Filebrowser
+              check-url: http://filebrowser.files:80/health
+              url: https://filebrowser.kevinnitro.id.vn
+              icon: sh:file-browser
+            - title: Rclone
+              check-url: http://files-rclone.files:8080/
+              url: https://rclone.kevinnitro.id.vn
+              icon: si:rclone
+            - title: MLTB
+              check-url: http://mltb-mltb.mltb
+              url: http://mltb.kevinnitro.id.vn
+              icon: si:telegram
+        - type: bookmarks
+          groups:
+            - title: Mine
+              links:
+                - title: Kevindex
+                  url: https://kevindex.kevinnitro.id.vn/
+                  icon: si:cloudflareworkers
+    - size: small
+      widgets:
+        - type: server-stats
+          servers:
+            - type: local
+              name: kevblink

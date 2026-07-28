@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/not-first/glance-schema/master/schema.json#/properties/pages
+- name: News
+  desktop-navigation-width: slim
+  columns:
+    - size: full
+      widgets:
+        - type: split-column
+          widgets:
+            - type: rss
+              title: Forum
+              style: detailed-list
+              cache: 1h
+              feeds:
+                - title: Voz Chuyện trò linh tinh
+                  url: https://voz.vn/f/chuyen-tro-linh-tinh.17/index.rss
+                - title: Voz Tuyển dụng tìm việc
+                  url: https://voz.vn/f/tuyen-dung-tim-viec.95/index.rss
+                - title: Voz Lập trình CNTT
+                  url: https://voz.vn/f/lap-trinh-cntt.91/index.rss
+                - title: r/vozforums
+                  url: https://www.reddit.com/r/vozforums/.rss
+                - title: r/neovim
+                  url: https://www.reddit.com/r/neovim/.rss
+            - type: videos
+              title: YouTube
+              style: horizontal-cards
+              cache: 1h
+              limit: 15
+              channels:
+                - UChfAI8bOPOJIQOTE-qHRwew
+                - UCYeiozh-4QwuC1sjgCmB92w
+                - UC3ECq823SyuR1Is4zhxfuOA
+                - UCMN0a7GHQnC6H74SmCGSmdw
