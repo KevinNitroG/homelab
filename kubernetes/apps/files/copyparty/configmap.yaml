@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/configmap.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: copyparty-config
+data:
+  copyparty.conf: | # language: ini
+    [global]
+      i: 0.0.0.0
+      p: 3923
+      e2dsa
+      e2ts
+      xff-src: lan
+      idp-h-usr: x-authentik-username
+      idp-h-grp: x-authentik-groups
+
+    [/aria2]
+      /aria2
+      accs:
+        r: *
+
+    [/metube]
+      /metube
+      accs:
+        r: *

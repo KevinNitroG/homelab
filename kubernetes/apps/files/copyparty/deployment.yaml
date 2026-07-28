@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/deployment.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: files-copyparty
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  template:
+    metadata:
+      name: files-copyparty
+    spec:
+      containers:
+        - name: copyparty
+          image: copyparty/ac:1.20.18
+          args:
+            - -c
+            - /config/copyparty.conf
+          ports:
+            - containerPort: 3923
+          volumeMounts:
+            - name: &config copyparty-config
+              mountPath: /config/
+              readOnly: true
+            - name: &aria2 aria2-downloads
+              mountPath: /aria2/
+            - name: &metube metube-downloads
+              mountPath: /metube/
+          startupProbe:
+            httpGet: &httpGet
+              path: /?reset=/._
+              port: 3923
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 12
+          livenessProbe:
+            httpGet: *httpGet
+            periodSeconds: 30
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet: *httpGet
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+      volumes:
+        - name: *config
+          configMap:
+            name: *config
+        - name: *aria2
+          persistentVolumeClaim:
+            claimName: *aria2
+        - name: *metube
+          persistentVolumeClaim:
+            claimName: *metube
+  selector: {}

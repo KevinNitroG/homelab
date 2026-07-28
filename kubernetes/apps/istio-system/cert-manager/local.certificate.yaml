@@ -16,6 +16,7 @@ spec:
     - authentik.${LOCAL_DOMAIN}
     - dbgate.${LOCAL_DOMAIN}
     - filebrowser.${LOCAL_DOMAIN}
+    - files.${LOCAL_DOMAIN}
     - glance.${LOCAL_DOMAIN}
     - grafana.${LOCAL_DOMAIN}
     - kite.${LOCAL_DOMAIN}
