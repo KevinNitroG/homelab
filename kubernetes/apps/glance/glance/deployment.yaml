@@ -37,6 +37,10 @@ spec:
               mountPath: /app/config/page-news.yml
               subPath: page-news.yml
               readOnly: true
+            - name: *config
+              mountPath: /app/config/page-uit.yml
+              subPath: page-uit.yml
+              readOnly: true
             - name: &assets glance-assets
               mountPath: /app/assets/
           startupProbe: &health

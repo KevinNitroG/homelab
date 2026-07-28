@@ -4,3 +4,4 @@ $include: config.yml
 pages:
   - $include: page-home.yml
   - $include: page-news.yml
+  - $include: page-uit.yml

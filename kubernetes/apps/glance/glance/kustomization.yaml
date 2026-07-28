@@ -19,4 +19,5 @@ configMapGenerator:
       - config.yml=./config/config.yml
       - page-home.yml=./config/page-home.yml
       - page-news.yml=./config/page-news.yml
+      - page-uit.yml=./config/page-uit.yml
 namespace: glance

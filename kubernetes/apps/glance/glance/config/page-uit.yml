@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/not-first/glance-schema/master/schema.json#/properties/pages
+- name: UIT
+  desktop-navigation-width: slim
+  columns:
+    - size: full
+      widgets:
+        # ── UIT Forum ───────────────────────────────────────────────
+        - type: rss
+          title: UIT Forum
+          style: detailed-list
+          cache: 1h
+          feeds:
+            - title: Posts
+              url: https://forum.uit.edu.vn/posts.rss
+            - title: Latest Topics
+              url: https://forum.uit.edu.vn/latest.rss
+            - title: Internship
+              url: https://forum.uit.edu.vn/c/ho-tro-doi-song/viec-lam-thuc-tap/32.rss
+            - title: Companies
+              url: https://forum.uit.edu.vn/c/ho-tro-doi-song/hoi-thao-tham-quan-doanh-nghiep-cac-cuoc-thi/33.rss
+            - title: Software Faculty
+              url: https://forum.uit.edu.vn/c/goc-hoc-tap/cong-nghe-phan-mem/20.rss
+            - title: Network Faculty
+              url: https://forum.uit.edu.vn/c/cong-dong-uit/10.rss
+
+        # ── UIT ──────────────────────────────────────────────────────
+        - type: rss
+          title: UIT
+          style: detailed-list
+          cache: 1h
+          feeds:
+            - url: https://www.uit.edu.vn/taxonomy/term/83/feed
+              title: General Notifications
+            - url: https://www.uit.edu.vn/taxonomy/term/87/feed
+              title: UIT News
+            - url: https://www.uit.edu.vn/taxonomy/term/202/feed
+              title: Study
+            - url: https://www.uit.edu.vn/taxonomy/term/201/feed
+              title: Student Activities
