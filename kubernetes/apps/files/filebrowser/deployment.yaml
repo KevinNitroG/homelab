@@ -15,11 +15,11 @@ spec:
         - name: import-users
           image: filebrowser/filebrowser:v2.63.21
           command:
-            - filebrowser
-            - --database=/database/filebrowser.db
-            - users
-            - import
-            - /config/user.json
+            - /bin/sh
+            - -c
+            - |
+              filebrowser --database=/database/filebrowser.db config init
+              filebrowser --database=/database/filebrowser.db users import /config/user.json
           volumeMounts:
             - name: filebrowser-user
               mountPath: /config/user.json
