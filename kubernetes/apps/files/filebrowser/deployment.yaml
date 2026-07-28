@@ -11,6 +11,21 @@ spec:
     metadata:
       name: filebrowser-filebrowser
     spec:
+      initContainers:
+        - name: import-users
+          image: filebrowser/filebrowser:v2.63.21
+          command:
+            - filebrowser
+            - --database=/database/filebrowser.db
+            - users
+            - import
+            - /config/user.json
+          volumeMounts:
+            - name: filebrowser-user
+              mountPath: /config/user.json
+              subPath: user.json
+            - name: filebrowser-database
+              mountPath: /database/
       containers:
         - name: filebrowser
           image: filebrowser/filebrowser:v2.63.21
@@ -20,7 +35,8 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: &config filebrowser-config
-              mountPath: /config/
+              mountPath: /config/config.yaml
+              subPath: config.yaml
             - name: &database filebrowser-database
               mountPath: /database/
             - name: &aria2 aria2-downloads
@@ -40,4 +56,7 @@ spec:
         - name: *metube
           persistentVolumeClaim:
             claimName: *metube
+        - name: filebrowser-user
+          secret:
+            secretName: filebrowser-user
   selector: {}

@@ -12,4 +12,5 @@ resources:
   - ./deployment.yaml
   - ./httproute.yaml
   - ./service.yaml
+  - ./user.secret.sops.yaml
 namespace: files

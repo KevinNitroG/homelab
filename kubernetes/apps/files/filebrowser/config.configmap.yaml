@@ -11,8 +11,7 @@ data:
     root: /srv
     database: /database/filebrowser.db
     auth:
-      methods:
-        noauth: false
+      method: json
     log: stdout
     defaults:
       scope: /srv
