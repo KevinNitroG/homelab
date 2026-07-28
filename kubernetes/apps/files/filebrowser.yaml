@@ -16,6 +16,10 @@ spec:
     name: flux-system
     namespace: flux-system
   path: kubernetes/apps/files/filebrowser/
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
   postBuild:
     substituteFrom:
       - kind: Secret
