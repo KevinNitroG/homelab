@@ -18,8 +18,10 @@ spec:
             - /bin/sh
             - -c
             - |
-              filebrowser --database=/database/filebrowser.db config init
-              filebrowser --database=/database/filebrowser.db users import /config/user.json
+              if [ ! -f /database/filebrowser.db ]; then
+                filebrowser --database=/database/filebrowser.db config init
+              fi
+              filebrowser --database=/database/filebrowser.db users import /config/user.json --overwrite
           volumeMounts:
             - name: filebrowser-user
               mountPath: /config/user.json
