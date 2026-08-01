@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/endpoints.json
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: hermes-agent
+subsets:
+  - addresses:
+      - ip: 192.168.28.25
+    ports:
+      - port: 9119

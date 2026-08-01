@@ -12,6 +12,7 @@ resources:
   - ./flux-system/
   - ./glance/
   - ./grafana-operator/
+  - ./hermes-agent/
   - ./istio-system/
   - ./kite/
   - ./monitoring/

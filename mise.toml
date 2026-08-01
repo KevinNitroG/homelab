@@ -1,9 +1,9 @@
 [env]
 _.file = ".env.yaml"
-SOPS_AGE_KEY_FILE = "{{env.HOME}}/projects/homelab/secret/age.agekey"
+SOPS_AGE_KEY_FILE = "{{ config_root }}/secret/age.agekey"
 
 [settings]
-sops = { age_key_file = "{{env.HOME}}/projects/homelab/secret/age.agekey" }
+sops = { age_key_file = "{{ config_root }}/secret/age.agekey" }
 
 # Renovate cannot track will mark as # !R
 
