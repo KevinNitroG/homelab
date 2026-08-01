@@ -5,7 +5,6 @@ kind: Kustomization
 labels:
   - pairs:
       app.kubernetes.io/name: hermes-agent
-    includeSelectors: true
 resources:
   - ./endpoints.yaml
   - ./service.yaml
