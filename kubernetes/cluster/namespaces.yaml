@@ -108,4 +108,4 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: hermes-agent
+  name: openclaw

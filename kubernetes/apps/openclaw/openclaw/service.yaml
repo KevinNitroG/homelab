@@ -3,9 +3,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hermes-agent
+  name: openclaw
 spec:
   ports:
     - protocol: TCP
-      port: 9119
-      targetPort: 9119
+      port: 18080
+      targetPort: 18080

@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: hermes-agent-hermes-agent
+  name: openclaw-openclaw
   namespace: flux-system
 spec:
   interval: 12h
@@ -15,7 +15,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  path: kubernetes/apps/hermes-agent/hermes-agent/
+  path: kubernetes/apps/openclaw/openclaw/
   dependsOn:
     - name: default-gatewayapi
   postBuild:
