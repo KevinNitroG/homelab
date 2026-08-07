@@ -1,11 +1,3 @@
 ---
-ansible_user: kevinnitro
-ansible_become: true
+# Shared variables for all hosts
 timezone: Asia/Ho_Chi_Minh
-
-k3s_version: "v1.36.2+k3s1"
-flux_version: "2.9.3"
-
-github_owner: KevinNitroG
-github_repo: homelab
-github_token: "{{ lookup('env', 'GITHUB_TOKEN') }}"

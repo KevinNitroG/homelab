@@ -1,0 +1,66 @@
+---
+- name: Check if yay is installed
+  ansible.builtin.command: which yay
+  register: packages_yay_check
+  changed_when: false
+  failed_when: false
+
+- name: Install packages via yay
+  community.general.pacman:
+    name: "{{ packages_yay_list }}"
+    state: present
+    executable: yay
+    extra_args: --builddir /var/cache/yay
+  become: true
+  when:
+    - packages_yay_check.rc == 0
+    - packages_yay_list | default([]) | length > 0
+
+- name: Install global npm packages
+  community.general.npm:
+    name: "{{ item }}"
+    state: present
+    global: true
+  loop: "{{ packages_npm_packages | default([]) }}"
+  when: packages_npm_packages | default([]) | length > 0
+
+- name: Check if uv is installed
+  ansible.builtin.command: which uv
+  register: packages_uv_check
+  changed_when: false
+  failed_when: false
+
+- name: Install uv Python packages
+  ansible.builtin.command: uv tool install {{ item }}
+  loop: "{{ packages_uv_packages | default([]) }}"
+  when:
+    - packages_uv_check.rc == 0
+    - packages_uv_packages | default([]) | length > 0
+  register: packages_uv_install
+  changed_when: packages_uv_install.rc == 0
+
+- name: Check if mise is installed
+  ansible.builtin.command: which mise
+  register: packages_mise_check
+  changed_when: false
+  failed_when: false
+
+- name: Create mise config directory
+  ansible.builtin.file:
+    path: "{{ target_user_home }}/.config/mise"
+    state: directory
+    mode: "0755"
+  when: packages_mise_check.rc == 0
+
+- name: Template mise.toml configuration
+  ansible.builtin.template:
+    src: mise.toml.j2
+    dest: "{{ target_user_home }}/.config/mise/config.toml"
+    mode: "0644"
+  when: packages_mise_check.rc == 0
+
+- name: Run mise install
+  ansible.builtin.command: mise install
+  when: packages_mise_check.rc == 0
+  register: packages_mise_install
+  changed_when: packages_mise_install.rc == 0

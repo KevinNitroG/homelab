@@ -3,17 +3,6 @@
   community.general.timezone:
     name: "{{ timezone }}"
 
-- name: Update pacman cache
-  community.general.pacman:
-    update_cache: true
-  when: ansible_facts["os_family"] == "Archlinux"
-
-- name: Install base packages
-  community.general.pacman:
-    name: "{{ common_packages }}"
-    state: present
-  when: ansible_facts["os_family"] == "Archlinux"
-
 - name: Ensure SSH service is enabled
   ansible.builtin.systemd:
     name: sshd
@@ -26,10 +15,7 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
-    - {
-        regexp: "^#?PermitRootLogin",
-        line: "PermitRootLogin prohibit-password",
-      }
+    - { regexp: "^#?PermitRootLogin", line: "PermitRootLogin prohibit-password" }
     - { regexp: "^#?PasswordAuthentication", line: "PasswordAuthentication no" }
     - { regexp: "^#?PubkeyAuthentication", line: "PubkeyAuthentication yes" }
   notify: Restart sshd
@@ -41,11 +27,11 @@
     line: "AuthorizedKeysFile .ssh/authorized_keys"
   notify: Restart sshd
 
-- name: Ensure wheel group has sudo NOPASSWD
+- name: Ensure wheel group has sudo
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/wheel
     regexp: "^%wheel"
-    line: "%wheel ALL=(ALL:ALL) NOPASSWD: ALL"
+    line: "%wheel ALL=(ALL:ALL) ALL"
     create: true
     mode: "0440"
     validate: "visudo -cf %s"

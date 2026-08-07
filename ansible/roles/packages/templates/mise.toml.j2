@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+[tools]
+{% for tool, version in packages_mise_tools.items() %}
+{% if tool.startswith('github:') %}
+"{{ tool }}" = "{{ version }}"
+{% else %}
+{{ tool }} = "{{ version }}"
+{% endif %}
+{% endfor %}

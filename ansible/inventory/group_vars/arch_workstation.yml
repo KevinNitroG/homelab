@@ -1,0 +1,78 @@
+---
+# Arch Workstation Configuration
+
+# SSH access
+ansible_user: kevinnitro
+
+# Target user for shell/editor/tmux config
+# Set to the user who will use the workstation
+target_user: kevinnitro
+target_user_home: "/home/{{ target_user }}"
+
+packages_yay_list:
+  - base
+  - base-devel
+  - bat
+  - btop
+  - chromium
+  - docker
+  - dust
+  - dysk
+  - fastfetch
+  - fd
+  - ffmpeg
+  - fzf
+  - gdu
+  - git
+  - github-cli
+  - helm
+  - htmlq
+  - inetutils
+  - jc
+  - jq
+  - k9s
+  - lazydocker
+  - lazygit
+  - less
+  - mise
+  - neovim
+  - nodejs
+  - openclaw
+  - opencode-bin
+  - openssh
+  - rate-mirrors
+  - rclone
+  - ripgrep
+  - starship
+  - tmux
+  - tree-sitter-cli
+  - ufw
+  - unrar
+  - usage
+  - whisper-cpp
+  - yay
+  - yazi
+  - yq
+  - yt-dlp
+  - zoxide
+  - zsh
+  - tesseract
+  - agent-browser-bin
+  - markitdown-bin
+  - whisper.cpp-model-base.en-q5_1
+  - tesseract-data-best-vie
+  - tesseract-data-best-eng
+
+packages_npm_packages:
+  - typescript
+  - "@tobilu/qmd"
+
+packages_uv_packages: []
+  # - ruff
+  # - black
+  # - mypy
+
+packages_mise_tools: {}
+  # node: "20"
+  # python: "3.12"
+  # terraform: "1.15.8"

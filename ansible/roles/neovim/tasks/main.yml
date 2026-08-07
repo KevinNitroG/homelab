@@ -1,0 +1,14 @@
+---
+- name: Ensure nvim config directory exists
+  ansible.builtin.file:
+    path: "{{ target_user_home }}/.config/nvim"
+    state: directory
+    mode: "0755"
+
+- name: Clone/update uitdots/nvim configuration # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/uitdots/nvim.git
+    dest: "{{ target_user_home }}/.config/nvim"
+    force: true
+    update: true
+  notify: Setup neovim

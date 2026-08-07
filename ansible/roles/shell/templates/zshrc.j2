@@ -1,0 +1,123 @@
+# {{ ansible_managed }}
+
+plugins=(
+  mise
+  archlinux
+  command-not-found
+  docker
+  docker-compose
+  dotenv
+  extract
+  fzf-tab
+  gh
+  git
+  golang
+  helm
+  kubectl
+  starship
+  sudo
+  terraform
+  tmux
+  zoxide
+  zsh-256color
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  history-substring-search
+  fancy-ctrl-z
+  fzf
+)
+
+fpath=(~/.zsh/completions $fpath)
+source $ZSH/oh-my-zsh.sh
+
+HISTFILE=~/.zsh_history
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+SAVEHIST=5000
+HISTSIZE=6000
+
+setopt SHARE_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt GLOBDOTS
+setopt PROMPT_SUBST
+setopt IGNOREEOF
+unsetopt BEEP
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
+zstyle ':fzf-tab:*' popup-min-size 120 10
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always --icons=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --icons=always $realpath'
+
+if has eza; then
+  EZA_OPTS=(
+    '--colour=always'
+    '--group-directories-first'
+    '--icons=auto'
+    '--ignore-glob=".DS_Store|.idea|.venv|.vs|__pycache__|cache|debug|.git|node_modules|venv"'
+    '-s Name'
+  )
+  alias l="eza -lh $EZA_OPTS"
+  alias ls="eza -1 $EZA_OPTS"
+  alias ll="eza -lhag $EZA_OPTS"
+  alias ld="eza -lhD $EZA_OPTS"
+  alias lt="eza -T $EZA_OPTS"
+  alias llt="eza -lagT $EZA_OPTS"
+else
+  alias ls='ls -A --color=auto'
+  alias ll='ls -lAg --color=auto'
+fi
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+alias mkdir='mkdir -p'
+
+alias gca='git commit -a'
+
+alias t='tmux'
+alias ta='tmux has-session &>/dev/null && tmux attach || tmux new-session'
+alias tks='tmux kill-server'
+
+alias c='clear'
+alias cls='clear'
+alias csl='clear'
+alias lg='lazygit'
+alias rl='source ~/.zshrc'
+alias sv='sudo -E nvim'
+alias v='nvim'
+alias nv='NVIM_NO_IDE=1 nvim'
+alias yz='yazi'
+alias ip='ip -c'
+
+has() {
+  command -v $1 >/dev/null
+}
+
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+alias bathelp='bat --plain --language=help'
+help() {
+  "$@" --help 2>&1 | bathelp
+}
+
+if has fastfetch; then
+  fastfetch
+fi
+
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit

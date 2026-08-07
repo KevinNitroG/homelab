@@ -1,0 +1,51 @@
+# {{ ansible_managed }}
+
+set -g mouse on
+set -g base-index 1
+set -g pane-base-index 1
+set -g status-position top
+set -g detach-on-destroy off
+set -g renumber-windows on
+set -g extended-keys on
+set -g extended-keys-format csi-u
+
+set -g default-terminal "${TERM}"
+set -ga terminal-features "$TERM:RGB"
+
+bind c new-window -c "#{pane_current_path}"
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+
+set -g history-limit 50000
+
+# Neovim suggest (run :healthcheck)
+set-option -g focus-events on
+set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+
+set -gq allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
+unbind C-b
+set -g prefix C-a
+bind-key C-a send-prefix
+bind M-r respawn-pane -k
+bind -r Left resize-pane -L 5
+bind -r Down resize-pane -D 5
+bind -r Up resize-pane -U 5
+bind -r Right resize-pane -R 5
+
+setw -g mode-keys vi
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection
+bind-key -T copy-mode-vi WheelUpPane send -N3 -X scroll-up
+bind-key -T copy-mode-vi WheelDownPane send -N3 -X scroll-down
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection -x
+set -sg escape-time 0
+
+run '~/.config/tmux/plugins/tpm/tpm'

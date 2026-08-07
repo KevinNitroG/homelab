@@ -1,0 +1,31 @@
+---
+- name: Arch Linux workstation setup
+  hosts: arch_workstation
+  vars_files:
+    - ../inventory/group_vars/all.yml
+    - ../inventory/group_vars/arch_workstation.yml
+
+  roles:
+    - role: base
+      become: true
+      tags: [base, system]
+
+    - role: yay
+      become: true
+      tags: [yay, system]
+
+    - role: chaotic_aur
+      become: true
+      tags: [chaotic_aur, system]
+
+    - role: packages
+      tags: [packages, apps, system]
+
+    - role: shell
+      tags: [zsh, shell]
+
+    - role: tmux
+      tags: [tmux, shell]
+
+    - role: neovim
+      tags: [neovim, editor, shell]

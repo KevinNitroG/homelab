@@ -8,3 +8,5 @@ collections:
     version: ">=13.2.0"
   - name: ansible.posix
     version: ">=2.2.2"
+  - name: community.mysql
+    version: ">=3.0.0"

@@ -1,2 +1,8 @@
 secrets/
 *.retry
+.vault_password
+.vault_password~
+*.pyc
+__pycache__/
+.cache/
+collections/

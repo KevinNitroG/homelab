@@ -3,7 +3,7 @@
   hosts: server
   become: true
   roles:
-    - common
+    - base
 
 - name: Deploy K3s cluster
   ansible.builtin.import_playbook: k3s.orchestration.site

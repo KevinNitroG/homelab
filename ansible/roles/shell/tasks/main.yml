@@ -1,0 +1,67 @@
+---
+- name: Check if yay is installed
+  ansible.builtin.command: which yay
+  register: shell_yay_check
+  changed_when: false
+  failed_when: false
+
+- name: Install oh-my-zsh via yay
+  community.general.pacman:
+    name: oh-my-zsh-git
+    state: present
+    executable: yay
+    extra_args: --builddir /var/cache/yay
+  when: shell_yay_check.rc == 0
+
+- name: Ensure oh-my-zsh custom plugins directory exists
+  ansible.builtin.file:
+    path: "{{ target_user_home }}/.oh-my-zsh/custom/plugins"
+    state: directory
+    mode: "0755"
+
+- name: Install zsh-autosuggestions plugin # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ target_user_home }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    depth: 1
+    update: true
+
+- name: Install zsh-syntax-highlighting plugin # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting
+    dest: "{{ target_user_home }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    depth: 1
+    update: true
+
+- name: Install fzf-tab plugin # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/Aloxaf/fzf-tab
+    dest: "{{ target_user_home }}/.oh-my-zsh/custom/plugins/fzf-tab"
+    depth: 1
+    update: true
+
+- name: Install zsh-256color plugin # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/chrissicool/zsh-256color
+    dest: "{{ target_user_home }}/.oh-my-zsh/custom/plugins/zsh-256color"
+    depth: 1
+    update: true
+
+- name: Install history-substring-search plugin # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search
+    dest: "{{ target_user_home }}/.oh-my-zsh/custom/plugins/history-substring-search"
+    depth: 1
+    update: true
+
+- name: Deploy zshenv
+  ansible.builtin.template:
+    src: zshenv.j2
+    dest: "{{ target_user_home }}/.zshenv"
+    mode: "0644"
+
+- name: Deploy zshrc
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: "{{ target_user_home }}/.zshrc"
+    mode: "0644"

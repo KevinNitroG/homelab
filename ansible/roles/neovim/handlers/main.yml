@@ -1,0 +1,5 @@
+---
+- name: Setup neovim
+  ansible.builtin.shell: nvim --headless "+Lazy! sync" +TSUpdate +qa
+  changed_when: true
+  timeout: 300
