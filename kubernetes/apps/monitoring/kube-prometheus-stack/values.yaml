@@ -24,7 +24,7 @@ alertmanager:
     image:
       registry: quay.io
       repository: prometheus/alertmanager
-      tag: v0.33.1
+      tag: v0.34.0
     externalUrl: https://alertmanager.${PUBLIC_DOMAIN}
     volumes:
       - name: &alertmanagerSecret kube-prometheus-stack-alertmanager-telegram
