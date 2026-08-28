@@ -1,6 +1,6 @@
 ---
 # K3s cluster variables (only used by site.yml)
-k3s_version: "v1.36.3+k3s1"
+k3s_version: "v1.36.4+k3s1"
 flux_version: "2.9.4"
 
 github_owner: KevinNitroG
