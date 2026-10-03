@@ -1,7 +1,7 @@
 ---
 # K3s cluster variables (only used by site.yml)
 k3s_version: "v1.37.1+k3s1"
-flux_version: "2.9.5"
+flux_version: "2.9.6"
 
 github_owner: KevinNitroG
 github_repo: homelab
