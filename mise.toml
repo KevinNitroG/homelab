@@ -13,7 +13,7 @@ sops = { age_key_file = "{{ config_root }}/secret/age.agekey" }
 cmctl = "2.6.1"
 flux2 = "2.9.6"
 gh = "2.102.0"
-kustomize = "5.8.2"
+kustomize = "5.8.3"
 sops = "3.13.3"
 terraform = "1.16.5"
 uv = "0.12.23"
