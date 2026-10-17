@@ -8,5 +8,5 @@ spec:
   interval: 24h
   timeout: 5m
   ref:
-    tag: 1.30.5
+    tag: 1.30.6
   url: oci://gcr.io/istio-release/charts/istiod
