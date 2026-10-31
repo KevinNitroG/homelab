@@ -43,13 +43,19 @@
     state: directory
     mode: "0755"
 
+- name: Check installed flux version
+  ansible.builtin.command: "{{ flux_install_path }}/flux --version"
+  register: flux_installed_version
+  changed_when: false
+  failed_when: false
+
 - name: Download and install flux
+  when: ('v' + flux_version) not in (flux_installed_version.stdout | default(''))
   ansible.builtin.shell: |
     set -o pipefail
     curl -sSLf {{ flux_download_url }} | tar -xz -C {{ flux_install_path }} flux
     chmod +x {{ flux_install_path }}/flux
   args:
-    creates: "{{ flux_install_path }}/flux"
     executable: /bin/bash
   environment:
     FLUX_VERSION: "{{ flux_version }}"
