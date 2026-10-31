@@ -6,7 +6,7 @@ labels:
   - pairs:
       app.kubernetes.io/name: openclaw
 resources:
-  - ./endpoints.yaml
+  - ./endpointslice.yaml
   - ./service.yaml
   - ./httproute.yaml
 namespace: openclaw
