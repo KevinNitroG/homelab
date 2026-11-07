@@ -1,6 +1,6 @@
 ---
 # K3s cluster variables
-k3s_version: "v1.37.1+k3s1"
+k3s_version: "v1.37.2+k3s1"
 flux_version: "2.10.0"
 
 github_owner: KevinNitroG
