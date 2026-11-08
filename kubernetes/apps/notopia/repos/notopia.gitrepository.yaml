@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: notopia
+  namespace: flux-system
+spec:
+  interval: 12h
+  url: https://github.com/notopia-uit/notopia
+  ref:
+    branch: main
+  ignore: |
+    /*
+    !/deploy/k8s/

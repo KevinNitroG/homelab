@@ -1,0 +1,29 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: notopia-edge
+  namespace: flux-system
+spec:
+  interval: 12h
+  retryInterval: 1m
+  timeout: 1m
+  prune: true
+  wait: true
+  suspend: true
+  sourceRef:
+    kind: GitRepository
+    name: notopia
+    namespace: flux-system
+  path: deploy/k8s/clusters/homelab/edge
+  dependsOn:
+    - name: notopia-infra
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: clustersetting
+      - kind: ConfigMap
+        name: clustersetting

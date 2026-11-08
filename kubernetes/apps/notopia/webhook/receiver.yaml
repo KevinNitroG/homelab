@@ -1,0 +1,16 @@
+apiVersion: notification.toolkit.fluxcd.io/v1
+kind: Receiver
+metadata:
+  name: notopia
+  namespace: flux-system
+spec:
+  suspend: true
+  type: github
+  events:
+    - ping
+    - push
+  secretRef:
+    name: notopia-webhook-token
+  resources:
+    - kind: GitRepository
+      name: notopia

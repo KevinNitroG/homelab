@@ -16,6 +16,7 @@ resources:
   - ./istio-system/
   - ./kite/
   - ./monitoring/
+  - ./notopia/
   - ./redpanda/
   - ./reloader/
   - ./rustfs/
