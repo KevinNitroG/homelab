@@ -9,5 +9,5 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.internal/instance: grafana
-  folderRef: kubernetes
+  folderRef: Kubernetes
   url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/refs/heads/master/dashboards/k8s-views-global.json
