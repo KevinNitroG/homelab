@@ -44,6 +44,8 @@ spec:
       role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
   deployment:
     spec:
+      strategy:
+        type: Recreate
       template:
         spec:
           containers:
