@@ -9,11 +9,9 @@ tempo:
       service_graphs: {}
     storage:
       path: /var/tempo/metrics
-    traces_storage:
-      path: /var/tempo/traces
 
-  ingester:
-    trace_idle_period: 10s
+  liveStore:
+    max_trace_idle: 10s
     max_block_duration: 30m
 
   queryFrontend:
