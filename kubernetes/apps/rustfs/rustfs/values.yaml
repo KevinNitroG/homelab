@@ -18,6 +18,10 @@ config:
         endpoint: http://alloy-alloy.monitoring:4317
 
 extraEnv:
+  - name: RUSTFS_OUTBOUND_ALLOW_ORIGINS
+    value: https://authentik.${PUBLIC_DOMAIN}
+  - name: RUSTFS_BROWSER_REDIRECT_URL
+    value: https://rustfs.${PUBLIC_DOMAIN}
   - name: RUSTFS_IDENTITY_OPENID_ENABLE_authentik
     value: "on"
   - name: RUSTFS_IDENTITY_OPENID_CONFIG_URL_authentik
@@ -46,6 +50,8 @@ extraEnv:
     value: Authentik
   - name: RUSTFS_IDENTITY_OPENID_REDIRECT_URI_authentik
     value: https://rustfs.${PUBLIC_DOMAIN}/rustfs/admin/v3/oidc/callback/authentik
+  - name: RUSTFS_IDENTITY_OPENID_REDIRECT_URI_DYNAMIC_authentik
+    value: "off"
 mode:
   distributed:
     enabled: false
