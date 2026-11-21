@@ -16,6 +16,36 @@ config:
       log:
         enabled: true
         endpoint: http://alloy-alloy.monitoring:4317
+
+extraEnv:
+  - name: RUSTFS_IDENTITY_OPENID_ENABLE_authentik
+    value: "on"
+  - name: RUSTFS_IDENTITY_OPENID_CONFIG_URL_authentik
+    value: https://authentik.${PUBLIC_DOMAIN}/application/o/rustfs/.well-known/openid-configuration
+  - name: RUSTFS_IDENTITY_OPENID_CLIENT_ID_authentik
+    valueFrom:
+      secretKeyRef:
+        name: rustfs-oidc
+        key: client-id
+  - name: RUSTFS_IDENTITY_OPENID_CLIENT_SECRET_authentik
+    valueFrom:
+      secretKeyRef:
+        name: rustfs-oidc
+        key: client-secret
+  - name: RUSTFS_IDENTITY_OPENID_SCOPES_authentik
+    value: openid,profile,email,entitlements
+  - name: RUSTFS_IDENTITY_OPENID_CLAIM_NAME_authentik
+    value: roles
+  - name: RUSTFS_IDENTITY_OPENID_GROUPS_CLAIM_authentik
+    value: roles
+  - name: RUSTFS_IDENTITY_OPENID_ROLES_CLAIM_authentik
+    value: roles
+  - name: RUSTFS_IDENTITY_OPENID_USERNAME_CLAIM_authentik
+    value: preferred_username
+  - name: RUSTFS_IDENTITY_OPENID_DISPLAY_NAME_authentik
+    value: Authentik
+  - name: RUSTFS_IDENTITY_OPENID_REDIRECT_URI_authentik
+    value: https://rustfs.${PUBLIC_DOMAIN}/rustfs/admin/v3/oidc/callback/authentik
 mode:
   distributed:
     enabled: false

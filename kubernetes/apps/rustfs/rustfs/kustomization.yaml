@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./httproute.yaml
+  - ./oidc.secret.sops.yaml
 configMapGenerator:
   - name: rustfs-helm-values
     files:
