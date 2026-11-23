@@ -19,6 +19,12 @@ spec:
             - --database=/database/filebrowser.db
           ports:
             - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            periodSeconds: 5
+            failureThreshold: 3
           volumeMounts:
             - name: &config filebrowser-config
               mountPath: /config/config.yaml

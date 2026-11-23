@@ -1,0 +1,10 @@
+---
+scaler:
+  replicas: 1
+interceptor:
+  replicas:
+    min: 1
+    max: 4
+  directPodRouting: false
+  coldStart:
+    maxPendingRequests: 100

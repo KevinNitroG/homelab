@@ -5,6 +5,8 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./httproute.yaml
+  - ./interceptorroute.yaml
+  - ./scaledobject.yaml
 configMapGenerator:
   - name: redpanda-helm-values
     files:

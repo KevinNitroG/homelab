@@ -5,6 +5,8 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./httproute.yaml
+  - ./interceptorroute.yaml
+  - ./scaledobject.yaml
   - ./kite.secret.sops.yaml
 configMapGenerator:
   - name: kite-helm-values

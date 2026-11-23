@@ -11,12 +11,22 @@ spec:
   timeout: 1m
   prune: true
   wait: true
+  healthCheckExprs:
+    - apiVersion: http.keda.sh/v1beta1
+      kind: InterceptorRoute
+      current: "status.conditions.exists(e, e.type == 'Ready' && e.status == 'True')"
+    - apiVersion: keda.sh/v1alpha1
+      kind: ScaledObject
+      current: "status.conditions.exists(e, e.type == 'Ready' && e.status == 'True')"
+      failed: "status.conditions.exists(e, e.type == 'Ready' && e.status == 'False')"
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
   path: kubernetes/apps/kite/kite/
   dependsOn:
+    - name: keda-http
+    - name: keda-grant
     - name: kite-cnpg
   decryption:
     provider: sops

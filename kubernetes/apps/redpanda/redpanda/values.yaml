@@ -28,6 +28,8 @@ tls:
 
 console:
   enabled: true
+  service:
+    targetPort: 8080
 
 # post_install_job:
 #   enabled: false # not needed for dev

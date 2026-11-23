@@ -12,6 +12,8 @@ resources:
   - ./env.secret.sops.yaml
   - ./service.yaml
   - ./httproute.yaml
+  - ./interceptorroute.yaml
+  - ./scaledobject.yaml
 configMapGenerator:
   - name: glance-config
     files:

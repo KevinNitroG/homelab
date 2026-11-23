@@ -10,6 +10,17 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kite
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: kite-kite
+            patch: |-
+              - op: remove
+                path: /spec/replicas
   valuesFrom:
     - kind: ConfigMap
       name: kite-helm-values

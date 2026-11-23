@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/http.keda.sh/interceptorroute_v1beta1.json
+apiVersion: http.keda.sh/v1beta1
+kind: InterceptorRoute
+metadata:
+  name: filebrowser
+spec:
+  target:
+    service: filebrowser-filebrowser
+    port: 80
+  rules:
+    - hosts:
+        - filebrowser.${PUBLIC_DOMAIN}
+        - filebrowser.${LOCAL_DOMAIN}
+  scalingMetric:
+    concurrency:
+      targetValue: 100
+  timeouts:
+    readiness: 90s
+    request: 0s
+    responseHeader: 0s
