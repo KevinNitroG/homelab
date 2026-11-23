@@ -10,6 +10,13 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: capacitor
+
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/namespace.json
+apiVersion: v1
+kind: Namespace
+metadata:
   name: cert-manager
 
 ---
