@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/keda.sh/scaledobject_v1alpha1.json
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: dbgate
+spec:
+  scaleTargetRef:
+    name: dbgate-dbgate
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  cooldownPeriod: 300
+  triggers:
+    - type: external-push
+      metadata:
+        scalerAddress: keda-add-ons-http-external-scaler.keda:9090
+        interceptorRoute: dbgate

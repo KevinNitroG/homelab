@@ -10,5 +10,7 @@ resources:
   - ./data.pvc.yaml
   - ./deployment.yaml
   - ./httproute.yaml
+  - ./interceptorroute.yaml
+  - ./scaledobject.yaml
   - ./service.yaml
 namespace: dbgate

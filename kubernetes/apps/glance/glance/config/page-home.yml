@@ -48,7 +48,6 @@
               url: https://authentik.kevinnitro.id.vn
               icon: si:authentik
             - title: DbGate
-              check-url: http://dbgate.dbgate:8978/status
               url: https://dbgate.kevinnitro.id.vn
               icon: si:dbeaver
             - title: Ariang

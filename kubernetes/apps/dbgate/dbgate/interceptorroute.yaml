@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/http.keda.sh/interceptorroute_v1beta1.json
+apiVersion: http.keda.sh/v1beta1
+kind: InterceptorRoute
+metadata:
+  name: dbgate
+spec:
+  target:
+    service: dbgate-dbgate
+    port: 3000
+  rules:
+    - hosts:
+        - dbgate.${PUBLIC_DOMAIN}
+        - dbgate.${LOCAL_DOMAIN}
+  scalingMetric:
+    concurrency:
+      targetValue: 100
+  timeouts:
+    readiness: 90s
+    request: 0s
+    responseHeader: 0s

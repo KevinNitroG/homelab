@@ -14,6 +14,12 @@ spec:
           image: dbgate/dbgate:7.3.6-alpine
           ports:
             - containerPort: 3000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            periodSeconds: 5
+            failureThreshold: 3
           env:
             - name: SKIP_ALL_AUTH
               value: "1"

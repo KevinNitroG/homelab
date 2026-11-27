@@ -7,6 +7,7 @@ resources:
   - ./cert-manager/
   - ./cloudflare-ddns/
   - ./cnpg-system/
+  - ./dbgate/
   - ./default/
   - ./files/
   - ./flux-system/
