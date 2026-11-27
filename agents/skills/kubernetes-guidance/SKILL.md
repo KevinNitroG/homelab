@@ -11,20 +11,20 @@ This document provides a routing map of the Kubernetes directory structure for a
 
 ```
 kubernetes/
-├── apps/           # Application deployments (15 apps, each self-contained)
+├── apps/           # Application deployments and Flux Kustomizations
 ├── cluster/        # Flux bootstrap entry point + namespace definitions
 └── components/     # Shared Kustomize Components (clustersettings)
 ```
 
 ## Architecture Pattern
 
-This repo uses **Flux-native Kustomization CRDs** at three tiers:
+This repo uses Flux Kustomization CRDs to reconcile application manifests:
 
-1. **Cluster tier** (`cluster/`) — Flux bootstrap, namespace definitions, and per-app Flux Kustomization CRDs
-2. **App tier** (`apps/<app>/`) — Top-level Flux Kustomization CRDs that point to sub-app directories
-3. **Sub-app tier** (`apps/<app>/<sub>/`) — Actual Kubernetes manifests (HelmReleases, secrets, etc.)
+1. **Cluster tier** (`cluster/`) — Flux bootstrap, namespace definitions, and the `apps` Flux Kustomization.
+2. **App tier** (`apps/<app>/`) — Flux Kustomization CRDs that point to workload directories.
+3. **Workload tier** (`apps/<app>/<sub>/`) — Kubernetes manifests, HelmReleases, secrets, and other resources.
 
-Flux reconciles from `cluster/flux-system/gotk-sync.yaml` → `cluster/apps.yaml` → `cluster/apps/*.yaml` → `apps/<app>/*.yaml` → `apps/<app>/<sub>/`
+Flux reconciles from `cluster/flux-system/gotk-sync.yaml` → `cluster/apps.yaml` → `apps/kustomization.yaml` → `apps/<app>/*.yaml` → `apps/<app>/<sub>/`. There is no `cluster/apps/` tier.
 
 ## Detailed Structure
 
@@ -69,12 +69,18 @@ apps/
 ├── dbgate/                     # Database management GUI
 │   ├── dbgate.yaml             # Flux Kustomization → dbgate/dbgate/
 │   ├── kustomization.yaml
-│   └── dbgate/                 # Deployment, Service, PVC, httproute
+│   └── dbgate/                 # Deployment, Service, PVC, HTTPRoute, KEDA resources
 │
 ├── default/                    # Gateway API CRDs
 │   ├── gatewayapi.yaml         # Flux Kustomization → default/gateway/
 │   ├── kustomization.yaml
 │   └── gateway/                # Gateway API experimental-install.yaml
+│
+├── files/                      # File Browser, MeTube, aria2, and rclone
+│   ├── filebrowser.yaml        # Flux Kustomization → files/filebrowser/
+│   ├── filebrowser/            # Deployment, Service, HTTPRoute, KEDA resources
+│   ├── aria2.yaml, metube.yaml, rclone.yaml
+│   └── kustomization.yaml
 │
 ├── glance/                     # Glance dashboard
 │   ├── glance.yaml             # Flux Kustomization → glance/glance/
@@ -102,6 +108,15 @@ apps/
 │   ├── istiod/                 # HelmRelease (istiod), values, kustomizeconfig
 │   ├── ztunnel/                # HelmRelease (ztunnel), values, kustomizeconfig
 │   └── repos/                  # HelmRepository (base.oci, cni.oci, istiod.oci, ztunnel.oci)
+│
+├── keda/                       # KEDA core, HTTP add-on, and Gateway API grant
+│   ├── core.yaml               # Flux Kustomization → keda/core/
+│   ├── http.yaml               # Flux Kustomization → keda/http/; depends on keda-core
+│   ├── grant.yaml              # Flux Kustomization → keda/grant/; depends on default-gatewayapi
+│   ├── core/, http/            # HelmReleases; HTTP add-on values in http/values.yaml
+│   ├── grant/                  # ReferenceGrant for the interceptor proxy
+│   ├── repository.yaml         # HelmRepository
+│   └── kustomization.yaml
 │
 ├── kite/                       # Kite app + PostgreSQL (CNPG)
 │   ├── kite.yaml               # Flux Kustomization → kite/kite/
@@ -156,23 +171,8 @@ apps/
 ```
 cluster/
 ├── apps.yaml                 # Flux Kustomization: points to kubernetes/apps/ with SOPS decryption
+├── clustersettings.yaml      # Flux Kustomization for shared cluster settings
 ├── namespaces.yaml           # All namespace definitions (single file)
-├── apps/                     # Per-app Flux Kustomization CRDs
-│   ├── authentik.yaml        # Flux Kustomization CRD with decryption + substituteFrom
-│   ├── cert-manager.yaml
-│   ├── cloudflare-ddns.yaml
-│   ├── cnpg-system.yaml
-│   ├── dbgate.yaml
-│   ├── flux-system.yaml
-│   ├── gatewayapi.yaml
-│   ├── glance.yaml
-│   ├── grafana-operator.yaml
-│   ├── istio-system.yaml
-│   ├── kite.yaml
-│   ├── monitoring.yaml
-│   ├── redpanda.yaml
-│   ├── reloader.yaml
-│   └── rustfs.yaml
 └── flux-system/              # Flux bootstrap manifests
     ├── gotk-components.yaml
     ├── gotk-sync.yaml        # Root: points to kubernetes/cluster/
@@ -183,7 +183,7 @@ cluster/
 
 - `cluster/flux-system/gotk-sync.yaml` is the **Flux root** — points to `kubernetes/cluster/`
 - `cluster/apps.yaml` (Flux Kustomization) → builds `kubernetes/apps/` with SOPS decryption
-- `cluster/apps/*.yaml` are Flux Kustomization CRDs that define dependencies and decryption per app
+- `apps/<app>/*.yaml` define workload Flux Kustomizations, dependencies, and decryption where needed
 - `cluster/namespaces.yaml` centralizes all namespace definitions
 
 ### 3. `components/` - Shared Kustomize Components
@@ -221,6 +221,17 @@ postBuild:
 
 Some apps also include app-specific clustersettings (e.g., `authentik-clustersettings`, `rustfs-clustersettings`).
 
+## HTTP Scale-to-Zero
+
+See `docs/keda-http-scale-to-zero.md` for configuration details, verification status, live tests, and rollback.
+
+- KEDA core and the HTTP add-on run in `keda`. The `keda-http` Flux Kustomization depends on `keda-core`; `keda-grant` depends on `default-gatewayapi`.
+- File Browser, DbGate, Glance, Kite, and Redpanda Console have an `InterceptorRoute` and an `external-push` ScaledObject alongside their workload. Their Flux Kustomizations depend on `keda-http` and `keda-grant`, and use health-check expressions for both resources.
+- HTTPS routes point to `keda-add-ons-http-interceptor-proxy:8080` across namespaces. `apps/keda/grant/referencegrant.yaml` permits those references. The interceptor forwards to each original Service; preserve hostnames, redirects, and Gateway authorization.
+- The ScaledObjects target Deployments with zero to one replica and a 300-second cooldown. Avoid declaring Deployment `spec.replicas`; Kite and Redpanda use Helm post-render patches to remove it.
+- The route and ScaledObject reconcile together, without guaranteed creation order. Verify the generated HPA uses the HTTP scaler's external metric, not CPU, before relying on wake-from-zero. A ready Flux Kustomization alone does not prove the request path works.
+- When adding an app, include readiness, the HTTPS backend, both KEDA resources, dependencies, health checks, and an allowed namespace in the ReferenceGrant. Test both hostnames, authorization, cold starts, scale-down, and any long-running requests. Before rollback, set `minReplicaCount: 1` and verify a ready backend before restoring direct routing and removing the ScaledObject.
+
 ## CNPG Backup Configuration
 
 All databases use the **plugin method** with Barman Cloud:
@@ -241,6 +252,7 @@ All databases use the **plugin method** with Barman Cloud:
 
 ```
 gatewayapi
+├── keda-grant
 ├── istio-system
 │   ├── istio-system-base → cni, istiod, ztunnel
 │   ├── istio-system-gateway
@@ -259,7 +271,12 @@ cert-manager
     └── cnpg-system-cnpg → cnpg-system-plugin-barman-cloud
         └── authentik-cnpg → authentik-authentik
         └── kite-cnpg → kite-kite
+
+keda-core → keda-http
+keda-http + keda-grant → files-filebrowser, dbgate-dbgate, glance-glance, kite-kite, redpanda-redpanda
 ```
+
+Arrows show dependency ordering, not a complete dependency list. Check each Flux Kustomization for its current `dependsOn`.
 
 ## Navigation Guide
 
@@ -274,7 +291,8 @@ cert-manager
 | Add Grafana dashboard | `apps/monitoring/grafana/dashboard/<name>.yaml` |
 | Add Grafana datasource | `apps/monitoring/grafana/datasource/<name>.yaml` |
 | Add shared variables | `components/clustersettings/configmap.yaml` or `secret.sops.yaml` |
-| Deploy to production | Ensure `cluster/apps/<app>.yaml` Flux Kustomization CRD exists and is listed |
+| Deploy an app | Add its directory to `apps/kustomization.yaml` and define its workload Flux Kustomization under `apps/<app>/` |
+| Configure HTTP scale-to-zero | `apps/keda/` and the app's `httproute.yaml`, `interceptorroute.yaml`, and `scaledobject.yaml` |
 
 ### Adding a New App
 
@@ -284,9 +302,8 @@ cert-manager
 4. Create `apps/<app>/repos/<chart>.yaml` if using Helm charts
 5. Create Flux Kustomization CRD at `apps/<app>/<app>.yaml` with `decryption`, `postBuild`, `dependsOn`
 6. Add to `apps/kustomization.yaml` resources list
-7. Create `cluster/apps/<app>.yaml` (Flux Kustomization CRD for cluster-level)
-8. Add namespace to `cluster/namespaces.yaml`
-9. Include `components: [../../components/clustersettings/]` in kustomization.yaml if app needs shared config
+7. Add the namespace to `cluster/namespaces.yaml`
+8. Include `components: [../../components/clustersettings/]` in the app kustomization.yaml if the app needs shared config
 
 ## SOPS Encryption/Decryption
 
@@ -329,7 +346,7 @@ sops kubernetes/apps/<app>/<sub>/<file>.sops.yaml
 | "Where is Kite configured?" | `apps/kite/kite/` (HelmRelease + values) |
 | "Where are Kite backups defined?" | `apps/kite/cnpg/scheduledbackup.yaml` |
 | "How do I add a new app?" | See "Adding a New App" above |
-| "What gets deployed?" | `cluster/apps.yaml` → `cluster/apps/*.yaml` → `apps/` |
+| "What gets deployed?" | `cluster/apps.yaml` → `apps/kustomization.yaml` → `apps/<app>/*.yaml` → workload directories |
 | "Where are namespaces defined?" | `cluster/namespaces.yaml` |
 | "Where are shared variables?" | `components/clustersettings/` |
 | "Where is the Grafana database?" | `apps/monitoring/grafana/cnpg/grafana.cluster.yaml` |
