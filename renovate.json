@@ -7,7 +7,9 @@
     ":automergeMinor",
     ":skipStatusChecks",
     ":timezone(Asia/Ho_Chi_Minh)",
-    ":disableRateLimiting"
+    ":disableRateLimiting",
+    "github>home-operations/renovate-presets//apps/grafanaDashboards.json5",
+    "github>home-operations/renovate-presets//apps/cnpg.json5"
   ],
   "schedule": ["* * * * 0,6"],
   "kubernetes": {
@@ -78,16 +80,6 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/(^|/).*dashboard.yaml$/"],
-      "matchStrings": [
-        "dashboards\\/(?<depName>\\d+)\\/revisions\\/(?<currentValue>\\d+)\\/download"
-      ],
-      "datasourceTemplate": "custom.grafana-dashboards",
-      "versioningTemplate": "regex:^(?<major>\\d+)$",
-      "autoReplaceStringTemplate": "dashboards/{{depName}}/revisions/{{newValue}}/download"
-    },
-    {
-      "customType": "regex",
       "managerFilePatterns": ["/(^|/)kustomization\\.yaml$/"],
       "matchStrings": [
         "https://raw\\.githubusercontent\\.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>v?[\\w\\.-]+)(?:/.*)?",
@@ -107,30 +99,17 @@
     {
       "customType": "regex",
       "managerFilePatterns": ["/ansible/inventory/group_vars/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "flux_version:\\s+\"(?<currentValue>v?[\\d.]+)\""
-      ],
+      "matchStrings": ["flux_version:\\s+\"(?<currentValue>v?[\\d.]+)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "fluxcd/flux2"
     },
     {
       "customType": "regex",
       "managerFilePatterns": ["/ansible/inventory/group_vars/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "k3s_version:\\s+\"(?<currentValue>v?[\\d.+k3s]+)\""
-      ],
+      "matchStrings": ["k3s_version:\\s+\"(?<currentValue>v?[\\d.+k3s]+)\""],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "k3s-io/k3s"
     }
   ],
-  "customDatasources": {
-    "grafana-dashboards": {
-      "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
-      "format": "json",
-      "transformTemplates": [
-        "{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"
-      ]
-    }
-  },
   "ignorePaths": ["**/*.sops.*", "config/**", "**/.archive/**"]
 }
