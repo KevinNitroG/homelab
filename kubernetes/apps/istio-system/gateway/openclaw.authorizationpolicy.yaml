@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/security.istio.io/authorizationpolicy_v1.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/controlplaneio-fluxcd/schema-catalog/main/catalog/security.istio.io/authorizationpolicy_v1.json
 apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
