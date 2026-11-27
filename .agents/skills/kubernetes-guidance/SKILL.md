@@ -76,10 +76,11 @@ apps/
 │   ├── kustomization.yaml
 │   └── gateway/                # Gateway API experimental-install.yaml
 │
-├── files/                      # File Browser, MeTube, aria2, and rclone
+├── files/                      # File Browser, MeTube, Motrix, aria2, and rclone
 │   ├── filebrowser.yaml        # Flux Kustomization → files/filebrowser/
 │   ├── filebrowser/            # Deployment, Service, HTTPRoute, KEDA resources
-│   ├── aria2.yaml, metube.yaml, rclone.yaml
+│   ├── aria2.yaml, metube.yaml, motrix.yaml, rclone.yaml
+│   ├── motrix/                 # Motrix Server, state and downloads PVCs, HTTPRoute
 │   └── kustomization.yaml
 │
 ├── glance/                     # Glance dashboard

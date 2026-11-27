@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motrix
+spec:
+  strategy:
+    type: Recreate
+  selector: {}
+  template:
+    spec:
+      terminationGracePeriodSeconds: 120
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: motrix
+          image: ghcr.io/agalwood/motrix-server:2.4.7
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: downloads
+              mountPath: /downloads
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: motrix-data
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: motrix-downloads
+        - name: tmp
+          emptyDir:
+            medium: Memory
+            sizeLimit: 64Mi

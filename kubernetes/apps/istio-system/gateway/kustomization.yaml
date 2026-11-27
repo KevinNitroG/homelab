@@ -11,6 +11,7 @@ resources:
   - ./filebrowser.authorizationpolicy.yaml
   - ./gateway.yaml
   - ./metube.authorizationpolicy.yaml
+  - ./motrix.authorizationpolicy.yaml
   - ./openclaw.authorizationpolicy.yaml
   - ./prometheus.authorizationpolicy.yaml
 namespace: istio-system

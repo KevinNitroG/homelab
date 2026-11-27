@@ -35,6 +35,8 @@ spec:
               mountPath: /srv/aria2/
             - name: &metube metube-downloads
               mountPath: /srv/metube/
+            - name: &motrix motrix-downloads
+              mountPath: /srv/motrix/
       volumes:
         - name: *config
           configMap:
@@ -48,4 +50,7 @@ spec:
         - name: *metube
           persistentVolumeClaim:
             claimName: *metube
+        - name: *motrix
+          persistentVolumeClaim:
+            claimName: *motrix
   selector: {}

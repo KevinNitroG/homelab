@@ -20,6 +20,7 @@ spec:
     - grafana.${LOCAL_DOMAIN}
     - kite.${LOCAL_DOMAIN}
     - metube.${LOCAL_DOMAIN}
+    - motrix.${LOCAL_DOMAIN}
     - prometheus.${LOCAL_DOMAIN}
     - rclone.${LOCAL_DOMAIN}
     - redpanda.${LOCAL_DOMAIN}
