@@ -1,8 +1,10 @@
 # HTTP scale-to-zero with KEDA
 
-This is the implementation record for [Wake Web Apps on Demand](http-scale-to-zero-story.md). Each app's Flux Kustomization manages its HTTP route, interceptor route, and ScaledObject together. HTTPS traffic is routed through the interceptor and scaling is enabled when the configuration is reconciled.
+This document records the implementation of [Wake Web Apps on Demand](http-scale-to-zero-story.md). Each app's Flux Kustomization manages its HTTPS route, interceptor route, and ScaledObject together.
 
-## How a request wakes an app
+**Verification status:** The initial staged configuration passed offline validation against the pinned CRDs and rendered charts. The current single-Kustomization configuration needs fresh offline and live verification. DbGate is configured in Git, but its rollout and verification are pending; an earlier cluster check found neither its Flux Kustomization nor its workload.
+
+## How it works
 
 ```text
 Browser → Istio Gateway (TLS and existing authorization)
@@ -11,67 +13,91 @@ Browser → Istio Gateway (TLS and existing authorization)
                       └─ HTTP scaler → KEDA → Deployment
 ```
 
-The interceptor stays up while the app sleeps. It counts in-flight requests, including the first waiting request, and forwards that request once the app has a ready endpoint. KEDA scales the **Deployment**, not a pod or an old ReplicaSet. Use a 0–1 replica range and a 5-minute idle cooldown. A long transfer can still count as activity even if it generates no new requests.
+The interceptor stays running and counts in-flight requests. When an app is at zero, it holds the first request until a ready endpoint is available, then forwards it through the original Service. An open transfer counts as activity; pauses between requests do not.
 
-The design uses [KEDA 2.21.1](https://github.com/kedacore/keda/releases/tag/v2.21.1) and the [HTTP add-on 0.16.0](https://github.com/kedacore/http-add-on/releases/tag/v0.16.0), the latest stable releases checked on November 23, 2026. The HTTP add-on itself is still beta. Kubernetes HPA can scale to zero with suitable metrics, but it cannot wait on an HTTP request. The reference `probe_success` setup in the story signals storage availability, not user traffic. With KEDA, `minReplicas: 1` in the generated HPA is expected: KEDA handles the transitions between zero and one itself. This integration does not add a Prometheus Adapter or a manually configured HPA.
+Each app scales between zero and one Deployment replica, with a 300-second idle cooldown. The generated HPA may show `minReplicas: 1`: KEDA handles the zero-to-one transition. The ScaledObjects omit `initialCooldownPeriod`, so an app can scale down immediately if no activity has been recorded. No Prometheus Adapter or manually configured HPA is involved.
 
-## What changed and why
+The design uses [KEDA 2.21.1](https://github.com/kedacore/keda/releases/tag/v2.21.1) and [HTTP add-on 0.16.0](https://github.com/kedacore/http-add-on/releases/tag/v0.16.0), the latest stable releases checked on November 23, 2026. The HTTP add-on is still beta. The story's `probe_success` example measures storage availability, not user traffic; an HPA alone cannot hold a request while an app starts.
 
-- **Shared infrastructure:** `kubernetes/apps/keda/` installs core before the add-on in the `keda` namespace. The add-on uses one to four interceptor replicas, one scaler replica, and a limit of 100 cold-start requests per route per interceptor replica. It waits on ready endpoints and forwards through the original Service rather than bypassing it for a pod IP. Only the interceptor proxy Service (`keda-add-ons-http-interceptor-proxy:8080`) is referenced by the apps' cutover routes. A `ReferenceGrant` in `keda` authorizes those cross-namespace references; neither the scaler nor the administrative Service is exposed by those routes.
-- **Scaling API:** Each app has an `http.keda.sh/v1beta1` `InterceptorRoute` and a `keda.sh/v1alpha1` `ScaledObject` using `external-push`, managed by the same Flux Kustomization. The old `HTTPScaledObject` is deprecated. The route matches the same public and local hostnames as the Gateway and targets the existing Service. [Upstream warns](https://keda.sh/http-add-on/0.16/user-guide/autoscale-an-app/) that KEDA can fall back to a CPU metric if it creates the scaler before the interceptor route exists; a CPU metric cannot wake the app from zero. A single Flux Kustomization does not guarantee that ordering, so verify the generated metric on initial deployment.
-- **Ingress and auth:** Only the HTTPS backends change. Keep the original hostnames, Gateway listeners, HTTP redirects, and host header. File Browser's Authentik policy is still on the Gateway; the authenticated app request should be the one that reaches the interceptor.
-- **Replica ownership:** File Browser and Glance already omit Deployment `spec.replicas`. The pinned Kite and Redpanda charts explicitly render `replicas: 1`; scoped Helm post-render patches remove that field from the two target Deployments so regular Helm upgrades do not declare it. A Helm drift-ignore rule by itself would not remove the field from upgrade manifests.
-- **Schemas:** The YAML language-server directives use standalone JSON schemas. For the KEDA resources, the [Datree HTTP add-on schemas](https://github.com/datreeio/CRDs-catalog/tree/main/http.keda.sh) and [Datree KEDA schemas](https://github.com/datreeio/CRDs-catalog/tree/main/keda.sh) are editor aids; the OpenAPI schema in the pinned charts' CRDs is the version-specific source of truth.
+## Configuration
 
-| App | Service and readiness | Repo-specific change |
-| --- | --- | --- |
-| File Browser | `filebrowser-filebrowser:80`, `/health` | Adds an HTTP readiness probe. Bounds the wait for a ready endpoint without adding a short request or response-header deadline that could cut off transfers. |
-| Redpanda Console | `redpanda-console:8080`, `/admin/health` | Sets `console.service.targetPort: 8080` because the pinned chart otherwise renders `targetPort: 0`. Adds the missing local hostname to the Istio certificate. Only Console scales; the broker does not. |
-| Kite | `kite-kite:8080`, `/healthz` | Reuses the chart's probe and keeps the CNPG dependency. PostgreSQL stays up. |
-| Glance | `glance-glance:8080`, `/api/healthz` | Reuses the existing probes. Moves File Browser and Kite from the Glance monitor to bookmarks. Their direct Service checks would report a sleeping app as down; pointing the checks at the interceptor would wake it instead. |
+### Shared infrastructure
 
-Expect the apps to start quickly once their containers can run, but do not treat the implementation language as a cold-start measurement. [Redpanda's broker](https://github.com/redpanda-data/redpanda) is mainly **C++**, but the target is [Console](https://github.com/redpanda-data/console), a Go backend with a TypeScript/React frontend. [Kite](https://github.com/kite-org/kite) is also Go with a React UI; [Glance](https://github.com/glanceapp/glance) is Go with templates and JavaScript, not React; [File Browser](https://github.com/filebrowser/filebrowser) uses Go and a Vue frontend. Image pulls, scheduling, PVC mounts, database connections, and endpoint propagation can dominate a cold start regardless.
+`kubernetes/apps/keda/` installs KEDA before the HTTP add-on in the `keda` namespace. The add-on runs one to four interceptor replicas and one scaler replica. Each interceptor queues up to 100 cold-start requests per route.
 
-## DbGate rollout
+App HTTPS routes reference only `keda-add-ons-http-interceptor-proxy:8080`. A `ReferenceGrant` in `keda` permits cross-namespace references; the routes do not expose the scaler or administrative Service. Hostnames, Gateway listeners, HTTP redirects, host headers, and Gateway authorization policies remain unchanged.
 
-**Configured in Git; live rollout and verification are pending.** An earlier read-only cluster check found neither the `dbgate-dbgate` Flux Kustomization nor the workload.
+Each app has an `http.keda.sh/v1beta1` `InterceptorRoute` for its public and local hostnames and a `keda.sh/v1alpha1` ScaledObject using `external-push`. The route targets the existing Service. The older `HTTPScaledObject` is deprecated.
 
-1. The app list includes `./dbgate/`, the KEDA proxy `ReferenceGrant` permits `dbgate`, and `dbgate-dbgate` depends on `default-gatewayapi`, `keda-http`, and `keda-grant`, with the same KEDA health-check expressions as Glance.
-2. The Deployment omits `spec.replicas` and has an HTTP readiness probe on `/health:3000`. The pinned [`dbgate/dbgate:7.3.6-alpine` build serves `/health`](https://github.com/dbgate/dbgate/blob/v7.3.6/packages/api/src/main.js) and uses Node.js.
-3. An `InterceptorRoute` matches both DbGate hostnames and targets Service `dbgate-dbgate:3000`; an `external-push` ScaledObject targets Deployment `dbgate-dbgate` with 0–1 replicas and a 300-second cooldown. Only the HTTPS backend uses the KEDA proxy. HTTP redirects and the gateway's Authentik policy remain unchanged; DbGate itself has `SKIP_ALL_AUTH` enabled. DbGate remains in the Glance monitor without a separate `check-url`. The monitor may check its main URL, potentially waking DbGate or keeping it awake; verify this behavior.
-4. The interceptor uses `readiness: 90s`, and the total request deadline is disabled at both the interceptor and Gateway, as with File Browser. This keeps startup bounded without imposing a short lifetime on DbGate's `/stream` connection. Verify the HPA metric and Authentik flow, then measure request-to-ready time on both hostnames with cached and uncached images. Test whether an idle tab keeps DbGate awake and what happens to a long-running query if the client disconnects.
+**Check the generated HPA metric on initial deployment.** Flux applies the route and ScaledObject in the same Kustomization but does not guarantee their order. If the scaler is created before the route exists, [KEDA may fall back to a CPU metric](https://keda.sh/http-add-on/0.16/user-guide/autoscale-an-app/), which cannot wake an app from zero.
 
-## Not adopting: Authentik, Grafana, and MeTube
+File Browser and Glance Deployments omit `spec.replicas`. The pinned Kite and Redpanda charts render `replicas: 1`, so scoped Helm post-render patches remove it from those Deployments. A drift-ignore rule alone would not remove it from upgrade manifests.
 
-- **Authentik — keep the server and worker running.** Scaling only `authentik-server` is possible in principle, with `cooldownPeriod: 900` for a 15-minute idle cooldown, while `authentik-worker` and PostgreSQL remain running. However, Istio sends authorization checks directly to the [embedded outpost](https://docs.goauthentik.io/add-secure-apps/outposts/embedded/), which runs inside the server. Routing only the Authentik website through KEDA would leave protected apps unable to wake the sleeping authorization service. A workable design would also route authorization checks through the interceptor, preserve their original host and path, avoid conflicts with protected apps' interceptor routes, and keep authorization fail-closed. Inventory direct API and OIDC callers as well; direct calls cannot wake the server. This design has not been tested end to end and is not planned.
-  - The server already has a `/-/health/ready/` readiness probe and a startup probe allowing roughly 10 minutes; the latter is not a cold-start measurement. A long, bounded interceptor readiness wait would need to be measured and coordinated with Istio's authorization timeout, Gateway, clients, and any Cloudflare proxy timeout. Do not serve a loading placeholder as an authorization decision.
-  - The Helm chart declares server replicas, so a future rollout would need to remove `spec.replicas` from **only** the server Deployment's rendered manifest. The Glance direct health check would report a sleeping server as down; an interceptor-based health check could wake it instead. A 15-minute cooldown is not an exact shutdown time, and background requests or persistent connections can keep the server awake.
-  - Test direct login and protected-app requests from zero for both authenticated and unauthenticated users, all relevant hostnames and direct callers, fail-closed behavior, slow cached and uncached starts, Helm and Flux reconciliation, and eventual scale-down with the worker still running. In one live snapshot the server used about 415 MiB RAM; the worker and database would remain up.
-- **Grafana — keep one replica.** The installed Grafana Operator 5.26.0 supports scaling the **Grafana custom resource**, not its operator-owned Deployment. The live `/scale` endpoint returned HTTP 500 because `spec.deployment.spec.replicas` was absent. Seeding it and handing off that field from GitOps is possible, but the [pinned operator](https://github.com/grafana/grafana-operator/blob/v5.26.0/controllers/reconcilers/grafana/complete_reconciler.go#L25-L48) still treats the sleeping instance as failed, retries, and defers dashboard, datasource, and folder sync until it wakes. Grafana-managed alert evaluations would stop; the independent Prometheus and Alertmanager would not. Grafana alone used about 147 MiB and 16 millicores in one snapshot, and PostgreSQL and the operator would stay up. The added complexity isn't worth those savings here.
-- **MeTube — skip KEDA.** The live Deployment was at zero with no ScaledObject and a direct HTTPS backend, so it had no HTTP wake path. This is not a working scale-to-zero setup. If revisited, HTTP concurrency could wake MeTube, while a second trigger on the same ScaledObject could keep it awake based on a Prometheus gauge derived from its internal [`/history` queue](https://github.com/alexta69/metube/blob/2026.11.14/app/main.py). Count runnable queued work, downloads, and post-processing, not completed or manually pending items. Missing telemetry from a running pod is not evidence of idleness. Subscriptions and scheduled livestreams need an always-running process or an external wake mechanism. No exporter or autoscaler is planned.
+YAML language-server directives use standalone JSON schemas. The [Datree HTTP add-on](https://github.com/datreeio/CRDs-catalog/tree/main/http.keda.sh) and [KEDA](https://github.com/datreeio/CRDs-catalog/tree/main/keda.sh) schemas are editor aids; the pinned charts' CRD OpenAPI schemas are the version-specific source of truth.
 
-## Deployment checks
+### Apps
 
-1. Check that both KEDA releases, the `ReferenceGrant`, each app's `InterceptorRoute`, and each app are ready. The app Kustomizations depend on KEDA and the grant, but apply the route and ScaledObject together.
-2. For each app, verify the generated HPA uses the HTTP scaler's external metric rather than CPU before relying on scale-to-zero. If it uses CPU, investigate and correct the ScaledObject/HPA after confirming the interceptor route exists.
-3. Test both hostnames, including Authentik for File Browser. The ScaledObjects use `cooldownPeriod: 300` and omit `initialCooldownPeriod`, allowing immediate scale-down if no activity has been recorded. File Browser keeps its `90s` readiness budget and disabled request timeouts; the other apps use a `30s` interceptor readiness budget, `60s` interceptor request budget, and `75s` Gateway request budget.
-4. If rolling an active autoscaled app back to direct routing, first set its `minReplicaCount` to `1` and verify a ready backend, then restore the direct route and remove the `ScaledObject`.
+| App | Service | Readiness | Notes |
+| --- | --- | --- | --- |
+| File Browser | `filebrowser-filebrowser:80` | `/health` | Adds a readiness probe. Authentik remains on the Gateway. |
+| Redpanda Console | `redpanda-console:8080` | `/admin/health` | Sets `console.service.targetPort: 8080`; the pinned chart otherwise renders `0`. Adds the local hostname to the Istio certificate. The broker stays running. |
+| Kite | `kite-kite:8080` | `/healthz` | Uses the chart's probe and retains its CNPG dependency. PostgreSQL stays running. |
+| Glance | `glance-glance:8080` | `/api/healthz` | Uses existing probes. File Browser and Kite move from the monitor to bookmarks: direct Service checks report sleeping apps as down, while interceptor checks wake them. |
+| DbGate | `dbgate-dbgate:3000` | `/health` | Configured in Git; rollout pending. See below. |
 
-## Offline verification
+File Browser and DbGate use a `90s` interceptor readiness budget, with total request deadlines disabled at the interceptor and Gateway. This bounds startup without imposing a short lifetime on transfers or DbGate's `/stream` connection. The other apps use `30s` readiness, `60s` interceptor request, and `75s` Gateway request budgets.
 
-The initial staged configuration was validated offline against the pinned CRDs and rendered charts. The current single-Kustomization configuration requires fresh verification, including the live checks below.
+### DbGate
 
-## What still needs a live test
+The app list includes `./dbgate/`, and the KEDA proxy `ReferenceGrant` permits `dbgate`. Its Flux Kustomization depends on `default-gatewayapi`, `keda-http`, and `keda-grant`, using the same KEDA health-check expressions as Glance.
 
-Start with **File Browser** before adopting the same settings everywhere. For each app, let it fall to zero without hitting its hostname, then make a real request through each hostname. Verify that the first request succeeds without a reload, the Deployment goes to one, and it returns to zero after traffic stops. The interceptor's `X-KEDA-HTTP-Cold-Start` response header can help distinguish a wake from a warm request.
+The Deployment omits `spec.replicas`. The pinned [`dbgate/dbgate:7.3.6-alpine` image serves `/health`](https://github.com/dbgate/dbgate/blob/v7.3.6/packages/api/src/main.js). Its interceptor route matches both hostnames, and its ScaledObject targets Deployment `dbgate-dbgate`. Only HTTPS uses the interceptor. Gateway Authentik remains in place, while DbGate itself has `SKIP_ALL_AUTH` enabled.
 
-Check these in particular:
+DbGate remains in the Glance monitor without a separate `check-url`. Verify whether the monitor checks its main URL and wakes it or keeps it awake.
 
-- **Kubernetes compatibility:** KEDA 2.21's [published test matrix](https://keda.sh/docs/2.21/operate/cluster/#kubernetes-compatibility) covers Kubernetes 1.34–1.36, not the story's k3s 1.37.2. The charts accept 1.37.2 for offline templating; that is not an upstream compatibility guarantee. Verify the aggregated metrics API and controller behavior on 1.37 before trusting the integration.
-- The generated HPA uses the HTTP scaler's **external** metric, not CPU. A reconciled `InterceptorRoute` alone does not prove that the data path works.
-- The authenticated File Browser request succeeds from zero; an unauthenticated request still gets the expected Authentik flow. Both hostnames present valid TLS, including Redpanda after the local certificate is reissued.
-- A slow File Browser upload and download that each last more than 5 minutes remain active. Check both hostnames: the Gateway, application, and interceptor can each impose separate limits. If the public hostname is proxied through Cloudflare, its [connection timeouts](https://developers.cloudflare.com/fundamentals/reference/connection-limits/) and [upload-size limits](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/4xx-client-error/error-413/) also apply; changing the YAML here cannot remove those limits. Concurrency protects tracked requests from idle scale-down, not from proxy restarts or network failures.
-- **Chunked uploads:** HTTP concurrency only protects open requests, not pauses between TUS chunks. The pinned File Browser build defaults to an in-memory upload cache without Redis configured. A PVC can retain partial file data without retaining the upload metadata. If resuming across scale-down is required, test a pause longer than the cooldown and consider [Redis-backed upload metadata](https://github.com/filebrowser/filebrowser/blob/v2.63.23/cmd/root.go) before relying on it.
-- Flux reconciles while apps are at zero, and a Helm upgrade does not take replica ownership back. Test the first upgrade of the existing Kite and Redpanda releases separately from later upgrades.
-- Background polling, new tabs, persistent connections, and health checks don't unexpectedly keep an app awake. If required background work is not tied to an open HTTP request, HTTP idleness alone cannot protect it.
-- Measure cold-start latency on the public and local paths with cached images and image pulls, and compare the resources saved against the always-running KEDA components. The readiness budgets and cold-start queue limit are starting points, not measured capacity.
+## Verification
+
+Start with File Browser. Repeat the following for each app before relying on scale-to-zero:
+
+1. Confirm both KEDA releases, the `ReferenceGrant`, the app's `InterceptorRoute`, and the app are ready.
+2. Confirm the generated HPA uses the HTTP scaler's **external** metric, not CPU. If it uses CPU, confirm the route exists, then investigate and correct the ScaledObject/HPA. A reconciled route alone does not prove the data path works.
+3. Let the app reach zero without visiting its hostname. Request each public and local hostname. Confirm the first request succeeds without a reload, the Deployment reaches one replica, and it returns to zero after traffic stops. The `X-KEDA-HTTP-Cold-Start` response header can distinguish a cold start from a warm request.
+4. Verify TLS on both hostnames, including Redpanda's local hostname after certificate reissue. Test authenticated and unauthenticated File Browser requests from zero, and verify DbGate's Authentik flow.
+5. Confirm Flux reconciliation at zero and that Helm upgrades do not reclaim replica ownership. Test the first upgrade of existing Kite and Redpanda releases separately from subsequent upgrades.
+6. Check whether background polling, new tabs, persistent connections, or health checks prevent scale-down. HTTP idleness cannot protect required background work that is not tied to an open request.
+7. Measure request-to-ready latency on both paths with cached images and image pulls. Scheduling, PVC mounts, database connections, and endpoint propagation also affect startup. Compare savings with the always-running KEDA components; readiness budgets and queue limits are unmeasured starting points.
+
+### Compatibility and long-running requests
+
+- **Kubernetes:** KEDA 2.21's [test matrix](https://keda.sh/docs/2.21/operate/cluster/#kubernetes-compatibility) covers Kubernetes 1.34–1.36, not the story's k3s 1.37.2. Successful offline chart templating is not a compatibility guarantee. Verify the aggregated metrics API and controller behavior on 1.37.
+- **File Browser transfers:** Test uploads and downloads lasting more than five minutes on both hostnames. Gateway, application, and interceptor limits are separate. A Cloudflare-proxied hostname also has [connection timeouts](https://developers.cloudflare.com/fundamentals/reference/connection-limits/) and [upload-size limits](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/4xx-client-error/error-413/) that these manifests cannot remove. Concurrency protects tracked requests from idle scale-down, not proxy restarts or network failures.
+- **Chunked uploads:** Concurrency does not protect pauses between TUS chunks. The pinned File Browser build uses an in-memory upload cache without Redis; a PVC may retain partial data but not upload metadata. If resume across scale-down is required, test a pause longer than the cooldown and consider [Redis-backed metadata](https://github.com/filebrowser/filebrowser/blob/v2.63.23/cmd/root.go).
+- **DbGate:** Test whether an idle tab keeps it awake and what happens to a long-running query when the client disconnects.
+
+## Rollback
+
+Before restoring direct routing for an active autoscaled app, set `minReplicaCount` to `1` and verify a ready backend. Then restore the direct route and remove the ScaledObject.
+
+## Apps not adopted
+
+### Authentik
+
+Keep the server and worker running. Istio sends authorization checks directly to the [embedded outpost](https://docs.goauthentik.io/add-secure-apps/outposts/embedded/) inside the server. Routing only the Authentik website through KEDA would not wake authorization for protected apps.
+
+A future design would need to route authorization checks through the interceptor, preserve host and path, avoid route conflicts, and fail closed. It must also account for direct API and OIDC callers, which cannot wake the server through direct calls. This design is untested and not planned.
+
+If revisited, coordinate a measured, bounded readiness wait with Istio authorization, Gateway, client, and Cloudflare timeouts. The existing `/-/health/ready/` probe and roughly 10-minute startup probe do not establish cold-start time. Never use a loading placeholder as an authorization decision. Remove `spec.replicas` only from the server's rendered Deployment; the worker and PostgreSQL must remain running. Glance checks can either report a sleeping server as down or wake it. A possible 900-second cooldown is not an exact shutdown time, and background traffic or persistent connections can extend it.
+
+Test login and protected requests from zero for authenticated and unauthenticated users, all hostnames and direct callers, fail-closed behavior, cached and uncached starts, Helm and Flux reconciliation, and eventual scale-down. One snapshot showed about 415 MiB RAM for the server; the worker and database would remain up.
+
+### Grafana
+
+Keep one replica. Grafana Operator 5.26.0 scales the Grafana custom resource, not its operator-owned Deployment. The live `/scale` endpoint returned HTTP 500 because `spec.deployment.spec.replicas` was absent. Even if that field were seeded and handed off from GitOps, the [pinned operator](https://github.com/grafana/grafana-operator/blob/v5.26.0/controllers/reconcilers/grafana/complete_reconciler.go#L25-L48) treats a sleeping instance as failed and defers dashboard, datasource, and folder synchronization.
+
+Grafana-managed alert evaluations would stop; independent Prometheus and Alertmanager would not. One snapshot showed Grafana using about 147 MiB and 16 millicores; PostgreSQL and the operator would remain running. The savings do not justify the complexity.
+
+### MeTube
+
+Skip KEDA. A live snapshot showed its Deployment at zero, with no ScaledObject and a direct HTTPS backend. It had no HTTP wake path, so this was not a working scale-to-zero setup.
+
+If revisited, HTTP concurrency could wake MeTube, while a second trigger on the same ScaledObject could use a Prometheus gauge from its internal [`/history` queue](https://github.com/alexta69/metube/blob/2026.11.14/app/main.py) to keep it awake. Count runnable queued work, downloads, and post-processing, not completed or manually pending items. Missing telemetry from a running pod is not evidence of idleness. Subscriptions and scheduled livestreams require an always-running process or external wake mechanism. No exporter or autoscaler is planned.
